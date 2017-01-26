@@ -1,0 +1,47 @@
+{
+    "orders":
+    {
+        "redis":
+        {
+            "host": @QUIP_JOBS,
+            "port": "6379",
+            "channel": "q:events"
+        },
+        "kue":
+        {
+            "host": @QUIP_JOBS,
+            "port": "3000",
+            "path": "/job/"
+        }
+    },
+    "images":
+    {
+        "location":
+        {
+            "host" : @QUIP_DATA,
+            "port" : "9099" ,
+            "path" : "/services/Camicroscope_DataLoader/DataLoader/query/getFileLocationByIID"
+        },
+        "imageServer":
+        {
+            "url":@QUIP_OSS,
+            "format":"JPEG"
+        },
+        "api_key_file": "/tmp/DynamicServices/configs/sample_apikey.json"
+    },        
+    "annotations":
+    {
+        "server":
+        {
+            "host": @QUIP_LOADER,
+            "port": "3001",
+            "path": "/submitZipOrder"
+        },
+        "redis":
+        {
+            "host": @QUIP_LOADER,
+            "port": "6379",
+            "channel": "q:events"
+        }
+    }
+}
