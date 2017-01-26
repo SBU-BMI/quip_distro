@@ -1,12 +1,24 @@
 #!/bin/bash
 
+if [ "$#" -ne 1 ]; then
+	echo "./start_containers.sh <storage folder path>"
+	exit 1;
+fi
+
+VIEWER_DIR=ViewerDockerContainer
+if [ ! -d "$VIEWER_DIR" ]; then
+	git clone https://github.com/camicroscope/ViewerDockerContainer
+fi
+
+STORAGE_FOLDER=$1
+
 docker network create quip_nw
 
-mkdir img
-mkdir data
+IMAGES_DIR=$(echo $STORAGE_FOLDER/img)
+DATABASE_DIR=$(echo $STORAGE_FOLDER/data)
 
-IMAGES_DIR=$(echo $(pwd)/img)
-DATABASE_DIR=$(echo $(pwd)/data)
+mkdir -p $IMAGES_DIR 
+mkdir -p $DATABASE_DIR
 
 VIEWER_PORT=80
 IMAGELOADER_PORT=6002
@@ -25,7 +37,9 @@ loader_container=$(docker run --name quip-loader --net=quip_nw -itd -p $IMAGELOA
 echo "Started loader container: " $loader_container
 
 # Run viewer container
-HTML_DIRECTORY=$(pwd)"/ViewerDockerContainer/html"
+INP_HTML_DIRECTORY=$(pwd)"/ViewerDockerContainer/html"
+\cp -rf $INP_HTML_DIRECTORY $STORAGE_FOLDER/.
+HTML_DIRECTORY="$STORAGE_FOLDER/html"
 \cp -f configs/config_DS.php $HTML_DIRECTORY/camicroscopeDS/api/Configuration/config.php
 \cp -f configs/config_VW.php $HTML_DIRECTORY/camicroscope/api/Configuration/config.php
 sed -i 's/\@DATA_URL/\"http:\/\/quip-data:9099\"/g' $HTML_DIRECTORY/camicroscopeDS/api/Configuration/config.php
@@ -43,17 +57,17 @@ jobs_container=$(docker run --name quip-jobs --net=quip_nw -itd quip_jobs)
 echo "Started job orders container: " $jobs_container
 
 # Run dynamic services container
-\cp -f configs/config_temp.json configs/config.json
-sed -i 's/\@QUIP_JOBS/\"quip-jobs\"/g' configs/config.json
-sed -i 's/\@QUIP_OSS/\"quip-oss:5000\"/g' configs/config.json
-sed -i 's/\@QUIP_DATA/\"quip-data\"/g' configs/config.json
-sed -i 's/\@QUIP_LOADER/\"quip-loader\"/g' configs/config.json
-CONFIGS_DIR=$(echo $(pwd)/configs)
+\cp -rf configs $STORAGE_FOLDER/.
+CONFIGS_DIR=$(echo $STORAGE_FOLDER/configs)
+\cp -f $CONFIGS_DIR/config_temp.json $CONFIGS_DIR/config.json
+sed -i 's/\@QUIP_JOBS/\"quip-jobs\"/g' $CONFIGS_DIR/config.json
+sed -i 's/\@QUIP_OSS/\"quip-oss:5000\"/g' $CONFIGS_DIR/config.json
+sed -i 's/\@QUIP_DATA/\"quip-data\"/g' $CONFIGS_DIR/config.json
+sed -i 's/\@QUIP_LOADER/\"quip-loader\"/g' $CONFIGS_DIR/config.json
 dynamic_container=$(docker run --name quip-dynamic --net=quip_nw -itd -v $CONFIGS_DIR:/tmp/DynamicServices/configs quip_dynamic)
 echo "Started dynamic services container: " $dynamic_container
 
 # Run findapi service container
 findapi_container=$(docker run --name quip-findapi --net=quip_nw -itd -p $FINDAPI_PORT:3000 -e "MONHOST=$(echo $mongo_host)" -e "MONPORT=$(echo $mongo_port)" quip_findapi)
 echo "Started findapi service container: " $findapi_container
-
 
