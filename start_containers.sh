@@ -42,9 +42,11 @@ INP_HTML_DIRECTORY=$(pwd)"/ViewerDockerContainer/html"
 HTML_DIRECTORY="$STORAGE_FOLDER/html"
 \cp -f configs/config_DS.php $HTML_DIRECTORY/camicroscopeDS/api/Configuration/config.php
 \cp -f configs/config_VW.php $HTML_DIRECTORY/camicroscope/api/Configuration/config.php
+\cp -r configs/config_flextables.json $HTML_DIRECTORY/FlexTables/config.json
 sed -i 's/\@DATA_URL/\"http:\/\/quip-data:9099\"/g' $HTML_DIRECTORY/camicroscopeDS/api/Configuration/config.php
 sed -i 's/\@KUE_URL/\"http:\/\/quip-jobs:3000\"/g' $HTML_DIRECTORY/camicroscopeDS/api/Configuration/config.php
 sed -i 's/\@DATA_URL/\"http:\/\/quip-data:9099\"/g' $HTML_DIRECTORY/camicroscope/api/Configuration/config.php
+sed -i 's/\@DATA_URL/http:\/\/quip-data:9099/g' $HTML_DIRECTORY/FlexTables/config.json
 viewer_container=$(docker run --name=quip-viewer --net=quip_nw -itd -p $VIEWER_PORT:80 -v $HTML_DIRECTORY:/var/www/html -v $IMAGES_DIR:/data/images quip_viewer)
 echo "Started viewer container: " $viewer_container
 
