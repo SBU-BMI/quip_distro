@@ -1,8 +1,13 @@
 # Building and running the QUIP containers
 
+# Create an installation folder
+
+Please create an installation folder. This folder should be writable by you and should be on a file system with 
+enough storage space to store images and analysis results.
+
 # Clone the distro repository
 
-Clone this repository in a folder where you will build and start the containers from.
+Go to the installation folder and clone this repository.
 
 # Build the containers
 
@@ -22,13 +27,11 @@ quip_data
 
 # Start the containers
 
-The start_containers.sh script expects the full path of the storage folder where data and configuration files for the 
-QUIP containers will be stored. The img folder will be used by QUIP to store and manage whole slide tissue images. The 
-data folder will be used for the FeatureDB database, which manages image metadata and analysis results. Please make 
+The start_containers.sh script expects the full path of the installation folder. The data and configuration files for the 
+containers will be stored in this folder. The startup process will create an "img" folder in which the software will store 
+and manage whole slide tissue images. Startup will also create a "data" sub-folder in the installation folder. The 
+data subfolder will be used for the FeatureDB database, which manages image metadata and analysis results. Please make 
 sure the storage folder has enough space for images and the database. 
 
-Assume the storage folder path is /data/quip . 
-
-Run ./start_containers.sh /data/quip to start the containers. The startup process will create /data/quip/img and /data/quip/data 
-folders and store configuration information in /data/quip/configs and /data/quip/html folder. 
+Run ./start_containers.sh <path of the installation folder> to start the containers. 
 
