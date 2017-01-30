@@ -33,5 +33,5 @@ and manage whole slide tissue images. Startup will also create a "data" sub-fold
 data subfolder will be used for the FeatureDB database, which manages image metadata and analysis results. Please make 
 sure the storage folder has enough space for images and the database. 
 
-Run ./start_containers.sh <path of the installation folder> to start the containers. 
+Run ./start_containers.sh \<path of the installation folder\> to start the containers. 
 
