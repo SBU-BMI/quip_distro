@@ -1,5 +1,3 @@
-# Building and running the QuIP containers and application
-
 QuIP is a web accessible toolset designed to support analysis, management, and exploration of whole slide tissue images for cancer research. The QuIP system consits of a set of docker containers, which provide analysis execution and data management backend services, and web applications to load and visualize images, run image analyses, and visualize and interact with analysis results. 
 
 # Requirements
