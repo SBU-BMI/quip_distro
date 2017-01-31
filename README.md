@@ -1,4 +1,4 @@
-QuIP is a web accessible toolset designed to support analysis, management, and exploration of whole slide tissue images for cancer research. The QuIP system consits of a set of docker containers, which provide analysis execution and data management backend services, and web applications to load and visualize images, run image analyses, and visualize and interact with analysis results. 
+QuIP is a web accessible toolset designed to support analysis, management, and exploration of whole slide tissue images for cancer research. The QuIP system consists of a set of docker containers, which provide analysis execution and data management backend services, and web applications to load and visualize whole slide tissue images (in [OpenSlide](http://openslide.org) supported formats), run nuclear segmentation analyses on image tiles, and visualize and interact with analysis results. 
 
 # Requirements
 
@@ -6,7 +6,7 @@ QuIP is a web accessible toolset designed to support analysis, management, and e
 2. [git](https://git-scm.com) should be installed.
 3. QuIP requires access to a folder (data folder) on the host machine to store whole slide tissue images 
    and the database. You should have read/write permissions to the folder.
-4. The installation scripts and the QuIP software has been tested on Linux systems and with Google Chrome 
+4. The installation scripts and the QUIP softwar has been tested on Linux systems and with Google Chrome 
    browser. 
 5. The following three ports should be open to use the web-applications: 80, 6002, 3000. 
    
