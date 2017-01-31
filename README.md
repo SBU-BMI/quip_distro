@@ -2,13 +2,13 @@
 
 # Requirements
 
-1. docker should be installed. You should be able to run docker commands (e.g., pull, run).
-2. git should be installed.
+1. [docker](https://www.docker.com) should be installed. You should be able to run docker commands (e.g., pull, run).
+2. [git](https://git-scm.com) should be installed.
 3. QUIP requires access to a folder (data folder) on the host machine to store whole slide tissue images 
    and the database. You should have read/write permissions to the folder.
 4. The installation scripts and the QUIP softwar has been tested on Linux systems and with Google Chrome 
    browser. 
-5. QUIP requires three ports to be open: 80, 6002, 3000. 
+5. The following three ports should be open to use the web-applications: 80, 6002, 3000. 
    
 # Clone the distribution repository
 
@@ -37,6 +37,3 @@ After the containers are started, you may access the QUIP web applications using
 # Additional information
 
 This [video](https://www.youtube.com/watch?v=gbUzUmzvwEk) shows the use of the QUIP system. .
-
-
-
