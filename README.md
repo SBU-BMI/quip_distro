@@ -36,4 +36,6 @@ After the containers are started, you may access the QUIP web applications using
 
 # Additional information
 
-This [video](https://www.youtube.com/watch?v=gbUzUmzvwEk) shows the use of the QUIP system. .
+This [video](https://www.youtube.com/watch?v=gbUzUmzvwEk) shows the use of the QUIP system.
+
+An instance of QuIP is accessible [here](http://quip1.bmi.stonybrook.edu). This instance is not enabled to run image analyses. It allows access to a database of about 1.7 Billion segmented objects and their features generated from about 3,000 TCGA whole slide tissue images.  
