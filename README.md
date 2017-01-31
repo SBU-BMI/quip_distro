@@ -6,7 +6,7 @@ QuIP is a web accessible toolset designed to support analysis, management, and e
 2. [git](https://git-scm.com) should be installed.
 3. QuIP requires access to a folder (data folder) on the host machine to store whole slide tissue images 
    and the database. You should have read/write permissions to the folder.
-4. The installation scripts and the QUIP softwar has been tested on Linux systems and with Google Chrome 
+4. The installation scripts and the QuIP software has been tested on Linux systems and with Google Chrome 
    browser. 
 5. The following three ports should be open to use the web-applications: 80, 6002, 3000. 
    
