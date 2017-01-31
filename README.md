@@ -36,8 +36,7 @@ After the containers are started, you may access the QUIP web applications using
 
 # Additional information
 
-This video shows the use of the QUIP system: https://www.youtube.com/watch?v=gbUzUmzvwEk
-
+This [video](https://www.youtube.com/watch?v=gbUzUmzvwEk) shows the use of the QUIP system. .
 
 
 
