@@ -32,7 +32,7 @@ space for images and the database.
 The startup process will pull the QuIP containers from their respective docker image repositories, create a user-defined 
 docker network (quip_nw), start up the containers and attach them to the user-defined docker network. 
 
-After the containers are started, you may access the QuIP web applications using a browser at http://\<hostname\> . Here, hostname is the name or IP address of the host machine where the containers are installed and running. 
+After the containers are started, you may access the QuIP web applications using a browser at http://\<hostname\>. Here, hostname is the name or IP address of the host machine where the containers are installed and running. 
 
 # Additional information
 
