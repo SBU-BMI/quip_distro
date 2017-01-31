@@ -49,7 +49,7 @@ viewer_container=$(docker run --name=quip-viewer --net=quip_nw -itd -p $VIEWER_P
 echo "Started viewer container: " $viewer_container
 
 # Run oss-lite container
-oss_container=$(docker run --name quip-oss --net=quip_nw -itd -v $IMAGES_DIR:/data/images camicroscope/oss-lite)
+oss_container=$(docker run --name quip-oss --net=quip_nw -itd -v $IMAGES_DIR:/data/images camicroscope/oss-lite sh -c "cd /root/src/oss-lite; sh run.sh")
 echo "Started oss-lite container: " $oss_container
 
 # Run job orders service container
