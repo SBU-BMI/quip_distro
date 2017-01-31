@@ -6,9 +6,9 @@ QuIP is a web accessible toolset designed to support analysis, management, and e
 2. [git](https://git-scm.com) should be installed.
 3. QuIP requires access to a folder (data folder) on the host machine to store whole slide tissue images 
    and the database. You should have read/write permissions to the folder.
-4. The installation scripts and the QuIP software has been tested on Linux systems and with Google Chrome 
+4. The installation scripts and the QuIP software have been tested on Linux systems and with Google Chrome 
    browser. 
-5. The following three ports should be open to use the web-applications: 80, 6002, 3000. 
+5. The following three ports should be open to be able to use the web applications: 80, 6002, 3000. 
    
 # Clone the distribution repository
 
@@ -18,8 +18,8 @@ Clone this repository.
          
 # Run the containers
 
-Before pulling and running the containers, create a data folder if one doesn't exist. The data folder will be used to 
-store images and the database as well as a set of configuration files required by the containers.
+Before pulling and running the containers, create a data folder if one does not exist. The data folder will be used to 
+store images and the database as well as configuration files required by the containers.
 
 Execute run_containers.sh script. At the command prompt, 
 
@@ -38,4 +38,6 @@ After the containers are started, you may access the QuIP web applications using
 
 This [video](https://www.youtube.com/watch?v=gbUzUmzvwEk) shows the use of the QuIP system.
 
-An instance of QuIP is accessible [here](http://quip1.bmi.stonybrook.edu). This instance is not enabled to run image analyses. It allows access to a database of about 1.7 Billion segmented objects and their features generated from about 3,000 TCGA whole slide tissue images.  
+An instance of QuIP is accessible [here](http://quip1.bmi.stonybrook.edu). The image analysis functionality is disabled in this instance. 
+This instance allows access to a database of about 1.7 Billion segmented objects and their features generated from about 3,000 TCGA whole 
+slide tissue images.  
