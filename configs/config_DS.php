@@ -27,7 +27,7 @@ return array(
      */
     'algorithmsForImage' => "$annotationsUrl/MarkupsForImages/query/MarkupsAvilableForImage?",
     'getMultipleAnnotations' => "$annotationsUrl/MarkupLoader/query/getMultipleMarkups?",
-
+    'getROI' => "$annotationsUrl/MarkupLoader/query/getROI", //Featurescape URL.
     'deleteMarkups' => "$annotationsUrl/MarkupLoader/delete/deleteMultipleMarkups",
     'firebase' => $firebase,
     'firebase_key' => $firebase_key,
