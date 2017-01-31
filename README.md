@@ -36,7 +36,7 @@ After the containers are started, you may access the QuIP web applications using
 
 # Additional information
 
-This [video](https://www.youtube.com/watch?v=gbUzUmzvwEk) shows the use of the QuIP system.
+This [video](https://www.youtube.com/watch?v=dK4c6ti1Dvc) shows the use of the QuIP system.
 
 An instance of QuIP is accessible [here](http://quip1.bmi.stonybrook.edu). The image analysis functionality is disabled in this instance. 
 This instance allows access to a database of about 1.7 Billion segmented objects and their features generated from about 3,000 TCGA whole 
