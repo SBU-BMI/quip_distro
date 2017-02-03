@@ -13,8 +13,6 @@ $templateUrl = "$serviceUrl/AnnotationTemplate";
 $markupUrl = "$serviceUrl/Annotations";
 
 $dynamicServices = $serviceUrl;
-$firebase = "https://test-8f679.firebaseio.com/camicroscopeStates";
-$firebase_key = "kweMPSAo4guxUXUodU0udYFhC27yp59XdTEkTSJ4";
 
 $kueUrl = @KUE_URL;
 
