@@ -36,7 +36,7 @@ After the containers are started, you may access the QuIP web applications using
 
 # Additional information
 
-You may download a VM containing all of the docker images and web applications from the following [link](https://drive.google.com/file/d/0B1w9_31CAt25c3E5RVhfQXVGTUE/view?usp=sharing). The userid is quip; the password is bmibmi2017 . 
+You may download a VM containing all of the docker images and web applications from the following [link](https://drive.google.com/file/d/0B1w9_31CAt25c3E5RVhfQXVGTUE/view?usp=sharing). The userid is quip; the password is quipbmi2017 . 
 
 This [video](https://www.youtube.com/watch?v=dK4c6ti1Dvc) shows the use of the QuIP system.
 
