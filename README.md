@@ -1,5 +1,13 @@
 QuIP is a web accessible toolset designed to support analysis, management, and exploration of whole slide tissue images for cancer research. The QuIP system consists of a set of docker containers, which provide analysis execution and data management backend services, and web applications to load and visualize whole slide tissue images (in [OpenSlide](http://openslide.org) supported formats), run nuclear segmentation analyses on image tiles, and visualize and interact with analysis results. 
 
+This [video](https://www.youtube.com/watch?v=dK4c6ti1Dvc) shows the use of the QuIP system.
+
+An instance of QuIP is accessible [here](http://quip1.bmi.stonybrook.edu). The image analysis functionality is disabled in this instance. 
+This instance is backed by a database of about 1.9 Billion segmented objects and their features (17 features per segmented nuclues; a 
+total of 32 Billion features) generated from about 3,000 TCGA whole slide tissue images. 
+
+You may download a VM containing all of the docker images and web applications from the following [link](https://drive.google.com/file/d/0B1w9_31CAt25c3E5RVhfQXVGTUE/view?usp=sharing). The userid is quip; the password is quipbmi2017.
+
 # Requirements
 
 1. [docker](https://www.docker.com) should be installed. You should be able to run docker commands (e.g., pull, run).
@@ -34,12 +42,10 @@ docker network (quip_nw), start up the containers and attach them to the user-de
 
 After the containers are started, you may access the QuIP web applications using a browser at http://\<hostname\>. Here, hostname is the name or IP address of the host machine where the containers are installed and running. 
 
-# Additional information
 
-You may download a VM containing all of the docker images and web applications from the following [link](https://drive.google.com/file/d/0B1w9_31CAt25c3E5RVhfQXVGTUE/view?usp=sharing). The userid is quip; the password is quipbmi2017 . 
 
-This [video](https://www.youtube.com/watch?v=dK4c6ti1Dvc) shows the use of the QuIP system.
+ 
 
-An instance of QuIP is accessible [here](http://quip1.bmi.stonybrook.edu). The image analysis functionality is disabled in this instance. 
-This instance is backed by a database of about 1.9 Billion segmented objects and their features (17 features per segmented nuclues; a 
-total of 32 Billion features) generated from about 3,000 TCGA whole slide tissue images. 
+
+
+
