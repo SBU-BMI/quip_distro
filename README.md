@@ -1,15 +1,21 @@
 QuIP is a web accessible toolset designed to support analysis, management, and exploration of whole slide tissue images for cancer research. The QuIP system consists of a set of docker containers, which provide analysis execution and data management backend services, and web applications to load and visualize whole slide tissue images (in [OpenSlide](http://openslide.org) supported formats), run nuclear segmentation analyses on image tiles, and visualize and explore the analysis results. 
 
+## QuIP Video
+
 This [video](https://www.youtube.com/watch?v=dK4c6ti1Dvc) shows the basic usage of the QuIP system.
 
-An instance of QuIP is accessible [here](http://quip1.bmi.stonybrook.edu). The image analysis functionality is disabled in this instance. 
-This instance is backed by a database of about 1.9 Billion segmented objects and their features (17 features per segmented nuclues; a 
-total of 32 Billion features) generated from about 3,000 TCGA whole slide tissue images. 
+# QuIP Demo VM
 
 You may download a demo VMWare VM (in the OVA format) containing all of the docker images and web applications from the following [link]
 (http://quip2.bmi.stonybrook.edu:4000/quipvm/) or this [link](https://drive.google.com/file/d/0B9Sq9MWc46AuOHBZR0tGMTlXOU0/view?usp=sharing). The download size is 12GB. 
 
 The VM starts all the containers on boot. It is configured to use 2GB memory and 2 CPU cores. Please wait for about 30 seconds for the start process to complete. You can log on to the VM with userid: quip and password: quipdemo. The Google Chrome browser will open automatically upon login and will bring up the QuIP home page. A TCGA whole slide tissue image is already loaded to the system along with some analysis results. There are additional TCGA whole slide tissue images on /home/quip/Desktop which can be loaded using the Image Loader app accessible from the home page.
+
+# Public Read-only Instance
+
+An instance of QuIP is accessible [here](http://quip1.bmi.stonybrook.edu). The image analysis functionality is disabled in this instance. 
+This instance is backed by a database of about 1.9 Billion segmented objects and their features (17 features per segmented nuclues; a 
+total of 32 Billion features) generated from about 3,000 TCGA whole slide tissue images. 
 
 # Requirements
 
