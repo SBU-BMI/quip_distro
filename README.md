@@ -6,7 +6,7 @@ An instance of QuIP is accessible [here](http://quip1.bmi.stonybrook.edu). The i
 This instance is backed by a database of about 1.9 Billion segmented objects and their features (17 features per segmented nuclues; a 
 total of 32 Billion features) generated from about 3,000 TCGA whole slide tissue images. 
 
-You may download a VM containing all of the docker images and web applications from the following [link](https://drive.google.com/file/d/0B1w9_31CAt25c3E5RVhfQXVGTUE/view?usp=sharing). The userid is quip; the password is quipbmi2017.
+You may download a demo VMWare VM containing all of the docker images and web applications from the following [link](https://drive.google.com/file/d/0B1w9_31CAt25c3E5RVhfQXVGTUE/view?usp=sharing). The userid is quip; the password is quipbmi2017.
 
 # Requirements
 
