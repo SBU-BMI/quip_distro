@@ -31,7 +31,7 @@ total of 32 Billion features) generated from about 3,000 TCGA whole slide tissue
 
 Clone this repository.
 
-         git https://github.com/SBU-BMI/quip_distro
+         `git clone https://github.com/SBU-BMI/quip_distro`
          
 # Run the containers
 
