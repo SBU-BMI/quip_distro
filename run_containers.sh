@@ -8,6 +8,7 @@ fi
 VIEWER_DIR=ViewerDockerContainer
 if [ ! -d "$VIEWER_DIR" ]; then
 	git clone https://github.com/camicroscope/ViewerDockerContainer
+	cd ViewerDockerContainer; git checkout ver-0.9; cd ..;
 fi
 
 STORAGE_FOLDER=$1;
@@ -29,31 +30,42 @@ mongo_host="quip-data"
 mongo_port=27017
 
 # Run data container
-data_container=$(docker run --name quip-data --net=quip_nw -itd -v $IMAGES_DIR:/data/images -v $DATABASE_DIR:/data/db sbubmi/quip_data)
+data_container=$(docker run --name quip-data --net=quip_nw -itd \
+	-v $IMAGES_DIR:/data/images \
+	-v $DATABASE_DIR:/data/db \
+	sbubmi/quip_data:0.9)
 echo "Started data container: " $data_container
 
 # Run loader container
-loader_container=$(docker run --name quip-loader --net=quip_nw -itd -p $IMAGELOADER_PORT:3002 -v $IMAGES_DIR:/data/images -e "mongo_host=$(echo $mongo_host)" -e "mongo_port=$(echo $mongo_port)" -e "dataloader_host=$(echo $data_host)" -e "annotations_host=$(echo $data_host)" sbubmi/quip_loader)
+loader_container=$(docker run --name quip-loader --net=quip_nw -itd \
+	-p $IMAGELOADER_PORT:3002 \
+	-v $IMAGES_DIR:/data/images \
+	-e "mongo_host=$(echo $mongo_host)" \
+	-e "mongo_port=$(echo $mongo_port)" \
+	-e "dataloader_host=$(echo $data_host)" \
+	-e "annotations_host=$(echo $data_host)" \
+	sbubmi/quip_loader:0.9)
 echo "Started loader container: " $loader_container
 
 # Run viewer container
 INP_HTML_DIRECTORY=$(pwd)"/ViewerDockerContainer/html"
 \cp -rf $INP_HTML_DIRECTORY $STORAGE_FOLDER/.
 HTML_DIRECTORY="$STORAGE_FOLDER/html"
-# \cp -f configs/config_DS.php $HTML_DIRECTORY/camicroscope/api/Configuration/config.php
-# \cp -r configs/config_flextables.json $HTML_DIRECTORY/FlexTables/config.json
-# sed -i 's/\@DATA_URL/\"http:\/\/quip-data:9099\"/g' $HTML_DIRECTORY/camicroscope/api/Configuration/config.php
-# sed -i 's/\@KUE_URL/\"http:\/\/quip-jobs:3000\"/g' $HTML_DIRECTORY/camicroscope/api/Configuration/config.php
-# sed -i 's/\@DATA_URL/http:\/\/quip-data:9099/g' $HTML_DIRECTORY/FlexTables/config.json
-viewer_container=$(docker run --name=quip-viewer --net=quip_nw -itd -p $VIEWER_PORT:80 -v $HTML_DIRECTORY:/var/www/html -v $IMAGES_DIR:/data/images sbubmi/quip_viewer)
+viewer_container=$(docker run --name=quip-viewer --net=quip_nw -itd \
+	-p $VIEWER_PORT:80 \
+	-v $HTML_DIRECTORY:/var/www/html \
+	-v $IMAGES_DIR:/data/images \
+	sbubmi/quip_viewer:0.9)
 echo "Started viewer container: " $viewer_container
 
 # Run oss-lite container
-oss_container=$(docker run --name quip-oss --net=quip_nw -itd -v $IMAGES_DIR:/data/images camicroscope/oss-lite sh -c "cd /root/src/oss-lite; sh run.sh")
+oss_container=$(docker run --name quip-oss --net=quip_nw -itd \
+	-v $IMAGES_DIR:/data/images \
+	camicroscope/oss-lite sh -c "cd /root/src/oss-lite; sh run.sh")
 echo "Started oss-lite container: " $oss_container
 
 # Run job orders service container
-jobs_container=$(docker run --name quip-jobs --net=quip_nw -itd sbubmi/quip_jobs) 
+jobs_container=$(docker run --name quip-jobs --net=quip_nw -itd sbubmi/quip_jobs:0.9) 
 echo "Started job orders container: " $jobs_container
 
 # Run dynamic services container
@@ -64,10 +76,16 @@ sed -i 's/\@QUIP_JOBS/\"quip-jobs\"/g' $CONFIGS_DIR/config.json
 sed -i 's/\@QUIP_OSS/\"quip-oss:5000\"/g' $CONFIGS_DIR/config.json
 sed -i 's/\@QUIP_DATA/\"quip-data\"/g' $CONFIGS_DIR/config.json
 sed -i 's/\@QUIP_LOADER/\"quip-loader\"/g' $CONFIGS_DIR/config.json
-dynamic_container=$(docker run --name quip-dynamic --net=quip_nw -itd -v $CONFIGS_DIR:/tmp/DynamicServices/configs sbubmi/quip_dynamic)
+dynamic_container=$(docker run --name quip-dynamic --net=quip_nw -itd \
+	-v $CONFIGS_DIR:/tmp/DynamicServices/configs \
+	sbubmi/quip_dynamic:0.9)
 echo "Started dynamic services container: " $dynamic_container
 
 # Run findapi service container
-findapi_container=$(docker run --name quip-findapi --net=quip_nw -itd -p $FINDAPI_PORT:3000 -e "MONHOST=$(echo $mongo_host)" -e "MONPORT=$(echo $mongo_port)" sbubmi/quip_findapi)
+findapi_container=$(docker run --name quip-findapi --net=quip_nw -itd \
+	-p $FINDAPI_PORT:3000 \
+	-e "MONHOST=$(echo $mongo_host)" \
+	-e "MONPORT=$(echo $mongo_port)" \
+	sbubmi/quip_findapi:0.9)
 echo "Started findapi service container: " $findapi_container
 
