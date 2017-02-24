@@ -5,10 +5,12 @@ if [ "$#" -ne 1 ]; then
 	exit 1;
 fi
 
+VERSION=latest
+
 VIEWER_DIR=ViewerDockerContainer
 if [ ! -d "$VIEWER_DIR" ]; then
 	git clone https://github.com/camicroscope/ViewerDockerContainer
-	cd ViewerDockerContainer; git checkout ver-0.9; cd ..;
+	# cd ViewerDockerContainer; git checkout ver-0.9; cd ..;
 fi
 
 STORAGE_FOLDER=$1;
@@ -33,7 +35,7 @@ mongo_port=27017
 data_container=$(docker run --name quip-data --net=quip_nw -itd \
 	-v $IMAGES_DIR:/data/images \
 	-v $DATABASE_DIR:/data/db \
-	sbubmi/quip_data:0.9)
+	sbubmi/quip_data:$VERSION)
 echo "Started data container: " $data_container
 
 # Run loader container
@@ -44,7 +46,7 @@ loader_container=$(docker run --name quip-loader --net=quip_nw -itd \
 	-e "mongo_port=$(echo $mongo_port)" \
 	-e "dataloader_host=$(echo $data_host)" \
 	-e "annotations_host=$(echo $data_host)" \
-	sbubmi/quip_loader:0.9)
+	sbubmi/quip_loader:$VERSION)
 echo "Started loader container: " $loader_container
 
 # Run viewer container
@@ -55,7 +57,7 @@ viewer_container=$(docker run --name=quip-viewer --net=quip_nw -itd \
 	-p $VIEWER_PORT:80 \
 	-v $HTML_DIRECTORY:/var/www/html \
 	-v $IMAGES_DIR:/data/images \
-	sbubmi/quip_viewer:0.9)
+	sbubmi/quip_viewer:$VERSION)
 echo "Started viewer container: " $viewer_container
 
 # Run oss-lite container
@@ -65,7 +67,7 @@ oss_container=$(docker run --name quip-oss --net=quip_nw -itd \
 echo "Started oss-lite container: " $oss_container
 
 # Run job orders service container
-jobs_container=$(docker run --name quip-jobs --net=quip_nw -itd sbubmi/quip_jobs:0.9) 
+jobs_container=$(docker run --name quip-jobs --net=quip_nw -itd sbubmi/quip_jobs:$VERSION) 
 echo "Started job orders container: " $jobs_container
 
 # Run dynamic services container
@@ -78,7 +80,7 @@ sed -i 's/\@QUIP_DATA/\"quip-data\"/g' $CONFIGS_DIR/config.json
 sed -i 's/\@QUIP_LOADER/\"quip-loader\"/g' $CONFIGS_DIR/config.json
 dynamic_container=$(docker run --name quip-dynamic --net=quip_nw -itd \
 	-v $CONFIGS_DIR:/tmp/DynamicServices/configs \
-	sbubmi/quip_dynamic:0.9)
+	sbubmi/quip_dynamic:$VERSION)
 echo "Started dynamic services container: " $dynamic_container
 
 # Run findapi service container
@@ -86,6 +88,6 @@ findapi_container=$(docker run --name quip-findapi --net=quip_nw -itd \
 	-p $FINDAPI_PORT:3000 \
 	-e "MONHOST=$(echo $mongo_host)" \
 	-e "MONPORT=$(echo $mongo_port)" \
-	sbubmi/quip_findapi:0.9)
+	sbubmi/quip_findapi:$VERSION)
 echo "Started findapi service container: " $findapi_container
 
