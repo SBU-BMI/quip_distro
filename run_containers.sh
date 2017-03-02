@@ -10,7 +10,7 @@ VERSION=latest
 VIEWER_DIR=ViewerDockerContainer
 if [ ! -d "$VIEWER_DIR" ]; then
 	git clone https://github.com/camicroscope/ViewerDockerContainer
-	# cd ViewerDockerContainer; git checkout ver-0.9; cd ..;
+	cd ViewerDockerContainer; git checkout ver-0.9; cd ..;
 fi
 
 STORAGE_FOLDER=$1;
