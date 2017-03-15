@@ -73,11 +73,10 @@ echo "Started job orders container: " $jobs_container
 # Run dynamic services container
 \cp -rf configs $STORAGE_FOLDER/.
 CONFIGS_DIR=$(echo $STORAGE_FOLDER/configs)
-\cp -f $CONFIGS_DIR/config_temp.json $CONFIGS_DIR/config.json
-sed -i 's/\@QUIP_JOBS/\"quip-jobs\"/g' $CONFIGS_DIR/config.json
-sed -i 's/\@QUIP_OSS/\"quip-oss:5000\"/g' $CONFIGS_DIR/config.json
-sed -i 's/\@QUIP_DATA/\"quip-data\"/g' $CONFIGS_DIR/config.json
-sed -i 's/\@QUIP_LOADER/\"quip-loader\"/g' $CONFIGS_DIR/config.json
+sed 's/\@QUIP_JOBS/\"quip-jobs\"/g' $CONFIGS_DIR/config_temp.json > $CONFIGS_DIR/config_tmp.json
+sed 's/\@QUIP_OSS/\"quip-oss:5000\"/g' $CONFIGS_DIR/config_tmp.json > $CONFIGS_DIR/config.json
+sed 's/\@QUIP_DATA/\"quip-data\"/g' $CONFIGS_DIR/config.json > $CONFIGS_DIR/config_tmp.json
+sed 's/\@QUIP_LOADER/\"quip-loader\"/g' $CONFIGS_DIR/config_tmp.json > $CONFIGS_DIR/config.json
 dynamic_container=$(docker run --name quip-dynamic --net=quip_nw -itd \
 	-v $CONFIGS_DIR:/tmp/DynamicServices/configs \
 	sbubmi/quip_dynamic:$VERSION)
