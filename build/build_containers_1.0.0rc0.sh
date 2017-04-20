@@ -1,6 +1,6 @@
 git clone -b develop https://github.com/camicroscope/DataDockerContainer.git;
 git clone https://github.com/camicroscope/LoaderDockerContainer.git; 
-git clone -b remove_mount_html https://github.com/camicroscope/ViewerDockerContainer.git; 
+git clone -b develop https://github.com/camicroscope/ViewerDockerContainer.git; 
 git clone https://github.com/camicroscope/OrderingService.git; 
 git clone https://github.com/camicroscope/DynamicServices.git;
 git clone https://github.com/SBU-BMI/findapi.git; 
