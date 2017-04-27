@@ -88,3 +88,10 @@ findapi_container=$(docker run --name quip-findapi --net=quip_nw --restart unles
 	sbubmi/quip_findapi:$VERSION)
 echo "Started findapi service container: " $findapi_container
 
+
+# Run composite dataset generating container
+composite_container=$(docker run --name quip-composite --net=quip_nw --restart unless-stopped -itd quip_composite) 
+echo "Started composite dataset generating container: " $composite_container
+
+
+
