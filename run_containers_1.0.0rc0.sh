@@ -54,7 +54,7 @@ echo "Started loader container: " $loader_container
 viewer_container=$(docker run --name=quip-viewer --net=quip_nw --restart unless-stopped -itd \
 	-p $VIEWER_PORT:80 \
 	-v $IMAGES_DIR:/data/images \
-	-v $(pwd)/config/security:/var/www/html/config \
+	-v $(pwd)/configs/security:/var/www/html/config \
 	quip_viewer)
 echo "Started viewer container: " $viewer_container
 
