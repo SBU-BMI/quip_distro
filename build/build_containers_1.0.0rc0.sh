@@ -3,7 +3,7 @@ git clone -b 1.0.0rc0 https://github.com/camicroscope/LoaderDockerContainer.git;
 git clone -b 1.0.0rc0 https://github.com/camicroscope/ViewerDockerContainer.git; 
 git clone -b 1.0.0rc0 https://github.com/camicroscope/OrderingService.git; 
 git clone -b 1.0.0rc0 https://github.com/camicroscope/DynamicServices.git;
-git clone https://github.com/SBU-BMI/findapi.git; 
+git clone -b 1.0.0rc0 https://github.com/SBU-BMI/findapi.git; 
 git clone -b 1.0.0rc0 https://github.com/SBU-BMI/quip_cwl.git
 
 
