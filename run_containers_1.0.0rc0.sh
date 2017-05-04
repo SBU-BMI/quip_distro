@@ -38,6 +38,10 @@ data_container=$(docker run --name quip-data --net=quip_nw --restart unless-stop
 	quip_data)
 echo "Started data container: " $data_container
 
+sleep 3
+echo "This might take 30 seconds"
+sleep 15
+
 # Run loader container
 loader_container=$(docker run --name quip-loader --net=quip_nw --restart unless-stopped -itd \
 	-p $IMAGELOADER_PORT:3002 \
@@ -77,7 +81,7 @@ sed 's/\@QUIP_DATA/\"quip-data\"/g' $CONFIGS_DIR/config.json > $CONFIGS_DIR/conf
 sed 's/\@QUIP_LOADER/\"quip-loader\"/g' $CONFIGS_DIR/config_tmp.json > $CONFIGS_DIR/config.json
 dynamic_container=$(docker run --name quip-dynamic --net=quip_nw --restart unless-stopped -itd \
 	-v $CONFIGS_DIR:/tmp/DynamicServices/configs \
-	sbubmi/quip_dynamic:$VERSION)
+	camicroscope/quip_dynamic)
 echo "Started dynamic services container: " $dynamic_container
 
 # Run findapi service container
