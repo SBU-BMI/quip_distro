@@ -5,12 +5,12 @@ if [ "$#" -ne 1 ]; then
 	exit 1;
 fi
 
-VERSION=latest
+VERSION=0.9
 
 VIEWER_DIR=ViewerDockerContainer
 if [ ! -d "$VIEWER_DIR" ]; then
 	git clone https://github.com/camicroscope/ViewerDockerContainer
-	# cd ViewerDockerContainer; git checkout ver-0.9; cd ..;
+	cd ViewerDockerContainer; git checkout ver-0.9; cd ..;
 fi
 
 STORAGE_FOLDER=$1;
