@@ -1,11 +1,10 @@
-git clone -b 1.0.0rc1 https://github.com/camicroscope/DataDockerContainer.git;
-git clone -b 1.0.0rc1 https://github.com/camicroscope/LoaderDockerContainer.git; 
-git clone -b 1.0.0rc1 https://github.com/camicroscope/ViewerDockerContainer.git; 
-git clone -b 1.0.0rc1 https://github.com/camicroscope/OrderingService.git; 
-git clone -b 1.0.0rc1 https://github.com/camicroscope/DynamicServices.git;
+git clone -b release https://github.com/camicroscope/DataDockerContainer.git; cd DataDockerContainer; git checkout tags/1.0.0rc1; cd ..;
+git clone -b release https://github.com/camicroscope/LoaderDockerContainer.git; cd LoaderDockerContainer; git checkout tags/1.0.0rc1; cd ..;
+git clone -b release https://github.com/camicroscope/ViewerDockerContainer.git; cd ViewerDockerContainer; git checkout tags/1.0.0rc1; cd ..;
+git clone -b release https://github.com/camicroscope/OrderingService.git; cd OrderingService; git checkout tags/1.0.0rc1; cd ..;
+git clone -b release https://github.com/camicroscope/DynamicServices.git; cd DynamicServices; git checkout tags/1.0.0rc1; cd ..;
 git clone -b 1.0.0rc1 https://github.com/SBU-BMI/findapi.git; 
 git clone -b 1.0.0rc1 https://github.com/SBU-BMI/quip_cwl.git
-
 
 docker build -t quip_data DataDockerContainer
 docker build -t quip_loader LoaderDockerContainer
