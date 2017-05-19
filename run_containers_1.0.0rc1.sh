@@ -7,12 +7,6 @@ fi
 
 VERSION=latest
 
-# VIEWER_DIR=ViewerDockerContainer
-# if [ ! -d "$VIEWER_DIR" ]; then
-# 	git clone -b release https://github.com/camicroscope/ViewerDockerContainer
-# 	# cd ViewerDockerContainer; git checkout ver-0.9; cd ..;
-# fi
-
 STORAGE_FOLDER=$1;
 
 docker network create quip_nw
@@ -31,7 +25,7 @@ data_host="http://quip-data:9099"
 mongo_host="quip-data"
 mongo_port=27017
 
-# \cp -rf configs $STORAGE_FOLDER/.
+\cp -rf configs $STORAGE_FOLDER/.
 CONFIGS_DIR=$(echo $STORAGE_FOLDER/configs)
 
 ## Run data container
@@ -46,7 +40,6 @@ sleep 15
 
 ## Run loader container
 loader_container=$(docker run --name quip-loader --net=quip_nw --restart unless-stopped -itd \
-	-p $IMAGELOADER_PORT:3002 \
 	-v $IMAGES_DIR:/data/images \
 	-e "mongo_host=$(echo $mongo_host)" \
 	-e "mongo_port=$(echo $mongo_port)" \
@@ -86,7 +79,6 @@ echo "Started dynamic services container: " $dynamic_container
 
 # Run findapi service container
 findapi_container=$(docker run --name quip-findapi --net=quip_nw --restart unless-stopped -itd \
-	-p $FINDAPI_PORT:3000 \
 	-e "MONHOST=$(echo $mongo_host)" \
 	-e "MONPORT=$(echo $mongo_port)" \
 	quip_findapi:$VERSION)
