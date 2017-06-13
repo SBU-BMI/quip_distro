@@ -1,7 +1,9 @@
 #!/bin/bash
 
+PROGNAME=$(basename "$0")
+
 if [ "$#" -ne 1 ]; then
-	echo "./run_containers.sh <install folder>"
+	echo "Usage: ./$PROGNAME <install folder>"
 	exit 1;
 fi
 
