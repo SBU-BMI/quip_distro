@@ -7,6 +7,12 @@ if [ "$#" -ne 1 ]; then
 	exit 1;
 fi
 
+echo "Building Containers..."
+
+./build/build_containers_release.sh
+
+echo "Starting Containers..."
+
 VERSION=latest
 
 STORAGE_FOLDER=$1;
@@ -90,6 +96,3 @@ echo "Started findapi service container: " $findapi_container
 # Run composite dataset generating container
 composite_container=$(docker run --name quip-composite --net=quip_nw --restart unless-stopped -itd quip_composite) 
 echo "Started composite dataset generating container: " $composite_container
-
-
-
