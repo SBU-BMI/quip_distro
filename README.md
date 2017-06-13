@@ -38,7 +38,7 @@ Before pulling and running the containers, create a data folder if it does not e
 store images and the database as well as configuration files required by the containers. Note you should have read and write 
 permissions to the folder. 
 
-Execute the run_containers.sh script. At the command prompt: 
+Execute the run_containers_release.sh script. At the command prompt: 
 
 
     ./run_containers_release.sh <full path of data folder>
