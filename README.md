@@ -26,13 +26,13 @@ total of 32 Billion features) generated from about 3,000 TCGA whole slide tissue
    browser. 
 5. The following three ports should be open to be able to use the web applications: 80, 6002, 3000. 
    
-# Clone the distribution repository
+# Cloning the distribution repository
 
 Clone this repository.
 
     git clone https://github.com/SBU-BMI/quip_distro
          
-# Run the containers
+# Running the containers
 
 Before pulling and running the containers, create a data folder if it does not exist. The data folder will be used to 
 store images and the database as well as configuration files required by the containers. Note you should have read and write 
