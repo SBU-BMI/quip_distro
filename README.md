@@ -53,3 +53,7 @@ docker network (quip_nw), start up the containers and attach them to the user-de
 
 After the containers are started, you may access the QuIP web applications using a browser at `http://<hostname>`. Here, hostname is the name or IP address of the host machine where the containers are running. 
 
+### Configuring authentication
+
+Check the [security documentation](https://github.com/camicroscope/Security/blob/release/README.md) for enabling/disabling authentication
+
