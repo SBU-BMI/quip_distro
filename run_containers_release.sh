@@ -7,9 +7,8 @@ if [ "$#" -ne 1 ]; then
 	exit 1;
 fi
 
-echo "Building Containers..."
-
-./build/build_containers_release.sh
+# echo "Building Containers..."
+# ./build/build_containers_release.sh
 
 echo "Starting Containers..."
 
