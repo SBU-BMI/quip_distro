@@ -36,11 +36,16 @@ Clone this repository.
 
 Before pulling and running the containers, create a data folder if it does not exist. The data folder will be used to 
 store images and the database as well as configuration files required by the containers. Note you should have read and write 
-permissions to the folder. 
+permissions to the folder.
 
-Execute the run_containers_release.sh script. At the command prompt: 
+Execute the build_containers_release.sh script. At the command prompt:
 
-
+    cd <path to your github repositories folder>
+    <path to quip_distro folder>/build/build_containers_release.sh
+    
+Execute the run_containers_release.sh script. At the command prompt:
+    
+    cd <path to quip_distro folder>
     ./run_containers_release.sh <full path of data folder>
 
 
