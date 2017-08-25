@@ -1,6 +1,6 @@
 <?php
 //Set false for disabling security
-$enable_security = true;
+$enable_security = false;
 
 //Google client info
 $client_id = 'xxxxxxxxxxxxxxxxxxxxxxxxxx.apps.googleusercontent.com';
