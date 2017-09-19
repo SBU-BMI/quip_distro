@@ -4,8 +4,7 @@ services:
     - nodejs
     - phantomjs
 before_install:
-    - bash run_containers_release.sh
-    - cd tests
+    - bash run_containers_develop.sh
     - npm install -g casperjs
 script:
-    - casperjs test casper_test.js
+    - casperjs test tests/casper_test.js
