@@ -7,4 +7,4 @@ before_install:
     - bash run_containers_develop.sh $(pwd)
     - npm install -g casperjs
 script:
-    - casperjs test tests/casper_test.js
+    - casperjs test tests/basic_test.js
