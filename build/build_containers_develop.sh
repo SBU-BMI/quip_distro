@@ -14,3 +14,4 @@ docker build -t quip_jobs OrderingService
 docker build -t quip_dynamic DynamicServices
 docker build -t quip_findapi findapi
 cd quip_cwl/node-kue; docker build -t quip_composite .
+cd ../..
