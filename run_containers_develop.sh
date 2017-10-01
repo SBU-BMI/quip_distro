@@ -9,7 +9,7 @@ fi
 
 echo "Starting Containers..."
 
-VERSION=
+VERSION=latest
 
 STORAGE_FOLDER=$1;
 

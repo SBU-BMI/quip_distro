@@ -6,8 +6,6 @@ git clone -b develop https://github.com/camicroscope/DynamicServices.git;
 git clone -b develop https://github.com/SBU-BMI/findapi.git;
 git clone -b develop https://github.com/SBU-BMI/quip_cwl.git
 
-exit 1;
-
 docker build -t quip_data DataDockerContainer
 docker build -t quip_loader LoaderDockerContainer
 docker build -t quip_viewer ViewerDockerContainer
