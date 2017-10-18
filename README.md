@@ -5,8 +5,8 @@ QuIP is a web accessible toolset designed to support analysis, management, and e
 The QuIP system consists of a set of docker containers, which provide analysis execution and data management backend services, and web applications to load and visualize whole slide tissue images (in [OpenSlide](http://openslide.org) supported formats), run nuclear segmentation analyses on image tiles, and visualize and explore the analysis results. 
 
 <table class="image">
-<caption align="bottom">{{ "This is a sample." }}</caption>
-<tr><td><img src="{{ /images/lymphocyte.png }}" alt="{{ This is a sample }} width="300"/></td></tr>
+<caption align="bottom">"This is a sample."</caption>
+<tr><td><img src="/images/lymphocyte.png" width="300"/></td></tr>
 </table>
 
 ## QuIP Video
