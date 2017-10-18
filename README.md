@@ -6,7 +6,7 @@ The QuIP system consists of a set of docker containers, which provide analysis e
 
 <table class="image">
 <caption align="bottom">Classification of Lymphocyte rich regions. Collaborative editing of classification results.</caption>
-<tr><td><img src="/images/lymphocyte.png" width="300"/></td></tr>
+<tr><img src="/images/lymphocyte.png" width="300"/></tr>
 </table>
 
 ## QuIP Video
