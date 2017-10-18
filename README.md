@@ -35,7 +35,9 @@ An instance of QuIP is accessible [here](http://quip1.bmi.stonybrook.edu). The i
 This instance is backed by a database of about 1.9 Billion segmented objects and their features (17 features per segmented nuclues; a 
 total of 32 Billion features) generated from about 3,000 TCGA whole slide tissue images. 
 
-# Requirements
+## Installing and Running QuIP 
+
+### Requirements
 
 1. [docker](https://www.docker.com) should be installed. You should be able to run docker commands (e.g., pull, run).
 2. [git](https://git-scm.com) should be installed.
@@ -45,13 +47,13 @@ total of 32 Billion features) generated from about 3,000 TCGA whole slide tissue
    browser. 
 5. The following three ports should be open to be able to use the web applications: 80, 6002, 3000. 
    
-# Cloning the distribution repository
+### Cloning the distribution repository
 
 Clone this repository.
 
     git clone https://github.com/SBU-BMI/quip_distro
          
-# Running the containers
+### Running the containers
 
 Before pulling and running the containers, create a data folder if it does not exist. The data folder will be used to 
 store images and the database as well as configuration files required by the containers. Note you should have read and write 
