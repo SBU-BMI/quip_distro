@@ -6,7 +6,7 @@ The QuIP system consists of a set of docker containers, which provide analysis e
 
 Lymphocyte Classification | Segmentation
 --------------------------|-------------
-![](images/lymphocyte.png width="300")|![](images/segmentation.png width="300")
+<img src="images/lymphocyte.png" width="300"/>|<img src="images/segmentation.png" width="300"/>
 
 ## QuIP Video
 
