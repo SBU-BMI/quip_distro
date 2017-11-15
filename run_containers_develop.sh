@@ -58,7 +58,7 @@ viewer_container=$(docker run --name=quip-viewer --net=quip_nw --restart unless-
 	-p $VIEWER_PORT:80 \
 	-v $IMAGES_DIR:/data/images \
 	-v $STORAGE_FOLDER/configs/security:/var/www/html/config \
-	quip_viewer:$VERSION)
+	camicroscope/quip_viewer:testing-1)
 echo "Started viewer container: " $viewer_container
 
 ## Run oss-lite container
