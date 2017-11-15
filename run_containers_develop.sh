@@ -50,7 +50,7 @@ loader_container=$(docker run --name quip-loader --net=quip_nw --restart unless-
 	-e "mongo_port=$(echo $mongo_port)" \
 	-e "dataloader_host=$(echo $data_host)" \
 	-e "annotations_host=$(echo $data_host)" \
-	quip_loader:$VERSION)
+	camicroscope/quip_data)
 echo "Started loader container: " $loader_container
 
 ## Run viewer container
