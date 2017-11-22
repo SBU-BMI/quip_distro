@@ -5,7 +5,6 @@ services:
     - phantomjs
 before_install:
     - cd build
-    - bash build_containers_develop.sh
     - cd ..
     - bash run_containers_develop.sh $(pwd)
     - npm install -g casperjs
