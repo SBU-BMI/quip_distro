@@ -78,7 +78,7 @@ sed 's/\@QUIP_DATA/\"quip-data\"/g' $CONFIGS_DIR/config.json > $CONFIGS_DIR/conf
 sed 's/\@QUIP_LOADER/\"quip-loader\"/g' $CONFIGS_DIR/config_tmp.json > $CONFIGS_DIR/config.json
 dynamic_container=$(docker run --name quip-dynamic --net=quip_nw --restart unless-stopped -itd \
 	-v $CONFIGS_DIR:/tmp/DynamicServices/configs \
-	quip_dynamic:$VERSION)
+	camicroscope/quip_dynamic)
 
 echo "Started dynamic services container: " $dynamic_container
 
@@ -90,5 +90,5 @@ findapi_container=$(docker run --name quip-findapi --net=quip_nw --restart unles
 echo "Started findapi service container: " $findapi_container
 
 # Run composite dataset generating container
-composite_container=$(docker run --name quip-composite --net=quip_nw --restart unless-stopped -itd quip_composite:$VERSION) 
-echo "Started composite dataset generating container: " $composite_container
+#composite_container=$(docker run --name quip-composite --net=quip_nw --restart unless-stopped -itd quip_composite:$VERSION) 
+#echo "Started composite dataset generating container: " $composite_container
