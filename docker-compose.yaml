@@ -48,7 +48,7 @@ services:
         volumes:
             - quip-images-vol:/data/images
         ports:
-            - "8080:80"
+            - "80:80"
     jobs:
         image: camicroscope/quip_jobs
         container_name: quip-jobs
