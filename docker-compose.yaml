@@ -1,0 +1,75 @@
+version: "3.0"
+networks: 
+    quip_nw:
+volumes:
+    quip-images-vol:
+services:
+    mongo:
+        image: mongo
+        container_name: quip-mongo
+        ports:
+            - "27017"
+    bindaas:
+        image: camicroscope/bindaas
+        container_name: quip-bindaas
+        depends_on:
+            - "mongo"
+        ports:
+            - "9099"
+    uaimloader:
+        image: camicroscope/uaimdataloader:latest
+        container_name: quip-uaimloader
+        depends_on:
+            - "bindaas"
+        environment:
+            "mongo_host": "quip-mongo"
+            "mongo_port": "27017"
+            "annotations_host": "htttp://quip-bindaas:9099"
+        ports:
+            - "3000"
+    imageloader:
+        image: camicroscope/imageloader:latest
+        container_name: quip-imageloader
+        depends_on:
+            - "bindaas"
+        volumes:
+            - quip-images-vol:/data/images
+        environment:
+            "mongo_host": "quip-mongo"
+            "mongo_port": "27017"
+            "bindaas_host": "http://quip-bindaas:9099"
+        ports:
+            - "3002"
+    viewer:
+        image: camicroscope/quip_viewer:testing-1
+        container_name: quip-viewer
+        depends_on: 
+            - "bindaas"
+        volumes:
+            - quip-images-vol:/data/images
+        ports:
+            - "8080:80"
+    jobs:
+        image: camicroscope/quip_jobs
+        container_name: camicroscope-jobs
+        ports: 
+            - "3000"
+    dynamic:
+        image: camicroscope/quip_dynamic
+        container_name: camicroscope-jobs
+        ports:
+            - "3000"
+        depends_on:
+            - "bindaas"
+            - "uaimloader"
+            - "jobs"
+        environment:
+            "jobs_host": "quip-jobs"
+            "oss_host": "quip-oss"
+            "bindaas_host": "quip=bindaas"
+            "uaimloader_host": "quip-uaimloader"
+    oss-lite:
+        image: camicroscope/oss-lite
+        container_name: quip-oss
+        volumes:
+            - quip-images-vol:/data/images
