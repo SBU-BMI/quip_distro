@@ -51,12 +51,12 @@ services:
             - "8080:80"
     jobs:
         image: camicroscope/quip_jobs
-        container_name: camicroscope-jobs
+        container_name: quip-jobs
         ports: 
             - "3000"
     dynamic:
         image: camicroscope/quip_dynamic
-        container_name: camicroscope-jobs
+        container_name: quip-dynamic
         ports:
             - "3000"
         depends_on:
