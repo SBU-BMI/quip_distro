@@ -4,9 +4,8 @@ services:
     - nodejs
     - phantomjs
 before_install:
-    - cd build
-    - cd ..
-    - bash run_containers_develop.sh $(pwd)
+    - docker-compose up -d
     - npm install -g casperjs
+    - npm install
 script:
     - casperjs test tests/
