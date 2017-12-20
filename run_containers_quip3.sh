@@ -38,6 +38,7 @@ CONFIGS_DIR=$(echo $STORAGE_FOLDER/configs)
 
 ## Run data container
 data_container=$(docker run --name quip-data --net=quip_nw --restart unless-stopped -itd \
+        -p 27017:27017 \
  	-v quip_bindaas:/root/bindaas \
 	-v $IMAGES_DIR:/data/images \
 	-v $DATABASE_DIR:/var/lib/mongodb \
