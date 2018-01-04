@@ -56,3 +56,9 @@ After the containers are started, you may access the QuIP web applications using
 
 Check the [security documentation](https://github.com/camicroscope/Security/blob/release/README.md) for enabling/disabling authentication
 
+## Citation
+When using QuIP or caMicroscope, please cite the following:
+
+Saltz, J., Sharma, A., Iyer, G., Bremer, E., Wang, F., Jasniewski, A., DiPrima, T., Almeida, J.S., Gao, Y., Zhao, T., et al. (2017). A Containerized Software System for Generation, Management, and Exploration of Features from Whole Slide Tissue Images. Cancer Res. 77, e79–e82.
+
+caMicroscope — A Platform for Digital Pathology Data Management and Visualization http://camicroscope.org
