@@ -7,12 +7,9 @@ if [ "$#" -ne 1 ]; then
 	exit 1;
 fi
 
-# echo "Building Containers..."
-# ./build/build_containers_release.sh
-
 echo "Starting Containers..."
 
-VERSION=latest
+VERSION=1.0t
 
 STORAGE_FOLDER=$1;
 
@@ -55,7 +52,7 @@ loader_container=$(docker run --name quip-loader --net=quip_nw --restart unless-
 	-e "mongo_port=$(echo $mongo_port)" \
 	-e "dataloader_host=$(echo $data_host)" \
 	-e "annotations_host=$(echo $data_host)" \
-	quip_loader)
+	sbubmi/quip_loader:$VERSION)
 echo "Started loader container: " $loader_container
 
 ## Run viewer container
@@ -76,7 +73,7 @@ oss_container=$(docker run --name quip-oss --net=quip_nw --restart unless-stoppe
 echo "Started oss-lite container: " $oss_container
 
 ## Run job orders service container
-jobs_container=$(docker run --name quip-jobs --net=quip_nw --restart unless-stopped -itd quip_jobs) 
+jobs_container=$(docker run --name quip-jobs --net=quip_nw --restart unless-stopped -itd sbubmi/quip_jobs:$VERSION) 
 echo "Started job orders container: " $jobs_container
 
 ## Run dynamic services container
@@ -86,7 +83,7 @@ sed 's/\@QUIP_DATA/\"quip-data\"/g' $CONFIGS_DIR/config.json > $CONFIGS_DIR/conf
 sed 's/\@QUIP_LOADER/\"quip-loader\"/g' $CONFIGS_DIR/config_tmp.json > $CONFIGS_DIR/config.json
 dynamic_container=$(docker run --name quip-dynamic --net=quip_nw --restart unless-stopped -itd \
 	-v $CONFIGS_DIR:/tmp/DynamicServices/configs \
-	quip_dynamic)
+	sbubmi/quip_dynamic:$VERSION)
 
 echo "Started dynamic services container: " $dynamic_container
 
@@ -94,9 +91,9 @@ echo "Started dynamic services container: " $dynamic_container
 findapi_container=$(docker run --name quip-findapi --net=quip_nw --restart unless-stopped -itd \
 	-e "MONHOST=$(echo $mongo_host)" \
 	-e "MONPORT=$(echo $mongo_port)" \
-	quip_findapi:$VERSION)
+	sbubmi/quip_findapi:$VERSION)
 echo "Started findapi service container: " $findapi_container
 
 # Run composite dataset generating container
-composite_container=$(docker run --name quip-composite --net=quip_nw --restart unless-stopped -itd quip_composite) 
+composite_container=$(docker run --name quip-composite --net=quip_nw --restart unless-stopped -itd sbubmi/quip_composite:$VERSION) 
 echo "Started composite dataset generating container: " $composite_container
