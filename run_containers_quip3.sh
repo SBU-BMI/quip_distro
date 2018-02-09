@@ -9,7 +9,7 @@ fi
 
 echo "Starting Containers..."
 
-VERSION=1.0t
+VERSION=1.0
 
 STORAGE_FOLDER=$1;
 
