@@ -56,7 +56,7 @@ loader_container=$(docker run --name quip-loader --net=quip_nw --restart unless-
 echo "Started loader container: " $loader_container
 
 ## Run viewer container
-viewer_container=$(docker run --name=quip-viewer --net=quip_nw --expose=8080 --restart unless-stopped -itd \
+viewer_container=$(docker run --name=quip-viewer --net=quip_nw --restart unless-stopped -itd \
 	-p $VIEWER_PORT:80 \
  	-p $VIEWER_PORT2:8080 \
 	-v $IMAGES_DIR:/data/images \
