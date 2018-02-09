@@ -62,7 +62,7 @@ viewer_container=$(docker run --name=quip-viewer --net=quip_nw --expose=8080 --r
 	-v $IMAGES_DIR:/data/images \
 	-v $STORAGE_FOLDER/configs/security:/var/www/html/config \
         -v $STORAGE_FOLDER/configs/security:/var/www/html2/config \
-        -v $IMAGES_DIR/composite_results_zip:/var/www/html2/composite_results_zip \ 
+        -v $IMAGES_DIR/composite_results_zip:/var/www/html2/composite_results \ 
 	quip_viewer)
 echo "Started viewer container: " $viewer_container
 
