@@ -1,5 +1,3 @@
-[![Build Status](https://travis-ci.org/SBU-BMI/quip_distro.svg?branch=develop)](https://travis-ci.org/SBU-BMI/quip_distro)
-
 QuIP is a web accessible toolset designed to support analysis, management, and exploration of whole slide tissue images for cancer research. The QuIP system consists of a set of docker containers, which provide analysis execution and data management backend services, and web applications to load and visualize whole slide tissue images (in [OpenSlide](http://openslide.org) supported formats), run nuclear segmentation analyses on image tiles, and visualize and explore the analysis results. 
 
 ## QuIP Video
@@ -12,11 +10,13 @@ You may download a demo VMWare VM (in the OVA format) containing all of the dock
 
 The VM starts all the containers on boot. It is configured to use 2GB memory and 2 CPU cores. Please wait for about 30 seconds for the start process to complete. You can log on to the VM with userid: **quip** and password: **quipdemo**. The Google Chrome browser will open automatically upon login and will bring up the QuIP home page. A TCGA whole slide tissue image is already loaded to the system along with some analysis results. There are additional TCGA whole slide tissue images on /home/quip/Desktop which can be loaded using the Image Loader app accessible from the home page.
 
+<!-- 
 ## Public Read-only Instance
 
 An instance of QuIP is accessible [here](http://quip1.bmi.stonybrook.edu). The image analysis functionality is disabled in this instance. 
 This instance is backed by a database of about 1.9 Billion segmented objects and their features (17 features per segmented nuclues; a 
 total of 32 Billion features) generated from about 3,000 TCGA whole slide tissue images. 
+-->
 
 # Requirements
 
@@ -64,3 +64,9 @@ After the containers are started, you may access the QuIP web applications using
 
 Check the [security documentation](https://github.com/camicroscope/Security/blob/release/README.md) for enabling/disabling authentication
 
+## Citation
+When using QuIP or caMicroscope, please cite the following:
+
+Saltz, J., Sharma, A., Iyer, G., Bremer, E., Wang, F., Jasniewski, A., DiPrima, T., Almeida, J.S., Gao, Y., Zhao, T., et al. (2017). A Containerized Software System for Generation, Management, and Exploration of Features from Whole Slide Tissue Images. Cancer Res. 77, e79–e82.
+
+caMicroscope — A Platform for Digital Pathology Data Management and Visualization http://camicroscope.org
