@@ -18,7 +18,7 @@ docker network create quip_nw
 IMAGES_DIR=$(echo $STORAGE_FOLDER/img)
 DATABASE_DIR=$(echo $STORAGE_FOLDER/data)
 
-mkdir -p $IMAGES_DIR 
+mkdir -p $IMAGES_DIR
 mkdir -p $DATABASE_DIR
 
 VIEWER_PORT=80
@@ -57,7 +57,6 @@ echo "Started loader container: " $loader_container
 viewer_container=$(docker run --name=quip-viewer --net=quip_nw --restart unless-stopped -itd \
 	-p $VIEWER_PORT:80 \
 	-v $IMAGES_DIR:/data/images \
-	-v $STORAGE_FOLDER/configs/security:/var/www/html/config \
 	quip_viewer:$VERSION)
 echo "Started viewer container: " $viewer_container
 
@@ -68,7 +67,7 @@ oss_container=$(docker run --name quip-oss --net=quip_nw --restart unless-stoppe
 echo "Started oss-lite container: " $oss_container
 
 ## Run job orders service container
-jobs_container=$(docker run --name quip-jobs --net=quip_nw --restart unless-stopped -itd quip_jobs:$VERSION) 
+jobs_container=$(docker run --name quip-jobs --net=quip_nw --restart unless-stopped -itd quip_jobs:$VERSION)
 echo "Started job orders container: " $jobs_container
 
 ## Run dynamic services container
@@ -90,5 +89,5 @@ findapi_container=$(docker run --name quip-findapi --net=quip_nw --restart unles
 echo "Started findapi service container: " $findapi_container
 
 # Run composite dataset generating container
-composite_container=$(docker run --name quip-composite --net=quip_nw --restart unless-stopped -itd quip_composite:$VERSION) 
+composite_container=$(docker run --name quip-composite --net=quip_nw --restart unless-stopped -itd quip_composite:$VERSION)
 echo "Started composite dataset generating container: " $composite_container
