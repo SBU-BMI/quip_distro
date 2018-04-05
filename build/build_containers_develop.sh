@@ -1,4 +1,5 @@
-git clone -b develop https://github.com/camicroscope/DataDockerContainer.git; 
+#!/usr/bin/env bash
+git clone -b develop https://github.com/camicroscope/DataDockerContainer.git;
 git clone -b develop https://github.com/camicroscope/LoaderDockerContainer.git; 
 git clone -b develop https://github.com/camicroscope/ViewerDockerContainer.git; 
 git clone -b develop https://github.com/camicroscope/OrderingService.git; 
