@@ -1,12 +1,19 @@
-sudo: required
-services:
-    - docker
-    - nodejs
-    - phantomjs
-before_install:
-  - bash mkdir data
-    - bash run_containers_develop.sh data
-    - cd tests
-    - npm install -g casperjs
+language: bash
+
+before_script:
+  - curl -L "https://storage.googleapis.com/google-code-archive-downloads/v2/code.google.com/shunit2/shunit2-2.1.6.tgz" | tar zx
+
 script:
-    - casperjs test casper_test.js
+  - bash equality_test.sh
+
+#sudo: required
+#services:
+#    - docker
+#    - nodejs
+#    - phantomjs
+#before_install:
+#    - bash run_containers_develop.sh
+#    - cd tests
+#    - npm install -g casperjs
+#script:
+#    - casperjs test casper_test.js
