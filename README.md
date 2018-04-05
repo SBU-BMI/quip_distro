@@ -1,3 +1,5 @@
+[![Build Status](https://travis-ci.org/SBU-BMI/quip_distro.svg?branch=develop)](https://travis-ci.org/SBU-BMI/quip_distro)
+
 QuIP is a web accessible toolset designed to support analysis, management, and exploration of whole slide tissue images for cancer research. The QuIP system consists of a set of docker containers, which provide analysis execution and data management backend services, and web applications to load and visualize whole slide tissue images (in [OpenSlide](http://openslide.org) supported formats), run nuclear segmentation analyses on image tiles, and visualize and explore the analysis results. 
 
 ## QuIP Video
