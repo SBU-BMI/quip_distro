@@ -5,6 +5,7 @@ exitStatus=0
 # TEST THAT THE BRANCH NAME MATCHES THE SCRIPT NAME
 # TODO: (REVISE TEST IF THAT CHANGES)
 testEquality() {
+    # get name of current branch
     branch_name=$(git rev-parse --abbrev-ref HEAD)
 
     script_name=$(find . -name 'run_containers_*.sh')
