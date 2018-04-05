@@ -2,10 +2,10 @@
 
 exitStatus=0
 
+# TEST THAT THE BRANCH NAME MATCHES THE SCRIPT NAME
+# TODO: (REVISE TEST IF THAT CHANGES)
 testEquality() {
-    branch_name='develop'
-    #UNCOMMENT!!!
-    #branch_name=$(git rev-parse --abbrev-ref HEAD)
+    branch_name=$(git rev-parse --abbrev-ref HEAD)
 
     script_name=$(find . -name 'run_containers_*.sh')
     substring=$(echo $script_name| cut -d'_' -f 3)

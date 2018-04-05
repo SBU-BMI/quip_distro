@@ -6,6 +6,7 @@ before_script:
 script:
   - bash tests/equality_test.sh
 
+# TODO: Fix for full build
 #sudo: required
 #services:
 #    - docker
