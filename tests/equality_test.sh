@@ -7,10 +7,11 @@ testEquality() {
     #UNCOMMENT!!!
     #branch_name=$(git rev-parse --abbrev-ref HEAD)
 
-    script_name=$(find .. -name 'run_containers_*.sh')
+    script_name=$(find . -name 'run_containers_*.sh')
     substring=$(echo $script_name| cut -d'_' -f 3)
     name=$(echo $substring| cut -d'.' -f 1)
 
+    echo "assertEquals $branch_name $name"
 	assertEquals $branch_name $name
 	[[ $? == 1 ]] && exitStatus=1
 
@@ -18,6 +19,7 @@ testEquality() {
 	substring=$(echo $script_name| cut -d'_' -f 3)
     name=$(echo $substring| cut -d'.' -f 1)
 
+    echo "assertEquals $branch_name $name"
 	assertEquals $branch_name $name
 	[[ $? == 1 ]] && exitStatus=1
 }
