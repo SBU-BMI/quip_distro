@@ -6,7 +6,7 @@ exitStatus=0
 # TODO: (REVISE TEST IF THAT CHANGES)
 testEquality() {
     # get name of current branch
-    branch_name=$(git rev-parse --abbrev-ref HEAD)
+    branch_name=$(git branch | grep \* | cut -d ' ' -f2-)
 
     script_name=$(find . -name 'run_containers_*.sh')
     substring=$(echo $script_name| cut -d'_' -f 3)
