@@ -11,7 +11,11 @@ You may download a demo VMWare VM (in the OVA format) containing all of the dock
 The VM starts all the containers on boot. It is configured to use 2GB memory and 2 CPU cores. Please wait for about 30 seconds for the start process to complete. You can log on to the VM with userid: **quip** and password: **quipdemo**. The Google Chrome browser will open automatically upon login and will bring up the QuIP home page. A TCGA whole slide tissue image is already loaded to the system along with some analysis results. There are additional TCGA whole slide tissue images on /home/quip/Desktop which can be loaded using the Image Loader app accessible from the home page.
 
 <!-- 
-## Public Read-only InstanceAn instance of QuIP is accessible [here](http://quip1.bmi.stonybrook.edu). The image analysis functionality is disabled in this instance. This instance is backed by a database of about 1.9 Billion segmented objects and their features (17 features per segmented nuclues; a total of 32 Billion features) generated from about 3,000 TCGA whole slide tissue images. 
+## Public Read-only Instance
+
+An instance of QuIP is accessible [here](http://quip1.bmi.stonybrook.edu). The image analysis functionality is disabled in this instance. 
+This instance is backed by a database of about 1.9 Billion segmented objects and their features (17 features per segmented nuclues; a 
+total of 32 Billion features) generated from about 3,000 TCGA whole slide tissue images. 
 -->
 
 # Requirements
@@ -36,15 +40,15 @@ Before pulling and running the containers, create a data folder if it does not e
 store images and the database as well as configuration files required by the containers. Note you should have read and write 
 permissions to the folder.
 
-Execute the build_containers_release.sh script. At the command prompt:
+Execute the build_containers.sh script. At the command prompt:
 
     cd <path to your github repositories folder>
-    <path to quip_distro folder>/build/build_containers_release.sh
+    <path to quip_distro folder>/build/build_containers.sh
     
-Execute the run_containers_release.sh script. At the command prompt:
+Execute the run_containers.sh script. At the command prompt:
     
     cd <path to quip_distro folder>
-    ./run_containers_release.sh <full path of data folder>
+    ./run_containers.sh <full path of data folder>
 
 
 The startup process will create an "img" sub-folder in the data folder where tissue images will be stored and 
