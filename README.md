@@ -40,15 +40,15 @@ Before pulling and running the containers, create a data folder if it does not e
 store images and the database as well as configuration files required by the containers. Note you should have read and write 
 permissions to the folder.
 
-Execute the build_containers_release.sh script. At the command prompt:
+Execute the build_containers_develop.sh script. At the command prompt:
 
     cd <path to your github repositories folder>
-    <path to quip_distro folder>/build/build_containers_release.sh
+    <path to quip_distro folder>/build/build_containers_develop.sh
     
-Execute the run_containers_release.sh script. At the command prompt:
+Execute the run_containers_develop.sh script. At the command prompt:
     
     cd <path to quip_distro folder>
-    ./run_containers_release.sh <full path of data folder>
+    ./run_containers_develop.sh <full path of data folder>
 
 
 The startup process will create an "img" sub-folder in the data folder where tissue images will be stored and 
