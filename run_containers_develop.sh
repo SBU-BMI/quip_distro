@@ -17,9 +17,11 @@ docker network create quip_nw
 
 IMAGES_DIR=$(echo $STORAGE_FOLDER/img)
 DATABASE_DIR=$(echo $STORAGE_FOLDER/data)
+COMPOSITE_DATASET_DIR=$(echo $STORAGE_FOLDER/composite_dataset)
 
 mkdir -p $IMAGES_DIR
 mkdir -p $DATABASE_DIR
+mkdir -p $COMPOSITE_DATASET_DIR
 
 VIEWER_PORT=80
 IMAGELOADER_PORT=6002
@@ -57,6 +59,7 @@ echo "Started loader container: " $loader_container
 viewer_container=$(docker run --name=quip-viewer --net=quip_nw --restart unless-stopped -itd \
 	-p $VIEWER_PORT:80 \
 	-v $IMAGES_DIR:/data/images \
+        -v $COMPOSITE_DATASET_DIR:/var/www/html/composite_results \
 	quip_viewer:$VERSION)
 echo "Started viewer container: " $viewer_container
 
