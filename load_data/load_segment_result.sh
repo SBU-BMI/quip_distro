@@ -24,9 +24,7 @@ find_caseid() {
     do
        #echo $case_id;
          if test "${caseid_path#*$case_id}" != "$caseid_path"
-           then
-              #echo "substring is in string"
-              #echo 1    # $substring is in $string
+           then             
               find_caseid=1
               break        
         fi     
