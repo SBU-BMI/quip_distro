@@ -60,9 +60,27 @@ docker network (quip_nw), start up the containers and attach them to the user-de
 
 After the containers are started, you may access the QuIP web applications using a browser at `http://<hostname>`. Here, hostname is the name or IP address of the host machine where the containers are running.
 
-### Configuring authentication
+### Configuration
 
-Check the [security documentation](https://github.com/camicroscope/Security/blob/release/README.md) for enabling/disabling authentication
+Configuration is via configs/viewer/config.ini per the following specifications
+
+| Key | Function | Default |
+| --- | --- | --- | 
+|trusted_secret| bindaas trusted secret | - |
+|disable_security| a boolean which disables user login if true | false |
+|trusted_id | the application name for bindaas | camicSignup |
+|trusted_url | the bindaas endpoint for trust |http://quip-data:9099/trustedApplication |
+|client_id | client id from google oauth setup | an unusable value|
+|client_secret | client secret from google oauth setup | an unusable value|
+|redirect_uri | the redirection to take after oauth setup | postmessage|
+|title| the title as shown on the page title and some headers | caMicroscope|
+|suffix | a tagline printed after the title on the login page | empty |
+|description | a description of the application/deployment | Look at Slides |
+| footer | designed for grant or contact information | caMicroscope – A Digital Pathology Integrative Query System; Ashish Sharma PI Emory |
+|download_link | the url linked to on the download button | https://github.com/camicroscope |
+|folder_path| the relative path of the folder | \/ |
+| dataHost | the data container’s name and port | quip-data:9099 |
+|kueHost | the jobs container’s name and port | quip-jobs:3000 |
 
 ## Citation
 When using QuIP or caMicroscope, please cite the following:
