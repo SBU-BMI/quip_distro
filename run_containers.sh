@@ -61,6 +61,7 @@ viewer_container=$(docker run --name=quip-viewer --net=quip_nw --restart unless-
 	-p $VIEWER_PORT:80 \
 	-v $IMAGES_DIR:/data/images \
         -v $COMPOSITE_DATASET_DIR:/var/www/html/composite_results \
+	-v $STORAGE_FOLDER/configs/viewer/config.ini:/var/www/html/config.ini \
 	quip_viewer:$VERSION)
 echo "Started viewer container: " $viewer_container
 
