@@ -508,8 +508,8 @@ if __name__ == '__main__':
   print '--- zip composite_results and move to another folder ---- '; 
   for item in image_user_list:  
     case_id=item[0];
-    composite_results_case_id_folder = os.path.join('/home/feiqiao/shapely/composite_results', case_id);   
-    zip_file_path = os.path.join(composite_results_zip_folder, case_id); 
+    composite_results_case_id_folder = os.path.join(composite_results_folder , case_id);   
+    zip_file_path = os.path.join(composite_results_zip_folder , case_id); 
     shutil.make_archive(zip_file_path, 'zip', composite_results_case_id_folder);
   print 'end of  zip composite_results data --- '; 
   exit();
