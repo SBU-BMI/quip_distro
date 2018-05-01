@@ -103,9 +103,7 @@ if __name__ == '__main__':
   print analysis_list;
   #exit();  
    
-  client = MongoClient('mongodb://'+db_host+':'+db_port+'/');    
-  #db = client.quip;  
-  #db2 = client.quip_comp;  
+  client = MongoClient('mongodb://'+db_host+':'+db_port+'/');     
   db = client[db1_name];  
   db2 = client[db2_name];
   images =db.images; 
