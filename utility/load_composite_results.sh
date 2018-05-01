@@ -3,9 +3,6 @@ echo "-----------------------------------------------------"
 echo "Date: $(date)                     Host:$(hostname)"
 echo "-----------------------------------------------------"
 
-
-PROGNAME=$(basename "$0")
-
 case_id="$1"
 composite_results_folder="$2"
 container_datapath="/data/images/composite_results" 
@@ -21,8 +18,7 @@ for prefix in $(find  $composite_results_folder/$case_id/* -type d );
           --inptype csv --fromdb --dbname quip_comp --dbhost  quip-data --quip $new_path/
          record_count=$(($record_count+1))
         #echo "========="             
-   done;
-    
+   done;    
 
 echo $record_count
 
