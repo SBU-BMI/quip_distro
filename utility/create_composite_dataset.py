@@ -43,12 +43,7 @@ if __name__ == '__main__':
     image_user_list_file = d['image_user_list'];      
     if not os.path.isfile(image_user_list_file):
       print "image user list_file is not available."
-      exit(); 
-      
-    image_prefix_algorithm_file = d['image_prefix_algorithm'];
-    if not os.path.isfile(image_prefix_algorithm_file):
-      print "image prefix algorithm_file is not available."
-      exit();
+      exit();     
       
     composite_results_folder = os.path.join(quip_application_folder, "img/composite_results");
     if not os.path.exists(composite_results_folder):
@@ -67,22 +62,6 @@ if __name__ == '__main__':
     #print segment_results_folder,image_prefix_algorithm_file;
   #exit();
   
-  print '--- read image_prefix_algorithm file ---- ';  
-  index=0;
-  analysis_list=[];  
-  with open(image_prefix_algorithm_file, 'r') as my_file:
-    reader = csv.reader(my_file, delimiter=',')
-    my_list = list(reader);
-    for each_row in my_list:      
-      tmp_analysis_list=[[],[],[]]; 
-      tmp_analysis_list[0]= each_row[0];#image case_id
-      tmp_analysis_list[1]= each_row[1];#prefix
-      tmp_analysis_list[2]= each_row[2];#algorithm   
-      analysis_list.append(tmp_analysis_list);                
-  print "total rows from image_prefix_algorithm file is %d " % len(analysis_list) ; 
-  print analysis_list;
-  #exit();
-  
   print '--- read image_user_list file ---- ';  
   index=0;
   image_user_list=[];  
@@ -96,11 +75,39 @@ if __name__ == '__main__':
       image_user_list.append(tmp_image_user_list);                
   print "total rows from image_user_list file is %d " % len(image_user_list) ; 
   print image_user_list;
-  #exit();   
-    
+  #exit();
+  
+  print '--- build image_prefix_algorithm lookup table ---- ';
+  analysis_list=[]; 
+  for item in image_user_list: 
+    case_id=item[0];
+    user=item[1];
+    case_id_folder = os.path.join(segment_results_folder,case_id);
+    prefix_list=os.listdir(case_id_folder);  # list of subdirectories and files
+    #print  prefix_list; 
+    for prefix in prefix_list: #-algmeta.json
+      prefix_folder = os.path.join(case_id_folder,prefix);
+      if os.path.isdir(prefix_folder) and len(os.listdir(prefix_folder)) > 0:                            
+        json_filename_list = [f for f in os.listdir(prefix_folder) if f.endswith('.json')] ;
+        #print 'there are %d json files in this folder.' % len(json_filename_list);
+        first_json_filename = json_filename_list[0];             
+        with open(os.path.join(prefix_folder, first_json_filename)) as f:
+          data = json.load(f);
+          analysis_id=data["analysis_id"];
+          #print case_id,prefix_folder,analysis_id;
+          tmp_analysis_list=[[],[],[]]; 
+          tmp_analysis_list[0]= case_id;#image case_id
+          tmp_analysis_list[1]= prefix;#prefix
+          tmp_analysis_list[2]= analysis_id;#algorithm   
+          analysis_list.append(tmp_analysis_list);  
+  print analysis_list;
+  #exit();  
+   
   client = MongoClient('mongodb://'+db_host+':'+db_port+'/');    
-  db = client.quip;  
-  db2 = client.quip_comp;  
+  #db = client.quip;  
+  #db2 = client.quip_comp;  
+  db = client[db1_name];  
+  db2 = client[db2_name];
   images =db.images; 
   metadata=db.metadata;
   objects = db.objects;  
@@ -137,8 +144,7 @@ if __name__ == '__main__':
     annotation_count=0; 
     print '----- get human markups for this image and this user -----';   
     print case_id, execution_id;                                     
-    for annotation in objects.find({"provenance.image.case_id":case_id,
-                                    "provenance.image.subject_id":subject_id,
+    for annotation in objects.find({"provenance.image.case_id":case_id,                                    
                                     "provenance.analysis.execution_id": execution_id},{"_id":0,"geometry.coordinates":1,"algorithm":1}):
       polygon=annotation["geometry"]["coordinates"][0]; 
       algorithm=annotation["algorithm"];  
@@ -500,28 +506,25 @@ if __name__ == '__main__':
   #end of  process_list 
   print " --- ----  End of loop for case_id and user combination ----"; 
   
-  print "--- end of program --- ";
-  elapsed_time = time.time() - start_time  
-  print "total time to run whole program is "+str(elapsed_time/60.00)+ ' minutes.'; 
-  #exit();
   
   print '--- zip composite_results and move to another folder ---- '; 
   for item in image_user_list:  
     case_id=item[0];
-    composite_results_case_id_folder = os.path.join(composite_results_folder , case_id);   
-    zip_file_path = os.path.join(composite_results_zip_folder , case_id); 
+    composite_results_case_id_folder = os.path.join(composite_results_folder, case_id);   
+    zip_file_path = os.path.join(composite_results_zip_folder, case_id); 
     shutil.make_archive(zip_file_path, 'zip', composite_results_case_id_folder);
   print 'end of  zip composite_results data --- '; 
-  exit();
+  #exit();
   
   print ' -- syn quip and quip_comp database ---- ';
   for item in image_user_list:  
     case_id=item[0];
-    subject_id =case_id; 
+    #subject_id =case_id; 
     user=item[1]; 
     execution_id=user +"_composite_input";
+    execution_id2=user +"_composite_dataset";
     
-    print "============== syn  images collection ===================="  
+    print "--------syn  images collection ----"  
     dest_images_count= images2.find({"case_id":case_id}).count();
     if (dest_images_count ==0):
       for image_record in images.find({"case_id":case_id},{"_id":0}):
@@ -530,7 +533,7 @@ if __name__ == '__main__':
     else:
       print str(case_id) +" is Not empty in db quip_comp images collection";    
     
-    print "============== syn  metadata collection ===================="        
+    print "---- syn  metadata collection ----"        
     dest_metadata_count= metadata2.find({"image.case_id":case_id}).count();
     if (dest_metadata_count ==0):
       for metadata_record in metadata.find({"image.case_id":case_id,"provenance.analysis_execution_id":execution_id},{"_id":0}):           
@@ -539,24 +542,31 @@ if __name__ == '__main__':
     else:
       print str(case_id) +" is Not empty in  db quip_comp metadata collection";    
     
-    print "============== syn human markup annotations ===================="  
-    dest_objects_count =objects.find({"provenance.image.case_id":case_id,
-                                      "provenance.image.subject_id":subject_id,
-                                      "provenance.analysis.execution_id": execution_id}).count(); 
-    if (dest_objects_count ==0):                                  
-      for annotation in objects.find({"provenance.image.case_id":case_id,
-                                      "provenance.image.subject_id":subject_id,
-                                      "provenance.analysis.execution_id": execution_id
+    print "--- syn human markup annotations ----- "  
+    print "remove composite input"
+    objects2.remove({"provenance.image.case_id":case_id,                                      
+                     "provenance.analysis.execution_id": execution_id}); 
+   
+    for annotation in objects.find({"provenance.image.case_id":case_id,                                      
+                                    "provenance.analysis.execution_id": execution_id
                                      },{"_id":0}):                                                
-        objects2.insert_one(annotation);
-      print str(case_id)+ " human markup has been added."; 
-  exit(); 
+      objects2.insert_one(annotation);
+    print str(case_id)+ " human markup has been added."; 
+      
+    print "remove composite dataset"
+    objects2.remove({"provenance.image.case_id":case_id,                                      
+                     "provenance.analysis.execution_id": execution_id2});
+  #exit(); 
   
   print ' -- load composite results into quip_comp database ---- ';
   for item in image_user_list:  
     case_id=item[0]; 
-    subprocess.call(shlex.split('./load_composite_results.sh ' + case_id + '  ' + composite_results_folder ));
+    print case_id ,composite_results_folder;
+    subprocess.call(shlex.split('./load_composite_results.sh' + ' ' + case_id + ' ' + composite_results_folder ));
   print ' -- End of loading composite results into quip_comp database ---- ';
-  exit();
   
+  print "--- end of program --- ";
+  elapsed_time = time.time() - start_time  
+  print "total time to run whole program is "+str(elapsed_time/60.00)+ ' minutes.'; 
+  exit();
   
