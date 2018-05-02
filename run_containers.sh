@@ -30,7 +30,7 @@ FINDAPI_PORT=3000
 data_host="http://quip-data:9099"
 mongo_host="quip-data"
 mongo_port=27017
-if [ ! -f $STORAGE_FOLDER/configs/config/config.ini ]; then
+if [ ! -d $STORAGE_FOLDER/configs ]; then
     \cp -rf configs $STORAGE_FOLDER/.
 fi
 
