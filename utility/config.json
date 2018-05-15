@@ -1,0 +1,9 @@
+{
+  "segment_results_folder":"your_segment_results_folder",
+  "quip_application_folder":"your_quip_application_folder",  
+  "image_user_list":"your_current_folder/image_user_list.txt",
+  "db_host":"localhost",
+  "db_port":"27017",
+  "db1_name":"quip",
+  "db2_name":"quip_comp"
+}

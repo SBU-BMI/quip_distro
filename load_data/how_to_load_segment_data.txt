@@ -1,0 +1,19 @@
+how to load segment data into quip database
+
+Step 1: down load segment data from url http://quip2.bmi.stonybrook.edu:4000/
+
+   command:  wget -r http://quip2.bmi.stonybrook.edu:4000/
+   
+Step 2: create folder results under your quip distro storage /img folder
+
+Step 3: move segment data files to your quip distro storage /img/results folder
+
+Step 4: create image_list.txt file 
+
+Step 5: download load_segment_result.sh file to your quip distro storage /img/results folder
+
+Step 6: modify load_segment_result.sh, for example; change input_file name and your container storage folder, 
+  then run this load_segment_result.sh.
+  
+I just load one image segment data to database at my test machine and it works. 
+The process lasts around 15 minutes.  
