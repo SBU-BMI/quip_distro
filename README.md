@@ -15,7 +15,11 @@ Curation of Imaging Features |Feature Exploration via FeatureScape
 --------|-------------------
 <img src="images/curation.png" width="400"/>|<img src="images/featurescape.png" width="400"/>
 
-**The Analysis Service containers** manage the execution of image analyses on image tiles selected by the user using the application web interfaces. The current implementation uses a level set based nuclear segmentation algorithm developed by our group. 
+**The Analysis Service containers** manage the execution of image analyses on image tiles selected by the user using the application web interfaces. Currently the analysis service implements a level set based nuclear segmentation algorithm developed by our group. We are in the process of integrating a deep learning based pipeline for classification of tumor infiltrating lymphocytes (TILs) in whole slide tissue images. This integration will be released in a future version of QuIP. 
+
+**The codes for the TIL classification pipeline are available at https://github.com/SBU-BMI/u24_lymphocyte** Please see the Cell Reports paper for a description of the pipeline: 
+
+Saltz, J., Gupta, R., Hou, L., Kurc, T., Singh, P., Nguyen, V., . . . Thorsson, V. Spatial Organization and Molecular Correlation of Tumor-Infiltrating Lymphocytes Using Deep Learning on Pathology Images. Cell Reports, 23(1), 181-193.e187. https://doi.org/10.1016/j.celrep.2018.03.086
 
 **The Data Service containers** implement (1) the database for storing image metadata, analysis results, and metadata about analyses (e.g., analysis parameters). The database organizes analysis results using a GeoJSON compliant specification. Segmentation results are expressed as polygons and size, shape, intensity and texture features, such as area, mean intensity, for each segmented object as key-value pairs; (2) the functions for loading image metadata and image analysis results, which are output from the analysis service as image masks and csv files which contain the computed features and boundaries of segmented objects; and (3) the functions for querying feature results by the FeatureScape web application.  
 
