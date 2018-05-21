@@ -17,7 +17,7 @@ Curation of Imaging Features |Feature Exploration via FeatureScape
 
 **The Analysis Service containers** manage the execution of image analyses on image tiles selected by the user using the application web interfaces. 
 
-Currently the analysis service implements a level set based nuclear segmentation algorithm developed by our group. We are in the process of integrating a deep learning based pipeline for classification of tumor infiltrating lymphocytes (TILs) in whole slide tissue images. This integration will be released in a future version of QuIP. **The codes for the TIL classification pipeline are available [here](https://github.com/SBU-BMI/u24_lymphocyte)**. Please see the Cell Reports paper for a description of the pipeline: 
+Currently the analysis service implements a level set based nuclear segmentation algorithm developed by our group. We are in the process of integrating a deep learning based pipeline for classification of tumor infiltrating lymphocytes (TILs) in whole slide tissue images. This integration will be released in a future version of QuIP. **The codes for the TIL classification pipeline are available at the following [link](https://github.com/SBU-BMI/u24_lymphocyte)**. Please see the Cell Reports paper for a description of the pipeline: 
 
 Saltz, J., Gupta, R., Hou, L., Kurc, T., Singh, P., Nguyen, V., . . . Thorsson, V. Spatial Organization and Molecular Correlation of Tumor-Infiltrating Lymphocytes Using Deep Learning on Pathology Images. Cell Reports, 23(1), 181-193.e187. https://doi.org/10.1016/j.celrep.2018.03.086
 
