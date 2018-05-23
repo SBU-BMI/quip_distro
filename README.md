@@ -40,11 +40,15 @@ Before pulling and running the containers, create a data folder if it does not e
 store images and the database as well as configuration files required by the containers. Note you should have read and write
 permissions to the folder.
 
+*** SKIP "Building" and go to "Running" if you are not doing software development on QuIP.  Pre-built dockers will be dowloaded from Docker Hub instead ***
+
+# Building
 Execute the build_containers.sh script. At the command prompt:
 
     cd <path to your github repositories folder>
     <path to quip_distro folder>/build/build_containers.sh
 
+# Running
 Execute the run_containers.sh script. At the command prompt:
 
     cd <path to quip_distro folder>
