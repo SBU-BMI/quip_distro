@@ -42,7 +42,7 @@ data_container=$(docker run --name quip-data --net=quip_nw --restart unless-stop
  	-v quip_bindaas:/root/bindaas \
 	-v $IMAGES_DIR:/data/images \
 	-v $DATABASE_DIR:/var/lib/mongodb \
-	quip_data:$VERSION)
+	sbubmi/quip_data:$VERSION)
 echo "Started data container: " $data_container
 
 echo "This might take 30 seconds"
@@ -55,7 +55,7 @@ loader_container=$(docker run --name quip-loader --net=quip_nw --restart unless-
 	-e "mongo_port=$(echo $mongo_port)" \
 	-e "dataloader_host=$(echo $data_host)" \
 	-e "annotations_host=$(echo $data_host)" \
-	quip_loader:$VERSION)
+	sbubmi/quip_loader:$VERSION)
 echo "Started loader container: " $loader_container
 
 ## Run viewer container
@@ -64,7 +64,7 @@ viewer_container=$(docker run --name=quip-viewer --net=quip_nw --restart unless-
 	-v $IMAGES_DIR:/data/images \
         -v $COMPOSITE_DATASET_DIR:/var/www/html/composite_results \
 	-v $STORAGE_FOLDER/configs/config:/var/www/html/config \
-	quip_viewer:$VERSION)
+	sbubmi/quip_viewer:$VERSION)
 echo "Started viewer container: " $viewer_container
 
 ## Run oss-lite container
@@ -74,7 +74,7 @@ oss_container=$(docker run --name quip-oss --net=quip_nw --restart unless-stoppe
 echo "Started oss-lite container: " $oss_container
 
 ## Run job orders service container
-jobs_container=$(docker run --name quip-jobs --net=quip_nw --restart unless-stopped -itd quip_jobs:$VERSION)
+jobs_container=$(docker run --name quip-jobs --net=quip_nw --restart unless-stopped -itd sbubmi/quip_jobs:$VERSION)
 echo "Started job orders container: " $jobs_container
 
 ## Run dynamic services container
@@ -84,7 +84,7 @@ sed 's/\@QUIP_DATA/\"quip-data\"/g' $CONFIGS_DIR/config.json > $CONFIGS_DIR/conf
 sed 's/\@QUIP_LOADER/\"quip-loader\"/g' $CONFIGS_DIR/config_tmp.json > $CONFIGS_DIR/config.json
 dynamic_container=$(docker run --name quip-dynamic --net=quip_nw --restart unless-stopped -itd \
 	-v $CONFIGS_DIR:/tmp/DynamicServices/configs \
-	quip_dynamic:$VERSION)
+	sbubmi/quip_dynamic:$VERSION)
 
 echo "Started dynamic services container: " $dynamic_container
 
@@ -92,9 +92,9 @@ echo "Started dynamic services container: " $dynamic_container
 findapi_container=$(docker run --name quip-findapi --net=quip_nw --restart unless-stopped -itd \
 	-e "MONHOST=$(echo $mongo_host)" \
 	-e "MONPORT=$(echo $mongo_port)" \
-	quip_findapi:$VERSION)
+	sbubmi/quip_findapi:$VERSION)
 echo "Started findapi service container: " $findapi_container
 
 # Run composite dataset generating container
-composite_container=$(docker run --name quip-composite --net=quip_nw --restart unless-stopped -itd quip_composite:$VERSION)
+composite_container=$(docker run --name quip-composite --net=quip_nw --restart unless-stopped -itd sbubmi/quip_composite:$VERSION)
 echo "Started composite dataset generating container: " $composite_container
