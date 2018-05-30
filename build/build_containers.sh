@@ -1,23 +1,70 @@
 #!/usr/bin/env bash
-git clone "https://github.com/camicroscope/DataDockerContainer.git";
-cd DataDockerContainer; git checkout tags/2.0; cd ..
-git clone "https://github.com/camicroscope/LoaderDockerContainer.git";
-cd LoaderDockerContainer; git checkout tags/2.0; cd ..
-git clone "https://github.com/camicroscope/ViewerDockerContainer.git";
-cd ViewerDockerContainer; git checkout tags/2.0.1; cd ..
-git clone "https://github.com/camicroscope/OrderingService.git";
-cd OrderingService; git checkout tags/2.0; cd ..
-git clone "https://github.com/camicroscope/DynamicServices.git";
-cd DynamicServices; git checkout tags/2.0; cd ..
-git clone "https://github.com/SBU-BMI/findapi.git";
-cd findapi; git checkout tags/2.0; cd ..
-git clone "https://github.com/SBU-BMI/quip_cwl.git";
-cd quip_cwl; git checkout tags/2.0; cd ..
 
-docker build -t sbubmi/quip_data:2.0 DataDockerContainer
-docker build -t sbubmi/quip_loader:2.0 LoaderDockerContainer
-docker build -t sbubmi/quip_viewer:2.0 ViewerDockerContainer
-docker build -t sbubmi/quip_jobs:2.0 OrderingService
-docker build -t sbubmi/quip_dynamic:2.0 DynamicServices
-docker build -t sbubmi/quip_findapi:2.0 findapi
-cd quip_cwl/node-kue; docker build -t sbubmi/quip_composite:2.0 .
+file="./app.properties"
+
+#
+# Error exit
+#
+function error_exit() {
+  echo "${PROGNAME}: ${1:-"Error"}" 1>&2
+  echo "Line $2"
+  exit 1
+}
+
+#
+# Read file
+#
+function readFile {
+  if [ -f "$file" ]
+  then
+    echo "$file found."
+
+    while IFS='=' read -r key value
+    do
+      key=$(echo $key | tr '.' '_')
+      eval ${key}=\${value}
+    done < "$file"
+
+  else
+    echo "$file not found."
+    exit 1
+  fi
+}
+
+#
+# Clone repository
+#
+function cloneRepo {
+  git clone "$1" || error_exit 'cannot clone' $LINENO
+  cd "$2" || error_exit 'cannot cd' $LINENO
+  git checkout "tags/$3" || error_exit 'cannot checkout tag' $LINENO
+  cd ..
+}
+
+#
+# Build image
+#
+function buildImage {
+  docker build -t $1:$2 $3 || error_exit 'cannot build image' $LINENO
+}
+
+#
+# Main program execution
+#
+readFile
+
+cloneRepo "$data_url" "$data_repo" "$data_tag"
+cloneRepo "$loader_url" "$loader_repo" "$loader_tag"
+cloneRepo "$viewer_url" "$viewer_repo" "$viewer_tag"
+cloneRepo "$ordering_url" "$ordering_repo" "$ordering_tag"
+cloneRepo "$dynamic_url" "$dynamic_repo" "$dynamic_tag"
+cloneRepo "$find_url" "$find_repo" "$find_tag"
+cloneRepo "$cwl_url" "$cwl_repo" "$cwl_tag"
+
+buildImage "$data_image" "$data_tag" "$data_repo"
+buildImage "$loader_image" "$loader_tag" "$loader_repo"
+buildImage "$viewer_image" "$viewer_tag" "$viewer_repo"
+buildImage "$ordering_image" "$ordering_tag" "$ordering_repo"
+buildImage "$dynamic_image" "$dynamic_tag" "$dynamic_repo"
+buildImage "$find_image" "$find_tag" "$find_repo"
+buildImage "$cwl_image" "$cwl_tag" "$cwl_repo/node-kue"
