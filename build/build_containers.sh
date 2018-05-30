@@ -35,9 +35,9 @@ function readFile {
 # Clone repository
 #
 function cloneRepo {
-  git clone "$1" || error_exit $LINENO
-  cd "$2" || error_exit $LINENO
-  git checkout "tags/$3" || error_exit $LINENO
+  git clone "$1" || error_exit 'cannot clone' $LINENO
+  cd "$2" || error_exit 'cannot cd' $LINENO
+  git checkout "tags/$3" || error_exit 'cannot checkout tag' $LINENO
   cd ..
 }
 
@@ -45,7 +45,7 @@ function cloneRepo {
 # Build image
 #
 function buildImage {
-  docker build -t $1:$2 $3 || error_exit $LINENO
+  docker build -t $1:$2 $3 || error_exit 'cannot build image' $LINENO
 }
 
 #
