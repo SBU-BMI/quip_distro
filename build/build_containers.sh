@@ -4,7 +4,7 @@ cd DataDockerContainer; git checkout tags/2.0; cd ..
 git clone "https://github.com/camicroscope/LoaderDockerContainer.git";
 cd LoaderDockerContainer; git checkout tags/2.0; cd ..
 git clone "https://github.com/camicroscope/ViewerDockerContainer.git";
-cd ViewerDockerContainer; git checkout tags/2.0; cd ..
+cd ViewerDockerContainer; git checkout tags/2.0.1; cd ..
 git clone "https://github.com/camicroscope/OrderingService.git";
 cd OrderingService; git checkout tags/2.0; cd ..
 git clone "https://github.com/camicroscope/DynamicServices.git";
