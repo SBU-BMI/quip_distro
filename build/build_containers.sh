@@ -17,7 +17,6 @@ function error_exit() {
 function readFile {
   if [ -f "$file" ]
   then
-    echo "$file found."
 
     while IFS='=' read -r key value
     do
