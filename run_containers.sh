@@ -129,15 +129,14 @@ function runContainers {
     echo "Started composite dataset generating container: " $composite_id
 
     ## Run dynamic services container
-    ## NOTE: Must be root for editing
-    sed 's/\@QUIP_JOBS/\"quip-jobs\"/g' $CONFIGS_DIR/config_temp.json > $CONFIGS_DIR/config_tmp.json || error_exit 'Must be root to edit' $LINENO
-    sed 's/\@QUIP_OSS/\"quip-oss:5000\"/g' $CONFIGS_DIR/config_tmp.json > $CONFIGS_DIR/config.json || error_exit 'Must be root to edit' $LINENO
-    sed 's/\@QUIP_DATA/\"quip-data\"/g' $CONFIGS_DIR/config.json > $CONFIGS_DIR/config_tmp.json || error_exit 'Must be root to edit' $LINENO
-    sed 's/\@QUIP_LOADER/\"quip-loader\"/g' $CONFIGS_DIR/config_tmp.json > $CONFIGS_DIR/config.json || error_exit 'Must be root to edit' $LINENO
+    sed 's/\@QUIP_JOBS/\"quip-jobs\"/g' $CONFIGS_DIR/config_temp.json > $CONFIGS_DIR/config_tmp.json
+    sed 's/\@QUIP_OSS/\"quip-oss:5000\"/g' $CONFIGS_DIR/config_tmp.json > $CONFIGS_DIR/config.json
+    sed 's/\@QUIP_DATA/\"quip-data\"/g' $CONFIGS_DIR/config.json > $CONFIGS_DIR/config_tmp.json
+    sed 's/\@QUIP_LOADER/\"quip-loader\"/g' $CONFIGS_DIR/config_tmp.json > $CONFIGS_DIR/config.json
 
     dynamic_id=$(docker run --name $dynamic_container --net=quip_nw --restart unless-stopped -itd \
         -v $CONFIGS_DIR:/tmp/DynamicServices/configs \
-        $dynamic_image:$dynamic_tag) || error_exit 'cwl' $LINENO
+        $dynamic_image:$dynamic_tag) || error_exit 'dynamic' $LINENO
     echo "Started dynamic services container: " $dynamic_id
 }
 
