@@ -35,8 +35,9 @@ function readFile {
 # Clone repository
 #
 function cloneRepo {
-  git clone "$1" || error_exit 'cannot clone' $LINENO
-  cd "$2" || error_exit 'cannot cd' $LINENO
+  repo="$2"
+  git clone "$1" || error_exit "cannot clone $repo" $LINENO
+  cd "$repo" || error_exit 'cannot cd into $repo' $LINENO
   git checkout "tags/$3" || error_exit 'cannot checkout tag' $LINENO
   cd ..
 }
