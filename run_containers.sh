@@ -113,7 +113,7 @@ function runContainers {
     echo "Started oss-lite container: " $oss_id
 
     ## Run job orders service container
-    jobs_id=$(docker run --user $(id -u) --name $ordering_container --net=quip_nw --restart unless-stopped -itd $ordering_image:$ordering_tag) || error_exit 'jobs' $LINENO
+    jobs_id=$(docker run --name $ordering_container --net=quip_nw --restart unless-stopped -itd $ordering_image:$ordering_tag) || error_exit 'jobs' $LINENO
     echo "Started job orders container: " $jobs_id
 
     # Run findapi service container
