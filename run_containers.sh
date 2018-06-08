@@ -109,11 +109,11 @@ function runContainers {
     ## Run oss-lite container
     oss_id=$(docker run --name quip-oss --net=quip_nw --restart unless-stopped -itd \
         -v $IMAGES_DIR:/data/images \
-        camicroscope/oss-lite sh -c "cd /root/src/oss-lite; sh run.sh") || error_exit 'oss' $LINENO
+        camicroscope/oss-lite:latest sh -c "cd /root/src/oss-lite; sh run.sh") || error_exit 'oss' $LINENO
     echo "Started oss-lite container: " $oss_id
 
     ## Run job orders service container
-    jobs_id=$(docker run --name quip-jobs --net=quip_nw --restart unless-stopped -itd sbubmi/quip_jobs:$VERSION) || error_exit 'jobs' $LINENO
+    jobs_id=$(docker run --user $(id -u) --name $ordering_container --net=quip_nw --restart unless-stopped -itd $ordering_image:$ordering_tag) || error_exit 'jobs' $LINENO
     echo "Started job orders container: " $jobs_id
 
     # Run findapi service container
