@@ -64,6 +64,16 @@ docker network (quip_nw), start up the containers and attach them to the user-de
 
 After the containers are started, you may access the QuIP web applications using a browser at `http://<hostname>`. Here, hostname is the name or IP address of the host machine where the containers are running.
 
+### Setting up Google Sign-In (optional)
+If disable_security is not set to true in config (see below) you need to get google credentials.
+
+* First, go to [Google API Console](https://console.developers.google.com/project/_/apiui/apis/library)
+* From the drop-down in the top left corner, create a new project
+* Next, select Credentials in the left side-bar, then select "OAuth Client ID" in the drop-down, and then "Configure Consent Screen"
+* Fill in your URL, etc, and click "Save"
+* Then, select "Web application", and fill in the fields
+* Finally, copy your **"client ID"** and **"client secret"**
+
 ### Configuration
 
 Configuration is via configs/viewer/config.ini per the following specifications
