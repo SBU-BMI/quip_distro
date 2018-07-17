@@ -76,7 +76,7 @@ If disable_security is not set to true in config (see below) you need to get goo
 
 ### Configuration
 
-Configuration is via configs/viewer/config.ini per the following specifications
+Configuration is via configs/config/config.ini per the following specifications
 
 | Key | Function | Default |
 | --- | --- | --- |
