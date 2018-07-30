@@ -21,7 +21,9 @@ Currently the analysis service implements a level set based nuclear segmentation
 
 Saltz, J., Gupta, R., Hou, L., Kurc, T., Singh, P., Nguyen, V., . . . Thorsson, V. Spatial Organization and Molecular Correlation of Tumor-Infiltrating Lymphocytes Using Deep Learning on Pathology Images. Cell Reports, 23(1), 181-193.e187. https://doi.org/10.1016/j.celrep.2018.03.086
 
-**The Data Service containers** implement (1) the database for storing image metadata, analysis results, and metadata about analyses (e.g., analysis parameters). The database organizes analysis results using a GeoJSON compliant specification. Segmentation results are expressed as polygons and size, shape, intensity and texture features, such as area, mean intensity, for each segmented object as key-value pairs; (2) the functions for loading image metadata and image analysis results, which are output from the analysis service as image masks and csv files which contain the computed features and boundaries of segmented objects; and (3) the functions for querying feature results by the FeatureScape web application.  
+**The Data Service containers** implement (1) the database for storing image metadata, analysis results, and metadata about analyses (e.g., analysis parameters). The database organizes analysis results using a GeoJSON compliant specification. Segmentation results are expressed as polygons and size, shape, intensity and texture features, such as area, mean intensity, for each segmented object as key-value pairs; (2) the functions for loading image metadata and image analysis results, which are output from the analysis service as image masks and csv files which contain the computed features and boundaries of segmented objects; and (3) the functions for querying feature results by the FeatureScape web application. 
+
+Individual QuIP containers are available [here](https://hub.docker.com/u/sbubmi/)
 
 ## QuIP Video
 
@@ -43,7 +45,7 @@ The VM starts all the containers on boot. It is configured to use 2GB memory and
    and the database. You should have read and write permissions to the folder.
 4. The installation scripts and the QuIP software have been tested on Linux systems and with the Google Chrome 
    browser. 
-5. The following three ports should be open to be able to use the web applications: 80, 6002, 3000. 
+5. Port 80 should be open to access and use the web applications remotely. 
    
 ### Cloning the distribution repository
 
