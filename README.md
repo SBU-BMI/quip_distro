@@ -79,7 +79,41 @@ docker network (quip_nw), start up the containers and attach them to the user-de
 
 After the containers are started, you may access the QuIP web applications using a browser at `http://<hostname>`. Here, hostname is the name or IP address of the host machine where the containers are running. 
 
-### Configuring authentication
+### Setting up Google Sign-In (optional)
+If disable_security is not set to true in config (see below) you need to get google credentials.
 
-Check the [security documentation](https://github.com/camicroscope/Security/blob/release/README.md) for enabling/disabling authentication
+* First, go to [Google API Console](https://console.developers.google.com/project/_/apiui/apis/library)
+* From the drop-down in the top left corner, create a new project
+* Next, select Credentials in the left side-bar, then select "OAuth Client ID" in the drop-down, and then "Configure Consent Screen"
+* Fill in your URL, etc, and click "Save"
+* Then, select "Web application", and fill in the fields
+* Finally, copy your **"client ID"** and **"client secret"**
 
+### Configuration
+
+Configuration is via configs/config/config.ini per the following specifications
+
+| Key | Function | Default |
+| --- | --- | --- |
+|trusted_secret| bindaas trusted secret | - |
+|disable_security| a boolean which disables user login if true | false |
+|trusted_id | the application name for bindaas | camicSignup |
+|trusted_url | the bindaas endpoint for trust |http://quip-data:9099/trustedApplication |
+|client_id | client id from google oauth setup | an unusable value|
+|client_secret | client secret from google oauth setup | an unusable value|
+|redirect_uri | the redirection to take after oauth setup | postmessage|
+|title| the title as shown on the page title and some headers | caMicroscope|
+|suffix | a tagline printed after the title on the login page | empty |
+|description | a description of the application/deployment | Look at Slides |
+| footer | designed for grant or contact information | caMicroscope – A Digital Pathology Integrative Query System; Ashish Sharma PI Emory |
+|download_link | the url linked to on the download button | https://github.com/camicroscope |
+|folder_path| the relative path of the folder | \/ |
+| dataHost | the data container’s name and port | quip-data:9099 |
+|kueHost | the jobs container’s name and port | quip-jobs:3000 |
+
+## Citation
+When using QuIP or caMicroscope, please cite the following:
+
+Saltz, J., Sharma, A., Iyer, G., Bremer, E., Wang, F., Jasniewski, A., DiPrima, T., Almeida, J.S., Gao, Y., Zhao, T., et al. (2017). A Containerized Software System for Generation, Management, and Exploration of Features from Whole Slide Tissue Images. Cancer Res. 77, e79–e82.
+
+caMicroscope — A Platform for Digital Pathology Data Management and Visualization http://camicroscope.org
