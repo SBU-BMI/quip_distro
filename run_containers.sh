@@ -124,8 +124,8 @@ function runContainers {
     echo "Started findapi service container: " $findapi_id
 
     # Run composite dataset generating container
-    composite_id=$(docker run --name $composite_container --net=quip_nw --restart unless-stopped -itd $composite_image:$composite_tag) || error_exit 'composite' $LINENO
-    echo "Started composite dataset generating container: " $composite_id
+    #composite_id=$(docker run --name $composite_container --net=quip_nw --restart unless-stopped -itd $composite_image:$composite_tag) || error_exit 'composite' $LINENO
+    #echo "Started composite dataset generating container: " $composite_id
 
     ## Run dynamic services container
     sed 's/\@QUIP_JOBS/\"quip-jobs\"/g' $CONFIGS_DIR/config_temp.json > $CONFIGS_DIR/config_tmp.json
