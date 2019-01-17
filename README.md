@@ -45,14 +45,14 @@ permissions to the folder.
 # Building
 Execute the build_containers.sh script. At the command prompt:
 
-    cd <path to your github repositories folder>
-    <path to quip_distro folder>/build/build_containers.sh
+    cd /path/to/dir/containing/quip_distro
+    ./path/to/quip_distro/build/build_containers.sh
 
 # Running
 Execute the run_containers.sh script. At the command prompt:
 
-    cd <path to quip_distro folder>
-    ./run_containers.sh <full path of data folder>
+    cd /path/to/quip_distro
+    ./run_containers.sh /path/to/data_folder
 
 
 The startup process will create an "img" sub-folder in the data folder where tissue images will be stored and
@@ -76,7 +76,7 @@ If disable_security is not set to true in config (see below) you need to get goo
 
 ### Configuration
 
-Configuration is via configs/config/config.ini per the following specifications
+Configuration is via /path/to/data_folder/configs/config/config.ini per the following specifications
 
 | Key | Function | Default |
 | --- | --- | --- |
