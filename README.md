@@ -47,17 +47,21 @@ Execute the build_containers.sh script. At the command prompt:
 
     cd /path/to/dir/containing/quip_distro
     ./path/to/quip_distro/build/build_containers.sh
+    
+Building the containers takes more or less an hour, generally.
 
 # Running
 Execute the run_containers.sh script. At the command prompt:
 
     cd /path/to/quip_distro
-    ./run_containers.sh /path/to/data_folder
+    ./run_containers.sh /absolute/path/to/data_folder
 
 
 The startup process will create an "img" sub-folder in the data folder where tissue images will be stored and
 a "data" sub-folder where the database files will be stored. Please make sure the storage folder has enough
 space for images and the database.
+
+Note that a full (absolute) path to the data file is required.
 
 The startup process will pull the QuIP containers from their respective docker image repositories, create a user-defined
 docker network (quip_nw), start up the containers and attach them to the user-defined docker network.
@@ -65,7 +69,7 @@ docker network (quip_nw), start up the containers and attach them to the user-de
 After the containers are started, you may access the QuIP web applications using a browser at `http://<hostname>`. Here, hostname is the name or IP address of the host machine where the containers are running.
 
 ### Setting up Google Sign-In (optional)
-If disable_security is not set to true in config (see below) you need to get google credentials.
+If disable_security is not set to true in config (see below), sign in is required, and you need to get google credentials.
 
 * First, go to [Google API Console](https://console.developers.google.com/project/_/apiui/apis/library)
 * From the drop-down in the top left corner, create a new project
