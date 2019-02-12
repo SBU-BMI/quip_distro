@@ -1,0 +1,59 @@
+version: '3'
+
+services:
+  mongo:
+    image: mongo
+    container_name: ca-mongo
+    logging:
+      driver: none
+  idxMongo:
+    image: mongo
+    container_name: ca-idx
+    links:
+      - mongo
+    volumes:
+      - ./config:/config
+    command:
+      - /config/run_idx.sh
+    depends_on:
+      - mongo
+  bindaas:
+    build: "./Deps/Bindaas/"
+    depends_on:
+      - "mongo"
+    container_name: ca-data
+    logging:
+      driver: none
+    ports: ["8080:8080", "9099:9099"]
+    volumes:
+      - ./config/bindaas_projects/:/root/bindaas/bin/projects/
+      - ./config/bindaas.config.json:/root/bindaas/bin/bindaas.config.json
+  iip:
+    build: "https://github.com/camicroscope/iipImage.git#release"
+    container_name: ca-iip
+    logging:
+      driver: none
+    volumes:
+      - ./images/:/images/
+  viewer:
+    build: "https://github.com/camicroscope/caMicroscope.git#release"
+    container_name: ca-front
+    logging:
+      driver: none
+  loader:
+    build: "https://github.com/camicroscope/SlideLoader.git#release"
+    container_name: ca-load
+    logging:
+      driver: none
+    volumes:
+      - ./images/:/images/
+  elevate:
+    build: "https://github.com/camicroscope/Security.git#release"
+    container_name: ca-security
+    logging:
+      driver: none
+    ports: ["4010:4010"]
+    volumes:
+      - ./config/routes.json:/root/src/routes.json
+    environment:
+      - DISABLE_SEC=true

@@ -1,0 +1,19 @@
+[{
+	"objective" : 40,
+	"md5sum" : "f557f03dfd1a5fe02860e6282c977ccd",
+	"vendor" : "aperio",
+	"level_count" : 1,
+	"timestamp" : 1530211282.84724,
+	"file-location" : "/data/images/VTRPDAC_Test_PC1709_BL3_XX.svs",
+	"mpp-x" : "0.251",
+	"filename" : "/data/images/VTRPDAC_Test_PC1709_BL3_XX.svs",
+	"width" : null,
+	"case_id" : "VTRPDAC_Test_PC1709_BL3_XX",
+	"entry_date" : "2018-06-28",
+	"person_id" : "PC1709",
+	"height" : null,
+	"registry_id" : "R4",
+	"mpp-y" : "0.251",
+	"block_id" : "BL3",
+	"study_id" : "VTRPDAC_Test"
+}]
