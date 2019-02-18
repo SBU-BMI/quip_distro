@@ -1,1 +1,9 @@
-To download binaries, please go to: [https://bmi.stonybrookmedicine.edu/software/releases/nanoborb](https://bmi.stonybrookmedicine.edu/software/releases/nanoborb)
+Releases:
+
+Nanoborb 1.0 ([Windows](https://drive.google.com/file/d/1wFmPNrkvw2vyO68gvGKezYXy-NTOBAib/view?usp=sharing), [MacOSX](https://drive.google.com/file/d/1lFB6nAo97ODVMIbaBcHsKM6AW9-Qvnrz/view?usp=sharing))
+
+Install instructions:
+
+Windows - 1) Download zip file. 2) Unzip. 3) Run "nanoborb.exe" in the unzipped folder
+
+MacOSX - 1) Download zip file. 2) Unzip. 3) Move Nanoborb app to Applications folder. 4) Double-click copied Nanoborb file to run.
