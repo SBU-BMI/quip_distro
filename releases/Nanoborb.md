@@ -1,6 +1,6 @@
 Releases:
 
-Nanoborb 1.0 ([Windows](https://drive.google.com/file/d/1wFmPNrkvw2vyO68gvGKezYXy-NTOBAib/view?usp=sharing), [MacOSX](https://drive.google.com/file/d/1lFB6nAo97ODVMIbaBcHsKM6AW9-Qvnrz/view?usp=sharing))
+Nanoborb 1.0 ([Windows](https://drive.google.com/file/d/1wqqW-SwVrsregy47qSruqIj42_zIIR32/view?usp=sharing), [MacOSX](https://drive.google.com/file/d/1lFB6nAo97ODVMIbaBcHsKM6AW9-Qvnrz/view?usp=sharing))
 
 Install instructions:
 
