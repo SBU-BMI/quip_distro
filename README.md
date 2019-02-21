@@ -1,7 +1,14 @@
 # caMicroscope Distribution
 caMicroscope 3.X distribution
 
-run with docker-compose -f caMicroscope.yml up
+
+run with `docker-compose -f caMicroscope.yml up`
+
+this will build all services and run in the foreground.
+Use `docker-compose -f caMicroscope.yml build` to rebuild the services.
+
+Once everything is up, go to <the host this is running on>:4010/ to see the landing page.
+
 
 ## Component Services
 mongo - vanilla mongo container

@@ -4,6 +4,8 @@ services:
   mongo:
     image: mongo
     container_name: ca-mongo
+    volumes:
+      - ./db:/data/db
     logging:
       driver: none
   idxMongo:
@@ -50,10 +52,15 @@ services:
   elevate:
     build: "https://github.com/camicroscope/Security.git#release"
     container_name: ca-security
-    logging:
-      driver: none
     ports: ["4010:4010"]
     volumes:
       - ./config/routes.json:/root/src/routes.json
     environment:
       - DISABLE_SEC=true
+    logging:
+      driver: none
+  auth:
+    build: "./Deps/auth_service/"
+    container_name: ca-auth
+    logging:
+      driver: none

@@ -2,9 +2,9 @@
   "root":"http://ca-front:80/",
   "_root_public": "true",
   "auth":{
-    "source": "email",
-    "destination": "http://ca-data:9099/services/caMicroscope/Auth/query/get?user={USER}",
-    "check": "user"
+    "elevate_url":"http://ca-auth:8010/check",
+    "elevate_ok":{"mode": "status"},
+    "attr_suffix":"?attr="
   },
   "services":{
     "data":{
@@ -16,34 +16,33 @@
         "multi":"/Mark/query/multiFind",
         "findBound":"/Mark/query/findBound",
         "types":"/Mark/query/findTypes",
-        "post":"/Mark/submit/json",
-        "delete":"/Mark/delete/deleteMark"
+        "post":{"path": "/Mark/submit/json", "attr": "write"},
+        "delete":{"path": "/Mark/delete/deleteMark", "attr": "write"}
       },
       "Heatmap": {
         "get":"/Heatmap/query/get",
         "find":"/Heatmap/query/find",
-        "post":"/Heatmap/submit/json",
-        "delete":"/Heatmap/delete/deleteHeatmap"
+        "post":{"path": "/Heatmap/submit/json", "attr": "write"},
+        "delete":{"path": "/Heatmap/delete/deleteHeatmap", "attr": "write"}
       },
       "Overlay": {
         "get":"/Overlay/query/get",
         "find":"/Overlay/query/find",
-        "post":"/Overlay/submit/json",
-        "delete":"/Overlay/delete/deleteOverlay",
-        "update":"/Overlay/update/updateOverlay"
+        "post":{"path": "/Overlay/submit/json", "attr": "write"},
+        "delete":{"path": "/Overlay/delete/deleteOverlay", "attr": "write"}
       },
       "Slide": {
         "get":"/Slide/query/get",
         "find":"/Slide/query/find",
-        "post":"/Slide/submit/json",
-        "delete":"/Slide/delete/deleteSlide",
-        "update":"/Slide/update/updateSlide"
+        "post":{"path": "/Slide/submit/json", "attr": "write"},
+        "delete":{"path": "/Slide/delete/deleteSlide", "attr": "write"},
+        "update":{"path": "/Slide/update/updateSlide", "attr": "write"}
       },
       "Template": {
         "get":"/Template/query/get",
         "find":"/Template/query/find",
-        "post":"/Template/submit/json",
-        "delete":"/Template/delete/deleteTemplate"
+        "post":{"path": "/Template/submit/json", "attr": "write"},
+        "delete":{"path": "/Template/delete/deleteTemplate", "attr": "write"}
       }
     },
     "img": {
@@ -63,7 +62,7 @@
     "load": {
       "_base": "http://ca-load:4000",
       "Upload": {
-        "start":"/upload/start",
+        "start": {"path":"/upload/start", "attr": "write"},
         "continue":"/upload/continue",
         "finish":"/upload/finish"
       },
