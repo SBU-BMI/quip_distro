@@ -7,9 +7,9 @@ before_script:
   - npm install
   - npm install -g mocha
 services:
-    - docker
+  - docker
 script:
- - docker-compose -f ../caMicroscope.yml build
- - docker-compose -f ../caMicroscope.yml up -d
- - sleep 30
-- mocha *.js --exit
+  - docker-compose -f ../caMicroscope.yml build
+  - docker-compose -f ../caMicroscope.yml up -d
+  - sleep 30
+  - mocha *.js --exit
