@@ -22,6 +22,7 @@
       "Heatmap": {
         "get":"/Heatmap/query/get",
         "find":"/Heatmap/query/find",
+        "types":"/Heatmap/query/findTypes",
         "post":{"path": "/Heatmap/submit/json", "attr": "write"},
         "delete":{"path": "/Heatmap/delete/deleteHeatmap", "attr": "write"}
       },

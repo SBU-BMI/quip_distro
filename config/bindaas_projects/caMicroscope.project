@@ -896,12 +896,18 @@
       },
       "queryEndpoints": {
         "get": {
-          "queryTemplate": "{\n\t\"_operation\" : \"find\" ,\n\t\"_operation_args\" : {\n\t\t\t\t\t\t\t\"query\" : { \u0027_id\u0027 : {\"$oid\":\"$id$\"}} ,\n\t\t\t\t\t\t\t\"limit\" : 1\n\t\t\t\t\t\t}\n}",
+          "queryTemplate": "{\n\t\u0027_operation\u0027: \u0027find\u0027,\n\t\u0027_operation_args\u0027: \n\t{\n\t\u0027query\u0027: {\n\t\t\"provenance.image.case_id\": \"$caseId$\",\n\t\t\"provenance.analysis.execution_id\":\"$execId$\"\n\t},\n\t\t\u0027fields\u0027: {\n\t\t\t\u0027provenance\u0027:1,\n                        \u0027data\u0027:1,\n\t\t\t\u0027_id\u0027: 1\n\t\t}\n\t}\n}      ",
           "metaData": {},
           "tags": [],
           "bindVariables": {
-            "id": {
-              "name": "id",
+            "caseId": {
+              "name": "caseId",
+              "required": true,
+              "defaultValue": "",
+              "description": ""
+            },
+            "execId": {
+              "name": "execId",
               "required": true,
               "defaultValue": "",
               "description": ""
@@ -942,6 +948,33 @@
           "timeCreated": "Wed Nov 14 16:19:20 UTC 2018",
           "createdBy": "admin",
           "description": " "
+        },
+        "findTypes": {
+          "queryTemplate": "{\n    \"_operation\" : \"find\" ,\n    \"_operation_args\" : {\n                            \"query\" : { \"provenance.analysis.execution_id\" : {$regex: \"$name$\", $options: \"i\"},\n                                        \"provenance.image.slide\" : {$regex: \"$slide$\", $options: \"i\"}},\n\"fields\" :{ \u0027data\u0027 : 0 }                        \n}\n\n}             ",
+          "metaData": {},
+          "tags": [],
+          "bindVariables": {
+            "name": {
+              "name": "name",
+              "required": false,
+              "defaultValue": "",
+              "description": ""
+            },
+            "slide": {
+              "name": "slide",
+              "required": false,
+              "defaultValue": "",
+              "description": ""
+            }
+          },
+          "stage": "UNVERIFIED",
+          "outputFormat": {
+            "outputFormat": "JSON"
+          },
+          "name": "findTypes",
+          "timeCreated": "Thu Feb 28 20:10:52 UTC 2019",
+          "createdBy": "admin",
+          "description": "  "
         }
       },
       "deleteEndpoints": {
