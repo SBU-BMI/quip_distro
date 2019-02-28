@@ -1,23 +1,15 @@
 sudo: required
-
-language: bash
-
+language: node_js
+node_js:
+  - "node"
 before_script:
-  - echo $TRAVIS_BUILD_DIR
-  - curl -L "https://storage.googleapis.com/google-code-archive-downloads/v2/code.google.com/shunit2/shunit2-2.1.6.tgz" | tar zx
-
+  - cd test
+  - npm install
+  - npm install -g mocha
+services:
+  - docker
 script:
-  - bash tests/equality_test.sh
-
-# TODO: Fix for full build
-#sudo: required
-#services:
-#    - docker
-#    - nodejs
-#    - phantomjs
-#before_install:
-#    - bash run_containers_develop.sh
-#    - cd tests
-#    - npm install -g casperjs
-#script:
-#    - casperjs test casper_test.js
+  - docker-compose -f ../caMicroscope.yml build
+  - docker-compose -f ../caMicroscope.yml up -d
+  - sleep 30
+  - mocha *.js --exit
