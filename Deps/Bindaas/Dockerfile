@@ -1,45 +1,34 @@
-FROM ubuntu:16.04
-MAINTAINER Pradeeban Kathiravelu "kk.pradeeban@gmail.com"
+FROM alpine:3.8
+LABEL maintainer="ashish@dbmi.emory.edu"
 
+### update and include Shadow to manage users and groups
+RUN apk update
+RUN apk --no-cache add wget
+RUN apk --no-cache add shadow
 
-# build with
-#  sudo docker build --rm=true -t="repo/imgname" .
-
-### update
-RUN apt-get -q update
-RUN apt-get -q -y upgrade
-RUN apt-get -q -y dist-upgrade
-RUN apt-get install -q -y libcurl3
-
-# Java
-RUN mkdir /root/src
+# Add group Bindaas and user Bindaas
+RUN groupadd -g 9999 bindaas && \
+    useradd -r -u 9999 -g bindaas bindaas
 
 WORKDIR /root/src
 
-RUN apt-get install -y openjdk-8-jre
+RUN apk --no-cache add openjdk8-jre
+WORKDIR /root/bindaas/
+RUN wget https://github.com/sharmalab/bindaas/releases/download/v3.3.5/bindaas-dist-3.3.5.tar.gz
+RUN tar -xvf bindaas-dist-3.3.5.tar.gz && rm bindaas-dist-3.3.5.tar.gz
+COPY bindaas.config.json /root/bindaas/bin/
+COPY run.sh /root/bindaas/bin/
 
 # Add java to path
 ENV PATH /root/src/jre1.8.0_171/bin:$PATH
 
+RUN chown -R bindaas:bindaas /root/
 
-# Bindaas
-RUN mkdir -p /root/bindaas
+WORKDIR /root/bindaas/bin
 
-ADD https://github.com/sharmalab/bindaas/releases/download/v3.0.2/bindaas-dist-3.0.2.tar.gz /root/bindaas/
-
-WORKDIR /root/bindaas
-RUN ls
-RUN mv bindaas-dist-3.0.2.tar.gz bindaas.tar.gz 2>&1; exit 0
-RUN tar -xvf bindaas.tar.gz 2>&1; exit 0
-RUN rm bindaas.tar.gz 2>&1; exit 0
-
-COPY bindaas.config.json /root/bindaas/bin/
+USER bindaas
 
 EXPOSE 9099
 EXPOSE 8080
-WORKDIR /root/bindaas/bin
-
-COPY /run.sh /root/bindaas/bin/run.sh
-
 
 CMD ["sh", "run.sh"]

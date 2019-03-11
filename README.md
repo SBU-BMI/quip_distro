@@ -1,4 +1,7 @@
 # caMicroscope Distribution
+
+[![Build Status](https://travis-ci.org/camicroscope/Distro.svg?branch=master)](https://travis-ci.org/camicroscope/Distro)
+
 caMicroscope 3.X distribution
 
 
@@ -15,7 +18,7 @@ To enable ssl, mount the private key and certificate files to elevate in /root/s
 ## Component Services
 mongo - vanilla mongo container
 
-idxMongo - ephemeral container to index mongo
+idxMongo - ephemeral container to index mongo (that is, this container is *expected* to exit once it's done its job)
 
 bindaas - api service for mongo (see https://github.com/sharmalab/bindaas)
 

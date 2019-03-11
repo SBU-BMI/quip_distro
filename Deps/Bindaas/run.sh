@@ -1,4 +1,5 @@
 #!/bin/bash
-#nohup /usr/bin/mongod &
 
-java -Dpid=BINDAAS_INSTANCE -Xmx1024m -jar org.eclipse.osgi_3.8.2.v20130124-134944.jar
+java -jar -Dpid=BINDAAS_INSTANCE org.eclipse.osgi_3.10.100.v20150529-1857.jar
+
+while true; do sleep 1000; done
