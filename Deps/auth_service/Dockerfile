@@ -1,4 +1,4 @@
-FROM node:8
+FROM node:8-alpine
 RUN mkdir /root/src
 COPY . /root/src
 WORKDIR /root/src

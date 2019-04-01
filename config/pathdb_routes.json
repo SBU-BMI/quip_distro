@@ -1,9 +1,6 @@
 {
-  "root":"http://ca-front:80/",
+  "root":"http://quip-pathdb:8777/",
   "_root_public": "true",
-  "auth":{
-    "permissions_field":"attrs"
-  },
   "services":{
     "data":{
       "_base": "http://ca-data:9099/services/caMicroscope",
@@ -44,6 +41,7 @@
       }
     },
     "img": {
+      "_public": "true",
       "_base":"http://ca-iip/fcgi-bin/iipsrv.fcgi",
       "IIP": {
         "raw":""
@@ -51,29 +49,18 @@
       "Slide":{
         "_resolver":{
           "destination":"?DeepZoom={OUT}",
-          "url":"http://ca-data:9099/services/caMicroscope/Slide/query/get?id={IN}",
-          "field":"location",
+          "url": "http://ca-pathdb/node/{IN}?_format=json",
+          "field":"field_iip_path[0].value",
           "before":["_files", ".dzi"]
         }
       }
     },
-    "load": {
-      "_base": "http://ca-load:4000",
-      "Upload": {
-        "start": {"path":"/upload/start", "attr": "write"},
-        "continue":"/upload/continue",
-        "finish":"/upload/finish"
-      },
-      "Slide":{
-        "info":"/data/one",
-        "thumb":"/data/thumbnail"
-      }
-    },
-    "auth": {
+    "pathdb":{
       "_public": "true",
-      "_base": "http://ca-auth:8010",
-      "Token":{
-        "check":"/check"
+      "_base": "http://quip-pathdb/",
+      "slide":{
+        "info":"/node/",
+        "unmod":""
       }
     }
   }

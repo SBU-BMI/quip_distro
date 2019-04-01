@@ -212,10 +212,12 @@ const annotation_schema = {
             "title": "Check if tumor present (For BL3 only)",
             "type": "boolean"
         },
-        "additional_notes": {
+        "notes": {
             "id": "a10",
-            "title": "Additional notes: ",
-            "type": "radio"
+            "title": "Notes: ",
+            "type": "string",
+            "format":"textarea",
+            "maxLength": 128
         }
     }
 };

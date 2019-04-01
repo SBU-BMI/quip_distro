@@ -1,7 +1,4 @@
 # caMicroscope Distribution
-
-[![Build Status](https://travis-ci.org/camicroscope/Distro.svg?branch=master)](https://travis-ci.org/camicroscope/Distro)
-
 caMicroscope 3.X distribution
 
 
@@ -13,7 +10,7 @@ Use `docker-compose -f caMicroscope.yml build` to rebuild the services.
 Once everything is up, go to <the host this is running on>:4010/ to see the landing page.
 
 ## SSL
-To enable ssl, mount the private key and certificate files to elevate in /root/src/ssl/privatekey.pem and /root/src/ssl/certificate.pem respectively. HTTPS mode will only be enabled if both of these files are present. 
+To enable ssl, mount the private key and certificate files to elevate in /root/src/ssl/privatekey.pem and /root/src/ssl/certificate.pem respectively. HTTPS mode will only be enabled if both of these files are present.
 
 ## Component Services
 mongo - vanilla mongo container
@@ -38,6 +35,10 @@ Security and Routes - This is handled by the elevate service/ca-security contain
 Image Volume - This is, by default, the images directory in this directory. If this is changed, please make the same change across all impacted services.
 
 Packages - Packages are built in the viewer service using parcel, mount a different directory with packages.js to the package directory to overwrite or add functionality.
+
+## PathDB
+
+To use pathdb, use pathDbCamic.yml instead of caMicroscope.yml, and replace routes.json with pathdb_routes.json. This deployment does not include the auth and loader as separate services, as this PathDB provides that functionality.
 
 ## Support
 Feel free to add any support inquiry as a github issue to this repository.

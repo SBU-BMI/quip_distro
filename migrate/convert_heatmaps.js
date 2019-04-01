@@ -63,7 +63,8 @@ function generateDoc(data,filename){
   	const fields = fileTemps[filename].properties.multiheat_param.heatname_array.map(d =>{
       return{
         name:d,
-        range:[0,1]
+        range:[0,1],
+        value:[0.5,1]
       }});
 return `{
 "provenance":{  

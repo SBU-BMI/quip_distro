@@ -14,8 +14,8 @@ WORKDIR /root/src
 
 RUN apk --no-cache add openjdk8-jre
 WORKDIR /root/bindaas/
-RUN wget https://github.com/sharmalab/bindaas/releases/download/v3.3.5/bindaas-dist-3.3.5.tar.gz
-RUN tar -xvf bindaas-dist-3.3.5.tar.gz && rm bindaas-dist-3.3.5.tar.gz
+RUN wget https://github.com/sharmalab/bindaas/releases/download/v3.3.8/bindaas-dist-3.3.8.tar.gz
+RUN tar -xvf bindaas-dist-3.3.8.tar.gz && rm bindaas-dist-3.3.8.tar.gz
 COPY bindaas.config.json /root/bindaas/bin/
 COPY run.sh /root/bindaas/bin/
 
