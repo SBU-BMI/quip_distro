@@ -1,4 +1,4 @@
-FROM alpine:3.8
+FROM alpine:3.9
 LABEL maintainer="ashish@dbmi.emory.edu"
 
 ### update and include Shadow to manage users and groups

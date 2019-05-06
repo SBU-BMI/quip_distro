@@ -896,18 +896,24 @@
       },
       "queryEndpoints": {
         "get": {
-          "queryTemplate": "{\n\t\u0027_operation\u0027: \u0027find\u0027,\n\t\u0027_operation_args\u0027: \n\t{\n\t\u0027query\u0027: {\n\t\t\"provenance.image.case_id\": \"$caseId$\",\n\t\t\"provenance.analysis.execution_id\":\"$execId$\"\n\t},\n\t\t\u0027fields\u0027: {\n\t\t\t\u0027provenance\u0027:1,\n                        \u0027data\u0027:1,\n\t\t\t\u0027_id\u0027: 1\n\t\t}\n\t}\n}      ",
+          "queryTemplate": "{\n\t\u0027_operation\u0027: \u0027find\u0027,\n\t\u0027_operation_args\u0027: \n\t{\n\t\u0027query\u0027: {\n\t\t\"provenance.image.case_id\": \"$case$\",\n\t\t\"provenance.image.subject_id\": \"$subject$\",\n\t\t\"provenance.analysis.execution_id\":\"$exec$\"\n\t},\n\t\t\u0027fields\u0027: {\n\t\t\t\u0027provenance\u0027:1,\n                        \u0027data\u0027:1,\n\t\t\t\u0027_id\u0027: 1\n\t\t}\n\t}\n}      ",
           "metaData": {},
           "tags": [],
           "bindVariables": {
-            "caseId": {
-              "name": "caseId",
+            "case": {
+              "name": "case",
               "required": true,
               "defaultValue": "",
               "description": ""
             },
-            "execId": {
-              "name": "execId",
+            "subject": {
+              "name": "subject",
+              "required": true,
+              "defaultValue": "",
+              "description": ""
+            },
+            "exec": {
+              "name": "exec",
               "required": true,
               "defaultValue": "",
               "description": ""
@@ -923,7 +929,7 @@
           "description": ""
         },
         "find": {
-          "queryTemplate": "{\n    \"_operation\" : \"find\" ,\n    \"_operation_args\" : {\n                            \"query\" : { \"provenance.analysis.execution_id\" : {$regex: \"$name$\", $options: \"i\"},\n                                        \"provenance.image.slide\" : {$regex: \"$slide$\", $options: \"i\"}}\n                        }\n}          ",
+          "queryTemplate": "{\n    \"_operation\" : \"find\" ,\n    \"_operation_args\" : {\n                            \"query\" : { \"provenance.analysis.execution_id\" : {$regex: \"$name$\", $options: \"i\"},\n                                        \"provenance.image.subject_id\" : {$regex: \"$subject$\", $options: \"i\"},\n                                        \"provenance.image.case_id\" : {$regex: \"$case$\", $options: \"i\"},\n                                        \"provenance.image.slide_id\" : {$regex: \"$slide$\", $options: \"i\"}}\n                        }\n}          ",
           "metaData": {},
           "tags": [],
           "bindVariables": {
@@ -935,6 +941,18 @@
             },
             "slide": {
               "name": "slide",
+              "required": false,
+              "defaultValue": "",
+              "description": ""
+            },
+            "subject": {
+              "name": "subject",
+              "required": false,
+              "defaultValue": "",
+              "description": ""
+            },
+            "case": {
+              "name": "case",
               "required": false,
               "defaultValue": "",
               "description": ""
@@ -950,7 +968,7 @@
           "description": " "
         },
         "findTypes": {
-          "queryTemplate": "{\n    \"_operation\" : \"find\" ,\n    \"_operation_args\" : {\n                            \"query\" : { \"provenance.analysis.execution_id\" : {$regex: \"$name$\", $options: \"i\"},\n                                        \"provenance.image.slide\" : {$regex: \"$slide$\", $options: \"i\"}},\n\"fields\" :{ \u0027data\u0027 : 0 }                        \n}\n\n}             ",
+          "queryTemplate": "{\n    \"_operation\" : \"find\" ,\n    \"_operation_args\" : {\n                            \"query\" : { \"provenance.analysis.execution_id\" : {$regex: \"$name$\", $options: \"i\"},\n                                        \"provenance.image.subject_id\" : {$regex: \"$subject$\", $options: \"i\"},\n                                        \"provenance.image.case_id\" : {$regex: \"$case$\", $options: \"i\"},\n                                        \"provenance.image.slide\" : {$regex: \"$slide$\", $options: \"i\"}},\n                                        \"fields\" :{ \u0027data\u0027 : 0 }                        \n}\n\n}             ",
           "metaData": {},
           "tags": [],
           "bindVariables": {
@@ -962,6 +980,18 @@
             },
             "slide": {
               "name": "slide",
+              "required": false,
+              "defaultValue": "",
+              "description": ""
+            },
+            "subject": {
+              "name": "subject",
+              "required": false,
+              "defaultValue": "",
+              "description": ""
+            },
+            "case": {
+              "name": "case",
               "required": false,
               "defaultValue": "",
               "description": ""
@@ -998,6 +1028,41 @@
           "stage": "UNVERIFIED",
           "name": "deleteHeatmap",
           "timeCreated": "Wed Nov 14 16:24:04 UTC 2018",
+          "createdBy": "admin",
+          "description": ""
+        },
+        "updateThreshold": {
+          "queryTemplate": "{\n\t\"_operation\" : \"update\" ,\n\t\"_operation_args\" : {\n\t\t\t\t\t\t\t\"query\" : { \u0027provenance.image.subject_id\u0027 : \u0027$subject$\u0027,\u0027provenance.analysis.execution_id\u0027 : \u0027$execution$\u0027,\u0027provenance.image.case_id\u0027 : \u0027$case$\u0027} ,\n\t\t\t\t\t\t\t\"update\": {$set: { \u0027provenance.analysis.fields\u0027 : $fields$ }},\n\t\t\t\t\t\t\t\"upsert\": true,\n\t\t\t\t\t\t\t\"multi\" : true\n\t\t\t\t\t\t}\n}\n         ",
+          "tags": [],
+          "bindVariables": {
+            "subject": {
+              "name": "subject",
+              "required": true,
+              "defaultValue": "",
+              "description": ""
+            },
+            "execution": {
+              "name": "execution",
+              "required": true,
+              "defaultValue": "",
+              "description": ""
+            },
+            "case": {
+              "name": "case",
+              "required": true,
+              "defaultValue": "",
+              "description": ""
+            },
+            "fields": {
+              "name": "fields",
+              "required": true,
+              "defaultValue": "",
+              "description": ""
+            }
+          },
+          "stage": "UNVERIFIED",
+          "name": "updateThreshold",
+          "timeCreated": "Fri Apr 26 17:11:58 GMT 2019",
           "createdBy": "admin",
           "description": ""
         }
@@ -1050,6 +1115,215 @@
       "timeCreated": "Wed Nov 14 15:49:26 UTC 2018",
       "createdBy": "admin",
       "description": "Point Marking Objects"
+    },
+    "HeatmapEdit": {
+      "dataSource": {
+        "host": "ca-mongo",
+        "port": "27017",
+        "db": "camic",
+        "collection": "heatmapEdit",
+        "initialize": true
+      },
+      "queryEndpoints": {
+        "get": {
+          "queryTemplate": "{\n\t\"_operation\" : \"find\" ,\n\t\"_operation_args\" : {\n\t\t\t\t\t\t\t\"query\" : { \u0027_id\u0027 : {\"$oid\":\"$id$\"}} ,\n\t\t\t\t\t\t\t\"limit\" : 1\n\t\t\t\t\t\t}\n}",
+          "metaData": {},
+          "tags": [],
+          "bindVariables": {
+            "id": {
+              "name": "id",
+              "required": true,
+              "defaultValue": "",
+              "description": ""
+            }
+          },
+          "stage": "UNVERIFIED",
+          "outputFormat": {
+            "outputFormat": "JSON"
+          },
+          "name": "get",
+          "timeCreated": "Wed Apr 24 18:10:50 GMT 2019",
+          "createdBy": "admin",
+          "description": ""
+        },
+        "find": {
+          "queryTemplate": "{\n    \"_operation\" : \"find\" ,\n    \"_operation_args\" : {\n                            \"query\" : {\u0027user_id\u0027: {$regex: \"$user$\", $options: \"i\"},\n                                            \u0027provenance.image.subject_id\u0027: {$regex: \"$subject$\", $options: \"i\"},\n                                            \u0027provenance.image.case_id\u0027: {$regex: \"$case$\", $options: \"i\"},\n                                            \u0027provenance.image.study\u0027: {$regex: \"$study$\", $options: \"i\"},\n                                            \u0027provenance.image.specimen\u0027: {$regex: \"$specimen$\", $options: \"i\"},\n                                            \u0027provenance.analysis.execution_id\u0027: {$regex: \"$execution$\", $options: \"i\"}}\n                        }\n}                     ",
+          "metaData": {},
+          "tags": [],
+          "bindVariables": {
+            "user": {
+              "name": "user",
+              "required": false,
+              "defaultValue": "",
+              "description": ""
+            },
+            "subject": {
+              "name": "subject",
+              "required": false,
+              "defaultValue": "",
+              "description": ""
+            },
+            "case": {
+              "name": "case",
+              "required": false,
+              "defaultValue": "",
+              "description": ""
+            },
+            "study": {
+              "name": "study",
+              "required": false,
+              "defaultValue": "",
+              "description": ""
+            },
+            "execution": {
+              "name": "execution",
+              "required": false,
+              "defaultValue": "",
+              "description": ""
+            },
+            "specimen": {
+              "name": "specimen",
+              "required": false,
+              "defaultValue": "",
+              "description": ""
+            }
+          },
+          "stage": "UNVERIFIED",
+          "outputFormat": {
+            "outputFormat": "JSON"
+          },
+          "name": "find",
+          "timeCreated": "Wed Apr 24 20:32:37 GMT 2019",
+          "createdBy": "admin",
+          "description": "  "
+        }
+      },
+      "deleteEndpoints": {
+        "delete": {
+          "queryTemplate": "{\n\t\"_operation\" : \"delete\" ,\n\t\"_operation_args\" : {\n\t\t\t\t\t\t\t\"query\" : { \u0027user_id\u0027 : \u0027$user$\u0027, \u0027provenance.image.subject_id\u0027: \"$subject$\", \u0027provenance.image.case_id\u0027: \"$case$\", \u0027provenance.analysis.execution_id\u0027: \"$execution$\" }\n\t\t\t\t\t\t}\n}\n   ",
+          "tags": [],
+          "bindVariables": {
+            "user": {
+              "name": "user",
+              "required": true,
+              "defaultValue": "",
+              "description": ""
+            },
+            "subject": {
+              "name": "subject",
+              "required": true,
+              "defaultValue": "",
+              "description": ""
+            },
+            "case": {
+              "name": "case",
+              "required": true,
+              "defaultValue": "",
+              "description": ""
+            },
+            "execution": {
+              "name": "execution",
+              "required": true,
+              "defaultValue": "",
+              "description": ""
+            }
+          },
+          "stage": "UNVERIFIED",
+          "name": "delete",
+          "timeCreated": "Wed Apr 24 18:09:30 GMT 2019",
+          "createdBy": "admin",
+          "description": ""
+        },
+        "update": {
+          "queryTemplate": "{\n\t\"_operation\" : \"update\" ,\n\t\"_operation_args\" : {\n\t\t\t\t\t\t\t\"query\" : { \u0027user_id\u0027 : \u0027$user$\u0027, \u0027provenance.image.subject_id\u0027:\u0027$subject$\u0027, \n\u0027provenance.image.case_id\u0027:\u0027$case$\u0027,\u0027provenance.analysis.execution_id\u0027:\u0027$execution$\u0027 } ,\n\t\t\t\t\t\t\t\"update\": {$set: { \u0027data\u0027 : $data$}},\n\t\t\t\t\t\t\t\"upsert\": true,\n\t\t\t\t\t\t\t\"multi\" : true\n\t\t\t\t\t\t}\n}\n      ",
+          "tags": [],
+          "bindVariables": {
+            "user": {
+              "name": "user",
+              "required": true,
+              "defaultValue": "",
+              "description": ""
+            },
+            "subject": {
+              "name": "subject",
+              "required": true,
+              "defaultValue": "",
+              "description": ""
+            },
+            "case": {
+              "name": "case",
+              "required": true,
+              "defaultValue": "",
+              "description": ""
+            },
+            "execution": {
+              "name": "execution",
+              "required": true,
+              "defaultValue": "",
+              "description": ""
+            },
+            "data": {
+              "name": "data",
+              "required": true,
+              "defaultValue": "",
+              "description": ""
+            }
+          },
+          "stage": "UNVERIFIED",
+          "name": "update",
+          "timeCreated": "Thu Apr 25 15:01:38 GMT 2019",
+          "createdBy": "admin",
+          "description": ""
+        }
+      },
+      "submitEndpoints": {
+        "csvFile": {
+          "type": "MULTIPART",
+          "properties": {
+            "inputType": "CSV_FILE"
+          },
+          "name": "csvFile",
+          "timeCreated": "Wed Apr 24 18:02:23 GMT 2019",
+          "createdBy": "admin",
+          "description": ""
+        },
+        "jsonFile": {
+          "type": "MULTIPART",
+          "properties": {
+            "inputType": "JSON_FILE"
+          },
+          "name": "jsonFile",
+          "timeCreated": "Wed Apr 24 18:02:23 GMT 2019",
+          "createdBy": "admin",
+          "description": ""
+        },
+        "csv": {
+          "type": "FORM_DATA",
+          "properties": {
+            "inputType": "CSV"
+          },
+          "name": "csv",
+          "timeCreated": "Wed Apr 24 18:02:23 GMT 2019",
+          "createdBy": "admin",
+          "description": ""
+        },
+        "json": {
+          "type": "FORM_DATA",
+          "properties": {
+            "inputType": "JSON"
+          },
+          "name": "json",
+          "timeCreated": "Wed Apr 24 18:02:23 GMT 2019",
+          "createdBy": "admin",
+          "description": ""
+        }
+      },
+      "providerId": "edu.emory.cci.bindaas.datasource.provider.mongodb.MongoDBProvider",
+      "providerVersion": 1,
+      "name": "HeatmapEdit",
+      "timeCreated": "Wed Apr 24 18:02:21 GMT 2019",
+      "createdBy": "admin",
+      "description": "Edit Data for Heatmaps"
     }
   },
   "params": {},

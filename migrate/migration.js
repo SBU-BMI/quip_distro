@@ -9,6 +9,7 @@ db.images.find().forEach(function(x){
   //COPY mpp-x and -y to _x _y
   x['mpp_x'] = x['mpp-x']
   x['mpp_y'] = x['mpp-y']
+  x['location'] = x['file-location']
   //MOVE study_id to study, else study as empty string
   x['study'] = x['study'] || x['study_id'] || ""
   delete (x['study_id'])

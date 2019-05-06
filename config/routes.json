@@ -21,7 +21,8 @@
         "find":"/Heatmap/query/find",
         "types":"/Heatmap/query/findTypes",
         "post":{"path": "/Heatmap/submit/json", "attr": "write"},
-        "delete":{"path": "/Heatmap/delete/deleteHeatmap", "attr": "write"}
+        "delete":{"path": "/Heatmap/delete/deleteHeatmap", "attr": "write"},
+        "threshold":{"path": "/Heatmap/delete/updateThreshold", "attr": "write"}
       },
       "Overlay": {
         "get":"/Overlay/query/get",
@@ -34,13 +35,20 @@
         "find":"/Slide/query/find",
         "post":{"path": "/Slide/submit/json", "attr": "write"},
         "delete":{"path": "/Slide/delete/deleteSlide", "attr": "write"},
-        "update":{"path": "/Slide/update/updateSlide", "attr": "write"}
+        "update":{"path": "/Slide/delete/updateSlide", "attr": "write"}
       },
       "Template": {
         "get":"/Template/query/get",
         "find":"/Template/query/find",
         "post":{"path": "/Template/submit/json", "attr": "write"},
         "delete":{"path": "/Template/delete/deleteTemplate", "attr": "write"}
+      },
+      "HeatmapEdit": {
+        "get":"/HeatmapEdit/query/get",
+        "find":"/HeatmapEdit/query/find",
+        "post":{"path": "/HeatmapEdit/submit/json", "attr": "write"},
+        "delete":{"path": "/HeatmapEdit/delete/delete", "attr": "write"},
+        "update":{"path": "/HeatmapEdit/delete/update", "attr": "write"}
       }
     },
     "img": {

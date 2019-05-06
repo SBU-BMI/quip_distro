@@ -1,4 +1,7 @@
 # caMicroscope Distribution
+
+[![Build Status](https://travis-ci.org/camicroscope/Distro.svg?branch=master)](https://travis-ci.org/camicroscope/Distro)
+
 caMicroscope 3.X distribution
 
 
@@ -38,7 +41,16 @@ Packages - Packages are built in the viewer service using parcel, mount a differ
 
 ## PathDB
 
-To use pathdb, use pathDbCamic.yml instead of caMicroscope.yml, and replace routes.json with pathdb_routes.json. This deployment does not include the auth and loader as separate services, as this PathDB provides that functionality.
+To use PathDB, use pathDbCamic.yml instead of caMicroscope.yml. This deployment does not include the auth and loader as separate services, as this PathDB provides that functionality.
+
+Running QuIP with PathDB:
+
+0) place yourself in quip_distro folder.
+1) copy config/httpd.conf.template to config/httpd.conf
+2) copy config/pathdb_routes.json to config/routes.json (this will overwrite an existing routes.json file)
+3) configure httpd.conf with your certificates to enable https.
+4) build with, "docker-compose -f quip-pathdb.yml build"
+5) run with, "docker-compose -f quip-pathdb.yml run"
 
 ## Support
-Feel free to add any support inquiry as a github issue to this repository.
+Feel free to add any support inquiry as a github issue to this repository. Other feedback can be given via [this form](https://docs.google.com/forms/d/e/1FAIpQLScL91LxrpAZjU88GBZP9gmcdgdf8__uNUwhws2lzU6Lr4qNwA/viewform).

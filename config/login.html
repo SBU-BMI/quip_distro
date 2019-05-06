@@ -2,12 +2,13 @@
 <h1>Redirecting...</h1>
 <script>
 // config vars, these are DEFAULTS
-var base_deployment_url = "https://wolf.cci.emory.edu/vtr_pending/"
-var redirect_uri = base_deployment_url + "login.html"
-var default_redirect = base_deployment_url + "apps/table.html"
 var audience = "wolf.cci.emory.edu/camic_uat"
 var scope = "openid%20email"
 var client_id = "YLRDUmEs5Jivi6FX3XtNNAt97X3a0epD"
+// handle urls automatically
+var base_deployment_url = window.location.toString().split("/").slice(0,-1).join("/")
+var redirect_uri = base_deployment_url + "/login.html"
+var default_redirect = base_deployment_url + "/apps/table.html"
 var response_type = "id_token"
 var base_auth_url = "https://birmstuff.auth0.com/authorize?"
 var cookie_name = "token" // "token" is expected by elevate router
@@ -72,4 +73,3 @@ if (id_token){
 }
 </script>
 <html>
-

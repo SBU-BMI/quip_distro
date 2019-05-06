@@ -1,11 +1,28 @@
-// admin users
-let admins = [{"name":"admin@camicroscope.org", "attrs": ['admin', 'write']}]
-// edit users
-let editors = [{"name":"editor@camicroscope.org", "attrs": ['write']}]
-// normal users
-let viewers = [{"name":"someone@camicroscope.org", "attrs": []}]
-// prep for mongo
+// these roles are customizable, and should match the routes.json attrs
 
-db.authorization.insertMany(admins)
-db.authorization.insertMany(editors)
-db.authorization.insertMany(viewers)
+// lists
+let admin_list = ["admin@camicroscope.org"];
+let editor_list = ["editor@camicroscope.org"];
+let viewer_list = ["viewer@camicroscope.org"];
+// admin users
+let admin_attrs = ['admin', 'write']
+// edit users
+let editor_attrs = ['write']
+// normal users
+let viewer_attrs = []
+// prep for mongo
+var users = []
+
+admin_list.forEach(x=>{
+  users.push({name:x, attrs: admin_attrs})
+})
+
+editor_list.forEach(x=>{
+  users.push({name:x, attrs: editor_attrs})
+})
+
+viewer_list.forEach(x=>{
+  users.push({name:x, attrs: viewer_attrs})
+})
+
+db.authorization.insertMany(users)

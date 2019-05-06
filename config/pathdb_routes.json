@@ -1,5 +1,5 @@
 {
-  "root":"http://quip-pathdb:8777/",
+  "root":"http://quip-pathdb/",
   "_root_public": "true",
   "services":{
     "data":{
@@ -19,6 +19,7 @@
         "types":"/Heatmap/query/findTypes",
         "post":{"path": "/Heatmap/submit/json", "attr": "write"},
         "delete":{"path": "/Heatmap/delete/deleteHeatmap", "attr": "write"}
+        "threshold":{"path": "/Heatmap/delete/updateThreshold", "attr": "write"}
       },
       "Overlay": {
         "get":"/Overlay/query/get",
@@ -38,6 +39,13 @@
         "find":"/Template/query/find",
         "post":{"path": "/Template/submit/json", "attr": "write"},
         "delete":{"path": "/Template/delete/deleteTemplate", "attr": "write"}
+      },
+      "HeatmapEdit": {
+        "get":"/HeatmapEdit/query/get",
+        "find":"/HeatmapEdit/query/find",
+        "post":{"path": "/HeatmapEdit/submit/json", "attr": "write"},
+        "delete":{"path": "/HeatmapEdit/delete/delete", "attr": "write"},
+        "update":{"path": "/HeatmapEdit/delete/update", "attr": "write"}
       }
     },
     "img": {
@@ -53,6 +61,18 @@
           "field":"field_iip_path[0].value",
           "before":["_files", ".dzi"]
         }
+      }
+    },
+    "load": {
+      "_base": "http://ca-load:4000",
+      "Upload": {
+        "start": {"path":"/upload/start", "attr": "write"},
+        "continue":"/upload/continue",
+        "finish":"/upload/finish"
+      },
+      "Slide":{
+        "info":"/data/one",
+        "thumb":"/data/thumbnail"
       }
     },
     "pathdb":{

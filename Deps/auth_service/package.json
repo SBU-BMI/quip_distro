@@ -9,6 +9,7 @@
   "author": "birm",
   "license": "UNLICENSED",
   "dependencies": {
+    "cookie-parser": "^1.4.4",
     "express": "^4.16.4",
     "express-promise": "^0.4.0",
     "jsonwebtoken": "^8.4.0",
