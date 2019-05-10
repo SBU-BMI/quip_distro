@@ -87,33 +87,6 @@
           "createdBy": "admin",
           "description": "find where bound intersects given rect"
         },
-        "findTypes": {
-          "queryTemplate": "{ \"_operation\" : \"distinct\" , \"_operation_args\" : { \"field\" : \"provenance\", \"query\" : {\u0027provenance.analysis.execution_id\u0027: {$regex: \"$name$\", $options: \"i\"},\u0027provenance.image.slide\u0027: {$regex: \"$slide$\", $options: \"i\"} } } }    ",
-          "metaData": {},
-          "tags": [],
-          "bindVariables": {
-            "name": {
-              "name": "name",
-              "required": false,
-              "defaultValue": "",
-              "description": ""
-            },
-            "slide": {
-              "name": "slide",
-              "required": false,
-              "defaultValue": "",
-              "description": ""
-            }
-          },
-          "stage": "UNVERIFIED",
-          "outputFormat": {
-            "outputFormat": "JSON"
-          },
-          "name": "findTypes",
-          "timeCreated": "Mon Sep 24 18:15:21 UTC 2018",
-          "createdBy": "admin",
-          "description": "      "
-        },
         "find": {
           "queryTemplate": "{\n    \"_operation\" : \"find\" ,\n    \"_operation_args\" : {\n                            \"query\" :{$and: [\n                                        {\"provenance.analysis.execution_id\" : {$regex: \"$name$\", $options: \"i\"},\n                                            \"provenance.image.slide\" : {$regex: \"$slide$\", $options: \"i\"},\n                                            \"provenance.image.study\" : {$regex: \"$study$\", $options: \"i\"},\n                                            \"provenance.image.specimen\" : {$regex: \"$specimen$\", $options: \"i\"},\n                                            \"footprint\": { $not: {$lt: $footprint$}},\n                                            \"provenance.analysis.source\" : {$regex: \"$source$\", $options: \"i\"}},\n                                        {\"x\": { $not: {$lt: $x0$}}},\n                                        {\"x\": { $not: {$gt: $x1$}}},\n                                        {\"y\": { $not: {$lt: $y0$}}},\n                                        {\"y\": { $not: {$gt: $y1$}}}\n                                    ]}\n                        }\n}\n       ",
           "metaData": {},
@@ -263,6 +236,54 @@
           "timeCreated": "Thu Nov 29 17:29:24 UTC 2018",
           "createdBy": "admin",
           "description": "   "
+        },
+        "findTypes": {
+          "queryTemplate": "{ \"_operation\" : \"distinct\" , \"_operation_args\" : { \"field\" : \"provenance.analysis\", \"query\" : {\u0027provenance.image.slide\u0027: $slide$ } } }  ",
+          "metaData": {},
+          "tags": [],
+          "bindVariables": {
+            "slide": {
+              "name": "slide",
+              "required": true,
+              "defaultValue": "",
+              "description": ""
+            }
+          },
+          "stage": "UNVERIFIED",
+          "outputFormat": {
+            "outputFormat": "JSON"
+          },
+          "name": "findTypes",
+          "timeCreated": "Thu May 09 14:52:28 GMT 2019",
+          "createdBy": "admin",
+          "description": "        "
+        },
+        "findTypesExec": {
+          "queryTemplate": "{ \"_operation\" : \"distinct\" , \"_operation_args\" : { \"field\" : \"provenance.analysis\", \"query\" : {\u0027provenance.image.slide\u0027: $slide$,\u0027provenance.analysis.execution_id\u0027: $name$  } } } ",
+          "metaData": {},
+          "tags": [],
+          "bindVariables": {
+            "slide": {
+              "name": "slide",
+              "required": true,
+              "defaultValue": "",
+              "description": ""
+            },
+            "name": {
+              "name": "name",
+              "required": true,
+              "defaultValue": "",
+              "description": ""
+            }
+          },
+          "stage": "UNVERIFIED",
+          "outputFormat": {
+            "outputFormat": "JSON"
+          },
+          "name": "findTypesExec",
+          "timeCreated": "Thu May 09 15:09:53 GMT 2019",
+          "createdBy": "admin",
+          "description": "          "
         }
       },
       "deleteEndpoints": {

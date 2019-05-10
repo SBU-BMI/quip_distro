@@ -13,6 +13,7 @@
         "multi":"/Mark/query/multiFind",
         "findBound":"/Mark/query/findBound",
         "types":"/Mark/query/findTypes",
+        "typesExec":"/Mark/query/findTypesExec",
         "post":{"path": "/Mark/submit/json", "attr": "write"},
         "delete":{"path": "/Mark/delete/deleteMark", "attr": "write"}
       },

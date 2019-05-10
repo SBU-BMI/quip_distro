@@ -110,28 +110,29 @@ var marks = [
 ];
 
 heatmap_data = []
-for (var i = 0; i<2220; i+=100){
-  for (var j = 0; j<2967; j+=100)
+for (var i = 0; i<1; i+=0.007243258749282846){
+  for (var j = 0; j<1; j+=0.010489147367327867){
     heatmap_data.push([i,j,Math.random(),Math.floor(Math.random()*10)])
+  }
 }
 
 
 var heatmaps = [{
     "provenance": {
         "image": {
-            "slide": "5bec456369056d7e537c2a9b",
+            "slide": "CMU1",
             "study": "",
-            "specimen": ""
+            "specimen": "",
+            "case_id":"CMU1",
+            "subject_id":"CMU1"
         },
         "analysis": {
+            "study_id":"test",
             "type": "heatmap",
+            "computation": "heatmap",
             "execution_id": "heatmap_test",
-            "patchsize": "100",
-            "fields": ["necrosis", "tumor"],
-            "ranges": [
-                [0, 1],
-                [0, 10]
-            ],
+            "size": [0.007243258749282846,0.010489147367327867],
+            "fields": [{"name":"necrosis", "range":[0,1]}, {"name":"tumor", "range":[0,10]}],
             "coordinateSystem": "image"
         }
     },

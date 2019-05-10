@@ -10,6 +10,7 @@
         "multi":"/Mark/query/multiFind",
         "findBound":"/Mark/query/findBound",
         "types":"/Mark/query/findTypes",
+        "typesExec":"/Mark/query/findTypesExec",
         "post":{"path": "/Mark/submit/json", "attr": "write"},
         "delete":{"path": "/Mark/delete/deleteMark", "attr": "write"}
       },
@@ -18,7 +19,7 @@
         "find":"/Heatmap/query/find",
         "types":"/Heatmap/query/findTypes",
         "post":{"path": "/Heatmap/submit/json", "attr": "write"},
-        "delete":{"path": "/Heatmap/delete/deleteHeatmap", "attr": "write"}
+        "delete":{"path": "/Heatmap/delete/deleteHeatmap", "attr": "write"},
         "threshold":{"path": "/Heatmap/delete/updateThreshold", "attr": "write"}
       },
       "Overlay": {
