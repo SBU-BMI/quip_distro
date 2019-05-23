@@ -36,7 +36,7 @@
         "find":"/Slide/query/find",
         "post":{"path": "/Slide/submit/json", "attr": "write"},
         "delete":{"path": "/Slide/delete/deleteSlide", "attr": "write"},
-        "update":{"path": "/Slide/delete/updateSlide", "attr": "write"}
+        "update":{"path": "/Slide/update/updateSlide", "attr": "write"}
       },
       "Template": {
         "get":"/Template/query/get",
