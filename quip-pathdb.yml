@@ -49,7 +49,7 @@ services:
     logging:
       driver: none
   pathdb:
-    build: "https://github.com/SBU-BMI/PathDB.git#1.0.2"
+    build: "https://github.com/SBU-BMI/PathDB.git#1.0.3"
     container_name: quip-pathdb
     ports: ["443:443","80:80"]
     volumes:

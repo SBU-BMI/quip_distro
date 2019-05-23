@@ -64,7 +64,7 @@ function generateDoc(data,filename){
       return{
         name:d,
         range:[0,1],
-        value:[0.5,1]
+        value:[0.1,1]
       }});
 return `{
 "provenance":{  

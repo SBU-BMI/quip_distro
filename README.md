@@ -13,7 +13,7 @@ Use `docker-compose -f caMicroscope.yml build` to rebuild the services.
 Once everything is up, go to <the host this is running on>:4010/ to see the landing page.
 
 ## SSL
-To enable ssl, mount the private key and certificate files to elevate in /root/src/ssl/privatekey.pem and /root/src/ssl/certificate.pem respectively. HTTPS mode will only be enabled if both of these files are present.
+To enable ssl, mount the private key and certificate files to the security service in /root/src/ssl/privatekey.pem and /root/src/ssl/certificate.pem respectively. HTTPS mode will only be enabled if both of these files are present.
 
 ## Component Services
 mongo - vanilla mongo container
@@ -28,12 +28,12 @@ viewer - hosts the viewer files and builds packages ( see https://github.com/cam
 
 loader - extracts metadata needed for image loading (see https://github.com/camicroscope/SlideLoader)
 
-elevate - security proxy (see https://github.com/camicroscope/Security)
+security - security proxy (see https://github.com/camicroscope/Security)
 
 ## Configuration
 Logging - Container Logging is, for HIPAA reasons, disabled. Feel free to use a different logging engine if desired, especially for development.
 
-Security and Routes - This is handled by the elevate service/ca-security container. By default routes go the viewer, unless a specific pattern in routes.json is matched. If security is enabled, supply the SECRET (pub key or secret of JWT) for verification, otherwise set DISABLE_SEC to true.
+Security and Routes - This is handled by the security container. By default routes go the viewer, unless a specific pattern in routes.json is matched. If security is enabled, supply the SECRET (pub key or secret of JWT) for verification, otherwise set DISABLE_SEC to true.
 
 Image Volume - This is, by default, the images directory in this directory. If this is changed, please make the same change across all impacted services.
 
@@ -41,16 +41,16 @@ Packages - Packages are built in the viewer service using parcel, mount a differ
 
 ## PathDB
 
-To use PathDB, use pathDbCamic.yml instead of caMicroscope.yml. This deployment does not include the auth and loader as separate services, as this PathDB provides that functionality.
+To use PathDB, use quip-pathdb.yml instead of caMicroscope.yml. This deployment does not include the auth and loader as separate services, as this PathDB provides that functionality.
 
 Running QuIP with PathDB:
 
-0) place yourself in quip_distro folder.
-1) copy config/httpd.conf.template to config/httpd.conf
-2) copy config/pathdb_routes.json to config/routes.json (this will overwrite an existing routes.json file)
-3) configure httpd.conf with your certificates to enable https.
-4) build with, "docker-compose -f quip-pathdb.yml build"
-5) run with, "docker-compose -f quip-pathdb.yml run"
+0) place yourself in quip\_distro folder.<br>
+1) copy config/httpd.conf.template to config/httpd.conf<br>
+2) copy config/pathdb\_routes.json to config/routes.json (this will overwrite an existing routes.json file)<br>
+3) configure httpd.conf with your certificates to enable https.<br>
+4) build with, "docker-compose -f quip-pathdb.yml build"<br>
+5) run with, "docker-compose -f quip-pathdb.yml up -d"
 
 ## Support
 Feel free to add any support inquiry as a github issue to this repository. Other feedback can be given via [this form](https://docs.google.com/forms/d/e/1FAIpQLScL91LxrpAZjU88GBZP9gmcdgdf8__uNUwhws2lzU6Lr4qNwA/viewform).
