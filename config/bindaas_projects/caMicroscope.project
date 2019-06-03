@@ -162,8 +162,83 @@
           "createdBy": "admin",
           "description": "                         "
         },
+        "findTypes": {
+          "queryTemplate": "{ \"_operation\" : \"distinct\" , \"_operation_args\" : { \"field\" : \"provenance.analysis\", \"query\" : {\u0027provenance.image.slide\u0027: $slide$ } } }  ",
+          "metaData": {},
+          "tags": [],
+          "bindVariables": {
+            "slide": {
+              "name": "slide",
+              "required": true,
+              "defaultValue": "",
+              "description": ""
+            }
+          },
+          "stage": "UNVERIFIED",
+          "outputFormat": {
+            "outputFormat": "JSON"
+          },
+          "name": "findTypes",
+          "timeCreated": "Thu May 09 14:52:28 GMT 2019",
+          "createdBy": "admin",
+          "description": "        "
+        },
+        "findTypesExec": {
+          "queryTemplate": "{ \"_operation\" : \"distinct\" , \"_operation_args\" : { \"field\" : \"provenance.analysis\", \"query\" : {\u0027provenance.image.slide\u0027: $slide$,\u0027provenance.analysis.execution_id\u0027: $name$  } } } ",
+          "metaData": {},
+          "tags": [],
+          "bindVariables": {
+            "slide": {
+              "name": "slide",
+              "required": true,
+              "defaultValue": "",
+              "description": ""
+            },
+            "name": {
+              "name": "name",
+              "required": true,
+              "defaultValue": "",
+              "description": ""
+            }
+          },
+          "stage": "UNVERIFIED",
+          "outputFormat": {
+            "outputFormat": "JSON"
+          },
+          "name": "findTypesExec",
+          "timeCreated": "Thu May 09 15:09:53 GMT 2019",
+          "createdBy": "admin",
+          "description": "          "
+        },
+        "findSpecific": {
+          "queryTemplate": "{\n    \"_operation\" : \"find\" ,\n    \"_operation_args\" : {\n                            \"query\" :{\n\"provenance.analysis.execution_id\" : $name$,\n                                            \"provenance.image.slide\" : $slide$\n                        }\n}\n}\n         ",
+          "metaData": {},
+          "tags": [],
+          "bindVariables": {
+            "name": {
+              "name": "name",
+              "required": false,
+              "defaultValue": "",
+              "description": ""
+            },
+            "slide": {
+              "name": "slide",
+              "required": false,
+              "defaultValue": "",
+              "description": ""
+            }
+          },
+          "stage": "UNVERIFIED",
+          "outputFormat": {
+            "outputFormat": "JSON"
+          },
+          "name": "findSpecific",
+          "timeCreated": "Sat May 11 14:35:01 GMT 2019",
+          "createdBy": "admin",
+          "description": "                           "
+        },
         "multiFind": {
-          "queryTemplate": "{\n    \"_operation\" : \"find\" ,\n    \"_operation_args\" : {\n                            \"query\" :{$and: [\n                                        {\"provenance.analysis.execution_id\": {$in: $name$},\n                                            \"provenance.image.slide\" : {$regex: \"$slide$\", $options: \"i\"},\n                                            \"provenance.image.study\" : {$regex: \"$study$\", $options: \"i\"},\n                                            \"provenance.image.specimen\" : {$regex: \"$specimen$\", $options: \"i\"},\n                                            \"footprint\": { $not: {$lt: $footprint$}},\n                                            \"provenance.analysis.source\" : {$regex: \"$source$\", $options: \"i\"}},\n                                        {\"x\": { $not: {$lt: $x0$}}},\n                                        {\"x\": { $not: {$gt: $x1$}}},\n                                        {\"y\": { $not: {$lt: $y0$}}},\n                                        {\"y\": { $not: {$gt: $y1$}}}\n                                    ]}\n                        }\n}\n        ",
+          "queryTemplate": "{\n    \"_operation\" : \"find\" ,\n    \"_operation_args\" : {\n                            \"query\" :{$and: [\n                                        {\"provenance.analysis.execution_id\": {$in: $name$},\n                                            \"provenance.image.slide\" : {$regex: \"$slide$\", $options: \"i\"},\n                                            \"provenance.image.study\" : {$regex: \"$study$\", $options: \"i\"},\n                                            \"provenance.image.specimen\" : {$regex: \"$specimen$\", $options: \"i\"},\n                                            \"footprint\": { $not: {$lt: $footprint$}},\n                                            \"provenance.analysis.source\" : {$regex: \"$source$\", $options: \"i\"}},\n                                        {\"x\": { $not: {$lt: $x0$}}},\n                                        {\"x\": { $not: {$gt: $x1$}}},\n                                        {\"y\": { $not: {$lt: $y0$}}},\n                                        {\"y\": { $not: {$gt: $y1$}}}\n                                    ]}\n                        }\n}\n           ",
           "metaData": {},
           "tags": [],
           "bindVariables": {
@@ -233,57 +308,9 @@
             "outputFormat": "JSON"
           },
           "name": "multiFind",
-          "timeCreated": "Thu Nov 29 17:29:24 UTC 2018",
+          "timeCreated": "Mon May 13 13:26:47 GMT 2019",
           "createdBy": "admin",
-          "description": "   "
-        },
-        "findTypes": {
-          "queryTemplate": "{ \"_operation\" : \"distinct\" , \"_operation_args\" : { \"field\" : \"provenance.analysis\", \"query\" : {\u0027provenance.image.slide\u0027: $slide$ } } }  ",
-          "metaData": {},
-          "tags": [],
-          "bindVariables": {
-            "slide": {
-              "name": "slide",
-              "required": true,
-              "defaultValue": "",
-              "description": ""
-            }
-          },
-          "stage": "UNVERIFIED",
-          "outputFormat": {
-            "outputFormat": "JSON"
-          },
-          "name": "findTypes",
-          "timeCreated": "Thu May 09 14:52:28 GMT 2019",
-          "createdBy": "admin",
-          "description": "        "
-        },
-        "findTypesExec": {
-          "queryTemplate": "{ \"_operation\" : \"distinct\" , \"_operation_args\" : { \"field\" : \"provenance.analysis\", \"query\" : {\u0027provenance.image.slide\u0027: $slide$,\u0027provenance.analysis.execution_id\u0027: $name$  } } } ",
-          "metaData": {},
-          "tags": [],
-          "bindVariables": {
-            "slide": {
-              "name": "slide",
-              "required": true,
-              "defaultValue": "",
-              "description": ""
-            },
-            "name": {
-              "name": "name",
-              "required": true,
-              "defaultValue": "",
-              "description": ""
-            }
-          },
-          "stage": "UNVERIFIED",
-          "outputFormat": {
-            "outputFormat": "JSON"
-          },
-          "name": "findTypesExec",
-          "timeCreated": "Thu May 09 15:09:53 GMT 2019",
-          "createdBy": "admin",
-          "description": "          "
+          "description": "      "
         }
       },
       "deleteEndpoints": {
@@ -1053,7 +1080,7 @@
           "description": ""
         },
         "updateThreshold": {
-          "queryTemplate": "{\n\t\"_operation\" : \"update\" ,\n\t\"_operation_args\" : {\n\t\t\t\t\t\t\t\"query\" : { \u0027provenance.image.subject_id\u0027 : \u0027$subject$\u0027,\u0027provenance.analysis.execution_id\u0027 : \u0027$execution$\u0027,\u0027provenance.image.case_id\u0027 : \u0027$case$\u0027} ,\n\t\t\t\t\t\t\t\"update\": {$set: { \u0027provenance.analysis.fields\u0027 : $fields$ }},\n\t\t\t\t\t\t\t\"upsert\": true,\n\t\t\t\t\t\t\t\"multi\" : true\n\t\t\t\t\t\t}\n}\n         ",
+          "queryTemplate": "{\n\t\"_operation\" : \"update\" ,\n\t\"_operation_args\" : {\n\t\t\t\t\t\t\t\"query\" : { \u0027provenance.image.subject_id\u0027 : \u0027$subject$\u0027,\u0027provenance.analysis.execution_id\u0027 : \u0027$execution$\u0027,\u0027provenance.image.case_id\u0027 : \u0027$case$\u0027} ,\n\t\t\t\t\t\t\t\"update\": {$set: { \u0027provenance.analysis.fields\u0027 : $fields$,\u0027provenance.analysis.setting\u0027 : $setting$ }},\n\t\t\t\t\t\t\t\"upsert\": true,\n\t\t\t\t\t\t\t\"multi\" : true\n\t\t\t\t\t\t}\n}\n          ",
           "tags": [],
           "bindVariables": {
             "subject": {
@@ -1079,11 +1106,17 @@
               "required": true,
               "defaultValue": "",
               "description": ""
+            },
+            "setting": {
+              "name": "setting",
+              "required": true,
+              "defaultValue": "",
+              "description": ""
             }
           },
           "stage": "UNVERIFIED",
           "name": "updateThreshold",
-          "timeCreated": "Fri Apr 26 17:11:58 GMT 2019",
+          "timeCreated": "Thu May 23 19:51:26 GMT 2019",
           "createdBy": "admin",
           "description": ""
         }
