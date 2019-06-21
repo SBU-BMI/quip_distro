@@ -4,6 +4,7 @@ services:
   mongo:
     image: mongo
     container_name: ca-mongo
+    restart: unless-stopped
     volumes:
       - ./db:/data/db
     logging:
@@ -24,6 +25,7 @@ services:
     depends_on:
       - "mongo"
     container_name: ca-data
+    restart: unless-stopped
     logging:
       driver: none
     ports: ["8080:8080", "9099:9099"]
@@ -33,11 +35,13 @@ services:
   iip:
     build: "https://github.com/camicroscope/iipImage.git#v3.2.0"
     container_name: ca-iip
+    restart: unless-stopped
     volumes:
       - ./images/:/data/images/
   security:
     build: "https://github.com/camicroscope/Security.git#v3.2.2"
     container_name: ca-security
+    restart: unless-stopped
     ports: ["4010:4010"]
     volumes:
       - ./config/routes.json:/root/src/routes.json
@@ -49,8 +53,9 @@ services:
     logging:
       driver: none
   pathdb:
-    build: "https://github.com/SBU-BMI/PathDB.git#1.0.4"
+    build: "https://github.com/SBU-BMI/PathDB.git#1.0.5"
     container_name: quip-pathdb
+    restart: unless-stopped
     ports: ["443:443","80:80"]
     volumes:
       - ./data:/data/

@@ -2,18 +2,14 @@ version: '3'
 
 services:
   mongo:
-    image: mongo:3.4.19-jessie
+    image: mongo
     container_name: ca-mongo
     restart: unless-stopped
-    volumes:
-      - ./db:/data/db
     logging:
       driver: none
   idxMongo:
-    image: mongo:3.4.19-jessie
+    image: mongo
     container_name: ca-idx
-    logging:
-      driver: none
     links:
       - mongo
     volumes:
@@ -30,6 +26,7 @@ services:
     restart: unless-stopped
     logging:
       driver: none
+    ports: ["8080:8080", "9099:9099"]
     volumes:
       - ./config/bindaas_projects/:/root/bindaas/bin/projects/
       - ./config/bindaas.config.json:/root/bindaas/bin/bindaas.config.json
@@ -38,39 +35,30 @@ services:
     container_name: ca-iip
     restart: unless-stopped
     volumes:
-      - ./images/:/images/
-  viewer:
-    build: "https://github.com/camicroscope/caMicroscope.git#v3.4.0"
-    container_name: ca-front
-    restart: unless-stopped
-    volumes:
-      - ./config/login.html:/var/www/html/login.html
-    logging:
-      driver: none
-  loader:
-    build: "https://github.com/camicroscope/SlideLoader.git#v3.2.0"
-    container_name: ca-load
-    restart: unless-stopped
-    logging:
-      driver: none
-    volumes:
-      - ./images/:/images/
+      - ./images/:/data/images/
   security:
-    build: "https://github.com/camicroscope/Security.git#v3.2.2"
+    build: "https://github.com/camicroscope/Security.git#v3.2.1"
     container_name: ca-security
     restart: unless-stopped
-    ports:
-      - "4010:4010"
+    ports: ["4010:4010"]
     volumes:
       - ./config/routes.json:/root/src/routes.json
-      - ./jwt_keys/:/keys/
     environment:
       - DISABLE_SEC=true
   auth:
     build: "./Deps/auth_service/"
-    volumes:
-      - ./jwt_keys/:/keys/
     container_name: ca-auth
-    restart: unless-stopped
     logging:
       driver: none
+  pathdb:
+    build: "https://github.com/camicroscope/PathDB.git#develop"
+    container_name: quip-pathdb
+    restart: unless-stopped
+    ports: ["443:443","80:80"]
+    volumes:
+      - ./data:/data/
+      - ./images/:/data/pathdb/files/wsi
+      - ./jwt_keys/:/keys/
+      - ./config:/config
+    command:
+      - /config/pathdb_pre.sh

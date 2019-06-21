@@ -23,7 +23,7 @@ function convert(filename){
   let size = {};
 
   let fields = [];
-  let ranges = [0,1];  
+  let ranges = [0,1];
   // read file
   const myInterface = readline.createInterface({
     input: fs.createReadStream(`${inputFolder}/${filename}`)
@@ -67,17 +67,14 @@ function generateDoc(data,filename){
         value:[0.1,1]
       }});
 return `{
-"provenance":{  
-  "image":{  
-     "subject_id":"${fileTemps[filename].provenance.image.subject_id}",
-     "case_id":"${fileTemps[filename].provenance.image.case_id}",
-     "slide": "${fileTemps[filename].provenance.image.subject_id}", 
-     "specimen": "", 
-     "study": ""
+"provenance":{
+  "image":{
+     "slide": "${fileTemps[filename].provenance.image.case_id}",
+     "specimen": "",
+     "study": "${fileTemps[filename].provenance.analysis.study_id}"
 
   },
-  "analysis":{  
-     "study_id":"${fileTemps[filename].provenance.analysis.study_id}",
+  "analysis":{
      "computation":"heatmap",
      "size": [${width},${height}],
      "fields":${JSON.stringify(fields)},

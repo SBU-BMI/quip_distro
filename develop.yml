@@ -4,16 +4,11 @@ services:
   mongo:
     image: mongo:3.4.19-jessie
     container_name: ca-mongo
-    restart: unless-stopped
     volumes:
       - ./db:/data/db
-    logging:
-      driver: none
   idxMongo:
     image: mongo:3.4.19-jessie
     container_name: ca-idx
-    logging:
-      driver: none
     links:
       - mongo
     volumes:
@@ -26,39 +21,31 @@ services:
     build: "./Deps/Bindaas/"
     depends_on:
       - "mongo"
+    ports:
+      - "8080:8080"
+      - "9099:9099"
     container_name: ca-data
-    restart: unless-stopped
-    logging:
-      driver: none
     volumes:
       - ./config/bindaas_projects/:/root/bindaas/bin/projects/
       - ./config/bindaas.config.json:/root/bindaas/bin/bindaas.config.json
   iip:
     build: "https://github.com/camicroscope/iipImage.git#v3.2.0"
     container_name: ca-iip
-    restart: unless-stopped
     volumes:
       - ./images/:/images/
   viewer:
-    build: "https://github.com/camicroscope/caMicroscope.git#v3.4.0"
+    build: "https://github.com/camicroscope/caMicroscope.git#develop"
     container_name: ca-front
-    restart: unless-stopped
     volumes:
       - ./config/login.html:/var/www/html/login.html
-    logging:
-      driver: none
   loader:
     build: "https://github.com/camicroscope/SlideLoader.git#v3.2.0"
     container_name: ca-load
-    restart: unless-stopped
-    logging:
-      driver: none
     volumes:
       - ./images/:/images/
   security:
-    build: "https://github.com/camicroscope/Security.git#v3.2.2"
+    build: "https://github.com/camicroscope/Security.git#v3.2.1"
     container_name: ca-security
-    restart: unless-stopped
     ports:
       - "4010:4010"
     volumes:
@@ -71,6 +58,3 @@ services:
     volumes:
       - ./jwt_keys/:/keys/
     container_name: ca-auth
-    restart: unless-stopped
-    logging:
-      driver: none

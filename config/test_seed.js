@@ -11,93 +11,91 @@ var marks = [
     {
         "provenance": {
             "image": {
-                "slide": "CMU1", 
-                "specimen": "", 
-                "study": ""
-            }, 
+                "slide": "5bec456369056d7e537c2a9b"
+            },
             "analysis": {
-                "source": "human", 
-                "execution_id": "Gamma", 
+                "source": "human",
+                "execution_id": "Gamma",
                 "name": "test 1"
             }
-        }, 
+        },
         "properties": {
             "annotations": {
-                "name": "test 1", 
-                "digital_slide_quality": true, 
-                "histology": "PDAC", 
-                "hist_other_type": "Colloid carcinoma (mucinous noncystic carcinoma)", 
-                "cellularity_10": "31-40%", 
-                "tumor_cellularity": "<20%", 
-                "tumor_necrosis": "<20%", 
-                "adequacy": "Adequate", 
-                "normal_tissue_type": "Duodenum", 
-                "tumor_present": false, 
+                "name": "test 1",
+                "digital_slide_quality": true,
+                "histology": "PDAC",
+                "hist_other_type": "Colloid carcinoma (mucinous noncystic carcinoma)",
+                "cellularity_10": "31-40%",
+                "tumor_cellularity": "<20%",
+                "tumor_necrosis": "<20%",
+                "adequacy": "Adequate",
+                "normal_tissue_type": "Duodenum",
+                "tumor_present": false,
                 "additional_notes": "test note"
             }
-        }, 
+        },
         "geometries": {
-            "type": "FeatureCollection", 
+            "type": "FeatureCollection",
             "features": [
                 {
-                    "type": "Feature", 
+                    "type": "Feature",
                     "properties": {
                         "style": {
-                            "color": "#7cfc00", 
-                            "lineCap": "round", 
-                            "lineJoin": "round", 
+                            "color": "#7cfc00",
+                            "lineCap": "round",
+                            "lineJoin": "round",
                             "lineWidth": 3
                         }
-                    }, 
+                    },
                     "geometry": {
-                        "type": "Polygon", 
+                        "type": "Polygon",
                         "coordinates": [
                             [
                                 [
-                                    0, 
+                                    0,
                                     1.333075238564
-                                ], 
+                                ],
                                 [
-                                    0.9211833251318, 
+                                    0.9211833251318,
                                     1.333075238564
-                                ], 
+                                ],
                                 [
-                                    0.9211833251318, 
+                                    0.9211833251318,
                                     1.4056976389659
-                                ], 
+                                ],
                                 [
-                                    0.84856092473, 
+                                    0.84856092473,
                                     1.4056976389659
-                                ], 
+                                ],
                                 [
-                                    0, 
+                                    0,
                                     1.333075238564
                                 ]
                             ]
                         ]
-                    }, 
+                    },
                     "bound": {
-                        "type": "Polygon", 
+                        "type": "Polygon",
                         "coordinates": [
                             [
                                 [
-                                    0.0819138121014, 
+                                    0.0819138121014,
                                     1.2558071323124
-                                ], 
+                                ],
                                 [
-                                    0.987611451067, 
+                                    0.987611451067,
                                     1.2558071323124
-                                ], 
+                                ],
                                 [
-                                    0.987611451067, 
+                                    0.987611451067,
                                     1.9173119035902
-                                ], 
+                                ],
                                 [
-                                    0.0819138121014, 
+                                    0.0819138121014,
                                     1.9173119035902
-                                ], 
+                                ],
                                 [
-                                    0.0819138121014, 
+                                    0.0819138121014,
                                     1.2558071323124
                                 ]
                             ]
@@ -120,11 +118,7 @@ for (var i = 0; i<1; i+=0.007243258749282846){
 var heatmaps = [{
     "provenance": {
         "image": {
-            "slide": "CMU1",
-            "study": "",
-            "specimen": "",
-            "case_id":"CMU1",
-            "subject_id":"CMU1"
+            "slide": "5bec456369056d7e537c2a9b",
         },
         "analysis": {
             "study_id":"test",
