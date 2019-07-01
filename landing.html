@@ -1,0 +1,91 @@
+<head>
+   <title>caMicroscope</title>
+   <meta charset="utf-8" />
+   <meta name="viewport" content="width=device-width, initial-scale=1" />
+   <link rel="stylesheet" href="./main.css" />
+</head>
+<body>
+   <!-- Header -->
+   <header id="header">
+      <nav id="nav">
+         <ul>
+            <li><a target="_blank" href="https://docs.google.com/forms/d/e/1FAIpQLScL91LxrpAZjU88GBZP9gmcdgdf8__uNUwhws2lzU6Lr4qNwA/viewform">Feedback</a></li>
+         </ul>
+      </nav>
+   </header>
+   <!-- Main -->
+   <section id="main" class="wrapper">
+      <div class="inner">
+      <header class="major">
+         <h2>caMicroscope Public</h2>
+      </header>
+      <!-- Content -->
+      <div class="content">
+         <p>caMicroscope is a tool to view, annotate, and analyze biomedical images.</p>
+         <a href="#" class="image fit"><img src="./banner1.jpg" alt="" /></a>
+      </div>
+      <div class="posts">
+         <section class="post" id="bc-post">
+            <a href="../table.html?study=VTRBCT" class="image"><img src="./camic.jpg" alt=""/></a>
+            <div class="content">
+               <h3>Breast Cancer Geonmic Pilot</h3>
+               <p>Use camicroscope to explore and mark slides uploaded.</p>
+               <a href="../table.html?study=VTRBCT" class="button">More</a>
+            </div>
+         </section>
+         <section class="post" id="pdac-post">
+            <a href="../table.html?study=VTRPDAC_Test" class="image"><img src="./camic.jpg" alt=""/></a>
+            <div class="content">
+               <h3>PDAC CaMicroscope</h3>
+               <p>Use camicroscope to explore and mark slides uploaded.</p>
+               <a href="../table.html?study=VTRPDAC_Test" class="button">More</a>
+            </div>
+         </section>
+         <section class="post" id="pend-post">
+            <a href="../table.html?study=VTRPending" class="image"><img src="./camic.jpg" alt=""/></a>
+            <div class="content">
+               <h3>VTR Pending Slides</h3>
+               <p>Use camicroscope to explore and mark slides uploaded.</p>
+               <a href="../table.html?study=VTRPending" class="button">More</a>
+            </div>
+         </section>
+      </div>
+   </section>
+   <!-- Footer -->
+   <footer id="footer">
+      <div class="content">
+         <div class="inner">
+            <section class="about">
+               U24 CA18092401A1, <b>Tools to Analyze Morphology and Spatially Mapped Molecular Data</b>
+            </section>
+         </div>
+      </div>
+   </footer>
+   <!-- Scripts -->
+   <script src="./jquery.min.js"></script>
+   <script src="./jquery.dropotron.min.js"></script>
+   <script src="./jquery.scrollex.min.js"></script>
+   <script src="./skel.min.js"></script>
+   <script src="./util.js"></script>
+   <script src='../../common/authChecker.js'></script>
+   <script>
+      __auth_check(2)
+      function parseJwt (token) {
+        var base64Url = token.split('.')[1];
+        var base64 = base64Url.replace(/-/g, '+').replace(/_/g, '/');
+        return JSON.parse(window.atob(base64));
+      };
+      function getCookie(name) {
+        var value = "; " + document.cookie;
+        var parts = value.split("; " + name + "=");
+        if (parts.length == 2) return parts.pop().split(";").shift();
+      }
+      var token = getCookie("token")
+      var blacklisted = ["doctorkimallison@gmail.com", "ardy360@gmail.com"]
+      if (parseJwt(token) && parseJwt(token).name && blacklisted.includes(parseJwt(token).name)){
+        document.getElementById("pend-post").style.display = "none"
+      }
+   </script>
+</body>
+</html>
+

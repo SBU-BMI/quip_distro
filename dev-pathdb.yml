@@ -1,0 +1,64 @@
+version: '3'
+
+services:
+  mongo:
+    image: mongo
+    container_name: ca-mongo
+    restart: unless-stopped
+    logging:
+      driver: none
+  idxMongo:
+    image: mongo
+    container_name: ca-idx
+    links:
+      - mongo
+    volumes:
+      - ./config:/config
+    command:
+      - /config/run_idx.sh
+    depends_on:
+      - mongo
+  bindaas:
+    build: "./Deps/Bindaas/"
+    depends_on:
+      - "mongo"
+    container_name: ca-data
+    restart: unless-stopped
+    logging:
+      driver: none
+    ports: ["8080:8080", "9099:9099"]
+    volumes:
+      - ./config/bindaas_projects/:/root/bindaas/bin/projects/
+      - ./config/bindaas.config.json:/root/bindaas/bin/bindaas.config.json
+  iip:
+    build: "https://github.com/camicroscope/iipImage.git#v3.2.0"
+    container_name: ca-iip
+    restart: unless-stopped
+    volumes:
+      - ./images/:/data/images/
+  security:
+    build: "https://github.com/camicroscope/Security.git#v3.2.1"
+    container_name: ca-security
+    restart: unless-stopped
+    ports: ["4010:4010"]
+    volumes:
+      - ./config/routes.json:/root/src/routes.json
+    environment:
+      - DISABLE_SEC=true
+  auth:
+    build: "./Deps/auth_service/"
+    container_name: ca-auth
+    logging:
+      driver: none
+  pathdb:
+    build: "https://github.com/camicroscope/PathDB.git#develop"
+    container_name: quip-pathdb
+    restart: unless-stopped
+    ports: ["443:443","80:80"]
+    volumes:
+      - ./data:/data/
+      - ./images/:/data/pathdb/files/wsi
+      - ./jwt_keys/:/keys/
+      - ./config:/config
+    command:
+      - /config/pathdb_pre.sh
