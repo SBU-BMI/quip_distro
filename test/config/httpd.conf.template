@@ -137,11 +137,8 @@ DocumentRoot "/data/pathdb/quip/web"
     RewriteEngine On
     DirectoryIndex index.php index.htm index.html
     RewriteEngine on
-    RewriteBase /
-    RewriteCond %{REQUEST_FILENAME} !-f
-    RewriteCond %{REQUEST_FILENAME} !-d
-    RewriteCond %{REQUEST_URI} !=/favicon.ico
-    RewriteRule ^ index.php [L]
+    RewriteCond %{REQUEST_METHOD} ^(TRACE|TRACK)
+    RewriteRule .* - [F]
 </Directory>
 
 #
@@ -344,8 +341,12 @@ IncludeOptional conf.d/*.conf
 #    SSLCertificateKeyFile /config/quip.bmi.stonybrook.edu.key
 #    SSLCertificateChainFile /config/inter.cer
     Options Indexes FollowSymLinks IncludesNOEXEC
+    RewriteEngine On
     KeepAlive On
     DirectoryIndex index.php index.htm index.html
+    RewriteEngine on
+    RewriteCond %{REQUEST_METHOD} ^(TRACE|TRACK)
+    RewriteRule .* - [F]
     ProxyPass /caMicroscope/img/ http://ca-security:4010/img/
     ProxyPassReverse /caMicroscope/img/ http://ca-security:4010/img/
     ProxyPass /caMicroscope/data/ http://ca-security:4010/data/
@@ -362,6 +363,9 @@ IncludeOptional conf.d/*.conf
     RewriteEngine On
     KeepAlive On
     DirectoryIndex index.php index.htm index.html
+    RewriteEngine on
+    RewriteCond %{REQUEST_METHOD} ^(TRACE|TRACK)
+    RewriteRule .* - [F]
     ProxyPass /caMicroscope/img/ http://ca-security:4010/img/
     ProxyPassReverse /caMicroscope/img/ http://ca-security:4010/img/
     ProxyPass /caMicroscope/data/ http://ca-security:4010/data/

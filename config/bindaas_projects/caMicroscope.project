@@ -14,275 +14,275 @@
           "metaData": {},
           "tags": [],
           "bindVariables": {
-            "id": {
-              "name": "id",
-              "required": true,
-              "defaultValue": "",
-              "description": ""
-            }
+"id": {
+  "name": "id",
+  "required": true,
+  "defaultValue": "",
+  "description": ""
+}
           },
           "stage": "UNVERIFIED",
           "outputFormat": {
-            "outputFormat": "JSON"
+"outputFormat": "JSON"
           },
           "name": "get",
           "timeCreated": "Wed Aug 29 18:40:50 UTC 2018",
           "createdBy": "admin",
           "description": "         "
         },
-        "findBound": {
-          "queryTemplate": "{ \"_operation\" : \"find\" , \"_operation_args\" : { \"query\" : {\"provenance.analysis.execution_id\" : {$regex: \"$name$\", $options: \"i\"},\n \"provenance.image.slide\" : {$regex: \"$slide$\", $options: \"i\"},\n \"provenance.analysis.source\" : {$regex: \"$key$\", $options: \"i\"}, \"geometries.features.bound\": { $geoIntersects: { $geometry: { \"type\": \"Polygon\", \"coordinates\": [[[ $x0$, $y0$ ],[ $x0$, $y1$ ],[ $x1$, $y1$ ],[ $x1$, $y0$ ],[ $x0$, $y0$ ]]] } } } }, \"limit\" : 1000} }   ",
-          "metaData": {},
-          "tags": [],
-          "bindVariables": {
-            "name": {
-              "name": "name",
-              "required": false,
-              "defaultValue": "",
-              "description": ""
-            },
-            "key": {
-              "name": "key",
-              "required": false,
-              "defaultValue": "",
-              "description": ""
-            },
-            "slide": {
-              "name": "slide",
-              "required": false,
-              "defaultValue": "",
-              "description": ""
-            },
-            "x0": {
-              "name": "x0",
-              "required": true,
-              "defaultValue": "",
-              "description": ""
-            },
-            "y0": {
-              "name": "y0",
-              "required": true,
-              "defaultValue": "",
-              "description": ""
-            },
-            "x1": {
-              "name": "x1",
-              "required": true,
-              "defaultValue": "",
-              "description": ""
-            },
-            "y1": {
-              "name": "y1",
-              "required": true,
-              "defaultValue": "",
-              "description": ""
-            }
-          },
-          "stage": "UNVERIFIED",
-          "outputFormat": {
-            "outputFormat": "JSON"
-          },
-          "name": "findBound",
-          "timeCreated": "Thur Nov 1 18:12:11 UTC 2018",
-          "createdBy": "admin",
-          "description": "find where bound intersects given rect"
-        },
-        "findTypes": {
-          "queryTemplate": "{ \"_operation\" : \"distinct\" , \"_operation_args\" : { \"field\" : \"provenance.analysis\", \"query\" : {\u0027provenance.image.slide\u0027: $slide$ } } }  ",
-          "metaData": {},
-          "tags": [],
-          "bindVariables": {
-            "slide": {
-              "name": "slide",
-              "required": true,
-              "defaultValue": "",
-              "description": ""
-            }
-          },
-          "stage": "UNVERIFIED",
-          "outputFormat": {
-            "outputFormat": "JSON"
-          },
-          "name": "findTypes",
-          "timeCreated": "Thu May 09 14:52:28 GMT 2019",
-          "createdBy": "admin",
-          "description": "        "
-        },
         "findTypesExec": {
-          "queryTemplate": "{ \"_operation\" : \"distinct\" , \"_operation_args\" : { \"field\" : \"provenance.analysis\", \"query\" : {\u0027provenance.image.slide\u0027: $slide$,\u0027provenance.analysis.execution_id\u0027: $name$  } } } ",
+          "queryTemplate": "{ \"_operation\" : \"distinct\" , \"_operation_args\" : { \"field\" : \"provenance.analysis\", \"query\" : {\u0027provenance.image.slide\u0027: \"$slide$\",\u0027provenance.analysis.execution_id\u0027: $name$  } } } ",
           "metaData": {},
           "tags": [],
           "bindVariables": {
-            "slide": {
-              "name": "slide",
-              "required": true,
-              "defaultValue": "",
-              "description": ""
-            },
-            "name": {
-              "name": "name",
-              "required": true,
-              "defaultValue": "",
-              "description": ""
-            }
+"slide": {
+  "name": "slide",
+  "required": true,
+  "defaultValue": "",
+  "description": ""
+},
+"name": {
+  "name": "name",
+  "required": true,
+  "defaultValue": "",
+  "description": ""
+}
           },
           "stage": "UNVERIFIED",
           "outputFormat": {
-            "outputFormat": "JSON"
+"outputFormat": "JSON"
           },
           "name": "findTypesExec",
           "timeCreated": "Thu May 09 15:09:53 GMT 2019",
           "createdBy": "admin",
           "description": "          "
         },
-        "find": {
-          "queryTemplate": "{\n    \"_operation\" : \"find\" ,\n    \"_operation_args\" : {\n                            \"query\" :{$and: [\n                                        {\"provenance.analysis.execution_id\" : {$regex: \"$name$\", $options: \"i\"},\n                                            \"provenance.image.slide\" : {$regex: \"$slide$\", $options: \"i\"},\n                                            \"footprint\": { $not: {$lt: $footprint$}},\n                                            \"provenance.analysis.source\" : {$regex: \"$source$\", $options: \"i\"}},\n                                        {\"x\": { $not: {$lt: $x0$}}},\n                                        {\"x\": { $not: {$gt: $x1$}}},\n                                        {\"y\": { $not: {$lt: $y0$}}},\n                                        {\"y\": { $not: {$gt: $y1$}}}\n                                    ]}\n                        }\n}\n        ",
-          "metaData": {},
-          "tags": [],
-          "bindVariables": {
-            "name": {
-              "name": "name",
-              "required": false,
-              "defaultValue": "",
-              "description": ""
-            },
-            "slide": {
-              "name": "slide",
-              "required": false,
-              "defaultValue": "",
-              "description": ""
-            },
-            "source": {
-              "name": "source",
-              "required": false,
-              "defaultValue": "",
-              "description": ""
-            },
-            "footprint": {
-              "name": "footprint",
-              "required": false,
-              "defaultValue": "0",
-              "description": ""
-            },
-            "x0": {
-              "name": "x0",
-              "required": false,
-              "defaultValue": "0",
-              "description": ""
-            },
-            "x1": {
-              "name": "x1",
-              "required": false,
-              "defaultValue": "9",
-              "description": ""
-            },
-            "y0": {
-              "name": "y0",
-              "required": false,
-              "defaultValue": "0",
-              "description": ""
-            },
-            "y1": {
-              "name": "y1",
-              "required": false,
-              "defaultValue": "9",
-              "description": ""
-            }
-          },
-          "stage": "UNVERIFIED",
-          "outputFormat": {
-            "outputFormat": "JSON"
-          },
-          "name": "find",
-          "timeCreated": "Fri Jun 14 16:26:22 GMT 2019",
-          "createdBy": "admin",
-          "description": "                          "
-        },
         "multiFind": {
-          "queryTemplate": "{\n    \"_operation\" : \"find\" ,\n    \"_operation_args\" : {\n                            \"query\" :{$and: [\n                                        {\"provenance.analysis.execution_id\": {$in: $name$},\n                                            \"provenance.image.slide\" : {$regex: \"$slide$\", $options: \"i\"},\n                                            \"footprint\": { $not: {$lt: $footprint$}},\n                                            \"provenance.analysis.source\" : {$regex: \"$source$\", $options: \"i\"}},\n                                        {\"x\": { $not: {$lt: $x0$}}},\n                                        {\"x\": { $not: {$gt: $x1$}}},\n                                        {\"y\": { $not: {$lt: $y0$}}},\n                                        {\"y\": { $not: {$gt: $y1$}}}\n                                    ]}\n                        }\n}\n            ",
+          "queryTemplate": "{\n    \"_operation\" : \"find\" ,\n    \"_operation_args\" : {\n\"query\" :{$and: [\n{\"provenance.analysis.execution_id\": {$in: $name$},\n    \"provenance.image.slide\" : \"$slide$\",\n    \"footprint\": { $not: {$lt: $footprint$}},\n    \"provenance.analysis.source\" : {$regex: \"$source$\", $options: \"i\"}},\n{\"x\": { $not: {$lt: $x0$}}},\n{\"x\": { $not: {$gt: $x1$}}},\n{\"y\": { $not: {$lt: $y0$}}},\n{\"y\": { $not: {$gt: $y1$}}}\n        ]}\n}\n}\n ",
           "metaData": {},
           "tags": [],
           "bindVariables": {
-            "name": {
-              "name": "name",
-              "required": true,
-              "defaultValue": "",
-              "description": ""
-            },
-            "slide": {
-              "name": "slide",
-              "required": false,
-              "defaultValue": "",
-              "description": ""
-            },
-            "footprint": {
-              "name": "footprint",
-              "required": false,
-              "defaultValue": "0",
-              "description": ""
-            },
-            "source": {
-              "name": "source",
-              "required": false,
-              "defaultValue": "",
-              "description": ""
-            },
-            "x0": {
-              "name": "x0",
-              "required": false,
-              "defaultValue": "0",
-              "description": ""
-            },
-            "x1": {
-              "name": "x1",
-              "required": false,
-              "defaultValue": "9",
-              "description": ""
-            },
-            "y0": {
-              "name": "y0",
-              "required": false,
-              "defaultValue": "0",
-              "description": ""
-            },
-            "y1": {
-              "name": "y1",
-              "required": false,
-              "defaultValue": "9",
-              "description": ""
-            }
+"name": {
+  "name": "name",
+  "required": true,
+  "defaultValue": "",
+  "description": ""
+},
+"slide": {
+  "name": "slide",
+  "required": false,
+  "defaultValue": "",
+  "description": ""
+},
+"footprint": {
+  "name": "footprint",
+  "required": false,
+  "defaultValue": "0",
+  "description": ""
+},
+"source": {
+  "name": "source",
+  "required": false,
+  "defaultValue": "",
+  "description": ""
+},
+"x0": {
+  "name": "x0",
+  "required": false,
+  "defaultValue": "0",
+  "description": ""
+},
+"x1": {
+  "name": "x1",
+  "required": false,
+  "defaultValue": "9",
+  "description": ""
+},
+"y0": {
+  "name": "y0",
+  "required": false,
+  "defaultValue": "0",
+  "description": ""
+},
+"y1": {
+  "name": "y1",
+  "required": false,
+  "defaultValue": "9",
+  "description": ""
+}
           },
           "stage": "UNVERIFIED",
           "outputFormat": {
-            "outputFormat": "JSON"
+"outputFormat": "JSON"
           },
           "name": "multiFind",
-          "timeCreated": "Fri Jun 14 16:27:26 GMT 2019",
+          "timeCreated": "Tue Jul 02 17:47:09 GMT 2019",
           "createdBy": "admin",
-          "description": "       "
+          "description": "        "
+        },
+        "find": {
+          "queryTemplate": "{\n    \"_operation\" : \"find\" ,\n    \"_operation_args\" : {\n\"query\" :{$and: [\n{\"provenance.analysis.execution_id\" : {$regex: \"$name$\", $options: \"i\"},\n    \"provenance.image.slide\" : \"$slide$\",\n    \"footprint\": { $not: {$lt: $footprint$}},\n    \"provenance.analysis.source\" : {$regex: \"$source$\", $options: \"i\"}},\n{\"x\": { $not: {$lt: $x0$}}},\n{\"x\": { $not: {$gt: $x1$}}},\n{\"y\": { $not: {$lt: $y0$}}},\n{\"y\": { $not: {$gt: $y1$}}}\n        ]}\n}\n}\n         ",
+          "metaData": {},
+          "tags": [],
+          "bindVariables": {
+"name": {
+  "name": "name",
+  "required": false,
+  "defaultValue": "",
+  "description": ""
+},
+"slide": {
+  "name": "slide",
+  "required": false,
+  "defaultValue": "",
+  "description": ""
+},
+"source": {
+  "name": "source",
+  "required": false,
+  "defaultValue": "",
+  "description": ""
+},
+"footprint": {
+  "name": "footprint",
+  "required": false,
+  "defaultValue": "0",
+  "description": ""
+},
+"x0": {
+  "name": "x0",
+  "required": false,
+  "defaultValue": "0",
+  "description": ""
+},
+"x1": {
+  "name": "x1",
+  "required": false,
+  "defaultValue": "9",
+  "description": ""
+},
+"y0": {
+  "name": "y0",
+  "required": false,
+  "defaultValue": "0",
+  "description": ""
+},
+"y1": {
+  "name": "y1",
+  "required": false,
+  "defaultValue": "9",
+  "description": ""
+}
+          },
+          "stage": "UNVERIFIED",
+          "outputFormat": {
+"outputFormat": "JSON"
+          },
+          "name": "find",
+          "timeCreated": "Tue Jul 02 17:48:26 GMT 2019",
+          "createdBy": "admin",
+          "description": "   "
+        },
+        "findBound": {
+          "queryTemplate": "{ \"_operation\" : \"find\" , \"_operation_args\" : { \"query\" : {\"provenance.analysis.execution_id\" : {$regex: \"$name$\", $options: \"i\"},\n \"provenance.image.slide\" : \"$slide$\",\n \"provenance.analysis.source\" : {$regex: \"$key$\", $options: \"i\"}, \"geometries.features.bound\": { $geoIntersects: { $geometry: { \"type\": \"Polygon\", \"coordinates\": [[[ $x0$, $y0$ ],[ $x0$, $y1$ ],[ $x1$, $y1$ ],[ $x1$, $y0$ ],[ $x0$, $y0$ ]]] } } } }, \"limit\" : 1000} }    ",
+          "metaData": {},
+          "tags": [],
+          "bindVariables": {
+"name": {
+  "name": "name",
+  "required": false,
+  "defaultValue": "",
+  "description": ""
+},
+"key": {
+  "name": "key",
+  "required": false,
+  "defaultValue": "",
+  "description": ""
+},
+"slide": {
+  "name": "slide",
+  "required": false,
+  "defaultValue": "",
+  "description": ""
+},
+"x0": {
+  "name": "x0",
+  "required": true,
+  "defaultValue": "",
+  "description": ""
+},
+"y0": {
+  "name": "y0",
+  "required": true,
+  "defaultValue": "",
+  "description": ""
+},
+"x1": {
+  "name": "x1",
+  "required": true,
+  "defaultValue": "",
+  "description": ""
+},
+"y1": {
+  "name": "y1",
+  "required": true,
+  "defaultValue": "",
+  "description": ""
+}
+          },
+          "stage": "UNVERIFIED",
+          "outputFormat": {
+"outputFormat": "JSON"
+          },
+          "name": "findBound",
+          "timeCreated": "Tue Jul 02 17:49:32 GMT 2019",
+          "createdBy": "admin",
+          "description": "find where bound intersects given rect "
+        },
+        "findTypes": {
+          "queryTemplate": "{ \"_operation\" : \"distinct\" , \"_operation_args\" : { \"field\" : \"provenance.analysis\", \"query\" : {\u0027provenance.image.slide\u0027: \"$slide$\" } } }   ",
+          "metaData": {},
+          "tags": [],
+          "bindVariables": {
+"slide": {
+  "name": "slide",
+  "required": true,
+  "defaultValue": "",
+  "description": ""
+}
+          },
+          "stage": "UNVERIFIED",
+          "outputFormat": {
+"outputFormat": "JSON"
+          },
+          "name": "findTypes",
+          "timeCreated": "Tue Jul 02 18:37:03 GMT 2019",
+          "createdBy": "admin",
+          "description": "         "
         }
       },
       "deleteEndpoints": {
         "deleteMark": {
-          "queryTemplate": "{\n\t\"_operation\" : \"delete\" ,\n\t\"_operation_args\" : {\n\t\t\t\t\t\t\t\"query\" : { \u0027_id\u0027 : {\"$oid\":\"$id$\"}, \u0027provenance.image.slide\u0027: \"$slide$\" }\n\t\t\t\t\t\t}\n}\n ",
+          "queryTemplate": "{\n\t\"_operation\" : \"delete\" ,\n\t\"_operation_args\" : {\n\t\t\t\t\t\t\t\"query\" : { \u0027_id\u0027 : {\"$oid\":\"$id$\"}, \u0027provenance.image.slide\u0027: \"$slide$\" }\n\t\t\t\t\t\t}\n}\n  ",
           "tags": [],
           "bindVariables": {
-            "id": {
-              "name": "id",
-              "required": true,
-              "defaultValue": "",
-              "description": ""
-            },
-            "slide": {
-              "name": "slide",
-              "required": true,
-              "defaultValue": "",
-              "description": ""
-            }
+"id": {
+  "name": "id",
+  "required": true,
+  "defaultValue": "",
+  "description": ""
+},
+"slide": {
+  "name": "slide",
+  "required": true,
+  "defaultValue": "",
+  "description": ""
+}
           },
           "stage": "UNVERIFIED",
           "name": "deleteMark",
-          "timeCreated": "Wed Aug 29 18:43:50 UTC 2018",
+          "timeCreated": "Tue Jul 02 18:20:50 GMT 2019",
           "createdBy": "admin",
           "description": ""
         }
@@ -291,7 +291,7 @@
         "csvFile": {
           "type": "MULTIPART",
           "properties": {
-            "inputType": "CSV_FILE"
+"inputType": "CSV_FILE"
           },
           "name": "csvFile",
           "timeCreated": "Wed Aug 01 17:23:41 UTC 2018",
@@ -301,7 +301,7 @@
         "jsonFile": {
           "type": "MULTIPART",
           "properties": {
-            "inputType": "JSON_FILE"
+"inputType": "JSON_FILE"
           },
           "name": "jsonFile",
           "timeCreated": "Wed Aug 01 17:23:41 UTC 2018",
@@ -311,7 +311,7 @@
         "csv": {
           "type": "FORM_DATA",
           "properties": {
-            "inputType": "CSV"
+"inputType": "CSV"
           },
           "name": "csv",
           "timeCreated": "Wed Aug 01 17:23:41 UTC 2018",
@@ -321,7 +321,7 @@
         "json": {
           "type": "FORM_DATA",
           "properties": {
-            "inputType": "JSON"
+"inputType": "JSON"
           },
           "name": "json",
           "timeCreated": "Wed Aug 01 17:23:41 UTC 2018",
@@ -350,16 +350,16 @@
           "metaData": {},
           "tags": [],
           "bindVariables": {
-            "id": {
-              "name": "id",
-              "required": true,
-              "defaultValue": "",
-              "description": ""
-            }
+"id": {
+  "name": "id",
+  "required": true,
+  "defaultValue": "",
+  "description": ""
+}
           },
           "stage": "UNVERIFIED",
           "outputFormat": {
-            "outputFormat": "JSON"
+"outputFormat": "JSON"
           },
           "name": "get",
           "timeCreated": "Wed Aug 29 18:41:00 UTC 2018",
@@ -367,32 +367,32 @@
           "description": " "
         },
         "find": {
-          "queryTemplate": "{\n    \"_operation\" : \"find\" ,\n    \"_operation_args\" : {\n                            \"query\" : { \"name\" : {$regex: \"$name$\", $options: \"i\"},\n                                        \"slide\" : {$regex: \"$slide$\", $options: \"i\"},\n                                        \"location\" : {$regex: \"$location$\", $options: \"i\"}}\n                        }\n}         ",
+          "queryTemplate": "{\n    \"_operation\" : \"find\" ,\n    \"_operation_args\" : {\n\"query\" : { \"name\" : {$regex: \"$name$\", $options: \"i\"},\n\"slide\" : {$regex: \"$slide$\", $options: \"i\"},\n\"location\" : {$regex: \"$location$\", $options: \"i\"}}\n}\n}         ",
           "metaData": {},
           "tags": [],
           "bindVariables": {
-            "name": {
-              "name": "name",
-              "required": false,
-              "defaultValue": "",
-              "description": ""
-            },
-            "slide": {
-              "name": "slide",
-              "required": false,
-              "defaultValue": "",
-              "description": ""
-            },
-            "location": {
-              "name": "location",
-              "required": false,
-              "defaultValue": "",
-              "description": ""
-            }
+"name": {
+  "name": "name",
+  "required": false,
+  "defaultValue": "",
+  "description": ""
+},
+"slide": {
+  "name": "slide",
+  "required": false,
+  "defaultValue": "",
+  "description": ""
+},
+"location": {
+  "name": "location",
+  "required": false,
+  "defaultValue": "",
+  "description": ""
+}
           },
           "stage": "UNVERIFIED",
           "outputFormat": {
-            "outputFormat": "JSON"
+"outputFormat": "JSON"
           },
           "name": "find",
           "timeCreated": "Mon Sep 24 18:13:58 UTC 2018",
@@ -401,61 +401,61 @@
         }
       },
       "deleteEndpoints": {
-        "deleteOverlay": {
-          "queryTemplate": "{\n\t\"_operation\" : \"delete\" ,\n\t\"_operation_args\" : {\n\t\t\t\t\t\t\t\"query\" : { \u0027_id\u0027 : {\"$oid\":\"$id$\"}, \u0027slide\u0027: \"$slide$\" }\n\t\t\t\t\t\t}\n}\n ",
-          "tags": [],
-          "bindVariables": {
-            "id": {
-              "name": "id",
-              "required": true,
-              "defaultValue": "",
-              "description": ""
-            },
-            "slide": {
-              "name": "slide",
-              "required": true,
-              "defaultValue": "",
-              "description": ""
-            }
-          },
-          "stage": "UNVERIFIED",
-          "name": "deleteOverlay",
-          "timeCreated": "Wed Aug 29 18:44:12 UTC 2018",
-          "createdBy": "admin",
-          "description": ""
-        },
         "updateOverlay": {
-          "queryTemplate": "{\n\t\"_operation\" : \"update\" ,\n\t\"_operation_args\" : {\n\t\t\t\t\t\t\t\"query\" : { \u0027slide\u0027 : \u0027$slide$\u0027, \u0027_id\u0027 : {\"$oid\":\"$id$\"}} ,\n\t\t\t\t\t\t\t\"update\": {$set: { \u0027$field$\u0027 : \u0027$value$\u0027 }},\n\t\t\t\t\t\t\t\"upsert\": \u0027true\u0027,\n\t\t\t\t\t\t\t\"multi\" : \u0027false\u0027\n\t\t\t\t\t\t}\n}\n   ",
+          "queryTemplate": "{\n\t\"_operation\" : \"update\" ,\n\t\"_operation_args\" : {\n\t\t\t\t\t\t\t\"query\" : { \u0027slide\u0027 : \"$slide$\", \u0027_id\u0027 : {\"$oid\":\"$id$\"}} ,\n\t\t\t\t\t\t\t\"update\": {$set: { \u0027$field$\u0027 : \u0027$value$\u0027 }},\n\t\t\t\t\t\t\t\"upsert\": \u0027true\u0027,\n\t\t\t\t\t\t\t\"multi\" : \u0027false\u0027\n\t\t\t\t\t\t}\n}\n    ",
           "tags": [],
           "bindVariables": {
-            "slide": {
-              "name": "slide",
-              "required": true,
-              "defaultValue": "",
-              "description": ""
-            },
-            "id": {
-              "name": "id",
-              "required": true,
-              "defaultValue": "",
-              "description": ""
-            },
-            "field": {
-              "name": "field",
-              "required": true,
-              "defaultValue": "",
-              "description": ""
-            },
-            "value": {
-              "name": "value",
-              "required": true,
-              "defaultValue": "",
-              "description": ""
-            }
+"slide": {
+  "name": "slide",
+  "required": true,
+  "defaultValue": "",
+  "description": ""
+},
+"id": {
+  "name": "id",
+  "required": true,
+  "defaultValue": "",
+  "description": ""
+},
+"field": {
+  "name": "field",
+  "required": true,
+  "defaultValue": "",
+  "description": ""
+},
+"value": {
+  "name": "value",
+  "required": true,
+  "defaultValue": "",
+  "description": ""
+}
           },
           "stage": "UNVERIFIED",
           "name": "updateOverlay",
-          "timeCreated": "Wed Aug 29 20:04:49 UTC 2018",
+          "timeCreated": "Tue Jul 02 18:21:53 GMT 2019",
+          "createdBy": "admin",
+          "description": ""
+        },
+        "deleteOverlay": {
+          "queryTemplate": "{\n\t\"_operation\" : \"delete\" ,\n\t\"_operation_args\" : {\n\t\t\t\t\t\t\t\"query\" : { \u0027_id\u0027 : {\"$oid\":\"$id$\"}, \u0027slide\u0027: \"$slide$\" }\n\t\t\t\t\t\t}\n}\n  ",
+          "tags": [],
+          "bindVariables": {
+"id": {
+  "name": "id",
+  "required": true,
+  "defaultValue": "",
+  "description": ""
+},
+"slide": {
+  "name": "slide",
+  "required": true,
+  "defaultValue": "",
+  "description": ""
+}
+          },
+          "stage": "UNVERIFIED",
+          "name": "deleteOverlay",
+          "timeCreated": "Tue Jul 02 18:22:07 GMT 2019",
           "createdBy": "admin",
           "description": ""
         }
@@ -464,7 +464,7 @@
         "csvFile": {
           "type": "MULTIPART",
           "properties": {
-            "inputType": "CSV_FILE"
+"inputType": "CSV_FILE"
           },
           "name": "csvFile",
           "timeCreated": "Wed Aug 01 17:24:16 UTC 2018",
@@ -474,7 +474,7 @@
         "jsonFile": {
           "type": "MULTIPART",
           "properties": {
-            "inputType": "JSON_FILE"
+"inputType": "JSON_FILE"
           },
           "name": "jsonFile",
           "timeCreated": "Wed Aug 01 17:24:16 UTC 2018",
@@ -484,7 +484,7 @@
         "csv": {
           "type": "FORM_DATA",
           "properties": {
-            "inputType": "CSV"
+"inputType": "CSV"
           },
           "name": "csv",
           "timeCreated": "Wed Aug 01 17:24:16 UTC 2018",
@@ -494,7 +494,7 @@
         "json": {
           "type": "FORM_DATA",
           "properties": {
-            "inputType": "JSON"
+"inputType": "JSON"
           },
           "name": "json",
           "timeCreated": "Wed Aug 01 17:24:16 UTC 2018",
@@ -523,16 +523,16 @@
           "metaData": {},
           "tags": [],
           "bindVariables": {
-            "id": {
-              "name": "id",
-              "required": true,
-              "defaultValue": "",
-              "description": ""
-            }
+"id": {
+  "name": "id",
+  "required": true,
+  "defaultValue": "",
+  "description": ""
+}
           },
           "stage": "UNVERIFIED",
           "outputFormat": {
-            "outputFormat": "JSON"
+"outputFormat": "JSON"
           },
           "name": "get",
           "timeCreated": "Wed Aug 29 18:41:29 UTC 2018",
@@ -540,89 +540,89 @@
           "description": "   "
         },
         "find": {
-          "queryTemplate": "{\n    \"_operation\" : \"find\" ,\n    \"_operation_args\" : {\n                            \"query\" : {\u0027name\u0027: {$regex: \"$slide$\", $options: \"i\"},\n                                            \u0027specimen\u0027: {$regex: \"$specimen$\", $options: \"i\"},\n                                            \u0027study\u0027: {$regex: \"$study$\", $options: \"i\"},\n                                            \u0027location\u0027: {$regex: \"$location$\", $options: \"i\"}}\n                        }\n}                  ",
+          "queryTemplate": "{\n    \"_operation\" : \"find\" ,\n    \"_operation_args\" : {\n\"query\" : {\u0027name\u0027: {$regex: \"$slide$\", $options: \"i\"},\n    \u0027specimen\u0027: {$regex: \"$specimen$\", $options: \"i\"},\n    \u0027study\u0027: {$regex: \"$study$\", $options: \"i\"},\n    \u0027location\u0027: {$regex: \"$location$\", $options: \"i\"}}\n}\n}      ",
           "metaData": {},
           "tags": [],
           "bindVariables": {
-            "slide": {
-              "name": "slide",
-              "required": false,
-              "defaultValue": "",
-              "description": ""
-            },
-            "location": {
-              "name": "location",
-              "required": false,
-              "defaultValue": "",
-              "description": ""
-            },
-            "specimen": {
-              "name": "specimen",
-              "required": false,
-              "defaultValue": "",
-              "description": ""
-            },
-            "study": {
-              "name": "study",
-              "required": false,
-              "defaultValue": "",
-              "description": ""
-            }
+"slide": {
+  "name": "slide",
+  "required": false,
+  "defaultValue": "",
+  "description": ""
+},
+"location": {
+  "name": "location",
+  "required": false,
+  "defaultValue": "",
+  "description": ""
+},
+"specimen": {
+  "name": "specimen",
+  "required": false,
+  "defaultValue": "",
+  "description": ""
+},
+"study": {
+  "name": "study",
+  "required": false,
+  "defaultValue": "",
+  "description": ""
+}
           },
           "stage": "UNVERIFIED",
           "outputFormat": {
-            "outputFormat": "JSON"
+"outputFormat": "JSON"
           },
           "name": "find",
           "timeCreated": "Wed Nov 28 20:40:33 UTC 2018",
           "createdBy": "admin",
-          "description": "              "
+          "description": "  "
         }
       },
       "deleteEndpoints": {
-        "deleteSlide": {
-          "queryTemplate": "{\n\t\"_operation\" : \"delete\" ,\n\t\"_operation_args\" : {\n\t\t\t\t\t\t\t\"query\" : { \u0027slide.name\u0027 : \u0027$slide$\u0027 }\n\t\t\t\t\t\t}\n}\n",
-          "tags": [],
-          "bindVariables": {
-            "slide": {
-              "name": "slide",
-              "required": true,
-              "defaultValue": "",
-              "description": ""
-            }
-          },
-          "stage": "UNVERIFIED",
-          "name": "deleteSlide",
-          "timeCreated": "Wed Aug 29 17:45:23 UTC 2018",
-          "createdBy": "admin",
-          "description": ""
-        },
         "updateSlide": {
-          "queryTemplate": "{\n\t\"_operation\" : \"update\" ,\n\t\"_operation_args\" : {\n\t\t\t\t\t\t\t\"query\" : { \u0027name\u0027 : \u0027$slide$\u0027} ,\n\t\t\t\t\t\t\t\"update\": {$set: { \u0027$field$\u0027 : \u0027$value$\u0027 }},\n\t\t\t\t\t\t\t\"upsert\": \u0027true\u0027,\n\t\t\t\t\t\t\t\"multi\" : \u0027false\u0027\n\t\t\t\t\t\t}\n}\n ",
+          "queryTemplate": "{\n\t\"_operation\" : \"update\" ,\n\t\"_operation_args\" : {\n\t\t\t\t\t\t\t\"query\" : { \u0027name\u0027 : $slide$} ,\n\t\t\t\t\t\t\t\"update\": {$set: { \u0027$field$\u0027 : \u0027$value$\u0027 }},\n\t\t\t\t\t\t\t\"upsert\": \u0027true\u0027,\n\t\t\t\t\t\t\t\"multi\" : \u0027false\u0027\n\t\t\t\t\t\t}\n}\n  ",
           "tags": [],
           "bindVariables": {
-            "slide": {
-              "name": "slide",
-              "required": true,
-              "defaultValue": "",
-              "description": ""
-            },
-            "field": {
-              "name": "field",
-              "required": true,
-              "defaultValue": "",
-              "description": ""
-            },
-            "value": {
-              "name": "value",
-              "required": true,
-              "defaultValue": "",
-              "description": ""
-            }
+"slide": {
+  "name": "slide",
+  "required": true,
+  "defaultValue": "",
+  "description": ""
+},
+"field": {
+  "name": "field",
+  "required": true,
+  "defaultValue": "",
+  "description": ""
+},
+"value": {
+  "name": "value",
+  "required": true,
+  "defaultValue": "",
+  "description": ""
+}
           },
           "stage": "UNVERIFIED",
           "name": "updateSlide",
-          "timeCreated": "Wed Aug 29 17:52:22 UTC 2018",
+          "timeCreated": "Tue Jul 02 18:21:13 GMT 2019",
+          "createdBy": "admin",
+          "description": ""
+        },
+        "deleteSlide": {
+          "queryTemplate": "{\n\t\"_operation\" : \"delete\" ,\n\t\"_operation_args\" : {\n\t\t\t\t\t\t\t\"query\" : { \u0027slide.name\u0027 : \"\"$slide$\"\" }\n\t\t\t\t\t\t}\n}\n ",
+          "tags": [],
+          "bindVariables": {
+"slide": {
+  "name": "slide",
+  "required": true,
+  "defaultValue": "",
+  "description": ""
+}
+          },
+          "stage": "UNVERIFIED",
+          "name": "deleteSlide",
+          "timeCreated": "Tue Jul 02 18:21:26 GMT 2019",
           "createdBy": "admin",
           "description": ""
         }
@@ -631,7 +631,7 @@
         "csvFile": {
           "type": "MULTIPART",
           "properties": {
-            "inputType": "CSV_FILE"
+"inputType": "CSV_FILE"
           },
           "name": "csvFile",
           "timeCreated": "Wed Aug 01 17:24:37 UTC 2018",
@@ -641,7 +641,7 @@
         "jsonFile": {
           "type": "MULTIPART",
           "properties": {
-            "inputType": "JSON_FILE"
+"inputType": "JSON_FILE"
           },
           "name": "jsonFile",
           "timeCreated": "Wed Aug 01 17:24:37 UTC 2018",
@@ -651,7 +651,7 @@
         "csv": {
           "type": "FORM_DATA",
           "properties": {
-            "inputType": "CSV"
+"inputType": "CSV"
           },
           "name": "csv",
           "timeCreated": "Wed Aug 01 17:24:37 UTC 2018",
@@ -661,7 +661,7 @@
         "json": {
           "type": "FORM_DATA",
           "properties": {
-            "inputType": "JSON"
+"inputType": "JSON"
           },
           "name": "json",
           "timeCreated": "Wed Aug 01 17:24:37 UTC 2018",
@@ -686,26 +686,26 @@
       },
       "queryEndpoints": {
         "find": {
-          "queryTemplate": "{\n    \"_operation\" : \"find\" ,\n    \"_operation_args\" : {\n                            \"query\" : {\"name\": {$regex: \"$name$\", $options: \"i\"},\n                                            \"type\": {$regex: \"$type$\", $options: \"i\"}}\n                        }\n}                    ",
+          "queryTemplate": "{\n    \"_operation\" : \"find\" ,\n    \"_operation_args\" : {\n\"query\" : {\"name\": {$regex: \"$name$\", $options: \"i\"},\n    \"type\": {$regex: \"$type$\", $options: \"i\"}}\n}\n}        ",
           "metaData": {},
           "tags": [],
           "bindVariables": {
-            "name": {
-              "name": "name",
-              "required": false,
-              "defaultValue": "",
-              "description": ""
-            },
-            "type": {
-              "name": "type",
-              "required": false,
-              "defaultValue": "",
-              "description": ""
-            }
+"name": {
+  "name": "name",
+  "required": false,
+  "defaultValue": "",
+  "description": ""
+},
+"type": {
+  "name": "type",
+  "required": false,
+  "defaultValue": "",
+  "description": ""
+}
           },
           "stage": "UNVERIFIED",
           "outputFormat": {
-            "outputFormat": "JSON"
+"outputFormat": "JSON"
           },
           "name": "find",
           "timeCreated": "Mon Aug 27 15:46:51 UTC 2018",
@@ -717,16 +717,16 @@
           "metaData": {},
           "tags": [],
           "bindVariables": {
-            "id": {
-              "name": "id",
-              "required": true,
-              "defaultValue": "",
-              "description": ""
-            }
+"id": {
+  "name": "id",
+  "required": true,
+  "defaultValue": "",
+  "description": ""
+}
           },
           "stage": "UNVERIFIED",
           "outputFormat": {
-            "outputFormat": "JSON"
+"outputFormat": "JSON"
           },
           "name": "get",
           "timeCreated": "Wed Aug 29 18:41:36 UTC 2018",
@@ -739,12 +739,12 @@
           "queryTemplate": "{\n\t\"_operation\" : \"delete\" ,\n\t\"_operation_args\" : {\n\t\t\t\t\t\t\t\"query\" : { \u0027_id\u0027 : {\"$oid\":\"$id$\"}}\n\t\t\t\t\t\t}\n} ",
           "tags": [],
           "bindVariables": {
-            "id": {
-              "name": "id",
-              "required": true,
-              "defaultValue": "",
-              "description": ""
-            }
+"id": {
+  "name": "id",
+  "required": true,
+  "defaultValue": "",
+  "description": ""
+}
           },
           "stage": "UNVERIFIED",
           "name": "deleteTemplate",
@@ -757,7 +757,7 @@
         "csvFile": {
           "type": "MULTIPART",
           "properties": {
-            "inputType": "CSV_FILE"
+"inputType": "CSV_FILE"
           },
           "name": "csvFile",
           "timeCreated": "Wed Aug 01 17:25:14 UTC 2018",
@@ -767,7 +767,7 @@
         "jsonFile": {
           "type": "MULTIPART",
           "properties": {
-            "inputType": "JSON_FILE"
+"inputType": "JSON_FILE"
           },
           "name": "jsonFile",
           "timeCreated": "Wed Aug 01 17:25:14 UTC 2018",
@@ -777,7 +777,7 @@
         "csv": {
           "type": "FORM_DATA",
           "properties": {
-            "inputType": "CSV"
+"inputType": "CSV"
           },
           "name": "csv",
           "timeCreated": "Wed Aug 01 17:25:14 UTC 2018",
@@ -787,7 +787,7 @@
         "json": {
           "type": "FORM_DATA",
           "properties": {
-            "inputType": "JSON"
+"inputType": "JSON"
           },
           "name": "json",
           "timeCreated": "Wed Aug 01 17:25:14 UTC 2018",
@@ -816,16 +816,16 @@
           "metaData": {},
           "tags": [],
           "bindVariables": {
-            "name": {
-              "name": "name",
-              "required": true,
-              "defaultValue": "",
-              "description": ""
-            }
+"name": {
+  "name": "name",
+  "required": true,
+  "defaultValue": "",
+  "description": ""
+}
           },
           "stage": "UNVERIFIED",
           "outputFormat": {
-            "outputFormat": "JSON"
+"outputFormat": "JSON"
           },
           "name": "getAuth",
           "timeCreated": "Fri Aug 10 19:27:36 UTC 2018",
@@ -838,7 +838,7 @@
         "csvFile": {
           "type": "MULTIPART",
           "properties": {
-            "inputType": "CSV_FILE"
+"inputType": "CSV_FILE"
           },
           "name": "csvFile",
           "timeCreated": "Fri Aug 10 19:26:51 UTC 2018",
@@ -848,7 +848,7 @@
         "jsonFile": {
           "type": "MULTIPART",
           "properties": {
-            "inputType": "JSON_FILE"
+"inputType": "JSON_FILE"
           },
           "name": "jsonFile",
           "timeCreated": "Fri Aug 10 19:26:51 UTC 2018",
@@ -858,7 +858,7 @@
         "csv": {
           "type": "FORM_DATA",
           "properties": {
-            "inputType": "CSV"
+"inputType": "CSV"
           },
           "name": "csv",
           "timeCreated": "Fri Aug 10 19:26:51 UTC 2018",
@@ -868,7 +868,7 @@
         "json": {
           "type": "FORM_DATA",
           "properties": {
-            "inputType": "JSON"
+"inputType": "JSON"
           },
           "name": "json",
           "timeCreated": "Fri Aug 10 19:26:51 UTC 2018",
@@ -892,86 +892,86 @@
         "initialize": true
       },
       "queryEndpoints": {
-        "get": {
-          "queryTemplate": "{\n\t\u0027_operation\u0027: \u0027find\u0027,\n\t\u0027_operation_args\u0027: \n\t{\n\t\u0027query\u0027: {\n\t\t\"provenance.image.slide\": \"$slide$\",\n\t\t\"provenance.analysis.execution_id\":\"$name$\"\n\t},\n\t\t\u0027fields\u0027: {\n\t\t\t\u0027provenance\u0027:1,\n                        \u0027data\u0027:1,\n\t\t\t\u0027_id\u0027: 1\n\t\t}\n\t}\n}        ",
-          "metaData": {},
-          "tags": [],
-          "bindVariables": {
-            "slide": {
-              "name": "slide",
-              "required": true,
-              "defaultValue": "",
-              "description": ""
-            },
-            "name": {
-              "name": "name",
-              "required": true,
-              "defaultValue": "",
-              "description": ""
-            }
-          },
-          "stage": "UNVERIFIED",
-          "outputFormat": {
-            "outputFormat": "JSON"
-          },
-          "name": "get",
-          "timeCreated": "Fri Jun 14 16:29:22 GMT 2019",
-          "createdBy": "admin",
-          "description": "  "
-        },
-        "find": {
-          "queryTemplate": "{\n    \"_operation\" : \"find\" ,\n    \"_operation_args\" : {\n                            \"query\" : { \"provenance.analysis.execution_id\" : {$regex: \"$name$\", $options: \"i\"},\n                                        \"provenance.image.specimen\" : {$regex: \"$specimen$\", $options: \"i\"}\n                        }\n}            ",
-          "metaData": {},
-          "tags": [],
-          "bindVariables": {
-            "name": {
-              "name": "name",
-              "required": false,
-              "defaultValue": "",
-              "description": ""
-            },
-            "slide": {
-              "name": "slide",
-              "required": false,
-              "defaultValue": "",
-              "description": ""
-            }
-          },
-          "stage": "UNVERIFIED",
-          "outputFormat": {
-            "outputFormat": "JSON"
-          },
-          "name": "find",
-          "timeCreated": "Fri Jun 14 16:29:58 GMT 2019",
-          "createdBy": "admin",
-          "description": "   "
-        },
         "findTypes": {
-          "queryTemplate": "{\n    \"_operation\" : \"find\" ,\n    \"_operation_args\" : {\n                            \"query\" : { \"provenance.analysis.execution_id\" : {$regex: \"$name$\", $options: \"i\"},\n                                        \"provenance.image.slide\" : {$regex: \"$slide$\", $options: \"i\"}},\n                                        \"fields\" :{ \u0027data\u0027 : 0 }                        \n}\n\n}               ",
+          "queryTemplate": "{\n    \"_operation\" : \"find\" ,\n    \"_operation_args\" : {\n\"query\" : { \"provenance.analysis.execution_id\" : {$regex: \"$name$\", $options: \"i\"},\n\"provenance.image.slide\" : \"$slide$\"},\n\"fields\" :{ \u0027data\u0027 : 0 }\n}\n\n}    ",
           "metaData": {},
           "tags": [],
           "bindVariables": {
-            "name": {
-              "name": "name",
-              "required": false,
-              "defaultValue": "",
-              "description": ""
-            },
-            "slide": {
-              "name": "slide",
-              "required": false,
-              "defaultValue": "",
-              "description": ""
-            }
+"name": {
+  "name": "name",
+  "required": false,
+  "defaultValue": "",
+  "description": ""
+},
+"slide": {
+  "name": "slide",
+  "required": false,
+  "defaultValue": "",
+  "description": ""
+}
           },
           "stage": "UNVERIFIED",
           "outputFormat": {
-            "outputFormat": "JSON"
+"outputFormat": "JSON"
           },
           "name": "findTypes",
-          "timeCreated": "Fri Jun 14 16:30:43 GMT 2019",
+          "timeCreated": "Thu Jun 27 19:39:21 GMT 2019",
+          "createdBy": "admin",
+          "description": "     "
+        },
+        "find": {
+          "queryTemplate": "{\n    \"_operation\" : \"find\" ,\n    \"_operation_args\" : {\n\"query\" : { \"provenance.analysis.execution_id\" : {$regex: \"$name$\", $options: \"i\"},\n\"provenance.image.slide\" : \"$slide$\"\n}\n} ",
+          "metaData": {},
+          "tags": [],
+          "bindVariables": {
+"name": {
+  "name": "name",
+  "required": false,
+  "defaultValue": "",
+  "description": ""
+},
+"slide": {
+  "name": "slide",
+  "required": false,
+  "defaultValue": "",
+  "description": ""
+}
+          },
+          "stage": "UNVERIFIED",
+          "outputFormat": {
+"outputFormat": "JSON"
+          },
+          "name": "find",
+          "timeCreated": "Thu Jun 27 19:40:22 GMT 2019",
           "createdBy": "admin",
           "description": "    "
+        },
+        "get": {
+          "queryTemplate": "{\n\t\u0027_operation\u0027: \u0027find\u0027,\n\t\u0027_operation_args\u0027: \n\t{\n\t\u0027query\u0027: {\n\t\t\"provenance.image.slide\": \"$slide$\",\n\t\t\"provenance.analysis.execution_id\":\"$name$\"\n\t},\n\t\t\u0027fields\u0027: {\n\t\t\t\u0027provenance\u0027:1,\n\u0027data\u0027:1,\n\t\t\t\u0027_id\u0027: 1\n\t\t}\n\t}\n}         ",
+          "metaData": {},
+          "tags": [],
+          "bindVariables": {
+"slide": {
+  "name": "slide",
+  "required": true,
+  "defaultValue": "",
+  "description": ""
+},
+"name": {
+  "name": "name",
+  "required": true,
+  "defaultValue": "",
+  "description": ""
+}
+          },
+          "stage": "UNVERIFIED",
+          "outputFormat": {
+"outputFormat": "JSON"
+          },
+          "name": "get",
+          "timeCreated": "Mon Jul 01 20:07:42 GMT 2019",
+          "createdBy": "admin",
+          "description": "   "
         }
       },
       "deleteEndpoints": {
@@ -979,18 +979,18 @@
           "queryTemplate": "{\n\t\"_operation\" : \"delete\" ,\n\t\"_operation_args\" : {\n\t\t\t\t\t\t\t\"query\" : { \u0027_id\u0027 : {\"$oid\":\"$id$\"}, \u0027provenance.image.slide\u0027: \"$slide$\" }\n\t\t\t\t\t\t}\n}\n  ",
           "tags": [],
           "bindVariables": {
-            "id": {
-              "name": "id",
-              "required": true,
-              "defaultValue": "",
-              "description": ""
-            },
-            "slide": {
-              "name": "slide",
-              "required": true,
-              "defaultValue": "",
-              "description": ""
-            }
+"id": {
+  "name": "id",
+  "required": true,
+  "defaultValue": "",
+  "description": ""
+},
+"slide": {
+  "name": "slide",
+  "required": true,
+  "defaultValue": "",
+  "description": ""
+}
           },
           "stage": "UNVERIFIED",
           "name": "deleteHeatmap",
@@ -999,37 +999,37 @@
           "description": ""
         },
         "updateThreshold": {
-          "queryTemplate": "{\n\t\"_operation\" : \"update\" ,\n\t\"_operation_args\" : {\n\t\t\t\t\t\t\t\"query\" : {\u0027provenance.analysis.execution_id\u0027 : \u0027$name$\u0027,\u0027provenance.image.slide\u0027 : \u0027$slide$\u0027} ,\n\t\t\t\t\t\t\t\"update\": {$set: { \u0027provenance.analysis.fields\u0027 : $fields$,\u0027provenance.analysis.setting\u0027 : $setting$ }},\n\t\t\t\t\t\t\t\"upsert\": true,\n\t\t\t\t\t\t\t\"multi\" : true\n\t\t\t\t\t\t}\n}\n            ",
+          "queryTemplate": "{\n\t\"_operation\" : \"update\" ,\n\t\"_operation_args\" : {\n\t\t\t\t\t\t\t\"query\" : {\u0027provenance.analysis.execution_id\u0027 : \u0027$name$\u0027,\u0027provenance.image.slide\u0027 : \"$slide$\"} ,\n\t\t\t\t\t\t\t\"update\": {$set: { \u0027provenance.analysis.fields\u0027 : $fields$,\u0027provenance.analysis.setting\u0027 : $setting$ }},\n\t\t\t\t\t\t\t\"upsert\": true,\n\t\t\t\t\t\t\t\"multi\" : true\n\t\t\t\t\t\t}\n}\n ",
           "tags": [],
           "bindVariables": {
-            "name": {
-              "name": "name",
-              "required": true,
-              "defaultValue": "",
-              "description": ""
-            },
-            "slide": {
-              "name": "slide",
-              "required": true,
-              "defaultValue": "",
-              "description": ""
-            },
-            "fields": {
-              "name": "fields",
-              "required": true,
-              "defaultValue": "",
-              "description": ""
-            },
-            "setting": {
-              "name": "setting",
-              "required": true,
-              "defaultValue": "",
-              "description": ""
-            }
+"name": {
+  "name": "name",
+  "required": true,
+  "defaultValue": "",
+  "description": ""
+},
+"slide": {
+  "name": "slide",
+  "required": true,
+  "defaultValue": "",
+  "description": ""
+},
+"fields": {
+  "name": "fields",
+  "required": true,
+  "defaultValue": "",
+  "description": ""
+},
+"setting": {
+  "name": "setting",
+  "required": true,
+  "defaultValue": "",
+  "description": ""
+}
           },
           "stage": "UNVERIFIED",
           "name": "updateThreshold",
-          "timeCreated": "Fri Jun 14 16:31:37 GMT 2019",
+          "timeCreated": "Tue Jul 02 17:06:06 GMT 2019",
           "createdBy": "admin",
           "description": ""
         }
@@ -1038,7 +1038,7 @@
         "csvFile": {
           "type": "MULTIPART",
           "properties": {
-            "inputType": "CSV_FILE"
+"inputType": "CSV_FILE"
           },
           "name": "csvFile",
           "timeCreated": "Wed Nov 14 15:49:26 UTC 2018",
@@ -1048,7 +1048,7 @@
         "jsonFile": {
           "type": "MULTIPART",
           "properties": {
-            "inputType": "JSON_FILE"
+"inputType": "JSON_FILE"
           },
           "name": "jsonFile",
           "timeCreated": "Wed Nov 14 15:49:26 UTC 2018",
@@ -1058,7 +1058,7 @@
         "csv": {
           "type": "FORM_DATA",
           "properties": {
-            "inputType": "CSV"
+"inputType": "CSV"
           },
           "name": "csv",
           "timeCreated": "Wed Nov 14 15:49:26 UTC 2018",
@@ -1068,7 +1068,7 @@
         "json": {
           "type": "FORM_DATA",
           "properties": {
-            "inputType": "JSON"
+"inputType": "JSON"
           },
           "name": "json",
           "timeCreated": "Wed Nov 14 15:49:26 UTC 2018",
@@ -1097,16 +1097,16 @@
           "metaData": {},
           "tags": [],
           "bindVariables": {
-            "id": {
-              "name": "id",
-              "required": true,
-              "defaultValue": "",
-              "description": ""
-            }
+"id": {
+  "name": "id",
+  "required": true,
+  "defaultValue": "",
+  "description": ""
+}
           },
           "stage": "UNVERIFIED",
           "outputFormat": {
-            "outputFormat": "JSON"
+"outputFormat": "JSON"
           },
           "name": "get",
           "timeCreated": "Wed Apr 24 18:10:50 GMT 2019",
@@ -1114,107 +1114,107 @@
           "description": ""
         },
         "find": {
-          "queryTemplate": "{\n    \"_operation\" : \"find\" ,\n    \"_operation_args\" : {\n                            \"query\" : {\u0027user_id\u0027: {$regex: \"$user$\", $options: \"i\"},\n                                            \u0027provenance.image.slide\u0027: {$regex: \"$slide$\", $options: \"i\"},\n                                            \u0027provenance.analysis.execution_id\u0027: {$regex: \"$name$\", $options: \"i\"}}\n                        }\n}                       ",
+          "queryTemplate": "{\n    \"_operation\" : \"find\" ,\n    \"_operation_args\" : {\n\"query\" : {\u0027user_id\u0027: {$regex: \"$user$\", $options: \"i\"},\n    \u0027provenance.image.slide\u0027: \"$slide$\",\n    \u0027provenance.analysis.execution_id\u0027: {$regex: \"$name$\", $options: \"i\"}}\n}\n}",
           "metaData": {},
           "tags": [],
           "bindVariables": {
-            "user": {
-              "name": "user",
-              "required": false,
-              "defaultValue": "",
-              "description": ""
-            },
-            "slide": {
-              "name": "slide",
-              "required": false,
-              "defaultValue": "",
-              "description": ""
-            },
-            "name": {
-              "name": "name",
-              "required": false,
-              "defaultValue": "",
-              "description": ""
-            }
+"user": {
+  "name": "user",
+  "required": false,
+  "defaultValue": "",
+  "description": ""
+},
+"slide": {
+  "name": "slide",
+  "required": false,
+  "defaultValue": "",
+  "description": ""
+},
+"name": {
+  "name": "name",
+  "required": false,
+  "defaultValue": "",
+  "description": ""
+}
           },
           "stage": "UNVERIFIED",
           "outputFormat": {
-            "outputFormat": "JSON"
+"outputFormat": "JSON"
           },
           "name": "find",
-          "timeCreated": "Fri Jun 14 16:32:57 GMT 2019",
+          "timeCreated": "Thu Jun 27 19:40:01 GMT 2019",
           "createdBy": "admin",
-          "description": "    "
+          "description": "     "
         }
       },
       "deleteEndpoints": {
         "update": {
-          "queryTemplate": "{\n\t\"_operation\" : \"update\" ,\n\t\"_operation_args\" : {\n\t\t\t\t\t\t\t\"query\" : { \u0027user_id\u0027 : \u0027$user$\u0027, \u0027provenance.image.specimen\u0027:\u0027$specimen$\u0027, \n\u0027provenance.image.slide\u0027:\u0027$slide$\u0027,\u0027provenance.analysis.execution_id\u0027:\u0027$name$\u0027 } ,\n\t\t\t\t\t\t\t\"update\": {$set: { \u0027data\u0027 : $data$}},\n\t\t\t\t\t\t\t\"upsert\": true,\n\t\t\t\t\t\t\t\"multi\" : true\n\t\t\t\t\t\t}\n}\n       ",
+          "queryTemplate": "{\n\t\"_operation\" : \"update\" ,\n\t\"_operation_args\" : {\n\t\t\t\t\t\t\t\"query\" : { \u0027user_id\u0027 : \u0027$user$\u0027, \u0027provenance.image.specimen\u0027:\u0027$specimen$\u0027, \n\u0027provenance.image.slide\u0027:\"$slide$\",\u0027provenance.analysis.execution_id\u0027:\u0027$name$\u0027 } ,\n\t\t\t\t\t\t\t\"update\": {$set: { \u0027data\u0027 : $data$}},\n\t\t\t\t\t\t\t\"upsert\": true,\n\t\t\t\t\t\t\t\"multi\" : true\n\t\t\t\t\t\t}\n}\n        ",
           "tags": [],
           "bindVariables": {
-            "user": {
-              "name": "user",
-              "required": true,
-              "defaultValue": "",
-              "description": ""
-            },
-            "specimen": {
-              "name": "specimen",
-              "required": true,
-              "defaultValue": "",
-              "description": ""
-            },
-            "slide": {
-              "name": "slide",
-              "required": true,
-              "defaultValue": "",
-              "description": ""
-            },
-            "name": {
-              "name": "name",
-              "required": true,
-              "defaultValue": "",
-              "description": ""
-            },
-            "data": {
-              "name": "data",
-              "required": true,
-              "defaultValue": "",
-              "description": ""
-            }
+"user": {
+  "name": "user",
+  "required": true,
+  "defaultValue": "",
+  "description": ""
+},
+"specimen": {
+  "name": "specimen",
+  "required": true,
+  "defaultValue": "",
+  "description": ""
+},
+"slide": {
+  "name": "slide",
+  "required": true,
+  "defaultValue": "",
+  "description": ""
+},
+"name": {
+  "name": "name",
+  "required": true,
+  "defaultValue": "",
+  "description": ""
+},
+"data": {
+  "name": "data",
+  "required": true,
+  "defaultValue": "",
+  "description": ""
+}
           },
           "stage": "UNVERIFIED",
           "name": "update",
-          "timeCreated": "Mon Jun 10 17:58:52 GMT 2019",
+          "timeCreated": "Tue Jul 02 17:50:23 GMT 2019",
           "createdBy": "admin",
           "description": ""
         },
         "delete": {
-          "queryTemplate": "{\n\t\"_operation\" : \"delete\" ,\n\t\"_operation_args\" : {\n\t\t\t\t\t\t\t\"query\" : { \u0027user_id\u0027 : \u0027$user$\u0027,\u0027provenance.image.slide\u0027: \"$slide$\", \u0027provenance.analysis.execution_id\u0027: \"$name$\" }\n\t\t\t\t\t\t}\n}\n      ",
+          "queryTemplate": "{\n\t\"_operation\" : \"delete\" ,\n\t\"_operation_args\" : {\n\t\t\t\t\t\t\t\"query\" : { \u0027user_id\u0027 : \u0027$user$\u0027,\u0027provenance.image.slide\u0027: \"$slide$\", \u0027provenance.analysis.execution_id\u0027: \"$name$\" }\n\t\t\t\t\t\t}\n}\n       ",
           "tags": [],
           "bindVariables": {
-            "user": {
-              "name": "user",
-              "required": true,
-              "defaultValue": "",
-              "description": ""
-            },
-            "slide": {
-              "name": "slide",
-              "required": true,
-              "defaultValue": "",
-              "description": ""
-            },
-            "name": {
-              "name": "name",
-              "required": true,
-              "defaultValue": "",
-              "description": ""
-            }
+"user": {
+  "name": "user",
+  "required": true,
+  "defaultValue": "",
+  "description": ""
+},
+"slide": {
+  "name": "slide",
+  "required": true,
+  "defaultValue": "",
+  "description": ""
+},
+"name": {
+  "name": "name",
+  "required": true,
+  "defaultValue": "",
+  "description": ""
+}
           },
           "stage": "UNVERIFIED",
           "name": "delete",
-          "timeCreated": "Fri Jun 14 18:09:59 GMT 2019",
+          "timeCreated": "Tue Jul 02 18:24:29 GMT 2019",
           "createdBy": "admin",
           "description": ""
         }
@@ -1223,7 +1223,7 @@
         "csvFile": {
           "type": "MULTIPART",
           "properties": {
-            "inputType": "CSV_FILE"
+"inputType": "CSV_FILE"
           },
           "name": "csvFile",
           "timeCreated": "Wed Apr 24 18:02:23 GMT 2019",
@@ -1233,7 +1233,7 @@
         "jsonFile": {
           "type": "MULTIPART",
           "properties": {
-            "inputType": "JSON_FILE"
+"inputType": "JSON_FILE"
           },
           "name": "jsonFile",
           "timeCreated": "Wed Apr 24 18:02:23 GMT 2019",
@@ -1243,7 +1243,7 @@
         "csv": {
           "type": "FORM_DATA",
           "properties": {
-            "inputType": "CSV"
+"inputType": "CSV"
           },
           "name": "csv",
           "timeCreated": "Wed Apr 24 18:02:23 GMT 2019",
@@ -1253,7 +1253,7 @@
         "json": {
           "type": "FORM_DATA",
           "properties": {
-            "inputType": "JSON"
+"inputType": "JSON"
           },
           "name": "json",
           "timeCreated": "Wed Apr 24 18:02:23 GMT 2019",
