@@ -29,7 +29,7 @@ services:
       - ./config/bindaas_projects/:/root/bindaas/bin/projects/
       - ./config/bindaas.config.json:/root/bindaas/bin/bindaas.config.json
   iip:
-    build: "https://github.com/camicroscope/iipImage.git#v3.2.0"
+    build: "https://github.com/camicroscope/iipImage.git#develop"
     container_name: ca-iip
     volumes:
       - ./images/:/images/
@@ -39,12 +39,12 @@ services:
     volumes:
       - ./config/login.html:/var/www/html/login.html
   loader:
-    build: "https://github.com/camicroscope/SlideLoader.git#v3.2.0"
+    build: "https://github.com/camicroscope/SlideLoader.git#develop"
     container_name: ca-load
     volumes:
       - ./images/:/images/
   security:
-    build: "https://github.com/camicroscope/Security.git#v3.2.1"
+    build: "https://github.com/camicroscope/Security.git#develop"
     container_name: ca-security
     ports:
       - "4010:4010"
