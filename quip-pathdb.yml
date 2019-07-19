@@ -74,8 +74,8 @@ services:
       - QUIP_IMAGE_PATH=$PWD/images
       - QUIP_DATA_PATH=$PWD/data
   segloader:
-    build: "https://github.com/SBU-BMI/quip_segmentation_loader.git#v3.0"
-    container_name: quip-segmentation-loader
+    build: "https://github.com/SBU-BMI/SegmentationLoader.git#1.0"
+    container_name: quip-segloader
     volumes:
       - ./data/segmentation_results:/data/segmentation_results
   heatmaploader:
