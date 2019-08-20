@@ -40,7 +40,7 @@ services:
     volumes:
       - ./images/:/images/
   viewer:
-    build: "https://github.com/camicroscope/caMicroscope.git#v3.4.2"
+    build: "https://github.com/camicroscope/caMicroscope.git#v3.4.3"
     container_name: ca-front
     restart: unless-stopped
     volumes:
@@ -48,7 +48,7 @@ services:
     logging:
       driver: none
   loader:
-    build: "https://github.com/camicroscope/SlideLoader.git#v3.2.0"
+    build: "https://github.com/camicroscope/SlideLoader.git#v3.4.3"
     container_name: ca-load
     restart: unless-stopped
     logging:
@@ -71,6 +71,8 @@ services:
     volumes:
       - ./jwt_keys/:/keys/
     container_name: ca-auth
+    environment:
+      JWKS: "https://www.googleapis.com/oauth2/v3/certs"
     restart: unless-stopped
     logging:
       driver: none

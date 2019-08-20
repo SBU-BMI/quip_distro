@@ -57,4 +57,6 @@ services:
     build: "./Deps/auth_service/"
     volumes:
       - ./jwt_keys/:/keys/
+    environment:
+      JWKS: "https://birmstuff.auth0.com/.well-known/jwks.json"
     container_name: ca-auth

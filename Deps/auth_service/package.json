@@ -9,11 +9,13 @@
   "author": "birm",
   "license": "UNLICENSED",
   "dependencies": {
+    "atob": "^2.1.2",
     "cookie-parser": "^1.4.4",
     "express": "^4.16.4",
     "express-promise": "^0.4.0",
     "jsonwebtoken": "^8.4.0",
     "jwk-to-pem": "^2.0.1",
+    "jwks-rsa": "^1.6.0",
     "request": "^2.88.0",
     "request-promise": "^4.2.4"
   }

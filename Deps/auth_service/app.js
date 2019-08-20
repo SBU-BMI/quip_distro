@@ -2,13 +2,24 @@ const express = require('express')
 const rp = require('request-promise');
 const app = express();
 const fs = require("fs");
+var atob = require('atob');
 var jwt = require('jsonwebtoken');
 var jwkToPem = require('jwk-to-pem');
 var cookieParser = require('cookie-parser');
+const jwksClient = require('jwks-rsa');
 var PORT = process.env.PORT || 8010
 var BASE_USER_URL = "http://ca-data:9099/services/caMicroscope/Authorization/query/getAuth?name="
 var SECRET = process.env.SECRET
 var EXPIRY = process.env.EXPIRY || "1d"
+var JWK_URL = process.env.JWKS
+
+var jwks_client = false
+console.log(JWK_URL)
+if (JWK_URL){
+  jwks_client = jwksClient({
+  jwksUri: JWK_URL
+});
+}
 
 // get cookies
 app.use(cookieParser())
@@ -61,10 +72,42 @@ const getToken = function(req) {
         return req.cookies.token;
     }
 }
+
+function getJwtKid(token) {
+    var base64Url = token.split('.')[0];
+    var base64 = base64Url.replace(/-/g, '+').replace(/_/g, '/');
+    var jsonPayload = decodeURIComponent(atob(base64).split('').map(function(c) {
+        return '%' + ('00' + c.charCodeAt(0).toString(16)).slice(-2);
+    }).join(''));
+
+    return JSON.parse(jsonPayload).kid;
+};
+
+function jwk_token_trade(check_key, sign_key){
+  return function(req,res){
+    var THISTOKEN = getToken(req)
+    if(!jwks_client){
+      console.log("something wrong...")
+      token_trade(check_key, sign_key)(req,res)
+    }
+    jwks_client.getSigningKey(getJwtKid(THISTOKEN), (err,key)=>{
+      console.log(key)
+      let use_key = key.publicKey || key.rsaPublicKey
+      if(err){
+        res.status(401).send(err)
+      } else {
+        token_trade(use_key, sign_key)(req,res)
+      }
+    })
+  }
+}
+
+
 // curry these calls
 function token_trade(check_key, sign_key){
   return function(req,res){
-    jwt.verify(getToken(req), check_key, function(err, token){
+    var THISTOKEN = getToken(req)
+    jwt.verify(THISTOKEN, check_key, function(err, token){
       if (err){
         res.status(401).send(err)
       } else {
@@ -104,7 +147,7 @@ function token_trade(check_key, sign_key){
 }
 
 // convert or "check" a token
-app.get("/check", token_trade(SECRET, PRIKEY))
+app.get("/check", jwk_token_trade(SECRET, PRIKEY))
 // renew a token
 app.get("/renew", token_trade(PUBKEY, PRIKEY))
 
