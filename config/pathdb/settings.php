@@ -777,5 +777,5 @@ $settings['entity_update_backup'] = TRUE;
 # if (file_exists($app_root . '/' . $site_path . '/settings.local.php')) {
 #   include $app_root . '/' . $site_path . '/settings.local.php';
 # }
-$config_directories['sync'] = '../config/sync';
+$config_directories['sync'] = '/data/pathdb/config/sync';
 $settings['file_private_path'] = '/data/pathdb/files';$databases['default']['default'] = array (  'database' => 'QuIP',  'username' => 'root',  'password' => '',  'prefix' => '',  'host' => 'localhost',  'port' => '',  'namespace' => 'Drupal\Core\Database\Driver\mysql',  'driver' => 'mysql',);$settings['hash_salt'] = '3163ca60-e485-41d7-80e6-d91788978ca9';
