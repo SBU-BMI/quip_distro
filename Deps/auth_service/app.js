@@ -12,6 +12,7 @@ var BASE_USER_URL = "http://ca-data:9099/services/caMicroscope/Authorization/que
 var SECRET = process.env.SECRET
 var EXPIRY = process.env.EXPIRY || "1d"
 var JWK_URL = process.env.JWKS
+var KEY_FIELD = process.env.KEY_FIELD || "accessCollection"
 
 var jwks_client = false
 console.log(JWK_URL)
@@ -127,8 +128,9 @@ function token_trade(check_key, sign_key){
               data = {
                 'sub':name,
                 'name':x[0].name,
-                'attrs':attrs
+                'attrs':attrs,
               }
+              data[KEY_FIELD] = x[0][KEY_FIELD] || []
               // sign using the mounted key
               var token = jwt.sign(data, sign_key, {algorithm:"RS256", expiresIn: EXPIRY})
               res.send({'token':token})

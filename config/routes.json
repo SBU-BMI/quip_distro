@@ -2,7 +2,8 @@
   "root":"http://ca-front:80/",
   "_root_public": "true",
   "auth":{
-    "permissions_field":"attrs"
+    "permissions_field":"attrs",
+    "key_field": "accessCollection"
   },
   "services":{
     "data":{
@@ -33,7 +34,7 @@
       },
       "Slide": {
         "get":"/Slide/query/get",
-        "find":"/Slide/query/find",
+        "find":{"path":"/Slide/query/find", "key_method": "filter"},
         "post":{"path": "/Slide/submit/json", "attr": "write"},
         "delete":{"path": "/Slide/delete/deleteSlide", "attr": "write"},
         "update":{"path": "/Slide/delete/updateSlide", "attr": "write"}

@@ -39,7 +39,7 @@ services:
     volumes:
       - ./images/:/data/images/
   security:
-    build: "https://github.com/camicroscope/Security.git#v3.2.2"
+    build: "https://github.com/camicroscope/Security.git#v3.4.6"
     container_name: ca-security
     restart: unless-stopped
     ports: ["4010:4010"]
@@ -80,7 +80,7 @@ services:
     volumes:
       - ./data/segmentation_results:/data/segmentation_results
   heatmaploader:
-    build: "https://github.com/SBU-BMI/uploadHeatmaps.git#v1.0.0"
+    build: "https://github.com/SBU-BMI/uploadHeatmaps.git#v1.5.0"
     container_name: quip-hmloader
     ports: ["27017:27017"]
     volumes:

@@ -62,6 +62,8 @@ if (id_token){
       window.location = state
     } else {
       console.error("please give me a better failure message/response")
+      window.alert("User not added")
+      window.location = "./apps/signup/signup"
     }
 
   })
