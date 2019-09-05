@@ -13,6 +13,8 @@ var SECRET = process.env.SECRET
 var EXPIRY = process.env.EXPIRY || "1d"
 var JWK_URL = process.env.JWKS
 var KEY_FIELD = process.env.KEY_FIELD || "accessCollection"
+var AUD = process.env.AUD || false
+var ISS = process.env.ISS || false
 
 var jwks_client = false
 console.log(JWK_URL)
@@ -108,7 +110,14 @@ function jwk_token_trade(check_key, sign_key){
 function token_trade(check_key, sign_key){
   return function(req,res){
     var THISTOKEN = getToken(req)
-    jwt.verify(THISTOKEN, check_key, function(err, token){
+    let jwt_options = {}
+    if (AUD){
+      jwt_options.audience = AUD
+    }
+    if (ISS){
+      jwt_options.issuer = ISS
+    }
+    jwt.verify(THISTOKEN, check_key, jwt_options, function(err, token){
       if (err){
         res.status(401).send(err)
       } else {

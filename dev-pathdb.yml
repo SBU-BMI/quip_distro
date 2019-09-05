@@ -5,6 +5,8 @@ services:
     image: mongo
     container_name: ca-mongo
     restart: unless-stopped
+    volumes:
+      - ./db:/data/db
     logging:
       driver: none
   idxMongo:
@@ -26,20 +28,18 @@ services:
     restart: unless-stopped
     logging:
       driver: none
-    ports:
-      -"8080:8080"
-      -"9099:9099"
+    ports: ["8080:8080", "9099:9099"]
     volumes:
       - ./config/bindaas_projects/:/root/bindaas/bin/projects/
       - ./config/bindaas.config.json:/root/bindaas/bin/bindaas.config.json
   iip:
-    build: "https://github.com/camicroscope/iipImage.git#develop"
+    build: "https://github.com/camicroscope/iipImage.git#v3.2.0"
     container_name: ca-iip
     restart: unless-stopped
     volumes:
       - ./images/:/data/images/
   security:
-    build: "https://github.com/camicroscope/Security.git#develop"
+    build: "https://github.com/camicroscope/Security.git#v3.4.6"
     container_name: ca-security
     restart: unless-stopped
     ports: ["4010:4010"]
@@ -53,19 +53,20 @@ services:
     logging:
       driver: none
   pathdb:
-    build: "https://github.com/camicroscope/PathDB.git#develop"
+    build: "https://github.com/SBU-BMI/PathDB.git#develop"
     container_name: quip-pathdb
     restart: unless-stopped
     ports: ["443:443","80:80"]
     volumes:
       - ./data:/data/
       - ./images/:/data/pathdb/files/wsi
+      - ./config/pathdb:/quip/web/sites/default
       - ./jwt_keys/:/keys/
       - ./config:/config
     command:
       - /config/pathdb_pre.sh
   imageloader:
-    build: "https://github.com/SBU-BMI/ImageLoader.git#1.0.0"
+    build: "https://github.com/SBU-BMI/ImageLoader.git#1.1.0"
     container_name: quip-imageloader
     volumes:
       - ./data:/data/
@@ -78,4 +79,10 @@ services:
     container_name: quip-segloader
     volumes:
       - ./data/segmentation_results:/data/segmentation_results
-
+  heatmaploader:
+    build: "https://github.com/SBU-BMI/uploadHeatmaps.git#v1.5.0"
+    container_name: quip-hmloader
+    ports: ["27017:27017"]
+    volumes:
+      - ./data:/mnt/data/
+      
