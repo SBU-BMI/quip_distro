@@ -11,7 +11,7 @@ Use `docker-compose -f caMicroscope.yml build` to rebuild the services.
 
 Once everything is up, go to <the host this is running on>:4010/ to see the landing page.
 
-Set up with PathDB: 
+Set up with PathDB (https://github.com/SBU-BMI/PathDB): 
 
 To use PathDB, use quip-pathdb.yml instead of caMicroscope.yml. This deployment does not include the auth and loader as separate services, as this PathDB provides that functionality.
 
