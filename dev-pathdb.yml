@@ -44,7 +44,7 @@ services:
     restart: unless-stopped
     ports: ["4010:4010"]
     volumes:
-      - ./config/routes.json:/root/src/routes.json
+      - ./config/pathdb_routes.json:/root/src/routes.json
     environment:
       - DISABLE_SEC=true
   auth:
@@ -85,4 +85,3 @@ services:
     ports: ["27017:27017"]
     volumes:
       - ./data:/mnt/data/
-      

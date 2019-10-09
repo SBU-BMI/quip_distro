@@ -27,6 +27,10 @@ describe('Minimal Distribution Test', function () {
         console.log(x)
         done(x)
       })
+    }).catch(x=>{
+      console.log("err")
+      console.log(x)
+      done(x)
     })
 
   });

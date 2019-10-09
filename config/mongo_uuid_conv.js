@@ -11,7 +11,7 @@ db.slide.find({}).forEach(function(slide){
   db.heatmap.find({'provenance.image.slide':slide.name, 'provenance.image.study':slide.study, 'provenance.image.specimen':slide.specimen}).forEach(function(hm){
     delete hm.provenance.image.study
     delete hm.provenance.image.specimen
-    mark.provenance.image.slide = slide._id.valueOf()
+    hm.provenance.image.slide = slide._id.valueOf()
     db.heatmap.save(hm)
   })
   db.heatmap.find({'provenance.image.case_id':slide.name}).forEach(function(hm){

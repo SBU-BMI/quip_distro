@@ -39,12 +39,12 @@ services:
     volumes:
       - ./images/:/data/images/
   security:
-    build: "https://github.com/camicroscope/Security.git#v3.4.6"
+    build: "https://github.com/camicroscope/Security.git#v3.5.2"
     container_name: ca-security
     restart: unless-stopped
     ports: ["4010:4010"]
     volumes:
-      - ./config/routes.json:/root/src/routes.json
+      - ./config/pathdb_routes.json:/root/src/routes.json
     environment:
       - DISABLE_SEC=true
   auth:
@@ -53,7 +53,7 @@ services:
     logging:
       driver: none
   pathdb:
-    build: "https://github.com/SBU-BMI/PathDB.git#1.1.2"
+    build: "https://github.com/SBU-BMI/PathDB.git#1.1.5"
     container_name: quip-pathdb
     restart: unless-stopped
     ports: ["443:443","80:80"]
@@ -85,4 +85,3 @@ services:
     ports: ["27017:27017"]
     volumes:
       - ./data:/mnt/data/
-      
