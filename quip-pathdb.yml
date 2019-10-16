@@ -22,7 +22,6 @@ services:
       - mongo
   bindaas:
     build: "./Deps/Bindaas/"
-    image: sbubmi/quip_distro_bindaas:dev
     depends_on:
       - "mongo"
     container_name: ca-data
@@ -35,30 +34,26 @@ services:
       - ./config/bindaas.config.json:/root/bindaas/bin/bindaas.config.json
   iip:
     build: "https://github.com/camicroscope/iipImage.git#v3.2.0"
-    image: sbubmi/quip_distro_iip:dev
     container_name: ca-iip
     restart: unless-stopped
     volumes:
       - ./images/:/data/images/
   security:
-    build: "https://github.com/camicroscope/Security.git#v3.4.6"
-    image: sbubmi/quip_distro_security:dev
+    build: "https://github.com/camicroscope/Security.git#v3.5.2"
     container_name: ca-security
     restart: unless-stopped
     ports: ["4010:4010"]
     volumes:
-      - ./config/routes.json:/root/src/routes.json
+      - ./config/pathdb_routes.json:/root/src/routes.json
     environment:
       - DISABLE_SEC=true
   auth:
     build: "./Deps/auth_service/"
-    image: sbubmi/quip_distro_auth:dev
     container_name: ca-auth
     logging:
       driver: none
   pathdb:
-    build: "https://github.com/SBU-BMI/PathDB.git#1.1.2"
-    image: sbubmi/quip_distro_pathdb:dev
+    build: "https://github.com/SBU-BMI/PathDB.git#1.2.0"
     container_name: quip-pathdb
     restart: unless-stopped
     ports: ["443:443","80:80"]
@@ -71,8 +66,7 @@ services:
     command:
       - /config/pathdb_pre.sh
   imageloader:
-    build: "https://github.com/SBU-BMI/ImageLoader.git#1.1.0"
-    image: sbubmi/quip_distro_imageloader:dev
+    build: "https://github.com/SBU-BMI/ImageLoader.git#2.0.0"
     container_name: quip-imageloader
     volumes:
       - ./data:/data/
@@ -82,15 +76,12 @@ services:
       - QUIP_DATA_PATH=$PWD/data
   segloader:
     build: "https://github.com/SBU-BMI/SegmentationLoader.git#1.0.1"
-    image: sbubmi/quip_distro_segloader:dev
     container_name: quip-segloader
     volumes:
       - ./data:/data
   heatmaploader:
-    build: "https://github.com/SBU-BMI/uploadHeatmaps.git#v1.5.1"
-    image: sbubmi/quip_distro_heatmaploader:dev
+    build: "https://github.com/SBU-BMI/uploadHeatmaps.git#v1.5.0"
     container_name: quip-hmloader
     ports: ["27017:27017"]
     volumes:
       - ./data:/mnt/data/
-      
