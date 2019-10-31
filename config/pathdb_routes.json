@@ -47,6 +47,9 @@
         "post":{"path": "/HeatmapEdit/submit/json", "attr": "write"},
         "delete":{"path": "/HeatmapEdit/delete/delete", "attr": "write"},
         "update":{"path": "/HeatmapEdit/delete/update", "attr": "write"}
+      },
+      "Log": {
+        "post": "/Log/submit/json"
       }
     },
     "img": {

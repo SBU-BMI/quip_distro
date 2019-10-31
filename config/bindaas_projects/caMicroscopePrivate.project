@@ -4,7 +4,7 @@
       "dataSource": {
         "host": "ca-mongo",
         "port": "27017",
-        "db": "camic",
+        "db": "camic-pri",
         "collection": "mark",
         "initialize": true
       },
@@ -340,7 +340,7 @@
       "dataSource": {
         "host": "ca-mongo",
         "port": "27017",
-        "db": "camic",
+        "db": "camic-pri",
         "collection": "overlay",
         "initialize": true
       },
@@ -513,7 +513,7 @@
       "dataSource": {
         "host": "ca-mongo",
         "port": "27017",
-        "db": "camic",
+        "db": "camic-pri",
         "collection": "slide",
         "initialize": true
       },
@@ -540,7 +540,7 @@
           "description": "   "
         },
         "find": {
-          "queryTemplate": "{\n    \"_operation\" : \"find\" ,\n    \"_operation_args\" : {\n\"query\" : {\u0027name\u0027: {$regex: \"$slide$\", $options: \"i\"},\n    \u0027specimen\u0027: {$regex: \"$specimen$\", $options: \"i\"},\n    \u0027study\u0027: {$regex: \"$study$\", $options: \"i\"},\n    \u0027location\u0027: {$regex: \"$location$\", $options: \"i\"}}\n}\n}      ",
+          "queryTemplate": "{\n    \"_operation\" : \"find\" ,\n    \"_operation_args\" : {\n\"query\" : {\u0027name\u0027: {$regex: \"$slide$\", $options: \"i\"},\n    \u0027specimen\u0027: {$regex: \"$specimen$\", $options: \"i\"},\n    \u0027study\u0027: {$regex: \"$study$\", $options: \"i\"},\n    \u0027location\u0027: {$regex: \"$location$\", $options: \"i\"},\n    \u0027collection: $collection$\"\n}\n}\n}       ",
           "metaData": {},
           "tags": [],
           "bindVariables": {
@@ -567,6 +567,12 @@
               "required": false,
               "defaultValue": "",
               "description": ""
+            },
+            "collection": {
+              "name": "collection",
+              "required": true,
+              "defaultValue": "",
+              "description": ""
             }
           },
           "stage": "UNVERIFIED",
@@ -574,9 +580,9 @@
             "outputFormat": "JSON"
           },
           "name": "find",
-          "timeCreated": "Wed Nov 28 20:40:33 UTC 2018",
+          "timeCreated": "Mon Oct 28 19:07:35 GMT 2019",
           "createdBy": "admin",
-          "description": "  "
+          "description": "   "
         }
       },
       "deleteEndpoints": {
@@ -680,7 +686,7 @@
       "dataSource": {
         "host": "ca-mongo",
         "port": "27017",
-        "db": "camic",
+        "db": "camic-pri",
         "collection": "template",
         "initialize": true
       },
@@ -806,7 +812,7 @@
       "dataSource": {
         "host": "ca-mongo",
         "port": "27017",
-        "db": "camic",
+        "db": "camic-pri",
         "collection": "authorization",
         "initialize": true
       },
@@ -887,7 +893,7 @@
       "dataSource": {
         "host": "ca-mongo",
         "port": "27017",
-        "db": "camic",
+        "db": "camic-pri",
         "collection": "heatmap",
         "initialize": true
       },
@@ -1087,7 +1093,7 @@
       "dataSource": {
         "host": "ca-mongo",
         "port": "27017",
-        "db": "camic",
+        "db": "camic-pri",
         "collection": "heatmapEdit",
         "initialize": true
       },
@@ -1267,66 +1273,11 @@
       "timeCreated": "Wed Apr 24 18:02:21 GMT 2019",
       "createdBy": "admin",
       "description": "Edit Data for Heatmaps"
-    },
-    "Log": {
-      "dataSource": {
-        "host": "ca-mongo",
-        "port": "27017",
-        "db": "camic",
-        "collection": "log",
-        "initialize": true
-      },
-      "queryEndpoints": {},
-      "deleteEndpoints": {},
-      "submitEndpoints": {
-        "csvFile": {
-          "type": "MULTIPART",
-          "properties": {
-            "inputType": "CSV_FILE"
-          },
-          "name": "csvFile",
-          "timeCreated": "Tue Oct 29 20:54:11 GMT 2019",
-          "createdBy": "admin"
-        },
-        "jsonFile": {
-          "type": "MULTIPART",
-          "properties": {
-            "inputType": "JSON_FILE"
-          },
-          "name": "jsonFile",
-          "timeCreated": "Tue Oct 29 20:54:11 GMT 2019",
-          "createdBy": "admin"
-        },
-        "csv": {
-          "type": "FORM_DATA",
-          "properties": {
-            "inputType": "CSV"
-          },
-          "name": "csv",
-          "timeCreated": "Tue Oct 29 20:54:11 GMT 2019",
-          "createdBy": "admin"
-        },
-        "json": {
-          "type": "FORM_DATA",
-          "properties": {
-            "inputType": "JSON"
-          },
-          "name": "json",
-          "timeCreated": "Tue Oct 29 20:54:11 GMT 2019",
-          "createdBy": "admin"
-        }
-      },
-      "providerId": "edu.emory.cci.bindaas.datasource.provider.mongodb.MongoDBProvider",
-      "providerVersion": 1,
-      "name": "Log",
-      "timeCreated": "Tue Oct 29 20:54:11 GMT 2019",
-      "createdBy": "admin",
-      "description": "log"
     }
   },
   "params": {},
-  "name": "caMicroscope",
+  "name": "caMicroscopePrivate",
   "timeCreated": "Wed Aug 01 17:17:55 UTC 2018",
   "createdBy": "admin",
-  "description": "caMicroscope Data model"
+  "description": "caMicroscope using another db and some additional fields"
 }

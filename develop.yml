@@ -48,11 +48,11 @@ services:
     container_name: ca-security
     ports:
       - "4010:4010"
-    volumes:
-      - ./config/routes.json:/root/src/routes.json
-      - ./jwt_keys/:/keys/
     environment:
       - DISABLE_SEC=true
+    volumes:
+      - ./config/non-pathdb-routes.json:/root/src/routes.json
+      - ./jwt_keys/:/keys/
   auth:
     build: "./Deps/auth_service/"
     volumes:

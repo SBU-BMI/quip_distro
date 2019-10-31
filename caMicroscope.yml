@@ -40,7 +40,7 @@ services:
     volumes:
       - ./images/:/images/
   viewer:
-    build: "https://github.com/camicroscope/caMicroscope.git#v3.5.6"
+    build: "https://github.com/camicroscope/caMicroscope.git#v3.5.7"
     container_name: ca-front
     restart: unless-stopped
     volumes:
@@ -62,7 +62,7 @@ services:
     ports:
       - "4010:4010"
     volumes:
-      - ./config/routes.json:/root/src/routes.json
+      - ./config/non-pathdb-routes.json:/root/src/routes.json
       - ./jwt_keys/:/keys/
     environment:
       - DISABLE_SEC=true

@@ -4,6 +4,7 @@ do
 done
 
 mongo --host ca-mongo camic /config/mongo_idx.js
+mongo --host ca-mongo camic-pri /config/mongo_idx_pri.js
 echo "indexes created"
 mongo --host ca-mongo camic /config/add_mongo_users.js
 echo "users created"
