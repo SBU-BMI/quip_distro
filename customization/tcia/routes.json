@@ -1,0 +1,71 @@
+{
+  "root":"http://quip-pathdb/",
+  "_root_public": "true",
+  "services":{
+    "data":{
+      "_base": "http://ca-data:9099/services/caMicroscope",
+      "Mark": {
+        "get":"/Mark/query/get",
+        "find":"/Mark/query/find",
+        "multi":"/Mark/query/multiFind",
+        "findBound":"/Mark/query/findBound",
+        "types":"/Mark/query/findTypes",
+        "typesExec":"/Mark/query/findTypesExec"
+      },
+      "Heatmap": {
+        "get":"/Heatmap/query/get",
+        "find":"/Heatmap/query/find",
+        "types":"/Heatmap/query/findTypes"
+      },
+      "Overlay": {
+        "get":"/Overlay/query/get",
+        "find":"/Overlay/query/find"
+      },
+      "Slide": {
+        "get":"/Slide/query/get",
+        "find":"/Slide/query/find"
+      },
+      "Template": {
+        "get":"/Template/query/get",
+        "find":"/Template/query/find"
+      },
+      "HeatmapEdit": {
+        "get":"/HeatmapEdit/query/get",
+        "find":"/HeatmapEdit/query/find"
+      },
+      "Log": {
+        "post": "/Log/submit/json"
+      }
+    },
+    "img": {
+      "_public": "true",
+      "_base":"http://ca-iip/fcgi-bin/iipsrv.fcgi",
+      "IIP": {
+        "raw":""
+      },
+      "Slide":{
+        "_resolver":{
+          "destination":"?DeepZoom={OUT}",
+          "url": "http://ca-pathdb/node/{IN}?_format=json",
+          "field":"field_iip_path[0].value",
+          "before":["_files", ".dzi"]
+        }
+      }
+    },
+    "load": {
+      "_base": "http://ca-load:4000",
+      "Slide":{
+        "info":"/data/one",
+        "thumb":"/data/thumbnail"
+      }
+    },
+    "pathdb":{
+      "_public": "true",
+      "_base": "http://quip-pathdb/",
+      "slide":{
+        "info":"/node/",
+        "unmod":""
+      }
+    }
+  }
+}

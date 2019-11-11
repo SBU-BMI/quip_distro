@@ -58,6 +58,9 @@
       },
       "Log": {
         "post": "/Log/submit/json"
+      },
+      "Configuration": {
+        "getConfigByName": "/Configuration/query/getConfigByName"
       }
     },
     "private":{
