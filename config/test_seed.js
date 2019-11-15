@@ -278,8 +278,6 @@ const algorithm_2_schema = {
 };
 
 
-
-
 var templates = [algorithm_2_schema, algorithm_1_schema, annotation_schema]
 db.slide.insertMany(slides)
 db.mark.insertMany(marks)

@@ -50,7 +50,11 @@
       },
       "Log": {
         "post": "/Log/submit/json"
+      },
+      "Configuration": {
+        "getConfigByName": "/Configuration/query/getConfigByName"
       }
+      
     },
     "img": {
       "_public": "true",

@@ -40,7 +40,7 @@ services:
     volumes:
       - ./images/:/images/
   viewer:
-    build: "https://github.com/camicroscope/caMicroscope.git#v3.5.9"
+    build: "https://github.com/camicroscope/caMicroscope.git#v3.5.10"
     container_name: ca-front
     restart: unless-stopped
     volumes:

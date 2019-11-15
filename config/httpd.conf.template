@@ -351,6 +351,8 @@ IncludeOptional conf.d/*.conf
     ProxyPass /caMicroscope/data/ http://ca-security:4010/data/
     ProxyPassReverse /caMicroscope/data/ http://ca-security:4010/data/
     ProxyRequests Off
+    CustomLog "/data/pathdb/logs/access_log" combined
+    ErrorLog "/data/pathdb/logs/error_log"
 </VirtualHost>
 
 <VirtualHost *:443>
@@ -367,6 +369,8 @@ IncludeOptional conf.d/*.conf
     ProxyPass /caMicroscope/data/ http://ca-security:4010/data/
     ProxyPassReverse /caMicroscope/data/ http://ca-security:4010/data/
     ProxyRequests Off
+    CustomLog "/data/pathdb/logs/access_log" combined
+    ErrorLog "/data/pathdb/logs/error_log"
 </VirtualHost>
 
 
