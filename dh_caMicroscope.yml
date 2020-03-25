@@ -23,7 +23,7 @@ services:
     depends_on:
       - mongo
   bindaas:
-    build: "./Deps/Bindaas/"
+    image: camicroscope/bindaas:latest
     depends_on:
       - "mongo"
     container_name: ca-data
@@ -34,13 +34,13 @@ services:
       - ./config/bindaas_projects/:/root/bindaas/bin/projects/
       - ./config/bindaas.config.json:/root/bindaas/bin/bindaas.config.json
   iip:
-    build: "https://github.com/camicroscope/iipImage.git#v3.2.0"
+    image: camicroscope/iipimage:latest
     container_name: ca-iip
     restart: unless-stopped
     volumes:
       - ./images/:/images/
   viewer:
-    build: "https://github.com/camicroscope/caMicroscope.git#v3.6.0"
+    image: camicroscope/viewer:latest
     container_name: ca-front
     restart: unless-stopped
     volumes:
@@ -48,7 +48,7 @@ services:
     logging:
       driver: none
   loader:
-    build: "https://github.com/camicroscope/SlideLoader.git#v3.5.9"
+    image: camicroscope/slideloader:latest
     container_name: ca-load
     restart: unless-stopped
     logging:
@@ -56,7 +56,7 @@ services:
     volumes:
       - ./images/:/images/
   security:
-    build: "https://github.com/camicroscope/Security.git#v3.5.2"
+    image: camicroscope/security:latest
     container_name: ca-security
     restart: unless-stopped
     ports:
@@ -67,7 +67,7 @@ services:
     environment:
       - DISABLE_SEC=true
   auth:
-    build: "./Deps/auth_service/"
+    image: camicroscope/auth_service:latest
     volumes:
       - ./jwt_keys/:/keys/
     container_name: ca-auth

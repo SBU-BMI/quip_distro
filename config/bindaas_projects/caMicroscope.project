@@ -831,6 +831,20 @@
           "timeCreated": "Fri Aug 10 19:27:36 UTC 2018",
           "createdBy": "admin",
           "description": "get auth for user"
+        },
+        "list": {
+          "queryTemplate": "{\n\t\"_operation\" : \"find\" ,\n\t\"_operation_args\" : {\n\t\t\t\t\t\t\t\"query\" : {} ,\n\t\t\t\t\t\t\t\"fields\" :{ \u0027_id\u0027 : 0 }\n\t\t\t\t\t\t}\n}\n",
+          "metaData": {},
+          "tags": [],
+          "bindVariables": {},
+          "stage": "UNVERIFIED",
+          "outputFormat": {
+            "outputFormat": "JSON"
+          },
+          "name": "list",
+          "timeCreated": "Mon Dec 09 19:45:34 GMT 2019",
+          "createdBy": "admin",
+          "description": "list all auth with no queries"
         }
       },
       "deleteEndpoints": {},

@@ -1,0 +1,51 @@
+version: '3'
+
+services:
+  mongo:
+    image: mongo:3.4.19-jessie
+    container_name: ca-mongo
+    logging:
+      driver: none
+    volumes:
+      - ./db:/data/db
+  idxMongo:
+    image: mongo:3.4.19-jessie
+    container_name: ca-idx
+    logging:
+      driver: none
+    links:
+      - mongo
+    volumes:
+      - ./config:/config
+    command:
+      - /config/run_idx.sh
+    depends_on:
+      - mongo
+  back:
+    build:
+      context: "https://github.com/camicroscope/caboodle.git"
+      args:
+        viewer: "exp"
+    depends_on:
+      - "mongo"
+    ports:
+      - "8010:8010"
+    container_name: ca-back
+    volumes:
+      - ./config/login.html:/root/src/static/login.html
+      - ./jwt_keys/:/root/src/keys/
+
+    environment:
+      JWK_URL: "https://www.googleapis.com/oauth2/v3/certs"
+      IIP_PATH: "http://ca-iip/fcgi-bin/iipsrv.fcgi"
+      MONGO_URI: "mongodb://ca-mongo"
+  iip:
+    build: "https://github.com/camicroscope/iipImage.git#develop"
+    container_name: ca-iip
+    volumes:
+      - ./images/:/images/
+  loader:
+    build: "https://github.com/camicroscope/SlideLoader.git#develop"
+    container_name: ca-load
+    volumes:
+      - ./images/:/images/

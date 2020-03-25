@@ -53,6 +53,7 @@
         "update":{"path": "/HeatmapEdit/delete/update", "attr": "write"}
       },
       "Auth": {
+        "list":"/Authorization/query/list",
         "get":{"path": "/Authorization/query/getAuth", "attr": "admin"},
         "post":{"path": "/Authorization/submit/json", "attr": "admin"}
       },

@@ -37,7 +37,7 @@ services:
     build: "https://github.com/camicroscope/caMicroscope.git#develop"
     container_name: ca-front
     volumes:
-      - ./config/login.html:/var/www/html/login.html
+      - ./config/login.html:/usr/local/apache2/htdocs/login.html
   loader:
     build: "https://github.com/camicroscope/SlideLoader.git#develop"
     container_name: ca-load

@@ -1,8 +1,8 @@
-# QuIP Distribution
+# QUIP/caMicroscope Distribution
 
 [![Build Status](https://travis-ci.org/camicroscope/Distro.svg?branch=master)](https://travis-ci.org/camicroscope/Distro)
 
-QuIP 3.X distribution
+caMicroscope 3.X distribution
 
 
 run with `docker-compose -f caMicroscope.yml up`
@@ -54,3 +54,6 @@ Running QuIP with PathDB (https://github.com/SBU-BMI/PathDB):
 
 ## Support
 Feel free to add any support inquiry as a github issue to this repository. Other feedback can be given via [this form](https://docs.google.com/forms/d/e/1FAIpQLScL91LxrpAZjU88GBZP9gmcdgdf8__uNUwhws2lzU6Lr4qNwA/viewform).
+
+## Open Source Development
+We have a discussion mailing list! Stop by and discuss all things caMicroscope. https://groups.google.com/forum/#!forum/camicroscope

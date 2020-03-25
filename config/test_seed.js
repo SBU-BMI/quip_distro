@@ -1,3 +1,5 @@
+// To add the test data, run this against mongo, either by modifying the ca-idx script, or directly.
+// To access mongo, either expose the port (not recommended for production) or run `docker exec -it ca-mongo mongo` then `use camic`
 var slides = [{
     "_id": new ObjectId("5bec456369056d7e537c2a9b"),
     name: "CMU1",

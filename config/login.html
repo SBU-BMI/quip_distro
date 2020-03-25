@@ -1,77 +1,159 @@
+<!DOCTYPE html>
 <html>
-<h1>Redirecting...</h1>
-<script>
-// config vars, these are DEFAULTS
-var audience = "wolf.cci.emory.edu/camic_uat"
-var scope = "openid%20email"
-var client_id = "YLRDUmEs5Jivi6FX3XtNNAt97X3a0epD"
-// handle urls automatically
-var base_deployment_url = window.location.toString().split("/").slice(0,-1).join("/")
-var redirect_uri = base_deployment_url + "/login.html"
-var default_redirect = base_deployment_url + "/apps/table.html"
-var response_type = "id_token"
-var base_auth_url = "https://birmstuff.auth0.com/authorize?"
-var cookie_name = "token" // "token" is expected by elevate router
-// make the url
-var auth_url = base_auth_url
-auth_url += "&audience=" + audience
-auth_url += "&scope=" + scope
-auth_url += "&response_type=" + response_type
-auth_url += "&client_id=" + client_id
-auth_url += "&redirect_uri=" + redirect_uri
+<head>
+  <title>CaMicroscope</title>
+  <meta charset="utf-8" />
+  <meta name="google-signin-client_id" content="539699277901-buh78f048405grejogqbrskj233rt0d0.apps.googleusercontent.com">
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <link rel="stylesheet" href="./apps/landing/main.css" />
+  <script type="text/javascript" src="./common/util.js"></script>
+</head>
+<body>
+  <header id="header">
+    <label style="color:white;padding:0 15px;font-size:20px;">CaMicroscope</label>
+    <nav id="nav">
+        <ul>
+            <li><a target="_blank" href="https://docs.google.com/forms/d/e/1FAIpQLScL91LxrpAZjU88GBZP9gmcdgdf8__uNUwhws2lzU6Lr4qNwA/viewform">Feedback</a></li>
+            <!-- <li><a href="./login.html?logout=true">Sign Out</a></li> -->
+        </ul>
+    </nav>
+  </header>
+  <section id="main" class="wrapper" style="padding:3em;">
+    <div class="inner">
+      <header class="major">
+        <h2 style="margin:0;">caMicroscope</h2>
+      </header>
+      <!-- Content -->
 
-function randomString(length) {
-    var bytes = new Uint8Array(length);
-    var random = window.crypto.getRandomValues(bytes);
-    var result = [];
-    var charset = '0123456789ABCDEFGHIJKLMNOPQRSTUVXYZabcdefghijklmnopqrstuvwxyz-._~'
-    random.forEach(function (c) {
-        result.push(charset[c % charset.length]);
-    });
-    return result.join('');
-}
+      <div class="content">
+        <p><strong>caMicroscope</strong> is a tool to view, label, and annotate biomedical images.</p>
+        <a href="#" class="image fit"><img src="./apps/landing/banner1.jpg" alt="" /></a>
 
-function getUrlParam(name, url) {
-    if (!url) url = window.location.href;
-    name = name.replace(/[\[\]]/g, '\\$&');
-    var regex = new RegExp('[?&#]' + name + '(=([^&#]*)|&|#|$)'),
-        results = regex.exec(url);
-    if (!results) return null;
-    if (!results[2]) return '';
-    return decodeURIComponent(results[2].replace(/\+/g, ' '));
-}
+      </div>
 
-// get variables
-let id_token = getUrlParam("id_token")
-let state = getUrlParam("state")
-if (!state){
-  state = default_redirect
-}
-// is this a login pre or post?
-if (id_token){
-  document.cookie = cookie_name + "=" + id_token;
-  fetch("./auth/Token/check",
-  {headers: {
-      'Authorization': "Bearer " + id_token
-   }}
-  ).then(x=>x.json()).then(x=>{
-    console.log("{id provider", id_token)
-    console.log("{auth service}", x)
-    if (x.hasOwnProperty('token')){
-      document.cookie = cookie_name + "=" + x.token;
-      window.location = state
-    } else {
-      console.error("please give me a better failure message/response")
-      window.alert("User not added")
-      window.location = "./apps/signup/signup"
+      <div class="posts" style="justify-content: center;">
+        <!-- Organizer -->
+        <section class="post">
+            <a href="../table.html" class="image"><img src="./apps/landing/camic.jpg" alt=""/></a>
+            <div class="content">
+                <h3>Please Sign In With Your Google Account</h3>
+                <div id="google-signin2"></div>
+            </div>
+        </section>
+      </div>
+  </section>
+
+  <script>
+    function onSuccess(googleUser) {
+      // don't if we're logging out
+      if (getUrlParam("logout")) {
+        removeUserConsentAcceptance(getUserId());
+        signOut();
+        deleteCookies();
+        console.log("logging out");
+        window.location.href = "./login.html";
+      } else {
+        var id_token = googleUser.getAuthResponse().id_token;
+        // console.info(id_token);
+        // trade for camic token
+        var cookie_name = "token"; // "token" is expected by elevate router
+        var base_deployment_url = window.location
+          .toString()
+          .split("/")
+          .slice(0, -1)
+          .join("/");
+        var redirect_uri = base_deployment_url + "/login.html";
+        var default_redirect = base_deployment_url + "/apps/table.html";
+        var state;
+        if (getUrlParam("state")) {
+          state = decodeURIComponent(getUrlParam("state"));
+        }
+        if (!state) {
+          state = default_redirect;
+        }
+        if (id_token) {
+          document.cookie = cookie_name + "=" + id_token;
+          fetch("./auth/Token/check", {
+            headers: {
+              Authorization: "Bearer " + id_token
+            }
+          })
+            .then(x => x.json())
+            .then(x => {
+              if (x.hasOwnProperty("token")) {
+                document.cookie = cookie_name + "=" + x.token;
+                let token_data = parseJwt(x.token);
+                window.location = "./apps/landing/landing.html";
+              } else {
+                window.alert("User not added");
+                window.location = "./apps/signup/signup";
+              }
+            });
+        }
+      }
     }
 
-  })
-} else {
-  window.localStorage.setItem('nonce', randomString(16));
-  auth_url += "&state=" + state
-  auth_url += "&nonce=" + window.localStorage.getItem('nonce')
-  window.location = auth_url
-}
-</script>
-<html>
+    function onFailure(error) {
+      console.error(error);
+    }
+
+    function renderButton() {
+      gapi.signin2.render('google-signin2', {
+        'scope': 'profile email',
+        'width': 240,
+        'height': 50,
+        'longtitle': true,
+        'theme': 'dark',
+        'onsuccess': onSuccess,
+        'onfailure': onFailure
+      });
+    }
+
+    function signOut() {
+      var auth2 = gapi.auth2.getAuthInstance();
+      auth2.signOut().then(function() {
+        console.log("User signed out.");
+      });
+    }
+
+    function deleteCookies() {
+      var allcookies = document.cookie.split(";");
+      for (var i = 0; i < allcookies.length; i++) {
+        var cookie = allcookies[i];
+        var eqPos = cookie.indexOf("=");
+        var name = eqPos > -1 ? cookie.substr(0, eqPos) : cookie;
+        document.cookie = name + "=;expires=Thu, 01 Jan 1970 00:00:00 GMT;";
+      }
+    }
+
+    // google's jwk is here: https://www.googleapis.com/oauth2/v3/certs
+    function randomString(length) {
+      var bytes = new Uint8Array(length);
+      var random = window.crypto.getRandomValues(bytes);
+      var result = [];
+      var charset =
+        "0123456789ABCDEFGHIJKLMNOPQRSTUVXYZabcdefghijklmnopqrstuvwxyz-._~";
+      random.forEach(function(c) {
+        result.push(charset[c % charset.length]);
+      });
+      return result.join("");
+    }
+
+    function getUrlParam(name, url) {
+      if (!url) url = window.location.href;
+      name = name.replace(/[\[\]]/g, "\\$&");
+      var regex = new RegExp("[?&#]" + name + "(=([^&#]*)|&|#|$)"),
+        results = regex.exec(url);
+      if (!results) return null;
+      if (!results[2]) return "";
+      return decodeURIComponent(results[2].replace(/\+/g, " "));
+    }
+  </script>
+
+  <script src="https://apis.google.com/js/platform.js?onload=renderButton" async defer></script>
+
+  <script>
+
+  </script>
+</body>
+</html>
