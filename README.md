@@ -2,7 +2,7 @@
 
 [![Build Status](https://travis-ci.org/camicroscope/Distro.svg?branch=master)](https://travis-ci.org/camicroscope/Distro)
 
-caMicroscope 3.X distribution
+QUIP/caMicroscope caMicroscope 3.X distribution
 
 
 run with `docker-compose -f caMicroscope.yml up`

@@ -56,7 +56,7 @@ services:
     build:
       context: "https://github.com/SBU-BMI/PathDB.git#1.3.5"
       args:
-        viewer: "v3.5.10"
+        viewer: "v3.6.1"
     container_name: quip-pathdb
     restart: unless-stopped
     ports: ["443:443","80:80"]
