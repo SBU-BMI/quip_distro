@@ -6,7 +6,7 @@ const assert = require('assert');
 const fetch = require("node-fetch")
 
 
-const checkurl = "http://localhost:4010/load/Slide/info/sample.svs"
+const checkurl = "http://localhost:4010/loader/data/one/sample.svs"
 
 
 describe('Sample Slide Metadata Check', function () {

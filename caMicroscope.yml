@@ -4,11 +4,10 @@ services:
   mongo:
     image: mongo:3.4.19-jessie
     container_name: ca-mongo
-    restart: unless-stopped
-    volumes:
-      - ./db:/data/db
     logging:
       driver: none
+    volumes:
+      - ./db:/data/db
   idxMongo:
     image: mongo:3.4.19-jessie
     container_name: ca-idx
@@ -22,57 +21,31 @@ services:
       - /config/run_idx.sh
     depends_on:
       - mongo
-  bindaas:
-    build: "./Deps/Bindaas/"
+  back:
+    build:
+      context: "https://github.com/camicroscope/caracal.git#v3.7.2"
+      args:
+        viewer: "v3.7.2"
     depends_on:
       - "mongo"
-    container_name: ca-data
-    restart: unless-stopped
-    logging:
-      driver: none
+    ports:
+      - "4010:4010"
+    container_name: ca-back
     volumes:
-      - ./config/bindaas_projects/:/root/bindaas/bin/projects/
-      - ./config/bindaas.config.json:/root/bindaas/bin/bindaas.config.json
+      - ./config/login.html:/root/src/static/login.html
+      - ./jwt_keys/:/root/src/keys/
+    environment:
+      JWK_URL: "https://www.googleapis.com/oauth2/v3/certs"
+      IIP_PATH: "http://ca-iip/fcgi-bin/iipsrv.fcgi"
+      MONGO_URI: "mongodb://ca-mongo"
   iip:
-    build: "https://github.com/camicroscope/iipImage.git#v3.2.0"
+    image: camicroscope/iipimage:latest
     container_name: ca-iip
     restart: unless-stopped
     volumes:
       - ./images/:/images/
-  viewer:
-    build: "https://github.com/camicroscope/caMicroscope.git#v3.6.1"
-    container_name: ca-front
-    restart: unless-stopped
-    volumes:
-      - ./config/login.html:/usr/local/apache2/htdocs/login.html
-    logging:
-      driver: none
   loader:
-    build: "https://github.com/camicroscope/SlideLoader.git#v3.5.9"
+    build: "https://github.com/camicroscope/SlideLoader.git#v3.7.2"
     container_name: ca-load
-    restart: unless-stopped
-    logging:
-      driver: none
     volumes:
       - ./images/:/images/
-  security:
-    build: "https://github.com/camicroscope/Security.git#v3.5.2"
-    container_name: ca-security
-    restart: unless-stopped
-    ports:
-      - "4010:4010"
-    volumes:
-      - ./config/non-pathdb-routes.json:/root/src/routes.json
-      - ./jwt_keys/:/keys/
-    environment:
-      - DISABLE_SEC=true
-  auth:
-    build: "./Deps/auth_service/"
-    volumes:
-      - ./jwt_keys/:/keys/
-    container_name: ca-auth
-    environment:
-      JWKS: "https://www.googleapis.com/oauth2/v3/certs"
-    restart: unless-stopped
-    logging:
-      driver: none

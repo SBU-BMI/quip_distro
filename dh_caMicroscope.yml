@@ -22,31 +22,22 @@ services:
       - /config/run_idx.sh
     depends_on:
       - mongo
-  bindaas:
-    image: camicroscope/bindaas:latest
+  back:
+    image: camicroscope/caracal:latest
     depends_on:
       - "mongo"
-    container_name: ca-data
-    restart: unless-stopped
-    logging:
-      driver: none
+    ports:
+      - "4010:8010"
+    container_name: ca-back
     volumes:
-      - ./config/bindaas_projects/:/root/bindaas/bin/projects/
-      - ./config/bindaas.config.json:/root/bindaas/bin/bindaas.config.json
+      - ./config/login.html:/root/src/static/login.html
+      - ./jwt_keys/:/root/src/keys/
   iip:
     image: camicroscope/iipimage:latest
     container_name: ca-iip
     restart: unless-stopped
     volumes:
       - ./images/:/images/
-  viewer:
-    image: camicroscope/viewer:latest
-    container_name: ca-front
-    restart: unless-stopped
-    volumes:
-      - ./config/login.html:/usr/local/apache2/htdocs/login.html
-    logging:
-      driver: none
   loader:
     image: camicroscope/slideloader:latest
     container_name: ca-load
@@ -55,24 +46,3 @@ services:
       driver: none
     volumes:
       - ./images/:/images/
-  security:
-    image: camicroscope/security:latest
-    container_name: ca-security
-    restart: unless-stopped
-    ports:
-      - "4010:4010"
-    volumes:
-      - ./config/non-pathdb-routes.json:/root/src/routes.json
-      - ./jwt_keys/:/keys/
-    environment:
-      - DISABLE_SEC=true
-  auth:
-    image: camicroscope/auth_service:latest
-    volumes:
-      - ./jwt_keys/:/keys/
-    container_name: ca-auth
-    environment:
-      JWKS: "https://www.googleapis.com/oauth2/v3/certs"
-    restart: unless-stopped
-    logging:
-      driver: none

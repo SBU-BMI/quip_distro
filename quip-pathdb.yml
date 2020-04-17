@@ -20,43 +20,34 @@ services:
       - /config/run_idx.sh
     depends_on:
       - mongo
-  bindaas:
-    build: "./Deps/Bindaas/"
-    depends_on:
-      - "mongo"
-    container_name: ca-data
-    restart: unless-stopped
-    logging:
-      driver: none
-    ports: ["8080:8080", "9099:9099"]
-    volumes:
-      - ./config/bindaas_projects/:/root/bindaas/bin/projects/
-      - ./config/bindaas.config.json:/root/bindaas/bin/bindaas.config.json
   iip:
     build: "https://github.com/camicroscope/iipImage.git#v3.2.0"
     container_name: ca-iip
     restart: unless-stopped
     volumes:
       - ./images/:/data/images/
-  security:
-    build: "https://github.com/camicroscope/Security.git#v3.5.2"
+  back:
+    build:
+      context: "https://github.com/camicroscope/caracal.git#develop"
+      args:
+        viewer: "develop"
+    depends_on:
+      - "mongo"
+    ports:
+      - "4010:8010"
     container_name: ca-security
-    restart: unless-stopped
-    ports: ["4010:4010"]
     volumes:
-      - ./config/pathdb_routes.json:/root/src/routes.json
+      - ./keys/:/root/src/keys/
     environment:
-      - DISABLE_SEC=true
-  auth:
-    build: "./Deps/auth_service/"
-    container_name: ca-auth
-    logging:
-      driver: none
+      JWK_URL: "https://www.googleapis.com/oauth2/v3/certs"
+      IIP_PATH: "http://ca-iip/fcgi-bin/iipsrv.fcgi"
+      MONGO_URI: "mongodb://ca-mongo"
+      DEFAULT_USER_TYPE: "Editor"
   pathdb:
     build:
       context: "https://github.com/SBU-BMI/PathDB.git#1.3.5"
       args:
-        viewer: "v3.6.1"
+        viewer: "develop"
     container_name: quip-pathdb
     restart: unless-stopped
     ports: ["443:443","80:80"]
