@@ -4,6 +4,7 @@ services:
   mongo:
     image: mongo:3.4.19-jessie
     container_name: ca-mongo
+    restart: always
     logging:
       driver: none
     volumes:
@@ -23,14 +24,15 @@ services:
       - mongo
   back:
     build:
-      context: "https://github.com/camicroscope/caracal.git#v3.7.2"
+      context: "https://github.com/camicroscope/caracal.git#v3.7.3"
       args:
-        viewer: "v3.7.2"
+        viewer: "v3.7.3"
     depends_on:
       - "mongo"
     ports:
       - "4010:4010"
     container_name: ca-back
+    restart: always
     volumes:
       - ./config/login.html:/root/src/static/login.html
       - ./jwt_keys/:/root/src/keys/
@@ -41,11 +43,12 @@ services:
   iip:
     image: camicroscope/iipimage:latest
     container_name: ca-iip
-    restart: unless-stopped
+    restart: always
     volumes:
       - ./images/:/images/
   loader:
     build: "https://github.com/camicroscope/SlideLoader.git#v3.7.2"
     container_name: ca-load
+    restart: always
     volumes:
       - ./images/:/images/
