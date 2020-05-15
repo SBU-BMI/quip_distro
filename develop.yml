@@ -40,8 +40,8 @@ services:
       MONGO_URI: "mongodb://ca-mongo"
       DISABLE_SEC: "false"
       ALLOW_PUBLIC: "true"
-      # Date to enable security protocols at if DISABLE_SEC is set to 'false'. 
-      # Date format in MM/DD/YYYY hh:mm:ss in UTC time. Set to empty string to disable feature.  
+      # Date to enable security protocols at if DISABLE_SEC is set to 'false'.
+      # Date format in MM/DD/YYYY hh:mm:ss in UTC time. Set to empty string to disable feature.
       ENABLE_SECURITY_AT: ""
   iip:
     image: camicroscope/iipimage:latest
