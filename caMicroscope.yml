@@ -24,9 +24,9 @@ services:
       - mongo
   back:
     build:
-      context: "https://github.com/camicroscope/caracal.git#v3.7.4"
+      context: "https://github.com/camicroscope/caracal.git#v3.7.5"
       args:
-        viewer: "v3.7.4"
+        viewer: "v3.7.5"
     depends_on:
       - "mongo"
     ports:
@@ -47,7 +47,7 @@ services:
     volumes:
       - ./images/:/images/
   loader:
-    build: "https://github.com/camicroscope/SlideLoader.git#v3.7.2"
+    build: "https://github.com/camicroscope/SlideLoader.git#v3.7.5"
     container_name: ca-load
     restart: always
     volumes:
