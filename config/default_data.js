@@ -26,7 +26,7 @@ let defaultTemplate = {
 db.template.insert(defaultTemplate)
 
 var defaultConfigs=[{
-   name:"preset_label",
+   config_name:"preset_label",
    configuration:[
       {
          title:"Lymph",
@@ -431,4 +431,4 @@ var defaultConfigs=[{
    ]
 }];
 
-db.config.insertMany(defaultConfigs)
+db.configuration.insertMany(defaultConfigs)

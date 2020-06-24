@@ -1,7 +1,11 @@
-// For use with caracal, this is really just a demo.
+// For use with caracal.
 
-let admin = {'email':'viewer@camicroscope.org', 'userFilter':["Public"], 'userType':'Null'}
+let admin = {'email':'viewer@camicroscope.org', 'userFilter':["Public"], 'userType':'Admin'}
 // users not added would have been represented by the below
 let randomPerson = {'email':'randomperson@camicroscope.org', 'userFilter':["Public"], 'userType':'Null'}
 users = [admin, randomPerson]
-db.user.insertMany(users)
+
+// uncomment the below to *actually* add these dummy users
+//     (or, replace with your own users, this script will run on each startup)
+
+//db.user.insertMany(users)

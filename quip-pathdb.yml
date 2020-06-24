@@ -2,7 +2,7 @@ version: '3'
 
 services:
   mongo:
-    image: mongo
+    image: mongo:3.6.18-xenial
     container_name: ca-mongo
     restart: unless-stopped
     volumes:
@@ -10,7 +10,7 @@ services:
     logging:
       driver: none
   idxMongo:
-    image: mongo
+    image: mongo:3.6.18-xenial
     container_name: ca-idx
     links:
       - mongo
@@ -28,13 +28,13 @@ services:
       - ./images/:/data/images/
   back:
     build:
-      context: "https://github.com/camicroscope/caracal.git#develop"
+      context: "https://github.com/camicroscope/caracal.git#3.7.6"
       args:
-        viewer: "develop"
+        viewer: "3.7.6"
     depends_on:
       - "mongo"
     ports:
-      - "4010:8010"
+      - "4010:4010"
     container_name: ca-security
     volumes:
       - ./keys/:/root/src/keys/
@@ -43,6 +43,7 @@ services:
       IIP_PATH: "http://ca-iip/fcgi-bin/iipsrv.fcgi"
       MONGO_URI: "mongodb://ca-mongo"
       DEFAULT_USER_TYPE: "Editor"
+      DISABLE_SEC: "true"
   pathdb:
     build:
       context: "https://github.com/SBU-BMI/PathDB.git#1.3.5"
@@ -71,8 +72,10 @@ services:
     volumes:
       - ./data:/data
   heatmaploader:
-    build: "https://github.com/SBU-BMI/uploadHeatmaps.git#v1.5.1"
+    build: "https://github.com/SBU-BMI/uploadHeatmaps.git#v1.5.2"
     container_name: quip-hmloader
-    ports: ["27017:27017"]
     volumes:
       - ./data:/mnt/data/
+    environment:
+      - TZ=America/New_York
+      - DEBIAN_FRONTEND=noninteractive

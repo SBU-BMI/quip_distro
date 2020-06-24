@@ -2,7 +2,7 @@ version: '3'
 
 services:
   mongo:
-    image: mongo:3.4.19-jessie
+    image: mongo:3.6.18-xenial
     container_name: ca-mongo
     restart: unless-stopped
     volumes:
@@ -10,7 +10,7 @@ services:
     logging:
       driver: none
   idxMongo:
-    image: mongo:3.4.19-jessie
+    image: mongo:3.6.18-xenial
     container_name: ca-idx
     logging:
       driver: none
@@ -27,7 +27,7 @@ services:
     depends_on:
       - "mongo"
     ports:
-      - "4010:8010"
+      - "4010:4010"
     container_name: ca-back
     volumes:
       - ./config/login.html:/root/src/static/login.html

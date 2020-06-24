@@ -2,7 +2,7 @@ version: '3'
 
 services:
   mongo:
-    image: mongo:3.4.19-jessie
+    image: mongo:3.6.18-xenial
     container_name: ca-mongo
     restart: always
     logging:
@@ -10,7 +10,7 @@ services:
     volumes:
       - ./db:/data/db
   idxMongo:
-    image: mongo:3.4.19-jessie
+    image: mongo:3.6.18-xenial
     container_name: ca-idx
     logging:
       driver: none
@@ -18,15 +18,14 @@ services:
       - mongo
     volumes:
       - ./config:/config
-    command:
-      - /config/run_idx.sh
+    command: bash /config/run_idx.sh
     depends_on:
       - mongo
   back:
     build:
-      context: "https://github.com/camicroscope/caracal.git#v3.7.5"
+      context: "https://github.com/camicroscope/caracal.git#v3.7.6"
       args:
-        viewer: "v3.7.5"
+        viewer: "v3.7.6"
     depends_on:
       - "mongo"
     ports:
@@ -47,7 +46,7 @@ services:
     volumes:
       - ./images/:/images/
   loader:
-    build: "https://github.com/camicroscope/SlideLoader.git#v3.7.5"
+    build: "https://github.com/camicroscope/SlideLoader.git#v3.7.6"
     container_name: ca-load
     restart: always
     volumes:
