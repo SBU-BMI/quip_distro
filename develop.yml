@@ -23,6 +23,7 @@ services:
       context: "https://github.com/camicroscope/caracal.git#develop"
       args:
         viewer: "develop"
+        fork: "camicroscope"
     depends_on:
       - "mongo"
     ports:
