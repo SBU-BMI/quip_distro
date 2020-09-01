@@ -1,0 +1,47 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  annotations:
+    kompose.cmd: kompose convert -f quip-pathdb.yml.PRISM -o openshift
+    kompose.version: 1.21.0 (992df58d8)
+  creationTimestamp: null
+  labels:
+    io.kompose.service: heatmaploader
+  name: heatmaploader
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      io.kompose.service: heatmaploader
+  strategy:
+    type: Recreate
+  template:
+    metadata:
+      annotations:
+        kompose.cmd: kompose convert -f quip-pathdb.yml.PRISM -o openshift
+        kompose.version: 1.21.0 (992df58d8)
+      creationTimestamp: null
+      labels:
+        io.kompose.network/my_quip_network: "true"
+        io.kompose.service: heatmaploader
+    spec:
+      containers:
+      - env:
+        - name: DEBIAN_FRONTEND
+          value: noninteractive
+        - name: TZ
+          value: America/New_York
+        image: heatmaploader
+        imagePullPolicy: ""
+        name: quip-hmloader
+        resources: {}
+        volumeMounts:
+        - mountPath: /mnt/data/
+          name: data
+      restartPolicy: Always
+      serviceAccountName: ""
+      volumes:
+      - name: data
+        persistentVolumeClaim:
+          claimName: data
+status: {}

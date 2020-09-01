@@ -1,0 +1,59 @@
+apiVersion: v1
+items:
+- apiVersion: image.openshift.io/v1
+  kind: ImageStream
+  metadata:
+    annotations:
+      openshift.io/generated-by: OpenShiftNewBuild
+    creationTimestamp: null
+    labels:
+      build: quip-iip-img
+    name: quip-iip-img
+  spec:
+    lookupPolicy:
+      local: false
+  status:
+    dockerImageRepository: ""
+- apiVersion: build.openshift.io/v1
+  kind: BuildConfig
+  metadata:
+    annotations:
+      openshift.io/generated-by: OpenShiftNewBuild
+    creationTimestamp: null
+    labels:
+      build: quip-iip-img
+    name: quip-iip-img
+  spec:
+    nodeSelector: null
+    output:
+      to:
+        kind: ImageStreamTag
+        name: quip-iip-img:latest
+    postCommit: {}
+    resources: {}
+    source:
+      git:
+        ref: prism
+        uri: https://github.com/SBU-BMI/iipImage.git
+      type: Git
+    strategy:
+      dockerStrategy:
+        from:
+          kind: ImageStreamTag
+          name: ubuntu:bionic
+          namespace: my-test
+      type: Docker
+    triggers:
+    - github:
+        secret: 6ntgA8o_sg9wV2E0nhYM
+      type: GitHub
+    - generic:
+        secret: UyE5awJtO7eQExhZ3BKy
+      type: Generic
+    - type: ConfigChange
+    - imageChange: {}
+      type: ImageChange
+  status:
+    lastVersion: 0
+kind: List
+metadata: {}

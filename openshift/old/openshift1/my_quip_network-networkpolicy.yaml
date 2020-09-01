@@ -1,0 +1,14 @@
+apiVersion: extensions/v1beta1
+kind: NetworkPolicy
+metadata:
+  creationTimestamp: null
+  name: myquipnet
+spec:
+  ingress:
+  - from:
+    - podSelector:
+        matchLabels:
+          io.kompose.network/myquipnet: "true"
+  podSelector:
+    matchLabels:
+      io.kompose.network/myquipnet: "true"

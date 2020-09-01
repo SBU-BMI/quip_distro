@@ -1,0 +1,59 @@
+apiVersion: v1
+items:
+- apiVersion: image.openshift.io/v1
+  kind: ImageStream
+  metadata:
+    annotations:
+      openshift.io/generated-by: OpenShiftNewBuild
+    creationTimestamp: null
+    labels:
+      build: quip-imageloader-img
+    name: quip-imageloader-img
+  spec:
+    lookupPolicy:
+      local: false
+  status:
+    dockerImageRepository: ""
+- apiVersion: build.openshift.io/v1
+  kind: BuildConfig
+  metadata:
+    annotations:
+      openshift.io/generated-by: OpenShiftNewBuild
+    creationTimestamp: null
+    labels:
+      build: quip-imageloader-img
+    name: quip-imageloader-img
+  spec:
+    nodeSelector: null
+    output:
+      to:
+        kind: ImageStreamTag
+        name: quip-imageloader-img:latest
+    postCommit: {}
+    resources: {}
+    source:
+      git:
+        ref: prism
+        uri: https://github.com/SBU-BMI/ImageLoader.git
+      type: Git
+    strategy:
+      dockerStrategy:
+        from:
+          kind: ImageStreamTag
+          name: ubuntu:18.04
+          namespace: my-test
+      type: Docker
+    triggers:
+    - github:
+        secret: trkW1KGtvjGnRtqFwJJL
+      type: GitHub
+    - generic:
+        secret: qgViZIobwe-fOnjM6LwC
+      type: Generic
+    - type: ConfigChange
+    - imageChange: {}
+      type: ImageChange
+  status:
+    lastVersion: 0
+kind: List
+metadata: {}

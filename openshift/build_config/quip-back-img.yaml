@@ -1,0 +1,59 @@
+apiVersion: v1
+items:
+- apiVersion: image.openshift.io/v1
+  kind: ImageStream
+  metadata:
+    annotations:
+      openshift.io/generated-by: OpenShiftNewBuild
+    creationTimestamp: null
+    labels:
+      build: quip-back-img
+    name: quip-back-img
+  spec:
+    lookupPolicy:
+      local: false
+  status:
+    dockerImageRepository: ""
+- apiVersion: build.openshift.io/v1
+  kind: BuildConfig
+  metadata:
+    annotations:
+      openshift.io/generated-by: OpenShiftNewBuild
+    creationTimestamp: null
+    labels:
+      build: quip-back-img
+    name: quip-back-img
+  spec:
+    nodeSelector: null
+    output:
+      to:
+        kind: ImageStreamTag
+        name: quip-back-img:latest
+    postCommit: {}
+    resources: {}
+    source:
+      git:
+        ref: prism
+        uri: https://github.com/SBU-BMI/caracal.git
+      type: Git
+    strategy:
+      dockerStrategy:
+        from:
+          kind: ImageStreamTag
+          name: node:12-alpine
+          namespace: my-test
+      type: Docker
+    triggers:
+    - github:
+        secret: G8yJD6XrvRvUeMqWa6ex
+      type: GitHub
+    - generic:
+        secret: AwN8nCmfU9g-8wdmlDsb
+      type: Generic
+    - type: ConfigChange
+    - imageChange: {}
+      type: ImageChange
+  status:
+    lastVersion: 0
+kind: List
+metadata: {}

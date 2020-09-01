@@ -4,23 +4,21 @@ services:
   mongo:
     build: "https://github.com/SBU-BMI/quip_featuredb.git#prism"
     container_name: ca-mongo
-    restart: unless-stopped
+    restart: always
     volumes:
       - db:/mongodb/db
+    ports: ["27017:27017"]
     user: "2001:0"
     logging:
       driver: none
-    networks:
-      - my_quip_network
   iip:
     build: "https://github.com/SBU-BMI/iipImage.git#prism"
     container_name: ca-iip
-    restart: unless-stopped
+    restart: always
     volumes:
-      - images:/data/images/
+      - data:/data/
+    ports: ["80:8080","443:8443"]
     user: "2001:0"
-    networks:
-      - my_quip_network
   back:
     build:
       context: "https://github.com/SBU-BMI/caracal.git#prism"
@@ -32,7 +30,7 @@ services:
       - "4010:4010"
     container_name: ca-security
     volumes:
-      - ./keys/:/root/src/keys/
+      - keys:/root/src/keys/
     user: "2001:0"
     environment:
       JWK_URL: "https://www.googleapis.com/oauth2/v3/certs"
@@ -40,35 +38,27 @@ services:
       MONGO_URI: "mongodb://ca-mongo"
       DEFAULT_USER_TYPE: "Editor"
       DISABLE_SEC: "true"
-    networks:
-      - my_quip_network
   pathdb:
     build:
       context: "https://github.com/SBU-BMI/PathDB.git#prism"
       args:
         viewer: "v3.7.7"
     container_name: quip-pathdb
-    restart: unless-stopped
+    restart: always
     ports: ["443:8443","80:8080"]
     volumes:
       - data:/data/
-      - images:/data/pathdb/files/wsi
     user: "2001:0"
     command:
       - /config/pathdb_pre.sh
-    networks:
-      - my_quip_network
   imageloader:
     build: "https://github.com/SBU-BMI/ImageLoader.git#prism"
     container_name: quip-imageloader
     user: "2001:0"
     volumes:
       - data:/data/
-      - images:/data/images
     depends_on:
       - pathdb
-    networks:
-      - my_quip_network
   segloader:
     build: "https://github.com/SBU-BMI/SegmentationLoader.git#prism"
     container_name: quip-segloader
@@ -77,8 +67,6 @@ services:
       - data:/data
     depends_on:
       - pathdb
-    networks:
-      - my_quip_network
   heatmaploader:
     build: "https://github.com/SBU-BMI/uploadHeatmaps.git#prism"
     container_name: quip-hmloader
@@ -90,16 +78,12 @@ services:
     environment:
       - TZ=America/New_York
       - DEBIAN_FRONTEND=noninteractive
-    networks:
-      - my_quip_network
 
 volumes:
     db:
       external: true
-    images:
-      external: true
     data:
       external: true
+    keys:
+      external: true
 
-networks:
-   my_quip_network:
