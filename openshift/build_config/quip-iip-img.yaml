@@ -30,7 +30,13 @@ items:
         kind: ImageStreamTag
         name: quip-iip-img:latest
     postCommit: {}
-    resources: {}
+    resources: 
+      limits:
+        cpu: 400m
+        memory: 800Mi
+      requests:
+        cpu: 200m
+        memory: 400Mi
     source:
       git:
         ref: prism
@@ -53,6 +59,11 @@ items:
     - type: ConfigChange
     - imageChange: {}
       type: ImageChange
+    logging:
+      log-driver: "json-file"
+      log-opts: 
+        max-size: "100m"
+        max-file: "5"
   status:
     lastVersion: 0
 kind: List

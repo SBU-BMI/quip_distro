@@ -7,7 +7,7 @@ metadata:
   creationTimestamp: null
   labels:
     io.kompose.service: pathdb
-  name: pathdb
+  name: quip-pathdb
 spec:
   ports:
   - name: "443"
@@ -15,6 +15,9 @@ spec:
     targetPort: 8443
   - name: "80"
     port: 80
+    targetPort: 8080
+  - name: "8080"
+    port: 8080
     targetPort: 8080
   selector:
     io.kompose.service: pathdb

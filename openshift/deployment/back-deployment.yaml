@@ -13,8 +13,6 @@ spec:
   selector:
     matchLabels:
       io.kompose.service: back
-  strategy:
-    type: Recreate
   template:
     metadata:
       annotations:

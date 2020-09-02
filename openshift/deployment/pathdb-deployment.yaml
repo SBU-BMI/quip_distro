@@ -13,8 +13,6 @@ spec:
   selector:
     matchLabels:
       io.kompose.service: pathdb
-  strategy:
-    type: Recreate
   template:
     metadata:
       annotations:
@@ -27,7 +25,7 @@ spec:
       containers:
       - args:
         - /config/pathdb_pre.sh
-        image: pathdb
+        image: docker-registry.default.svc:5000/my-test/pathdb
         imagePullPolicy: ""
         name: quip-pathdb
         ports:

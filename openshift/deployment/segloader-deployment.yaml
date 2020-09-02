@@ -13,8 +13,6 @@ spec:
   selector:
     matchLabels:
       io.kompose.service: segloader
-  strategy:
-    type: Recreate
   template:
     metadata:
       annotations:
@@ -25,7 +23,7 @@ spec:
         io.kompose.service: segloader
     spec:
       containers:
-      - image: segloader
+      - image: docker-registry.default.svc:5000/my-test/segloader:latest
         imagePullPolicy: ""
         name: quip-segloader
         resources: {}
