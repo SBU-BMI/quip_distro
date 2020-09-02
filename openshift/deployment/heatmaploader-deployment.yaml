@@ -30,7 +30,7 @@ spec:
           value: noninteractive
         - name: TZ
           value: America/New_York
-        image: heatmaploader
+        image: docker-registry.default.svc:5000/my-test/heatmaploader
         imagePullPolicy: ""
         name: quip-hmloader
         resources: {}
