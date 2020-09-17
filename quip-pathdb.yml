@@ -21,16 +21,16 @@ services:
     depends_on:
       - mongo
   iip:
-    build: "https://github.com/camicroscope/iipImage.git#v3.2.0"
+    image: camicroscope/iipimage:latest
     container_name: ca-iip
     restart: unless-stopped
     volumes:
       - ./images/:/data/images/
   back:
     build:
-      context: "https://github.com/camicroscope/caracal.git#v3.7.7"
+      context: "https://github.com/camicroscope/caracal.git#v3.8.0"
       args:
-        viewer: "v3.7.7"
+        viewer: "v3.8.0"
     depends_on:
       - "mongo"
     ports:
@@ -38,6 +38,7 @@ services:
     container_name: ca-security
     volumes:
       - ./keys/:/root/src/keys/
+      - ./config/routes.json:/root/src/routes.json
     environment:
       JWK_URL: "https://www.googleapis.com/oauth2/v3/certs"
       IIP_PATH: "http://ca-iip/fcgi-bin/iipsrv.fcgi"
@@ -48,7 +49,7 @@ services:
     build:
       context: "https://github.com/SBU-BMI/PathDB.git#1.3.5"
       args:
-        viewer: "v3.7.7"
+        viewer: "v3.8.0"
     container_name: quip-pathdb
     restart: unless-stopped
     ports: ["443:443","80:80"]

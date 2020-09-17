@@ -1,0 +1,401 @@
+[
+  {
+    "method":"static",
+    "use":"static"
+  },{
+    "method":"static",
+    "use":"camicroscope"
+  },
+
+  {
+    "method":"use",
+    "route": "/loader/",
+    "handlers":[
+      {"function": "loginHandler", "args":[]},
+      {"function":"permissionHandler", "args": [["Admin", "Editor"]]}
+    ]
+  },{
+    "method":"use",
+    "route": "/loader/slide/delete",
+    "handlers":[
+      {"function":"permissionHandler", "args": [["Admin"]]}
+    ]
+  },{
+    "method":"use",
+    "route": "/loader/",
+    "handlers":[
+      {"function":"proxyHandler", "args": ["http://ca-load:4000/"]}
+    ]
+  },
+
+  {
+    "method":"use",
+    "route": "/img/IIP/raw/",
+    "handlers":[
+      {"function": "loginHandler", "args":[]},
+      {"function":"iipHandler", "args": []}
+    ]
+  },
+
+  {
+    "route":"/data",
+    "method":"use",
+    "handlers":[
+      {"function":"loginHandler", "args": []},
+      {"function":"sanitizeBody", "args": []}
+    ]
+  },
+
+  {
+    "route":"/data/Slide/find",
+    "method":"get",
+    "handlers":[
+      {"function":"mongoFind", "args": ["camic", "slide"]},
+      {"function":"filterHandler", "args": ["data", "userFilter", "filter"]}
+    ]
+  },{
+    "route":"/data/Slide/post",
+    "method":"post",
+    "handlers":[
+      {"function":"permissionHandler", "args": [["Admin", "Editor"]]},
+      {"function":"mongoAdd", "args": ["camic", "slide"]}
+    ]
+  },{
+    "route":"/data/Slide/delete",
+    "method":"delete",
+    "handlers":[
+      {"function":"permissionHandler", "args": [["Admin", "Editor"]]},
+      {"function":"mongoFind", "args": ["camic", "slide"]},
+      {"function":"editHandler", "args": ["data", "userFilter", "filter"]},
+      {"function":"mongoDelete", "args": ["camic", "slide"]}
+    ]
+  },{
+    "route":"/data/Slide/update",
+    "method":"post",
+    "handlers":[
+      {"function":"permissionHandler", "args": [["Admin", "Editor"]]},
+      {"function":"mongoFind", "args": ["camic", "slide"]},
+      {"function":"editHandler", "args": ["data", "userFilter", "filter"]},
+      {"function":"mongoUpdate", "args": ["camic", "slide"]}
+    ]
+  },
+
+  {
+    "route":"/data/Request/find",
+    "method":"get",
+    "handlers":[
+      {"function":"permissionHandler", "args": [["Editor", "Admin"]]},
+      {"function":"mongoFind", "args": ["camic", "request"]}
+    ]
+  },{
+    "route":"/data/Request/post",
+    "method":"post",
+    "handlers":[
+      {"function":"mongoAdd", "args": ["camic", "request"]}
+    ]
+  },{
+    "route":"/data/Request/delete",
+    "method":"delete",
+    "handlers":[
+      {"function":"permissionHandler", "args": [["Editor", "Admin"]]},
+      {"function":"mongoFind", "args": ["camic", "request"]},
+      {"function":"editHandler", "args": ["data", "userFilter", "filter"]},
+      {"function":"mongoDelete", "args": ["camic", "request"]}
+    ]
+  },
+
+  {
+    "route":"/data/Mark/find",
+    "method":"get",
+    "handlers":[
+      {"function":"mongoFind", "args": ["camic", "mark"]}
+    ]
+  },{
+    "route":"/data/Mark/post",
+    "method":"post",
+    "handlers":[
+      {"function":"permissionHandler", "args": [["Admin", "Editor"]]},
+      {"function":"mongoAdd", "args": ["camic", "mark"]}
+    ]
+  },{
+    "route":"/data/Mark/delete",
+    "method":"delete",
+    "handlers":[
+      {"function":"mongoFind", "args": ["camic", "mark"]},
+      {"function":"editHandler", "args": ["data"]},
+      {"function":"permissionHandler", "args": [["Admin", "Editor"]]},
+      {"function":"mongoDelete", "args": ["camic", "mark"]}
+    ]
+  },{
+    "route":"/data/Mark/update",
+    "method":"post",
+    "handlers":[
+      {"function":"mongoFind", "args": ["camic", "mark"]},
+      {"function":"editHandler", "args": ["data"]},
+      {"function":"permissionHandler", "args": [["Admin", "Editor"]]},
+      {"function":"mongoUpdate", "args": ["camic", "mark"]}
+    ]
+  },{
+    "route":"/data/Mark/types",
+    "method":"get",
+    "handlers":[
+      {"function":"mongoDistinct", "args": ["camic", "mark", "provenance.analysis"]}
+    ]
+  },{
+    "route":"/data/Mark/multi",
+    "method":"get",
+    "handlers":[
+      {"function":"markMulti", "args": []}
+    ]
+  },{
+    "route":"/data/Mark/spatial",
+    "method":"get",
+    "handlers":[
+      {"function":"markSpatial", "args": []}
+    ]
+  },{
+    "route":"/data/Mark/findMarkTypes",
+    "method":"get",
+    "handlers":[
+      {"function":"findMarkTypes", "args": []}
+    ]
+  },{
+    "route":"/data/Presetlabels/add",
+    "method":"post",
+    "handlers":[
+      {"function":"addPresetlabels", "args": []}
+    ]
+  },{
+    "route":"/data/Presetlabels/update",
+    "method":"post",
+    "handlers":[
+      {"function":"updatePresetlabels", "args": []}
+    ]
+  },{
+    "route":"/data/Presetlabels/remove",
+    "method":"post",
+    "handlers":[
+      {"function":"removePresetlabels", "args": []}
+    ]
+  },
+  {
+    "route":"/data/Template/find",
+    "method":"get",
+    "handlers":[
+      {"function":"mongoFind", "args": ["camic", "template"]}
+    ]
+  },{
+    "route":"/data/Template/post",
+    "method":"post",
+    "handlers":[
+      {"function":"permissionHandler", "args": [["Admin", "Editor"]]},
+      {"function":"mongoAdd", "args": ["camic", "template"]}
+    ]
+  },{
+    "route":"/data/Template/delete",
+    "method":"delete",
+    "handlers":[
+      {"function":"permissionHandler", "args": [["Admin", "Editor"]]},
+      {"function":"mongoDelete", "args": ["camic", "template"]}
+    ]
+  },{
+    "route":"/data/Template/update",
+    "method":"post",
+    "handlers":[
+      {"function":"permissionHandler", "args": [["Admin"]]},
+      {"function":"mongoUpdate", "args": ["camic", "template"]}
+    ]
+  },
+
+  {
+    "route":"/data/Heatmap/find",
+    "method":"get",
+    "handlers":[
+      {"function":"mongoFind", "args": ["camic", "heatmap"]}
+    ]
+  },{
+    "route":"/data/Heatmap/types",
+    "method":"get",
+    "handlers":[
+      {"function":"heatmapTypes", "args": []}
+    ]
+  },{
+    "route":"/data/Heatmap/post",
+    "method":"post",
+    "handlers":[
+      {"function":"permissionHandler", "args": [["Admin", "Editor"]]},
+      {"function":"mongoAdd", "args": ["camic", "heatmap"]}
+    ]
+  },{
+    "route":"/data/Heatmap/delete",
+    "method":"delete",
+    "handlers":[
+      {"function":"mongoFind", "args": ["camic", "heatmap"]},
+      {"function":"editHandler", "args": ["data"]},
+      {"function":"permissionHandler", "args": [["Admin", "Editor"]]},
+      {"function":"mongoDelete", "args": ["camic", "heatmap"]}
+    ]
+  },{
+    "route":"/data/Heatmap/update",
+    "method":"post",
+    "handlers":[
+      {"function":"mongoFind", "args": ["camic", "heatmap"]},
+      {"function":"editHandler", "args": ["data"]},
+      {"function":"permissionHandler", "args": [["Admin", "Editor"]]},
+      {"function":"mongoUpdate", "args": ["camic", "heatmap"]}
+    ]
+  },
+
+  {
+    "route":"/data/HeatmapEdit/find",
+    "method":"get",
+    "handlers":[
+      {"function":"mongoFind", "args": ["camic", "heatmapEdit"]}
+    ]
+  },{
+    "route":"/data/HeatmapEdit/post",
+    "method":"post",
+    "handlers":[
+      {"function":"permissionHandler", "args": [["Admin", "Editor"]]},
+      {"function":"mongoAdd", "args": ["camic", "heatmapEdit"]}
+    ]
+  },{
+    "route":"/data/HeatmapEdit/delete",
+    "method":"delete",
+    "handlers":[
+      {"function":"mongoFind", "args": ["camic", "heatmap"]},
+      {"function":"editHandler", "args": ["data"]},
+      {"function":"permissionHandler", "args": [["Admin", "Editor"]]},
+      {"function":"mongoDelete", "args": ["camic", "heatmapEdit"]}
+    ]
+  },{
+    "route":"/data/HeatmapEdit/update",
+    "method":"post",
+    "handlers":[
+      {"function":"mongoFind", "args": ["camic", "heatmap"]},
+      {"function":"editHandler", "args": ["data"]},
+      {"function":"permissionHandler", "args": [["Admin", "Editor"]]},
+      {"function":"mongoUpdate", "args": ["camic", "heatmapEdit"]}
+    ]
+  },
+
+  {
+    "route":"/data/Log/find",
+    "method":"get",
+    "handlers":[
+      {"function":"mongoFind", "args": ["camic", "log"]}
+    ]
+  },{
+    "route":"/data/Log/post",
+    "method":"post",
+    "handlers":[
+      {"function":"mongoAdd", "args": ["camic", "log"]}
+    ]
+  },{
+    "route":"/data/Log/delete",
+    "method":"delete",
+    "handlers":[
+      {"function":"permissionHandler", "args": [["Admin", "Editor"]]},
+      {"function":"mongoDelete", "args": ["camic", "log"]}
+    ]
+  },{
+    "route":"/data/Log/update",
+    "method":"post",
+    "handlers":[
+      {"function":"permissionHandler", "args": [["Admin", "Editor"]]},
+      {"function":"mongoUpdate", "args": ["camic", "log"]}
+    ]
+  },
+
+  {
+    "route":"/data/Configuration/find",
+    "method":"get",
+    "handlers":[
+      {"function":"mongoFind", "args": ["camic", "configuration"]}
+    ]
+  },{
+    "route":"/data/Configuration/post",
+    "method":"post",
+    "handlers":[
+      {"function":"permissionHandler", "args": [["Admin", "Editor"]]},
+      {"function":"mongoAdd", "args": ["camic", "configuration"]}
+    ]
+  },{
+    "route":"/data/Configuration/delete",
+    "method":"delete",
+    "handlers":[
+      {"function":"permissionHandler", "args": [["Admin", "Editor"]]},
+      {"function":"mongoDelete", "args": ["camic", "configuration"]}
+    ]
+  },{
+    "route":"/data/Configuration/update",
+    "method":"post",
+    "handlers":[
+      {"function":"permissionHandler", "args": [["Admin", "Editor"]]},
+      {"function":"mongoUpdate", "args": ["camic", "configuration"]}
+    ]
+  },
+
+  {
+    "route":"/data/User/find",
+    "method":"get",
+    "handlers":[
+      {"function":"mongoFind", "args": ["camic", "user"]}
+    ]
+  },{
+    "route":"/data/User/post",
+    "method":"post",
+    "handlers":[
+      {"function":"permissionHandler", "args": [["Admin"]]},
+      {"function":"mongoAdd", "args": ["camic", "user"]}
+    ]
+  },{
+    "route":"/data/User/delete",
+    "method":"delete",
+    "handlers":[
+      {"function":"permissionHandler", "args": [["Admin"]]},
+      {"function":"mongoDelete", "args": ["camic", "user"]}
+    ]
+  },{
+    "route":"/data/User/update",
+    "method":"post",
+    "handlers":[
+      {"function":"permissionHandler", "args": [["Admin"]]},
+      {"function":"mongoUpdate", "args": ["camic", "user"]}
+    ]
+  },{
+    "route":"/data/User/wcido",
+    "method":"get",
+    "handlers":[
+      {"function":"wcido", "args": []}
+    ]
+  },{
+    "route":"/workbench/uploadDataset",
+    "method":"post",
+    "handlers":[
+      {"function":"permissionHandler", "args": [["Admin", "Editor"]]},
+      {"function":"getDataset", "args": []}
+    ]
+  },{
+    "route":"/workbench/trainModel",
+    "method":"post",
+    "handlers":[
+      {"function":"permissionHandler", "args": [["Admin", "Editor"]]},
+      {"function":"trainModel", "args": []}
+    ]
+  },{
+    "route":"/workbench/deleteUserData",
+    "method":"post",
+    "handlers":[
+      {"function":"permissionHandler", "args": [["Admin", "Editor"]]},
+      {"function":"deleteDataset", "args": []}
+    ]
+  },{
+    "route":"/workbench/modelDownload",
+    "method":"post",
+    "handlers":[
+      {"function":"permissionHandler", "args": [["Admin", "Editor"]]},
+      {"function":"sendTrainedModel", "args": []}
+    ]
+  }
+]

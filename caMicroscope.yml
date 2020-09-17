@@ -23,9 +23,9 @@ services:
       - mongo
   back:
     build:
-      context: "https://github.com/camicroscope/caracal.git#v3.7.7"
+      context: "https://github.com/camicroscope/caracal.git#v3.8.0"
       args:
-        viewer: "v3.7.7"
+        viewer: "v3.8.0"
     depends_on:
       - "mongo"
     ports:
@@ -35,6 +35,7 @@ services:
     volumes:
       - ./config/login.html:/root/src/static/login.html
       - ./jwt_keys/:/root/src/keys/
+      - ./config/routes.json:/root/src/routes.json
     environment:
       JWK_URL: "https://www.googleapis.com/oauth2/v3/certs"
       IIP_PATH: "http://ca-iip/fcgi-bin/iipsrv.fcgi"
@@ -46,7 +47,7 @@ services:
     volumes:
       - ./images/:/images/
   loader:
-    build: "https://github.com/camicroscope/SlideLoader.git#v3.7.6"
+    build: "https://github.com/camicroscope/SlideLoader.git#v3.8.0"
     container_name: ca-load
     restart: always
     volumes:
