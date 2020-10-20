@@ -23,7 +23,7 @@ spec:
         io.kompose.service: iip
     spec:
       containers:
-      - image: docker-registry.default.svc:5000/my-test/iip
+      - image: iip:latest
         imagePullPolicy: ""
         name: ca-iip
         ports:

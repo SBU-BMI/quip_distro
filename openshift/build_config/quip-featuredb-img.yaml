@@ -5,30 +5,25 @@ items:
   metadata:
     annotations:
       openshift.io/generated-by: OpenShiftNewBuild
-    creationTimestamp: null
     labels:
       build: quip-featuredb-img
-    name: quip-featuredb-img
+    name: featuredb
   spec:
     lookupPolicy:
       local: false
-  status:
-    dockerImageRepository: ""
 - apiVersion: build.openshift.io/v1
   kind: BuildConfig
   metadata:
     annotations:
       openshift.io/generated-by: OpenShiftNewBuild
-    creationTimestamp: null
     labels:
       build: quip-featuredb-img
-    name: quip-featuredb-img
+    name: featuredb 
   spec:
-    nodeSelector: null
     output:
       to:
         kind: ImageStreamTag
-        name: quip-featuredb-img:latest
+        name: featuredb:latest
     postCommit: {}
     resources: {}
     source:
@@ -38,22 +33,6 @@ items:
       type: Git
     strategy:
       dockerStrategy:
-        from:
-          kind: ImageStreamTag
-          name: mongo:3.6.18-xenial
-          namespace: my-test
       type: Docker
-    triggers:
-    - github:
-        secret: e9ZBK4w3F8GMNlWqjnkM
-      type: GitHub
-    - generic:
-        secret: QY1ZH7We-RN_0v_CNMhG
-      type: Generic
-    - type: ConfigChange
-    - imageChange: {}
-      type: ImageChange
-  status:
-    lastVersion: 0
 kind: List
 metadata: {}

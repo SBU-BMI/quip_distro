@@ -25,7 +25,7 @@ spec:
       containers:
       - args:
         - /config/pathdb_pre.sh
-        image: docker-registry.default.svc:5000/my-test/pathdb
+        image: pathdb:latest
         imagePullPolicy: ""
         name: quip-pathdb
         ports:

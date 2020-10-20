@@ -5,38 +5,26 @@ items:
   metadata:
     annotations:
       openshift.io/generated-by: OpenShiftNewBuild
-    creationTimestamp: null
     labels:
       build: quip-iip-img
-    name: quip-iip-img
+    name: iip
   spec:
     lookupPolicy:
       local: false
-  status:
-    dockerImageRepository: ""
 - apiVersion: build.openshift.io/v1
   kind: BuildConfig
   metadata:
     annotations:
       openshift.io/generated-by: OpenShiftNewBuild
-    creationTimestamp: null
     labels:
       build: quip-iip-img
-    name: quip-iip-img
+    name: iip
   spec:
-    nodeSelector: null
     output:
       to:
         kind: ImageStreamTag
-        name: quip-iip-img:latest
+        name: iip:latest
     postCommit: {}
-    resources: 
-      limits:
-        cpu: 400m
-        memory: 800Mi
-      requests:
-        cpu: 200m
-        memory: 400Mi
     source:
       git:
         ref: prism
@@ -44,27 +32,6 @@ items:
       type: Git
     strategy:
       dockerStrategy:
-        from:
-          kind: ImageStreamTag
-          name: ubuntu:bionic
-          namespace: my-test
       type: Docker
-    triggers:
-    - github:
-        secret: 6ntgA8o_sg9wV2E0nhYM
-      type: GitHub
-    - generic:
-        secret: UyE5awJtO7eQExhZ3BKy
-      type: Generic
-    - type: ConfigChange
-    - imageChange: {}
-      type: ImageChange
-    logging:
-      log-driver: "json-file"
-      log-opts: 
-        max-size: "100m"
-        max-file: "5"
-  status:
-    lastVersion: 0
 kind: List
 metadata: {}

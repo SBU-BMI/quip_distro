@@ -1,0 +1,35 @@
+apiVersion: v1
+kind: List
+metadata: {}
+items:
+- apiVersion: build.openshift.io/v1
+  kind: BuildConfig
+  metadata:
+    labels:
+      build: caracal
+    name: caracal
+    namespace: build-test
+  spec:
+    output:
+      to:
+        kind: ImageStreamTag
+        name: 'back:latest'
+    postCommit: {}
+    resources: {}
+    runPolicy: Serial
+    source:
+      git:
+        ref: prism
+        uri: 'https://github.com/SBU-BMI/caracal.git'
+      type: Git
+    strategy:
+      dockerStrategy:
+      type: Docker
+- apiVersion: image.openshift.io/v1
+  kind: ImageStream
+  metadata:
+    name: back
+    namespace: build-test
+  spec:
+    lookupPolicy:
+      local: false

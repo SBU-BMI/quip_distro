@@ -5,30 +5,25 @@ items:
   metadata:
     annotations:
       openshift.io/generated-by: OpenShiftNewBuild
-    creationTimestamp: null
     labels:
       build: quip-heatmaploader-img
-    name: quip-heatmaploader-img
+    name: heatmaploader
   spec:
     lookupPolicy:
       local: false
-  status:
-    dockerImageRepository: ""
 - apiVersion: build.openshift.io/v1
   kind: BuildConfig
   metadata:
     annotations:
       openshift.io/generated-by: OpenShiftNewBuild
-    creationTimestamp: null
     labels:
       build: quip-heatmaploader-img
-    name: quip-heatmaploader-img
+    name: heatmaploader
   spec:
-    nodeSelector: null
     output:
       to:
         kind: ImageStreamTag
-        name: quip-heatmaploader-img:latest
+        name: heatmaploader:latest
     postCommit: {}
     resources: {}
     source:
@@ -38,22 +33,6 @@ items:
       type: Git
     strategy:
       dockerStrategy:
-        from:
-          kind: ImageStreamTag
-          name: ubuntu:bionic
-          namespace: my-test
       type: Docker
-    triggers:
-    - github:
-        secret: k020L7BcJDxXppuzSYkZ
-      type: GitHub
-    - generic:
-        secret: yietnvOpKN7qI2tRFiPR
-      type: Generic
-    - type: ConfigChange
-    - imageChange: {}
-      type: ImageChange
-  status:
-    lastVersion: 0
 kind: List
 metadata: {}

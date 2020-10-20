@@ -34,7 +34,7 @@ spec:
           value: https://www.googleapis.com/oauth2/v3/certs
         - name: MONGO_URI
           value: mongodb://ca-mongo
-        image: docker-registry.default.svc:5000/my-test/back
+        image: back:latest
         imagePullPolicy: ""
         name: ca-security
         ports:

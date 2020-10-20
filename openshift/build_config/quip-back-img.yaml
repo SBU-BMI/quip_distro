@@ -5,30 +5,26 @@ items:
   metadata:
     annotations:
       openshift.io/generated-by: OpenShiftNewBuild
-    creationTimestamp: null
     labels:
       build: quip-back-img
-    name: quip-back-img
+    name: back
   spec:
     lookupPolicy:
       local: false
-  status:
-    dockerImageRepository: ""
 - apiVersion: build.openshift.io/v1
   kind: BuildConfig
   metadata:
     annotations:
       openshift.io/generated-by: OpenShiftNewBuild
-    creationTimestamp: null
     labels:
       build: quip-back-img
-    name: quip-back-img
+    name: back
   spec:
     nodeSelector: null
     output:
       to:
         kind: ImageStreamTag
-        name: quip-back-img:latest
+        name: back:latest
     postCommit: {}
     resources: {}
     source:
@@ -38,22 +34,6 @@ items:
       type: Git
     strategy:
       dockerStrategy:
-        from:
-          kind: ImageStreamTag
-          name: node:12-alpine
-          namespace: my-test
       type: Docker
-    triggers:
-    - github:
-        secret: G8yJD6XrvRvUeMqWa6ex
-      type: GitHub
-    - generic:
-        secret: AwN8nCmfU9g-8wdmlDsb
-      type: Generic
-    - type: ConfigChange
-    - imageChange: {}
-      type: ImageChange
-  status:
-    lastVersion: 0
 kind: List
 metadata: {}

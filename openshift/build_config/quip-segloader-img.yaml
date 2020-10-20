@@ -5,30 +5,25 @@ items:
   metadata:
     annotations:
       openshift.io/generated-by: OpenShiftNewBuild
-    creationTimestamp: null
     labels:
       build: quip-segloader-img
-    name: quip-segloader-img
+    name: segloader
   spec:
     lookupPolicy:
       local: false
-  status:
-    dockerImageRepository: ""
 - apiVersion: build.openshift.io/v1
   kind: BuildConfig
   metadata:
     annotations:
       openshift.io/generated-by: OpenShiftNewBuild
-    creationTimestamp: null
     labels:
       build: quip-segloader-img
-    name: quip-segloader-img
+    name: segloader
   spec:
-    nodeSelector: null
     output:
       to:
         kind: ImageStreamTag
-        name: quip-segloader-img:latest
+        name: segloader:latest
     postCommit: {}
     resources: {}
     source:
@@ -38,22 +33,6 @@ items:
       type: Git
     strategy:
       dockerStrategy:
-        from:
-          kind: ImageStreamTag
-          name: mongo:3.6
-          namespace: my-test
       type: Docker
-    triggers:
-    - github:
-        secret: _E0ASWErB5RI7icDuilA
-      type: GitHub
-    - generic:
-        secret: nTnAewd6EtZQ_8a_-i6M
-      type: Generic
-    - type: ConfigChange
-    - imageChange: {}
-      type: ImageChange
-  status:
-    lastVersion: 0
 kind: List
 metadata: {}

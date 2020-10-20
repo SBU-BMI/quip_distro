@@ -6,13 +6,13 @@ metadata:
     kompose.version: 1.21.0 (992df58d8)
   creationTimestamp: null
   labels:
-    io.kompose.service: mongo
-  name: mongo
+    io.kompose.service: back
+  name: back
 spec:
   replicas: 1
   selector:
     matchLabels:
-      io.kompose.service: mongo
+      io.kompose.service: back
   template:
     metadata:
       annotations:
@@ -20,22 +20,33 @@ spec:
         kompose.version: 1.21.0 (992df58d8)
       creationTimestamp: null
       labels:
-        io.kompose.service: featuredb 
+        io.kompose.service: back
     spec:
       containers:
-      - image: featuredb:latest
+      - env:
+        - name: DEFAULT_USER_TYPE
+          value: Editor
+        - name: DISABLE_SEC
+          value: "true"
+        - name: IIP_PATH
+          value: http://ca-iip:8080/fcgi-bin/iipsrv.fcgi
+        - name: JWK_URL
+          value: https://www.googleapis.com/oauth2/v3/certs
+        - name: MONGO_URI
+          value: mongodb://ca-mongo
+        image: docker-registry.default.svc:5000/build-test/back:latest
         imagePullPolicy: ""
-        name: ca-mongo
+        name: ca-security
         ports:
-        - containerPort: 27017
+        - containerPort: 4010
         resources: {}
         volumeMounts:
-        - mountPath: /mongodb/db
-          name: db
+        - mountPath: /root/src/keys/
+          name: keys
       restartPolicy: Always
       serviceAccountName: ""
       volumes:
-      - name: db
+      - name: keys
         persistentVolumeClaim:
-          claimName: db
+          claimName: keys
 status: {}
