@@ -5,15 +5,11 @@ services:
     image: mongo:3.6.18-xenial
     container_name: ca-mongo
     restart: always
-    logging:
-      driver: none
     volumes:
       - ./db:/data/db
   idxMongo:
     image: mongo:3.6.18-xenial
     container_name: ca-idx
-    logging:
-      driver: none
     links:
       - mongo
     volumes:
@@ -23,9 +19,9 @@ services:
       - mongo
   back:
     build:
-      context: "https://github.com/camicroscope/caracal.git#v3.8.0"
+      context: "https://github.com/camicroscope/caracal.git#v3.8.2"
       args:
-        viewer: "v3.8.1"
+        viewer: "v3.8.2"
     depends_on:
       - "mongo"
     ports:

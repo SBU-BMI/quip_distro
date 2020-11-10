@@ -7,13 +7,9 @@ services:
     restart: unless-stopped
     volumes:
       - ./db:/data/db
-    logging:
-      driver: none
   idxMongo:
     image: mongo:3.6.18-xenial
     container_name: ca-idx
-    logging:
-      driver: none
     links:
       - mongo
     volumes:
@@ -47,7 +43,5 @@ services:
     image: camicroscope/slideloader:latest
     container_name: ca-load
     restart: unless-stopped
-    logging:
-      driver: none
     volumes:
       - ./images/:/images/

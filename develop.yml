@@ -4,8 +4,6 @@ services:
   mongo:
     image: mongo:3.6.18-xenial
     container_name: ca-mongo
-    logging:
-      driver: none
     volumes:
       - ./db:/data/db
   idxMongo:

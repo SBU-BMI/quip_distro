@@ -4,6 +4,7 @@ db.mark.createIndex({"provenance.image.slide": 1, "provenance.analysis.execution
 db.mark.createIndex({"provenance.image.slide":1,"provenance.analysis.execution_id":1,"provenance.analysis": 1})
 db.mark.createIndex({"provenance.image.slide":1,"provenance.analysis": 1})
 db.mark.createIndex({"provenance.image.slide": 1, "provenance.analysis.execution_id": 1})
+db.mark.createIndex({"provenance.image.slide": 1, "provenance.analysis.source": 1})
 db.mark.createIndex({"provenance.image.slide": 1})
 db.slide.createIndex({'study':1, 'specimen': 1, 'name': 1})
 db.template.createIndex({'id': 1})
