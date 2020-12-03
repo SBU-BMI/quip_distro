@@ -28,7 +28,7 @@ services:
     build:
       context: "https://github.com/camicroscope/caracal.git#v3.8.2"
       args:
-        viewer: "v3.8.2"
+        viewer: "v3.8.3"
     depends_on:
       - "mongo"
     ports:
@@ -47,7 +47,7 @@ services:
     build:
       context: "https://github.com/SBU-BMI/PathDB.git#1.3.5"
       args:
-        viewer: "v3.8.2"
+        viewer: "v3.8.3"
     container_name: quip-pathdb
     restart: unless-stopped
     ports: ["443:443","80:80"]
@@ -66,12 +66,12 @@ services:
       - ./data:/data/
       - ./images:/data/images
   segloader:
-    build: "https://github.com/SBU-BMI/SegmentationLoader.git#1.0.1"
+    build: "https://github.com/SBU-BMI/SegmentationLoader.git#2.0"
     container_name: quip-segloader
     volumes:
       - ./data:/data
   heatmaploader:
-    build: "https://github.com/SBU-BMI/uploadHeatmaps.git#v1.5.2"
+    build: "https://github.com/SBU-BMI/uploadHeatmaps.git#v1.5.3"
     container_name: quip-hmloader
     volumes:
       - ./data:/mnt/data/
