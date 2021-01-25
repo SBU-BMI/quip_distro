@@ -26,13 +26,13 @@ services:
       - "4010:4010"
     environment:
       JWK_URL: "https://www.googleapis.com/oauth2/v3/certs"
-      IIP_PATH: "http://ca-iip/fcgi-bin/iipsrv.fcgi"
+      IIP_PATH: "http://ca-iip:8080/fcgi-bin/iipsrv.fcgi"
       MONGO_URI: "mongodb://ca-mongo"
     container_name: ca-back
     volumes:
-      - ./config/login.html:/root/src/static/login.html
-      - ./jwt_keys/:/root/src/keys/
-      - ./config/routes.json:/root/src/routes.json
+      - ./config/login.html:/src/static/login.html
+      - ./jwt_keys/:/src/keys/
+      - ./config/routes.json:/src/routes.json
   iip:
     image: camicroscope/iipimage:latest
     container_name: ca-iip

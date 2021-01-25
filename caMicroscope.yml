@@ -5,6 +5,10 @@ services:
     image: mongo:3.6.18-xenial
     container_name: ca-mongo
     restart: always
+    logging:
+      options:
+          max-file: "5"
+          max-size: "10m"
     volumes:
       - ./db:/data/db
   idxMongo:
@@ -15,36 +19,52 @@ services:
     volumes:
       - ./config:/config
     command: bash /config/run_idx.sh
+    logging:
+      options:
+          max-file: "5"
+          max-size: "10m"
     depends_on:
       - mongo
   back:
     build:
-      context: "https://github.com/camicroscope/caracal.git#v3.8.2"
+      context: "https://github.com/camicroscope/caracal.git#v3.8.4"
       args:
-        viewer: "v3.8.3"
+        viewer: "v3.8.4"
     depends_on:
       - "mongo"
     ports:
       - "4010:4010"
     container_name: ca-back
     restart: always
+    logging:
+      options:
+          max-file: "5"
+          max-size: "10m"
     volumes:
-      - ./config/login.html:/root/src/static/login.html
-      - ./jwt_keys/:/root/src/keys/
-      - ./config/routes.json:/root/src/routes.json
+      - ./config/login.html:/src/static/login.html
+      - ./jwt_keys/:/src/keys/
+      - ./config/routes.json:/src/routes.json
     environment:
       JWK_URL: "https://www.googleapis.com/oauth2/v3/certs"
-      IIP_PATH: "http://ca-iip/fcgi-bin/iipsrv.fcgi"
+      IIP_PATH: "http://ca-iip:8080/fcgi-bin/iipsrv.fcgi"
       MONGO_URI: "mongodb://ca-mongo"
   iip:
-    image: camicroscope/iipimage:latest
+    image: camicroscope/iipimage:version-3.8.4
     container_name: ca-iip
+    logging:
+      options:
+          max-file: "5"
+          max-size: "10m"
     restart: always
     volumes:
       - ./images/:/images/
   loader:
-    build: "https://github.com/camicroscope/SlideLoader.git#v3.8.3"
+    build: "https://github.com/camicroscope/SlideLoader.git#v3.8.4"
     container_name: ca-load
     restart: always
+    logging:
+      options:
+          max-file: "5"
+          max-size: "10m"
     volumes:
       - ./images/:/images/

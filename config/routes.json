@@ -26,6 +26,12 @@
     "handlers":[
       {"function":"proxyHandler", "args": ["http://ca-load:4000/"]}
     ]
+  },{
+    "method":"use",
+    "route": "/googleAuth/",
+    "handlers":[
+      {"function":"proxyHandler", "args": ["http://ca-load:4001/"]}
+    ]
   },
 
   {
@@ -308,6 +314,34 @@
   },
 
   {
+    "route":"/data/Freeform/find",
+    "method":"get",
+    "handlers":[
+      {"function":"mongoFind", "args": ["camic", "freeform"]}
+    ]
+  },{
+    "route":"/data/Freeform/post",
+    "method":"post",
+    "handlers":[
+      {"function":"mongoAdd", "args": ["camic", "freeform"]}
+    ]
+  },{
+    "route":"/data/Freeform/delete",
+    "method":"delete",
+    "handlers":[
+      {"function":"permissionHandler", "args": [["Admin", "Editor"]]},
+      {"function":"mongoDelete", "args": ["camic", "freeform"]}
+    ]
+  },{
+    "route":"/data/Freeform/update",
+    "method":"post",
+    "handlers":[
+      {"function":"permissionHandler", "args": [["Admin", "Editor"]]},
+      {"function":"mongoUpdate", "args": ["camic", "freeform"]}
+    ]
+  },
+  
+  {
     "route":"/data/Configuration/find",
     "method":"get",
     "handlers":[
@@ -334,7 +368,34 @@
       {"function":"permissionHandler", "args": [["Admin", "Editor"]]},
       {"function":"mongoUpdate", "args": ["camic", "configuration"]}
     ]
-  },
+  },{
+      "route":"/data/Collection/find",
+      "method":"get",
+      "handlers":[
+        {"function":"mongoFind", "args": ["camic", "collection"]}
+      ]
+    },{
+      "route":"/data/Collection/post",
+      "method":"post",
+      "handlers":[
+        {"function":"permissionHandler", "args": [["Admin", "Editor"]]},
+        {"function":"mongoAdd", "args": ["camic", "collection"]}
+      ]
+    },{
+      "route":"/data/Collection/update",
+      "method":"post",
+      "handlers":[
+        {"function":"permissionHandler", "args": [["Admin", "Editor"]]},
+        {"function":"mongoUpdate", "args": ["camic", "collection"]}
+      ]
+    },{
+      "route":"/data/Collection/delete",
+      "method":"delete",
+      "handlers":[
+        {"function":"permissionHandler", "args": [["Admin", "Editor"]]},
+        {"function":"mongoDelete", "args": ["camic", "collection"]}
+      ]
+    },
 
   {
     "route":"/data/User/find",
