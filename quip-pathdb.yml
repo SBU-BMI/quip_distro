@@ -26,9 +26,9 @@ services:
       - ./images/:/data/images/
   back:
     build:
-      context: "https://github.com/camicroscope/caracal.git#v3.8.4"
+      context: "https://github.com/camicroscope/caracal.git#v3.9.0"
       args:
-        viewer: "v3.8.4"
+        viewer: "v3.9.0"
     depends_on:
       - "mongo"
     ports:
@@ -45,9 +45,9 @@ services:
       DISABLE_SEC: "true"
   pathdb:
     build:
-      context: "https://github.com/SBU-BMI/PathDB.git#1.3.5"
+      context: "https://github.com/SBU-BMI/PathDB.git#1.4.1"
       args:
-        viewer: "v3.8.4"
+        viewer: "v3.9.0"
     container_name: quip-pathdb
     restart: unless-stopped
     ports: ["443:443","80:80"]
@@ -60,7 +60,7 @@ services:
     command:
       - /config/pathdb_pre.sh
   imageloader:
-    build: "https://github.com/SBU-BMI/ImageLoader.git#2.0.3"
+    build: "https://github.com/SBU-BMI/ImageLoader.git#2.1.0"
     container_name: quip-imageloader
     volumes:
       - ./data:/data/

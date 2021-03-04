@@ -149,7 +149,7 @@
     ]
   },{
     "route":"/data/Mark/multi",
-    "method":"get",
+    "method":"post",
     "handlers":[
       {"function":"markMulti", "args": []}
     ]
