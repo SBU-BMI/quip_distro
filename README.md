@@ -33,7 +33,7 @@ back/viewer - within back, viewer files ( see https://github.com/camicroscope/ca
 ## Configuration
 Logging - Container Logging is, for HIPAA reasons, disabled. Feel free to use a different logging engine if desired, especially for development.
 
-See backend and security config notes (here)[https://github.com/camicroscope/caracal]
+See backend and security config notes [here](https://github.com/camicroscope/caracal).
 
 Image Volume - This is, by default, the images directory in this directory. If this is changed, please make the same change across all impacted services.
 
