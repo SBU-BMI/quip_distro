@@ -12,7 +12,7 @@ run with `docker-compose -f caMicroscope.yml up`
 this will build all services and run in the foreground.
 Use `docker-compose -f caMicroscope.yml build` to rebuild the services.
 
-Once everything is up, go to <the host this is running on>:4010/ to see the landing page.
+Once everything is up, go to http://localhost:4010/ to see the landing page.
 
 ## SSL
 To enable ssl, mount the private key and certificate files to the ca-back service in /root/src/ssl/privatekey.pem and /root/src/ssl/certificate.pem respectively. HTTPS mode will only be enabled if both of these files are present.
@@ -31,9 +31,9 @@ back - security, data, and routing (see https://github.com/camicroscope/caracal)
 back/viewer - within back, viewer files ( see https://github.com/camicroscope/caMicroscope)
 
 ## Configuration
-Logging - Container Logging is, for HIPAA reasons, disabled. Feel free to use a different logging engine if desired, especially for development.
+Logging - Logging is enabled by default with a set configurable maximum size. If you need to disable logs, for example due to HIPAA requirements, set the logging driver to none.
 
-See backend and security config notes (here)[https://github.com/camicroscope/caracal]
+See backend and security config notes [here](https://github.com/camicroscope/caracal).
 
 Image Volume - This is, by default, the images directory in this directory. If this is changed, please make the same change across all impacted services.
 

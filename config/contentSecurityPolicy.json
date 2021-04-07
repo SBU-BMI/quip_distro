@@ -1,0 +1,39 @@
+{
+  "defaultSrc": [
+  "'self'"
+],
+"scriptSrc": [
+  "'self'",
+  "'unsafe-inline'",
+  "'unsafe-eval'",
+  "code.jquery.com",
+  "stackpath.bootstrapcdn.com",
+  "apis.google.com",
+  "ajax.googleapis.com",
+  "cdn.jsdelivr.net",
+  "unpkg.com",
+  "http://openseadragon.github.io"
+],
+"styleSrc": [
+  "'self'",
+  "'unsafe-inline'",
+  "fonts.googleapis.com",
+  "use.fontawesome.com",
+  "stackpath.bootstrapcdn.com",
+  "cdnjs.cloudflare.com"
+],
+"fontSrc": [
+  "'self'",
+  "use.fontawesome.com",
+  "fonts.gstatic.com",
+  "cdnjs.cloudflare.com"
+],
+"imgSrc": [
+  "'self'"
+],
+"frameSrc": [
+ "'self'",
+ "accounts.google.com"
+]
+}
+
