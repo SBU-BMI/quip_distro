@@ -29,7 +29,7 @@ services:
     build:
       context: "https://github.com/camicroscope/caracal.git#v3.9.2"
       args:
-        viewer: "v3.9.2"
+        viewer: "v3.9.3"
     depends_on:
       - "mongo"
     ports:
