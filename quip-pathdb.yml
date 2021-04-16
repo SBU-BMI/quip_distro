@@ -72,7 +72,7 @@ services:
     volumes:
       - ./data:/data
   heatmaploader:
-    build: "https://github.com/SBU-BMI/uploadHeatmaps.git#v1.5.3"
+    build: "https://github.com/SBU-BMI/uploadHeatmaps.git#v1.5.4"
     container_name: quip-hmloader
     volumes:
       - ./data:/mnt/data/
