@@ -33,6 +33,41 @@ Clone this repository.
 5) Build with, "docker-compose -f quip-pathdb.yml build"<br>
 6) Run with, "docker-compose -f quip-pathdb.yml up -d"
 
+## Deep learning methods for histopathology image analysis
+
+We have developed a collection of deep learning methods for analysis of whole slide tissue images. The 
+methods include deep learning models for predicting spatial distribution of tumor infiltrating lymphocytes, 
+segmentation and classification of tumor regions, and segmentation of nuclei. 
+
+More information about the deep learning models and links to the code repositories 
+can be found at https://github.com/SBU-BMI/histopathology_analysis 
+
+## Loading images and analysis results to QuIP
+
+### Image loader container
+
+The image loader container is deployed when QuIP is installed. 
+
+Please see README at https://github.com/SBU-BMI/ImageLoader for user instructions to 
+load images to QuIP. 
+
+### Heatmap loader container
+
+Results from the tumor infiltrating lymphocyte analysis methods and the tumor segmentation methods 
+are probability maps. The probability maps can be loaded to QuIP as heatmaps using the heatmap loader 
+container, which is deployed when QuIP is installed. 
+
+Please see README at https://github.com/SBU-BMI/uploadHeatmaps for user instructions to load heatmaps 
+to QuIP. 
+
+### Segmentation results loader container
+
+The segmentation results container is deployed, when QuIP is installed. Nucleus segmentation resuilts can be 
+loaded to QuIP using this container. 
+
+Please see README at https://github.com/SBU-BMI/SegmentationLoader for user instructions to load segmentation 
+results to QuIP. 
+
 ## Support
 Feel free to add any support inquiry as a github issue to this repository. Other feedback can be given via [this form](https://docs.google.com/forms/d/e/1FAIpQLScL91LxrpAZjU88GBZP9gmcdgdf8__uNUwhws2lzU6Lr4qNwA/viewform).
 
