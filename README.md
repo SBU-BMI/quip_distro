@@ -1,6 +1,6 @@
 # QuIP distribution
 
-Running QuIP with PathDB (https://github.com/SBU-BMI/PathDB):
+Installing and running QuIP:
 
 0) place yourself in quip\_distro folder.<br>
 1) copy config/httpd.conf.template to config/httpd.conf<br>
