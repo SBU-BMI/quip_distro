@@ -1,4 +1,4 @@
-# QuIP distribution
+# Quantitative Imaging in Pathology (QuIP) Software Distribution
 
 ## Description
 
