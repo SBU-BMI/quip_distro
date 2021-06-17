@@ -12,3 +12,5 @@ mongo --quiet --host ca-mongo camic /config/default_data.js
 # uncommenting this could be useful for testing
 # mongo --host ca-mongo camic2 /config/test_seed.js
 echo "defaults added"
+mongo --quiet --host ca-mongo /config/admin.js
+echo "preparing for 4.0->4.2 upgrade"

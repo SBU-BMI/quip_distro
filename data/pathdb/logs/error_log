@@ -1,0 +1,279 @@
+[Thu May 06 14:01:56.633543 2021] [proxy:error] [pid 464] (111)Connection refused: AH00957: HTTP: attempt to connect to 172.18.0.9:4010 (ca-security) failed
+[Thu May 06 14:01:56.633615 2021] [proxy:error] [pid 464] AH00959: ap_proxy_connect_backend disabling worker for (ca-security) for 60s
+[Thu May 06 14:01:56.633626 2021] [proxy_http:error] [pid 464] [client 172.18.0.1:43218] AH01114: HTTP: failed to make connection to backend: ca-security, referer: http://localhost/caMicroscope/apps/viewer/viewer.html?slideId=3&mode=pathdb
+[Thu May 06 14:02:36.314538 2021] [proxy:error] [pid 886] (113)No route to host: AH00957: HTTP: attempt to connect to 172.18.0.9:4010 (ca-security) failed
+[Thu May 06 14:02:36.314543 2021] [proxy:error] [pid 839] (113)No route to host: AH00957: HTTP: attempt to connect to 172.18.0.9:4010 (ca-security) failed
+[Thu May 06 14:02:36.314704 2021] [proxy:error] [pid 886] AH00959: ap_proxy_connect_backend disabling worker for (ca-security) for 60s
+[Thu May 06 14:02:36.314746 2021] [proxy:error] [pid 839] AH00959: ap_proxy_connect_backend disabling worker for (ca-security) for 60s
+[Thu May 06 14:02:36.314766 2021] [proxy_http:error] [pid 886] [client 172.18.0.1:43336] AH01114: HTTP: failed to make connection to backend: ca-security, referer: http://localhost/caMicroscope/apps/viewer/viewer.html?slideId=3&mode=pathdb
+[Thu May 06 14:02:36.314774 2021] [proxy_http:error] [pid 839] [client 172.18.0.1:43352] AH01114: HTTP: failed to make connection to backend: ca-security, referer: http://localhost/caMicroscope/apps/viewer/viewer.html?slideId=3&mode=pathdb
+[Thu May 06 14:02:39.386575 2021] [proxy:error] [pid 889] (113)No route to host: AH00957: HTTP: attempt to connect to 172.18.0.9:4010 (ca-security) failed
+[Thu May 06 14:02:39.386615 2021] [proxy:error] [pid 887] (113)No route to host: AH00957: HTTP: attempt to connect to 172.18.0.9:4010 (ca-security) failed
+[Thu May 06 14:02:39.386695 2021] [proxy:error] [pid 889] AH00959: ap_proxy_connect_backend disabling worker for (ca-security) for 60s
+[Thu May 06 14:02:39.386719 2021] [proxy:error] [pid 887] AH00959: ap_proxy_connect_backend disabling worker for (ca-security) for 60s
+[Thu May 06 14:02:39.386736 2021] [proxy_http:error] [pid 889] [client 172.18.0.1:43672] AH01114: HTTP: failed to make connection to backend: ca-security, referer: http://localhost/caMicroscope/apps/viewer/viewer.html?slideId=3&mode=pathdb
+[Thu May 06 14:02:39.386741 2021] [proxy_http:error] [pid 887] [client 172.18.0.1:43678] AH01114: HTTP: failed to make connection to backend: ca-security, referer: http://localhost/caMicroscope/apps/viewer/viewer.html?slideId=3&mode=pathdb
+[Thu May 06 14:02:39.391194 2021] [proxy:error] [pid 464] AH00940: HTTP: disabled connection for (ca-security)
+[Thu May 06 14:02:42.458742 2021] [proxy:error] [pid 461] (113)No route to host: AH00957: HTTP: attempt to connect to 172.18.0.9:4010 (ca-security) failed
+[Thu May 06 14:02:42.458873 2021] [proxy:error] [pid 461] AH00959: ap_proxy_connect_backend disabling worker for (ca-security) for 60s
+[Thu May 06 14:02:42.458898 2021] [proxy_http:error] [pid 461] [client 172.18.0.1:43712] AH01114: HTTP: failed to make connection to backend: ca-security, referer: http://localhost/caMicroscope/apps/viewer/viewer.html?slideId=3&mode=pathdb
+[Thu May 06 14:02:43.636192 2021] [proxy:error] [pid 886] AH00940: HTTP: disabled connection for (ca-security)
+[Thu May 06 14:02:44.636086 2021] [proxy:error] [pid 839] AH00940: HTTP: disabled connection for (ca-security)
+[Thu May 06 14:02:45.637314 2021] [proxy:error] [pid 887] AH00940: HTTP: disabled connection for (ca-security)
+[Thu May 06 14:02:46.635407 2021] [proxy:error] [pid 889] AH00940: HTTP: disabled connection for (ca-security)
+[Thu May 06 14:02:47.636330 2021] [proxy:error] [pid 464] AH00940: HTTP: disabled connection for (ca-security)
+[Thu May 06 14:02:48.637392 2021] [proxy:error] [pid 461] AH00940: HTTP: disabled connection for (ca-security)
+[Thu May 06 14:02:57.687251 2021] [proxy:error] [pid 835] (70007)The timeout specified has expired: AH00957: HTTP: attempt to connect to 172.18.0.9:4010 (ca-security) failed
+[Thu May 06 14:02:57.687361 2021] [proxy:error] [pid 835] AH00959: ap_proxy_connect_backend disabling worker for (ca-security) for 60s
+[Thu May 06 14:02:57.687380 2021] [proxy_http:error] [pid 835] [client 172.18.0.1:43266] AH01114: HTTP: failed to make connection to backend: ca-security, referer: http://localhost/caMicroscope/apps/viewer/viewer.html?slideId=3&mode=pathdb
+[Thu May 06 14:02:58.638706 2021] [proxy:error] [pid 886] AH00940: HTTP: disabled connection for (ca-security)
+[Thu May 06 14:02:58.677460 2021] [proxy:error] [pid 838] (70007)The timeout specified has expired: AH00957: HTTP: attempt to connect to 172.18.0.9:4010 (ca-security) failed
+[Thu May 06 14:02:58.677542 2021] [proxy:error] [pid 838] AH00959: ap_proxy_connect_backend disabling worker for (ca-security) for 60s
+[Thu May 06 14:02:58.677560 2021] [proxy_http:error] [pid 838] [client 172.18.0.1:43282] AH01114: HTTP: failed to make connection to backend: ca-security, referer: http://localhost/caMicroscope/apps/viewer/viewer.html?slideId=3&mode=pathdb
+[Thu May 06 14:02:59.637443 2021] [proxy:error] [pid 839] AH00940: HTTP: disabled connection for (ca-security)
+[Thu May 06 14:02:59.697013 2021] [proxy:error] [pid 888] (70007)The timeout specified has expired: AH00957: HTTP: attempt to connect to 172.18.0.9:4010 (ca-security) failed
+[Thu May 06 14:02:59.697114 2021] [proxy:error] [pid 888] AH00959: ap_proxy_connect_backend disabling worker for (ca-security) for 60s
+[Thu May 06 14:02:59.697135 2021] [proxy_http:error] [pid 888] [client 172.18.0.1:43300] AH01114: HTTP: failed to make connection to backend: ca-security, referer: http://localhost/caMicroscope/apps/viewer/viewer.html?slideId=3&mode=pathdb
+[Thu May 06 14:03:00.638582 2021] [proxy:error] [pid 887] AH00940: HTTP: disabled connection for (ca-security)
+[Thu May 06 14:03:00.699046 2021] [proxy:error] [pid 465] (70007)The timeout specified has expired: AH00957: HTTP: attempt to connect to 172.18.0.9:4010 (ca-security) failed
+[Thu May 06 14:03:00.699155 2021] [proxy:error] [pid 465] AH00959: ap_proxy_connect_backend disabling worker for (ca-security) for 60s
+[Thu May 06 14:03:00.699186 2021] [proxy_http:error] [pid 465] [client 172.18.0.1:43318] AH01114: HTTP: failed to make connection to backend: ca-security, referer: http://localhost/caMicroscope/apps/viewer/viewer.html?slideId=3&mode=pathdb
+[Thu May 06 14:03:02.638289 2021] [proxy:error] [pid 461] AH00940: HTTP: disabled connection for (ca-security)
+[Thu May 06 14:03:03.645529 2021] [proxy:error] [pid 835] AH00940: HTTP: disabled connection for (ca-security)
+[Thu May 06 14:03:03.962723 2021] [proxy:error] [pid 464] (113)No route to host: AH00957: HTTP: attempt to connect to 172.18.0.9:4010 (ca-security) failed
+[Thu May 06 14:03:03.962816 2021] [proxy:error] [pid 464] AH00959: ap_proxy_connect_backend disabling worker for (ca-security) for 60s
+[Thu May 06 14:03:03.962839 2021] [proxy_http:error] [pid 464] [client 172.18.0.1:44068] AH01114: HTTP: failed to make connection to backend: ca-security, referer: http://localhost/caMicroscope/apps/viewer/viewer.html?slideId=3&mode=pathdb
+[Thu May 06 14:03:13.634869 2021] [proxy:error] [pid 886] AH00940: HTTP: disabled connection for (ca-security)
+[Thu May 06 14:03:14.635650 2021] [proxy:error] [pid 838] AH00940: HTTP: disabled connection for (ca-security)
+[Thu May 06 14:03:15.641116 2021] [proxy:error] [pid 839] AH00940: HTTP: disabled connection for (ca-security)
+[Thu May 06 14:03:16.637548 2021] [proxy:error] [pid 888] AH00940: HTTP: disabled connection for (ca-security)
+[Thu May 06 14:03:17.637519 2021] [proxy:error] [pid 887] AH00940: HTTP: disabled connection for (ca-security)
+[Thu May 06 14:03:18.636438 2021] [proxy:error] [pid 465] AH00940: HTTP: disabled connection for (ca-security)
+[Thu May 06 14:03:19.635548 2021] [proxy:error] [pid 461] AH00940: HTTP: disabled connection for (ca-security)
+[Thu May 06 14:03:20.637751 2021] [proxy:error] [pid 835] AH00940: HTTP: disabled connection for (ca-security)
+[Thu May 06 14:03:21.633655 2021] [proxy:error] [pid 464] AH00940: HTTP: disabled connection for (ca-security)
+[Thu May 06 14:03:23.638352 2021] [proxy:error] [pid 886] AH00940: HTTP: disabled connection for (ca-security)
+[Thu May 06 14:03:24.638814 2021] [proxy:error] [pid 838] AH00940: HTTP: disabled connection for (ca-security)
+[Thu May 06 14:03:25.637363 2021] [proxy:error] [pid 839] AH00940: HTTP: disabled connection for (ca-security)
+[Thu May 06 14:03:26.637190 2021] [proxy:error] [pid 888] AH00940: HTTP: disabled connection for (ca-security)
+[Thu May 06 14:03:27.636549 2021] [proxy:error] [pid 887] AH00940: HTTP: disabled connection for (ca-security)
+[Thu May 06 14:03:28.635519 2021] [proxy:error] [pid 465] AH00940: HTTP: disabled connection for (ca-security)
+[Thu May 06 14:03:29.633837 2021] [proxy:error] [pid 461] AH00940: HTTP: disabled connection for (ca-security)
+[Thu May 06 14:03:30.637278 2021] [proxy:error] [pid 835] AH00940: HTTP: disabled connection for (ca-security)
+[Thu May 06 14:03:31.635287 2021] [proxy:error] [pid 464] AH00940: HTTP: disabled connection for (ca-security)
+[Thu May 06 14:03:39.636264 2021] [proxy:error] [pid 838] AH00940: HTTP: disabled connection for (ca-security)
+[Thu May 06 14:03:40.826736 2021] [proxy:error] [pid 839] (113)No route to host: AH00957: HTTP: attempt to connect to 172.18.0.9:4010 (ca-security) failed
+[Thu May 06 14:03:40.826751 2021] [proxy:error] [pid 886] (113)No route to host: AH00957: HTTP: attempt to connect to 172.18.0.9:4010 (ca-security) failed
+[Thu May 06 14:03:40.826821 2021] [proxy:error] [pid 839] AH00959: ap_proxy_connect_backend disabling worker for (ca-security) for 60s
+[Thu May 06 14:03:40.826851 2021] [proxy:error] [pid 886] AH00959: ap_proxy_connect_backend disabling worker for (ca-security) for 60s
+[Thu May 06 14:03:40.826867 2021] [proxy_http:error] [pid 839] [client 172.18.0.1:44584] AH01114: HTTP: failed to make connection to backend: ca-security, referer: http://localhost/caMicroscope/apps/viewer/viewer.html?slideId=3&mode=pathdb
+[Thu May 06 14:03:40.826874 2021] [proxy_http:error] [pid 886] [client 172.18.0.1:44554] AH01114: HTTP: failed to make connection to backend: ca-security, referer: http://localhost/caMicroscope/apps/viewer/viewer.html?slideId=3&mode=pathdb
+[Thu May 06 14:03:41.638954 2021] [proxy:error] [pid 888] AH00940: HTTP: disabled connection for (ca-security)
+[Thu May 06 14:03:42.639513 2021] [proxy:error] [pid 465] AH00940: HTTP: disabled connection for (ca-security)
+[Thu May 06 14:03:43.898745 2021] [proxy:error] [pid 461] (113)No route to host: AH00957: HTTP: attempt to connect to 172.18.0.9:4010 (ca-security) failed
+[Thu May 06 14:03:43.898739 2021] [proxy:error] [pid 887] (113)No route to host: AH00957: HTTP: attempt to connect to 172.18.0.9:4010 (ca-security) failed
+[Thu May 06 14:03:43.898840 2021] [proxy:error] [pid 461] AH00959: ap_proxy_connect_backend disabling worker for (ca-security) for 60s
+[Thu May 06 14:03:43.898866 2021] [proxy:error] [pid 887] AH00959: ap_proxy_connect_backend disabling worker for (ca-security) for 60s
+[Thu May 06 14:03:43.898885 2021] [proxy_http:error] [pid 461] [client 172.18.0.1:44638] AH01114: HTTP: failed to make connection to backend: ca-security, referer: http://localhost/caMicroscope/apps/viewer/viewer.html?slideId=3&mode=pathdb
+[Thu May 06 14:03:43.898890 2021] [proxy_http:error] [pid 887] [client 172.18.0.1:44608] AH01114: HTTP: failed to make connection to backend: ca-security
+[Thu May 06 14:03:44.641787 2021] [proxy:error] [pid 835] AH00940: HTTP: disabled connection for (ca-security)
+[Thu May 06 14:03:45.640149 2021] [proxy:error] [pid 464] AH00940: HTTP: disabled connection for (ca-security)
+[Thu May 06 14:03:46.645038 2021] [proxy:error] [pid 838] AH00940: HTTP: disabled connection for (ca-security)
+[Thu May 06 14:03:47.637289 2021] [proxy:error] [pid 839] AH00940: HTTP: disabled connection for (ca-security)
+[Thu May 06 14:03:48.633701 2021] [proxy:error] [pid 886] AH00940: HTTP: disabled connection for (ca-security)
+[Thu May 06 14:03:49.638168 2021] [proxy:error] [pid 888] AH00940: HTTP: disabled connection for (ca-security)
+[Thu May 06 14:03:50.638376 2021] [proxy:error] [pid 465] AH00940: HTTP: disabled connection for (ca-security)
+[Thu May 06 14:03:52.634706 2021] [proxy:error] [pid 461] AH00940: HTTP: disabled connection for (ca-security)
+[Thu May 06 14:03:53.114652 2021] [proxy:error] [pid 887] (113)No route to host: AH00957: HTTP: attempt to connect to 172.18.0.9:4010 (ca-security) failed
+[Thu May 06 14:03:53.114735 2021] [proxy:error] [pid 887] AH00959: ap_proxy_connect_backend disabling worker for (ca-security) for 60s
+[Thu May 06 14:03:53.114755 2021] [proxy_http:error] [pid 887] [client 172.18.0.1:44766] AH01114: HTTP: failed to make connection to backend: ca-security, referer: http://localhost/caMicroscope/apps/viewer/viewer.html?slideId=3&mode=pathdb
+[Thu May 06 14:03:53.634801 2021] [proxy:error] [pid 835] AH00940: HTTP: disabled connection for (ca-security)
+[Thu May 06 14:03:54.638098 2021] [proxy:error] [pid 464] AH00940: HTTP: disabled connection for (ca-security)
+[Thu May 06 14:03:58.641981 2021] [proxy:error] [pid 838] AH00940: HTTP: disabled connection for (ca-security)
+[Thu May 06 14:03:59.634608 2021] [proxy:error] [pid 839] AH00940: HTTP: disabled connection for (ca-security)
+[Thu May 06 14:04:00.635073 2021] [proxy:error] [pid 886] AH00940: HTTP: disabled connection for (ca-security)
+[Thu May 06 14:04:02.330690 2021] [proxy:error] [pid 888] (113)No route to host: AH00957: HTTP: attempt to connect to 172.18.0.9:4010 (ca-security) failed
+[Thu May 06 14:04:02.330809 2021] [proxy:error] [pid 888] AH00959: ap_proxy_connect_backend disabling worker for (ca-security) for 60s
+[Thu May 06 14:04:02.330832 2021] [proxy_http:error] [pid 888] [client 172.18.0.1:44914] AH01114: HTTP: failed to make connection to backend: ca-security, referer: http://localhost/caMicroscope/apps/viewer/viewer.html?slideId=3&mode=pathdb
+[Thu May 06 14:04:03.635517 2021] [proxy:error] [pid 461] AH00940: HTTP: disabled connection for (ca-security)
+[Thu May 06 14:04:04.646150 2021] [proxy:error] [pid 887] AH00940: HTTP: disabled connection for (ca-security)
+[Thu May 06 14:04:05.402660 2021] [proxy:error] [pid 465] (113)No route to host: AH00957: HTTP: attempt to connect to 172.18.0.9:4010 (ca-security) failed
+[Thu May 06 14:04:05.402754 2021] [proxy:error] [pid 465] AH00959: ap_proxy_connect_backend disabling worker for (ca-security) for 60s
+[Thu May 06 14:04:05.402775 2021] [proxy_http:error] [pid 465] [client 172.18.0.1:44946] AH01114: HTTP: failed to make connection to backend: ca-security, referer: http://localhost/caMicroscope/apps/viewer/viewer.html?slideId=3&mode=pathdb
+[Thu May 06 14:04:08.474773 2021] [proxy:error] [pid 464] (113)No route to host: AH00957: HTTP: attempt to connect to 172.18.0.9:4010 (ca-security) failed
+[Thu May 06 14:04:08.474768 2021] [proxy:error] [pid 835] (113)No route to host: AH00957: HTTP: attempt to connect to 172.18.0.9:4010 (ca-security) failed
+[Thu May 06 14:04:08.474850 2021] [proxy:error] [pid 464] AH00959: ap_proxy_connect_backend disabling worker for (ca-security) for 60s
+[Thu May 06 14:04:08.474875 2021] [proxy:error] [pid 835] AH00959: ap_proxy_connect_backend disabling worker for (ca-security) for 60s
+[Thu May 06 14:04:08.474891 2021] [proxy_http:error] [pid 464] [client 172.18.0.1:45006] AH01114: HTTP: failed to make connection to backend: ca-security, referer: http://localhost/caMicroscope/apps/viewer/viewer.html?slideId=3&mode=pathdb
+[Thu May 06 14:04:08.474898 2021] [proxy_http:error] [pid 835] [client 172.18.0.1:44990] AH01114: HTTP: failed to make connection to backend: ca-security, referer: http://localhost/caMicroscope/apps/viewer/viewer.html?slideId=3&mode=pathdb
+[Thu May 06 14:04:09.634173 2021] [proxy:error] [pid 839] AH00940: HTTP: disabled connection for (ca-security)
+[Thu May 06 14:04:10.638125 2021] [proxy:error] [pid 886] AH00940: HTTP: disabled connection for (ca-security)
+[Thu May 06 14:04:11.546764 2021] [proxy:error] [pid 838] (113)No route to host: AH00957: HTTP: attempt to connect to 172.18.0.9:4010 (ca-security) failed
+[Thu May 06 14:04:11.546876 2021] [proxy:error] [pid 838] AH00959: ap_proxy_connect_backend disabling worker for (ca-security) for 60s
+[Thu May 06 14:04:11.546925 2021] [proxy_http:error] [pid 838] [client 172.18.0.1:45040] AH01114: HTTP: failed to make connection to backend: ca-security, referer: http://localhost/caMicroscope/apps/viewer/viewer.html?slideId=3&mode=pathdb
+[Thu May 06 14:04:11.634243 2021] [proxy:error] [pid 888] AH00940: HTTP: disabled connection for (ca-security)
+[Thu May 06 14:04:12.642729 2021] [proxy:error] [pid 461] AH00940: HTTP: disabled connection for (ca-security)
+[Thu May 06 14:04:13.637820 2021] [proxy:error] [pid 887] AH00940: HTTP: disabled connection for (ca-security)
+[Thu May 06 14:04:14.640192 2021] [proxy:error] [pid 465] AH00940: HTTP: disabled connection for (ca-security)
+[Thu May 06 14:04:18.636870 2021] [proxy:error] [pid 464] AH00940: HTTP: disabled connection for (ca-security)
+[Thu May 06 14:04:19.637697 2021] [proxy:error] [pid 839] AH00940: HTTP: disabled connection for (ca-security)
+[Thu May 06 14:04:20.636581 2021] [proxy:error] [pid 886] AH00940: HTTP: disabled connection for (ca-security)
+[Thu May 06 14:04:20.762729 2021] [proxy:error] [pid 835] (113)No route to host: AH00957: HTTP: attempt to connect to 172.18.0.9:4010 (ca-security) failed
+[Thu May 06 14:04:20.762815 2021] [proxy:error] [pid 835] AH00959: ap_proxy_connect_backend disabling worker for (ca-security) for 60s
+[Thu May 06 14:04:20.762837 2021] [proxy_http:error] [pid 835] [client 172.18.0.1:45186] AH01114: HTTP: failed to make connection to backend: ca-security
+[Thu May 06 14:04:21.636319 2021] [proxy:error] [pid 838] AH00940: HTTP: disabled connection for (ca-security)
+[Thu May 06 14:04:22.639381 2021] [proxy:error] [pid 888] AH00940: HTTP: disabled connection for (ca-security)
+[Thu May 06 14:04:23.638470 2021] [proxy:error] [pid 461] AH00940: HTTP: disabled connection for (ca-security)
+[Thu May 06 14:04:24.637645 2021] [proxy:error] [pid 887] AH00940: HTTP: disabled connection for (ca-security)
+[Thu May 06 14:04:25.636934 2021] [proxy:error] [pid 465] AH00940: HTTP: disabled connection for (ca-security)
+[Thu May 06 14:04:28.637788 2021] [proxy:error] [pid 464] AH00940: HTTP: disabled connection for (ca-security)
+[Thu May 06 14:04:29.634175 2021] [proxy:error] [pid 839] AH00940: HTTP: disabled connection for (ca-security)
+[Thu May 06 14:04:30.636940 2021] [proxy:error] [pid 886] AH00940: HTTP: disabled connection for (ca-security)
+[Thu May 06 14:04:31.633627 2021] [proxy:error] [pid 835] AH00940: HTTP: disabled connection for (ca-security)
+[Thu May 06 14:04:32.638010 2021] [proxy:error] [pid 838] AH00940: HTTP: disabled connection for (ca-security)
+[Thu May 06 14:04:33.636858 2021] [proxy:error] [pid 888] AH00940: HTTP: disabled connection for (ca-security)
+[Thu May 06 14:04:34.641233 2021] [proxy:error] [pid 461] AH00940: HTTP: disabled connection for (ca-security)
+[Thu May 06 14:04:35.637275 2021] [proxy:error] [pid 887] AH00940: HTTP: disabled connection for (ca-security)
+[Thu May 06 14:04:36.637287 2021] [proxy:error] [pid 465] AH00940: HTTP: disabled connection for (ca-security)
+[Thu May 06 14:04:38.637414 2021] [proxy:error] [pid 464] AH00940: HTTP: disabled connection for (ca-security)
+[Thu May 06 14:04:39.637965 2021] [proxy:error] [pid 839] AH00940: HTTP: disabled connection for (ca-security)
+[Thu May 06 14:04:40.636757 2021] [proxy:error] [pid 886] AH00940: HTTP: disabled connection for (ca-security)
+[Thu May 06 14:04:41.637707 2021] [proxy:error] [pid 835] AH00940: HTTP: disabled connection for (ca-security)
+[Thu May 06 14:04:42.636773 2021] [proxy:error] [pid 838] AH00940: HTTP: disabled connection for (ca-security)
+[Thu May 06 14:04:43.637733 2021] [proxy:error] [pid 888] AH00940: HTTP: disabled connection for (ca-security)
+[Thu May 06 14:04:45.637509 2021] [proxy:error] [pid 887] AH00940: HTTP: disabled connection for (ca-security)
+[Thu May 06 14:04:46.637591 2021] [proxy:error] [pid 465] AH00940: HTTP: disabled connection for (ca-security)
+[Thu May 06 14:04:47.706606 2021] [proxy:error] [pid 461] (113)No route to host: AH00957: HTTP: attempt to connect to 172.18.0.9:4010 (ca-security) failed
+[Thu May 06 14:04:47.706701 2021] [proxy:error] [pid 461] AH00959: ap_proxy_connect_backend disabling worker for (ca-security) for 60s
+[Thu May 06 14:04:47.706719 2021] [proxy_http:error] [pid 461] [client 172.18.0.1:45548] AH01114: HTTP: failed to make connection to backend: ca-security, referer: http://localhost/caMicroscope/apps/viewer/viewer.html?slideId=3&mode=pathdb
+[Thu May 06 14:04:48.637243 2021] [proxy:error] [pid 464] AH00940: HTTP: disabled connection for (ca-security)
+[Thu May 06 14:04:50.778688 2021] [proxy:error] [pid 886] (113)No route to host: AH00957: HTTP: attempt to connect to 172.18.0.9:4010 (ca-security) failed
+[Thu May 06 14:04:50.778684 2021] [proxy:error] [pid 839] (113)No route to host: AH00957: HTTP: attempt to connect to 172.18.0.9:4010 (ca-security) failed
+[Thu May 06 14:04:50.778772 2021] [proxy:error] [pid 886] AH00959: ap_proxy_connect_backend disabling worker for (ca-security) for 60s
+[Thu May 06 14:04:50.778795 2021] [proxy:error] [pid 839] AH00959: ap_proxy_connect_backend disabling worker for (ca-security) for 60s
+[Thu May 06 14:04:50.778810 2021] [proxy_http:error] [pid 886] [client 172.18.0.1:45640] AH01114: HTTP: failed to make connection to backend: ca-security, referer: http://localhost/caMicroscope/apps/viewer/viewer.html?slideId=3&mode=pathdb
+[Thu May 06 14:04:50.778816 2021] [proxy_http:error] [pid 839] [client 172.18.0.1:45624] AH01114: HTTP: failed to make connection to backend: ca-security, referer: http://localhost/caMicroscope/apps/viewer/viewer.html?slideId=3&mode=pathdb
+[Thu May 06 14:04:51.637960 2021] [proxy:error] [pid 835] AH00940: HTTP: disabled connection for (ca-security)
+[Thu May 06 14:04:52.637282 2021] [proxy:error] [pid 838] AH00940: HTTP: disabled connection for (ca-security)
+[Thu May 06 14:04:53.633846 2021] [proxy:error] [pid 888] AH00940: HTTP: disabled connection for (ca-security)
+[Thu May 06 14:04:55.636762 2021] [proxy:error] [pid 465] AH00940: HTTP: disabled connection for (ca-security)
+[Thu May 06 14:04:56.637547 2021] [proxy:error] [pid 461] AH00940: HTTP: disabled connection for (ca-security)
+[Thu May 06 14:04:57.694698 2021] [proxy:error] [pid 887] (113)No route to host: AH00957: HTTP: attempt to connect to 172.18.0.9:4010 (ca-security) failed
+[Thu May 06 14:04:57.694752 2021] [proxy:error] [pid 887] AH00959: ap_proxy_connect_backend disabling worker for (ca-security) for 60s
+[Thu May 06 14:04:57.694766 2021] [proxy_http:error] [pid 887] [client 172.18.0.1:45698] AH01114: HTTP: failed to make connection to backend: ca-security, referer: http://localhost/caMicroscope/apps/viewer/viewer.html?slideId=3&mode=pathdb
+[Thu May 06 14:05:01.663474 2021] [proxy:error] [pid 464] AH00940: HTTP: disabled connection for (ca-security)
+[Thu May 06 14:05:11.027064 2021] [proxy:error] [pid 839] AH00940: HTTP: disabled connection for (ca-security)
+[Thu May 06 14:05:11.334671 2021] [proxy:error] [pid 886] AH00940: HTTP: disabled connection for (ca-security)
+[Thu May 06 14:05:15.386551 2021] [proxy:error] [pid 835] (113)No route to host: AH00957: HTTP: attempt to connect to 172.18.0.9:4010 (ca-security) failed
+[Thu May 06 14:05:15.386554 2021] [proxy:error] [pid 838] (113)No route to host: AH00957: HTTP: attempt to connect to 172.18.0.9:4010 (ca-security) failed
+[Thu May 06 14:05:15.386627 2021] [proxy:error] [pid 835] AH00959: ap_proxy_connect_backend disabling worker for (ca-security) for 60s
+[Thu May 06 14:05:15.386644 2021] [proxy:error] [pid 838] AH00959: ap_proxy_connect_backend disabling worker for (ca-security) for 60s
+[Thu May 06 14:05:15.386658 2021] [proxy_http:error] [pid 838] [client 172.18.0.1:45916] AH01114: HTTP: failed to make connection to backend: ca-security, referer: http://localhost/caMicroscope/apps/viewer/viewer.html?slideId=3&mode=pathdb
+[Thu May 06 14:05:15.386656 2021] [proxy_http:error] [pid 835] [client 172.18.0.1:45900] AH01114: HTTP: failed to make connection to backend: ca-security, referer: http://localhost/caMicroscope/apps/viewer/viewer.html?slideId=3&mode=pathdb
+[Thu May 06 14:05:15.386925 2021] [proxy:error] [pid 888] (113)No route to host: AH00957: HTTP: attempt to connect to 172.18.0.9:4010 (ca-security) failed
+[Thu May 06 14:05:15.386929 2021] [proxy:error] [pid 465] (113)No route to host: AH00957: HTTP: attempt to connect to 172.18.0.9:4010 (ca-security) failed
+[Thu May 06 14:05:15.386963 2021] [proxy:error] [pid 888] AH00959: ap_proxy_connect_backend disabling worker for (ca-security) for 60s
+[Thu May 06 14:05:15.386971 2021] [proxy:error] [pid 465] AH00959: ap_proxy_connect_backend disabling worker for (ca-security) for 60s
+[Thu May 06 14:05:15.386977 2021] [proxy_http:error] [pid 888] [client 172.18.0.1:45932] AH01114: HTTP: failed to make connection to backend: ca-security, referer: http://localhost/caMicroscope/apps/viewer/viewer.html?slideId=3&mode=pathdb
+[Thu May 06 14:05:15.386979 2021] [proxy_http:error] [pid 465] [client 172.18.0.1:45950] AH01114: HTTP: failed to make connection to backend: ca-security, referer: http://localhost/caMicroscope/apps/viewer/viewer.html?slideId=3&mode=pathdb
+[Thu May 06 14:05:16.558091 2021] [proxy:error] [pid 461] AH00940: HTTP: disabled connection for (ca-security)
+[Thu May 06 14:05:17.505716 2021] [proxy:error] [pid 839] AH00940: HTTP: disabled connection for (ca-security)
+[Thu May 06 14:05:17.996422 2021] [proxy:error] [pid 835] AH00940: HTTP: disabled connection for (ca-security)
+[Thu May 06 14:05:17.996675 2021] [proxy:error] [pid 838] AH00940: HTTP: disabled connection for (ca-security)
+[Thu May 06 14:05:18.003854 2021] [proxy:error] [pid 465] AH00940: HTTP: disabled connection for (ca-security)
+[Thu May 06 14:05:18.003916 2021] [proxy:error] [pid 888] AH00940: HTTP: disabled connection for (ca-security)
+[Thu May 06 14:05:18.160364 2021] [proxy:error] [pid 461] AH00940: HTTP: disabled connection for (ca-security)
+[Thu May 06 14:05:18.458702 2021] [proxy:error] [pid 464] (113)No route to host: AH00957: HTTP: attempt to connect to 172.18.0.9:4010 (ca-security) failed
+[Thu May 06 14:05:18.458709 2021] [proxy:error] [pid 887] (113)No route to host: AH00957: HTTP: attempt to connect to 172.18.0.9:4010 (ca-security) failed
+[Thu May 06 14:05:18.458791 2021] [proxy:error] [pid 464] AH00959: ap_proxy_connect_backend disabling worker for (ca-security) for 60s
+[Thu May 06 14:05:18.458819 2021] [proxy:error] [pid 887] AH00959: ap_proxy_connect_backend disabling worker for (ca-security) for 60s
+[Thu May 06 14:05:18.458832 2021] [proxy_http:error] [pid 464] [client 172.18.0.1:45984] AH01114: HTTP: failed to make connection to backend: ca-security, referer: http://localhost/caMicroscope/apps/viewer/viewer.html?slideId=3&mode=pathdb
+[Thu May 06 14:05:18.458839 2021] [proxy_http:error] [pid 887] [client 172.18.0.1:45972] AH01114: HTTP: failed to make connection to backend: ca-security, referer: http://localhost/caMicroscope/apps/viewer/viewer.html?slideId=3&mode=pathdb
+[Thu May 06 14:05:19.161975 2021] [proxy:error] [pid 839] AH00940: HTTP: disabled connection for (ca-security)
+[Thu May 06 14:05:20.162455 2021] [proxy:error] [pid 886] AH00940: HTTP: disabled connection for (ca-security)
+[Thu May 06 14:05:23.160647 2021] [proxy:error] [pid 835] AH00940: HTTP: disabled connection for (ca-security)
+[Thu May 06 14:05:24.160741 2021] [proxy:error] [pid 838] AH00940: HTTP: disabled connection for (ca-security)
+[Thu May 06 14:05:25.162346 2021] [proxy:error] [pid 465] AH00940: HTTP: disabled connection for (ca-security)
+[Thu May 06 14:05:26.160968 2021] [proxy:error] [pid 888] AH00940: HTTP: disabled connection for (ca-security)
+[Thu May 06 14:05:27.160939 2021] [proxy:error] [pid 461] AH00940: HTTP: disabled connection for (ca-security)
+[Thu May 06 14:05:28.475042 2021] [proxy:error] [pid 887] AH00940: HTTP: disabled connection for (ca-security)
+[Thu May 06 14:05:28.827717 2021] [proxy:error] [pid 839] AH00940: HTTP: disabled connection for (ca-security)
+[Thu May 06 14:05:29.308664 2021] [proxy:error] [pid 886] AH00940: HTTP: disabled connection for (ca-security)
+[Thu May 06 14:05:29.315416 2021] [proxy:error] [pid 465] AH00940: HTTP: disabled connection for (ca-security)
+[Thu May 06 14:05:29.315413 2021] [proxy:error] [pid 838] AH00940: HTTP: disabled connection for (ca-security)
+[Thu May 06 14:05:31.034539 2021] [proxy:error] [pid 464] (113)No route to host: AH00957: HTTP: attempt to connect to 172.18.0.9:4010 (ca-security) failed
+[Thu May 06 14:05:31.034577 2021] [proxy:error] [pid 835] (113)No route to host: AH00957: HTTP: attempt to connect to 172.18.0.9:4010 (ca-security) failed
+[Thu May 06 14:05:31.034590 2021] [proxy:error] [pid 464] AH00959: ap_proxy_connect_backend disabling worker for (ca-security) for 60s
+[Thu May 06 14:05:31.034609 2021] [proxy:error] [pid 835] AH00959: ap_proxy_connect_backend disabling worker for (ca-security) for 60s
+[Thu May 06 14:05:31.034617 2021] [proxy_http:error] [pid 464] [client 172.18.0.1:46266] AH01114: HTTP: failed to make connection to backend: ca-security, referer: http://localhost/caMicroscope/apps/viewer/viewer.html?slideId=3&mode=pathdb
+[Thu May 06 14:05:31.034618 2021] [proxy_http:error] [pid 835] [client 172.18.0.1:46288] AH01114: HTTP: failed to make connection to backend: ca-security, referer: http://localhost/caMicroscope/apps/viewer/viewer.html?slideId=3&mode=pathdb
+[Thu May 06 14:05:33.445954 2021] [proxy:error] [pid 461] AH00940: HTTP: disabled connection for (ca-security)
+[Thu May 06 14:05:38.446732 2021] [proxy:error] [pid 887] AH00940: HTTP: disabled connection for (ca-security)
+[Thu May 06 14:05:39.448363 2021] [proxy:error] [pid 839] AH00940: HTTP: disabled connection for (ca-security)
+[Thu May 06 14:05:40.446590 2021] [proxy:error] [pid 886] AH00940: HTTP: disabled connection for (ca-security)
+[Thu May 06 14:05:41.446169 2021] [proxy:error] [pid 838] AH00940: HTTP: disabled connection for (ca-security)
+[Thu May 06 14:05:43.117740 2021] [proxy:error] [pid 887] AH00940: HTTP: disabled connection for (ca-security)
+[Thu May 06 14:05:45.754571 2021] [proxy:error] [pid 461] (113)No route to host: AH00957: HTTP: attempt to connect to 172.18.0.9:4010 (ca-security) failed
+[Thu May 06 14:05:45.754644 2021] [proxy:error] [pid 461] AH00959: ap_proxy_connect_backend disabling worker for (ca-security) for 60s
+[Thu May 06 14:05:45.754667 2021] [proxy_http:error] [pid 461] [client 172.18.0.1:46600] AH01114: HTTP: failed to make connection to backend: ca-security, referer: http://localhost/caMicroscope/apps/viewer/viewer.html?slideId=3&mode=pathdb
+[Thu May 06 14:10:55.721795 2021] [proxy:error] [pid 892] (111)Connection refused: AH00957: HTTP: attempt to connect to 172.18.0.8:4010 (ca-security) failed
+[Thu May 06 14:10:55.721839 2021] [proxy:error] [pid 892] AH00959: ap_proxy_connect_backend disabling worker for (ca-security) for 60s
+[Thu May 06 14:10:55.721847 2021] [proxy_http:error] [pid 892] [client 172.18.0.1:49302] AH01114: HTTP: failed to make connection to backend: ca-security
+[Thu May 06 14:11:02.394586 2021] [proxy:error] [pid 887] (113)No route to host: AH00957: HTTP: attempt to connect to 172.18.0.9:4010 (ca-security) failed
+[Thu May 06 14:11:02.394663 2021] [proxy:error] [pid 887] AH00959: ap_proxy_connect_backend disabling worker for (ca-security) for 60s
+[Thu May 06 14:11:02.394687 2021] [proxy_http:error] [pid 887] [client 172.18.0.1:49354] AH01114: HTTP: failed to make connection to backend: ca-security
+[Thu May 06 14:11:08.666585 2021] [proxy:error] [pid 461] (113)No route to host: AH00957: HTTP: attempt to connect to 172.18.0.9:4010 (ca-security) failed
+[Thu May 06 14:11:08.666643 2021] [proxy:error] [pid 461] AH00959: ap_proxy_connect_backend disabling worker for (ca-security) for 60s
+[Thu May 06 14:11:08.666657 2021] [proxy_http:error] [pid 461] [client 172.18.0.1:49414] AH01114: HTTP: failed to make connection to backend: ca-security
+[Thu May 06 14:13:51.194560 2021] [proxy:error] [pid 464] (113)No route to host: AH00957: HTTP: attempt to connect to 172.18.0.9:4010 (ca-security) failed
+[Thu May 06 14:13:51.194653 2021] [proxy:error] [pid 464] AH00959: ap_proxy_connect_backend disabling worker for (ca-security) for 60s
+[Thu May 06 14:13:51.194672 2021] [proxy_http:error] [pid 464] [client 172.18.0.1:50856] AH01114: HTTP: failed to make connection to backend: ca-security
+[Thu May 06 14:14:43.354615 2021] [proxy:error] [pid 838] (113)No route to host: AH00957: HTTP: attempt to connect to 172.18.0.9:4010 (ca-security) failed
+[Thu May 06 14:14:43.354712 2021] [proxy:error] [pid 838] AH00959: ap_proxy_connect_backend disabling worker for (ca-security) for 60s
+[Thu May 06 14:14:43.354735 2021] [proxy_http:error] [pid 838] [client 172.18.0.1:51328] AH01114: HTTP: failed to make connection to backend: ca-security
+[Thu May 06 14:35:22.269414 2021] [proxy:error] [pid 464] (113)No route to host: AH00957: HTTP: attempt to connect to 172.18.0.9:4010 (ca-security) failed
+[Thu May 06 14:35:22.270030 2021] [proxy:error] [pid 464] AH00959: ap_proxy_connect_backend disabling worker for (ca-security) for 60s
+[Thu May 06 14:35:22.270349 2021] [proxy_http:error] [pid 464] [client 172.18.0.1:33792] AH01114: HTTP: failed to make connection to backend: ca-security
+[Thu May 06 14:36:54.458623 2021] [proxy:error] [pid 461] (113)No route to host: AH00957: HTTP: attempt to connect to 172.18.0.9:4010 (ca-security) failed
+[Thu May 06 14:36:54.458732 2021] [proxy:error] [pid 461] AH00959: ap_proxy_connect_backend disabling worker for (ca-security) for 60s
+[Thu May 06 14:36:54.458768 2021] [proxy_http:error] [pid 461] [client 172.18.0.1:34536] AH01114: HTTP: failed to make connection to backend: ca-security
+[Thu May 06 14:38:27.802561 2021] [proxy:error] [pid 887] (113)No route to host: AH00957: HTTP: attempt to connect to 172.18.0.9:4010 (ca-security) failed
+[Thu May 06 14:38:27.802638 2021] [proxy:error] [pid 887] AH00959: ap_proxy_connect_backend disabling worker for (ca-security) for 60s
+[Thu May 06 14:38:27.802668 2021] [proxy_http:error] [pid 887] [client 172.18.0.1:35394] AH01114: HTTP: failed to make connection to backend: ca-security
+[Thu May 06 14:38:53.946611 2021] [proxy:error] [pid 461] (113)No route to host: AH00957: HTTP: attempt to connect to 172.18.0.9:4010 (ca-security) failed
+[Thu May 06 14:38:53.946678 2021] [proxy:error] [pid 461] AH00959: ap_proxy_connect_backend disabling worker for (ca-security) for 60s
+[Thu May 06 14:38:53.946696 2021] [proxy_http:error] [pid 461] [client 172.18.0.1:35614] AH01114: HTTP: failed to make connection to backend: ca-security
+[Thu May 06 14:39:34.395451 2021] [proxy:error] [pid 461] AH00940: HTTP: disabled connection for (ca-security)
+[Thu May 06 14:39:43.226568 2021] [proxy:error] [pid 838] (113)No route to host: AH00957: HTTP: attempt to connect to 172.18.0.9:4010 (ca-security) failed
+[Thu May 06 14:39:43.226673 2021] [proxy:error] [pid 838] AH00959: ap_proxy_connect_backend disabling worker for (ca-security) for 60s
+[Thu May 06 14:39:43.226713 2021] [proxy_http:error] [pid 838] [client 172.18.0.1:36158] AH01114: HTTP: failed to make connection to backend: ca-security
+[Thu May 06 14:41:47.418674 2021] [proxy:error] [pid 464] (113)No route to host: AH00957: HTTP: attempt to connect to 172.18.0.9:4010 (ca-security) failed
+[Thu May 06 14:41:47.418768 2021] [proxy:error] [pid 464] AH00959: ap_proxy_connect_backend disabling worker for (ca-security) for 60s
+[Thu May 06 14:41:47.418795 2021] [proxy_http:error] [pid 464] [client 172.18.0.1:37224] AH01114: HTTP: failed to make connection to backend: ca-security, referer: http://localhost/caMicroscope/img/beta/?slide=3&tsq=.dzi
+[Thu May 06 14:44:04.186675 2021] [proxy:error] [pid 461] (113)No route to host: AH00957: HTTP: attempt to connect to 172.18.0.9:4010 (ca-security) failed
+[Thu May 06 14:44:04.186763 2021] [proxy:error] [pid 461] AH00959: ap_proxy_connect_backend disabling worker for (ca-security) for 60s
+[Thu May 06 14:44:04.186786 2021] [proxy_http:error] [pid 461] [client 172.18.0.1:38362] AH01114: HTTP: failed to make connection to backend: ca-security, referer: http://localhost/caMicroscope/img/beta/?slide=3&tsq=.dzi
+[Thu May 06 22:06:30.138601 2021] [proxy:error] [pid 839] (113)No route to host: AH00957: HTTP: attempt to connect to 172.18.0.9:4010 (ca-security) failed
+[Thu May 06 22:06:30.141754 2021] [proxy:error] [pid 839] AH00959: ap_proxy_connect_backend disabling worker for (ca-security) for 60s
+[Thu May 06 22:06:30.141769 2021] [proxy_http:error] [pid 839] [client 172.18.0.1:50286] AH01114: HTTP: failed to make connection to backend: ca-security, referer: http://localhost/caMicroscope/apps/viewer/viewer.html?slideId=3&mode=pathdb
+[Thu May 06 22:06:30.138589 2021] [proxy:error] [pid 461] (113)No route to host: AH00957: HTTP: attempt to connect to 172.18.0.9:4010 (ca-security) failed
+[Thu May 06 22:06:30.141795 2021] [proxy:error] [pid 461] AH00959: ap_proxy_connect_backend disabling worker for (ca-security) for 60s
+[Thu May 06 22:06:30.141813 2021] [proxy_http:error] [pid 461] [client 172.18.0.1:50328] AH01114: HTTP: failed to make connection to backend: ca-security, referer: http://localhost/caMicroscope/apps/viewer/viewer.html?slideId=3&mode=pathdb
+[Thu May 06 22:06:46.682551 2021] [proxy:error] [pid 886] (113)No route to host: AH00957: HTTP: attempt to connect to 172.18.0.9:4010 (ca-security) failed
+[Thu May 06 22:06:46.682544 2021] [proxy:error] [pid 465] (113)No route to host: AH00957: HTTP: attempt to connect to 172.18.0.9:4010 (ca-security) failed
+[Thu May 06 22:06:46.682626 2021] [proxy:error] [pid 886] AH00959: ap_proxy_connect_backend disabling worker for (ca-security) for 60s
+[Thu May 06 22:06:46.682643 2021] [proxy:error] [pid 465] AH00959: ap_proxy_connect_backend disabling worker for (ca-security) for 60s
+[Thu May 06 22:06:46.682655 2021] [proxy_http:error] [pid 886] [client 172.18.0.1:50390] AH01114: HTTP: failed to make connection to backend: ca-security, referer: http://localhost/caMicroscope/apps/viewer/viewer.html?slideId=3&mode=pathdb
+[Thu May 06 22:06:46.682659 2021] [proxy_http:error] [pid 465] [client 172.18.0.1:50380] AH01114: HTTP: failed to make connection to backend: ca-security, referer: http://localhost/caMicroscope/apps/viewer/viewer.html?slideId=3&mode=pathdb
+[Thu May 06 22:06:56.698549 2021] [proxy:error] [pid 838] (113)No route to host: AH00957: HTTP: attempt to connect to 172.18.0.9:4010 (ca-security) failed
+[Thu May 06 22:06:56.698553 2021] [proxy:error] [pid 464] (113)No route to host: AH00957: HTTP: attempt to connect to 172.18.0.9:4010 (ca-security) failed
+[Thu May 06 22:06:56.698644 2021] [proxy:error] [pid 838] AH00959: ap_proxy_connect_backend disabling worker for (ca-security) for 60s
+[Thu May 06 22:06:56.698661 2021] [proxy:error] [pid 464] AH00959: ap_proxy_connect_backend disabling worker for (ca-security) for 60s
+[Thu May 06 22:06:56.698680 2021] [proxy_http:error] [pid 838] [client 172.18.0.1:50434] AH01114: HTTP: failed to make connection to backend: ca-security, referer: http://localhost/caMicroscope/apps/viewer/viewer.html?slideId=3&mode=pathdb
+[Thu May 06 22:06:56.698683 2021] [proxy_http:error] [pid 464] [client 172.18.0.1:50424] AH01114: HTTP: failed to make connection to backend: ca-security, referer: http://localhost/caMicroscope/apps/viewer/viewer.html?slideId=3&mode=pathdb
+[Thu May 06 22:07:06.676246 2021] [proxy:error] [pid 461] AH00940: HTTP: disabled connection for (ca-security)
+[Thu May 06 22:07:06.683991 2021] [proxy:error] [pid 839] AH00940: HTTP: disabled connection for (ca-security)
+[Thu May 06 22:07:10.983281 2021] [proxy:error] [pid 886] AH00940: HTTP: disabled connection for (ca-security)
+[Thu May 06 22:07:10.983550 2021] [proxy:error] [pid 465] AH00940: HTTP: disabled connection for (ca-security)
+[Thu May 06 22:07:24.062574 2021] [proxy:error] [pid 464] AH00940: HTTP: disabled connection for (ca-security)
+[Thu May 06 22:07:25.062186 2021] [proxy:error] [pid 838] AH00940: HTTP: disabled connection for (ca-security)

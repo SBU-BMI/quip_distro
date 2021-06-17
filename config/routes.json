@@ -269,7 +269,7 @@
     "route":"/data/HeatmapEdit/delete",
     "method":"delete",
     "handlers":[
-      {"function":"mongoFind", "args": ["camic", "heatmap"]},
+      {"function":"mongoFind", "args": ["camic", "heatmapEdit"]},
       {"function":"editHandler", "args": ["data"]},
       {"function":"permissionHandler", "args": [["Admin", "Editor"]]},
       {"function":"mongoDelete", "args": ["camic", "heatmapEdit"]}
@@ -278,7 +278,7 @@
     "route":"/data/HeatmapEdit/update",
     "method":"post",
     "handlers":[
-      {"function":"mongoFind", "args": ["camic", "heatmap"]},
+      {"function":"mongoFind", "args": ["camic", "heatmapEdit"]},
       {"function":"editHandler", "args": ["data"]},
       {"function":"permissionHandler", "args": [["Admin", "Editor"]]},
       {"function":"mongoUpdate", "args": ["camic", "heatmapEdit"]}
@@ -310,6 +310,33 @@
     "handlers":[
       {"function":"permissionHandler", "args": [["Admin", "Editor"]]},
       {"function":"mongoUpdate", "args": ["camic", "log"]}
+    ]
+  },
+
+  {
+    "route":"/data/Evaluation/find",
+    "method":"get",
+    "handlers":[
+      {"function":"mongoFind", "args": ["camic", "evaluation"]}
+    ]
+  },{
+    "route":"/data/Evaluation/post",
+    "method":"post",
+    "handlers":[
+      {"function":"mongoAdd", "args": ["camic", "evaluation"]}
+    ]
+  },{
+    "route":"/data/Evaluation/delete",
+    "method":"delete",
+    "handlers":[
+      {"function":"permissionHandler", "args": [["Admin", "Editor"]]},
+      {"function":"mongoDelete", "args": ["camic", "evaluation"]}
+    ]
+  },{
+    "route":"/data/Evaluation/update",
+    "method":"post",
+    "handlers":[
+      {"function":"mongoUpdate", "args": ["camic", "evaluation"]}
     ]
   },
 
