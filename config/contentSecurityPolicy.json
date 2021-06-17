@@ -7,33 +7,44 @@
   "'unsafe-inline'",
   "'unsafe-eval'",
   "code.jquery.com",
-  "stackpath.bootstrapcdn.com",
   "apis.google.com",
   "ajax.googleapis.com",
   "cdn.jsdelivr.net",
+  "cdnjs.cloudflare.com",
   "unpkg.com",
-  "http://openseadragon.github.io"
+  "stackpath.bootstrapcdn.com",
+  "openseadragon.github.io",
+  "cdn.datatables.net",
+  "maxcdn.bootstrapcdn.com"
 ],
 "styleSrc": [
   "'self'",
   "'unsafe-inline'",
   "fonts.googleapis.com",
   "use.fontawesome.com",
+  "cdnjs.cloudflare.com",
   "stackpath.bootstrapcdn.com",
-  "cdnjs.cloudflare.com"
+  "cdn.jsdelivr.net",
+  "code.jquery.com",
+  "unpkg.com",
+  "cdn.datatables.net",
+  "maxcdn.bootstrapcdn.com"
 ],
 "fontSrc": [
   "'self'",
   "use.fontawesome.com",
   "fonts.gstatic.com",
-  "cdnjs.cloudflare.com"
+  "cdnjs.cloudflare.com",
+  "maxcdn.bootstrapcdn.com"
 ],
 "imgSrc": [
-  "'self'"
+  "'self'",
+  "data:",
+  "cdn.datatables.net",
+  "code.jquery.com"
 ],
 "frameSrc": [
  "'self'",
  "accounts.google.com"
 ]
 }
-

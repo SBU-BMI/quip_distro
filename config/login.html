@@ -56,7 +56,7 @@
         var id_token = googleUser.getAuthResponse().id_token;
         // console.info(id_token);
         // trade for camic token
-        var cookie_name = "token"; // "token" is expected by elevate router
+        var cookie_name = "token"; // "token" is the expected cookie name
         var base_deployment_url = window.location
           .toString()
           .split("/")
@@ -148,6 +148,26 @@
       if (!results[2]) return "";
       return decodeURIComponent(results[2].replace(/\+/g, " "));
     }
+  if (getUrlParam("token")){
+      var cookie_name = "token"; // "token" is the expected cookie name
+      var base_deployment_url = window.location
+        .toString()
+        .split("/")
+        .slice(0, -1)
+        .join("/");
+      var redirect_uri = base_deployment_url + "/login.html";
+      var default_redirect = base_deployment_url + "/apps/table.html";
+      var state;
+      if (getUrlParam("state")) {
+        state = decodeURIComponent(getUrlParam("state"));
+      }
+      if (!state) {
+        state = default_redirect;
+      }
+      console.info("logging in with a url param");
+      document.cookie = cookie_name + "=" + getUrlParam("token");
+      window.location = state;
+  }
   </script>
 
   <script src="https://apis.google.com/js/platform.js?onload=renderButton" async defer></script>
