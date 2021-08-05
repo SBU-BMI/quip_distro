@@ -166,6 +166,12 @@
       {"function":"findMarkTypes", "args": []}
     ]
   },{
+    "route":"/data/Mark/updateMarksLabel",
+    "method":"post",
+    "handlers":[
+      {"function":"updateMarksLabel", "args": []}
+    ]
+  },{
     "route":"/data/Presetlabels/add",
     "method":"post",
     "handlers":[
