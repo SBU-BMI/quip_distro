@@ -26,7 +26,7 @@ services:
       - ./images/:/data/images/
   back:
     build:
-      context: "https://github.com/camicroscope/caracal.git#v3.9.6"
+      context: "https://github.com/camicroscope/caracal.git#v3.9.7"
       args:
         viewer: "v3.9.6"
     depends_on:
@@ -46,7 +46,7 @@ services:
       DISABLE_CSP: "true"
   pathdb:
     build:
-      context: "https://github.com/SBU-BMI/PathDB.git#1.6.1"
+      context: "https://github.com/SBU-BMI/PathDB.git#1.7.0"
       args:
         viewer: "v3.9.6"
     container_name: quip-pathdb
