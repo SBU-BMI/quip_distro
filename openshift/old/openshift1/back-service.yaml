@@ -1,0 +1,19 @@
+apiVersion: v1
+kind: Service
+metadata:
+  annotations:
+    kompose.cmd: kompose convert -f quip-pathdb.yml.PRISM -o openshift
+    kompose.version: 1.21.0 (992df58d8)
+  creationTimestamp: null
+  labels:
+    io.kompose.service: back
+  name: back
+spec:
+  ports:
+  - name: "4010"
+    port: 4010
+    targetPort: 4010
+  selector:
+    io.kompose.service: back
+status:
+  loadBalancer: {}

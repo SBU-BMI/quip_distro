@@ -1,0 +1,8 @@
+apiVersion: image.openshift.io/v1
+kind: ImageStream
+metadata:
+  name: back
+  namespace: build-test
+spec:
+  lookupPolicy:
+    local: false

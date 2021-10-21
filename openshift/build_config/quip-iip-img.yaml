@@ -1,0 +1,37 @@
+apiVersion: v1
+items:
+- apiVersion: image.openshift.io/v1
+  kind: ImageStream
+  metadata:
+    annotations:
+      openshift.io/generated-by: OpenShiftNewBuild
+    labels:
+      build: quip-iip-img
+    name: iip
+  spec:
+    lookupPolicy:
+      local: false
+- apiVersion: build.openshift.io/v1
+  kind: BuildConfig
+  metadata:
+    annotations:
+      openshift.io/generated-by: OpenShiftNewBuild
+    labels:
+      build: quip-iip-img
+    name: iip
+  spec:
+    output:
+      to:
+        kind: ImageStreamTag
+        name: iip:latest
+    postCommit: {}
+    source:
+      git:
+        ref: prism
+        uri: https://github.com/SBU-BMI/iipImage.git
+      type: Git
+    strategy:
+      dockerStrategy:
+      type: Docker
+kind: List
+metadata: {}

@@ -1,0 +1,41 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  annotations:
+    kompose.cmd: kompose convert -f quip-pathdb.yml.PRISM -o openshift2
+    kompose.version: 1.21.0 (992df58d8)
+  creationTimestamp: null
+  labels:
+    io.kompose.service: imageloader
+  name: imageloader
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      io.kompose.service: imageloader
+  strategy:
+    type: Recreate
+  template:
+    metadata:
+      annotations:
+        kompose.cmd: kompose convert -f quip-pathdb.yml.PRISM -o openshift2
+        kompose.version: 1.21.0 (992df58d8)
+      creationTimestamp: null
+      labels:
+        io.kompose.service: imageloader
+    spec:
+      containers:
+      - image: docker-registry.default.svc:5000/my-test/imageloader
+        imagePullPolicy: ""
+        name: quip-imageloader
+        resources: {}
+        volumeMounts:
+        - mountPath: /data/
+          name: data
+      restartPolicy: Always
+      serviceAccountName: ""
+      volumes:
+      - name: data
+        persistentVolumeClaim:
+          claimName: data
+status: {}

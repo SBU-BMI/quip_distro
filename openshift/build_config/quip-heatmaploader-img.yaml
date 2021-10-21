@@ -1,0 +1,38 @@
+apiVersion: v1
+items:
+- apiVersion: image.openshift.io/v1
+  kind: ImageStream
+  metadata:
+    annotations:
+      openshift.io/generated-by: OpenShiftNewBuild
+    labels:
+      build: quip-heatmaploader-img
+    name: heatmaploader
+  spec:
+    lookupPolicy:
+      local: false
+- apiVersion: build.openshift.io/v1
+  kind: BuildConfig
+  metadata:
+    annotations:
+      openshift.io/generated-by: OpenShiftNewBuild
+    labels:
+      build: quip-heatmaploader-img
+    name: heatmaploader
+  spec:
+    output:
+      to:
+        kind: ImageStreamTag
+        name: heatmaploader:latest
+    postCommit: {}
+    resources: {}
+    source:
+      git:
+        ref: prism
+        uri: https://github.com/SBU-BMI/uploadHeatmaps.git
+      type: Git
+    strategy:
+      dockerStrategy:
+      type: Docker
+kind: List
+metadata: {}

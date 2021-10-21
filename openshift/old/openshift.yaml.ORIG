@@ -1,0 +1,597 @@
+apiVersion: v1
+items:
+- apiVersion: v1
+  kind: Service
+  metadata:
+    annotations:
+      kompose.cmd: kompose convert -f quip-pathdb.yml.PRISM -o openshift.yaml
+      kompose.version: 1.21.0 (992df58d8)
+    creationTimestamp: null
+    labels:
+      io.kompose.service: back
+    name: back
+  spec:
+    ports:
+    - name: "4010"
+      port: 4010
+      targetPort: 4010
+    selector:
+      io.kompose.service: back
+  status:
+    loadBalancer: {}
+- apiVersion: v1
+  kind: Service
+  metadata:
+    annotations:
+      kompose.cmd: kompose convert -f quip-pathdb.yml.PRISM -o openshift.yaml
+      kompose.version: 1.21.0 (992df58d8)
+    creationTimestamp: null
+    labels:
+      io.kompose.service: pathdb
+    name: pathdb
+  spec:
+    ports:
+    - name: "443"
+      port: 443
+      targetPort: 8443
+    - name: "80"
+      port: 80
+      targetPort: 8080
+    selector:
+      io.kompose.service: pathdb
+  status:
+    loadBalancer: {}
+- apiVersion: apps/v1
+  kind: Deployment
+  metadata:
+    annotations:
+      kompose.cmd: kompose convert -f quip-pathdb.yml.PRISM -o openshift.yaml
+      kompose.version: 1.21.0 (992df58d8)
+    creationTimestamp: null
+    labels:
+      io.kompose.service: back
+    name: back
+  spec:
+    replicas: 1
+    selector:
+      matchLabels:
+        io.kompose.service: back
+    strategy:
+      type: Recreate
+    template:
+      metadata:
+        annotations:
+          kompose.cmd: kompose convert -f quip-pathdb.yml.PRISM -o openshift.yaml
+          kompose.version: 1.21.0 (992df58d8)
+        creationTimestamp: null
+        labels:
+          io.kompose.network/myquipnet: "true"
+          io.kompose.service: back
+      spec:
+        containers:
+        - env:
+          - name: DEFAULT_USER_TYPE
+            value: Editor
+          - name: DISABLE_SEC
+            value: "true"
+          - name: IIP_PATH
+            value: http://ca-iip:8080/fcgi-bin/iipsrv.fcgi
+          - name: JWK_URL
+            value: https://www.googleapis.com/oauth2/v3/certs
+          - name: MONGO_URI
+            value: mongodb://ca-mongo
+          image: back
+          imagePullPolicy: ""
+          name: ca-security
+          ports:
+          - containerPort: 4010
+          resources: {}
+          volumeMounts:
+          - mountPath: /root/src/keys/
+            name: back-claim0
+        restartPolicy: Always
+        serviceAccountName: ""
+        volumes:
+        - name: back-claim0
+          persistentVolumeClaim:
+            claimName: back-claim0
+  status: {}
+- apiVersion: v1
+  kind: PersistentVolumeClaim
+  metadata:
+    creationTimestamp: null
+    labels:
+      io.kompose.service: back-claim0
+    name: back-claim0
+  spec:
+    accessModes:
+    - ReadWriteOnce
+    resources:
+      requests:
+        storage: 100Mi
+  status: {}
+- apiVersion: extensions/v1beta1
+  kind: NetworkPolicy
+  metadata:
+    creationTimestamp: null
+    name: myquipnet
+  spec:
+    ingress:
+    - from:
+      - podSelector:
+          matchLabels:
+            io.kompose.network/myquipnet: "true"
+    podSelector:
+      matchLabels:
+        io.kompose.network/myquipnet: "true"
+- apiVersion: apps/v1
+  kind: Deployment
+  metadata:
+    annotations:
+      kompose.cmd: kompose convert -f quip-pathdb.yml.PRISM -o openshift.yaml
+      kompose.version: 1.21.0 (992df58d8)
+    creationTimestamp: null
+    labels:
+      io.kompose.service: heatmaploader
+    name: heatmaploader
+  spec:
+    replicas: 1
+    selector:
+      matchLabels:
+        io.kompose.service: heatmaploader
+    strategy:
+      type: Recreate
+    template:
+      metadata:
+        annotations:
+          kompose.cmd: kompose convert -f quip-pathdb.yml.PRISM -o openshift.yaml
+          kompose.version: 1.21.0 (992df58d8)
+        creationTimestamp: null
+        labels:
+          io.kompose.network/myquipnet: "true"
+          io.kompose.service: heatmaploader
+      spec:
+        containers:
+        - env:
+          - name: DEBIAN_FRONTEND
+            value: noninteractive
+          - name: TZ
+            value: America/New_York
+          image: heatmaploader
+          imagePullPolicy: ""
+          name: quip-hmloader
+          resources: {}
+          volumeMounts:
+          - mountPath: /mnt/data/
+            name: data
+        restartPolicy: Always
+        serviceAccountName: ""
+        volumes:
+        - name: data
+          persistentVolumeClaim:
+            claimName: data
+  status: {}
+- apiVersion: v1
+  kind: PersistentVolumeClaim
+  metadata:
+    creationTimestamp: null
+    labels:
+      io.kompose.service: data
+    name: data
+  spec:
+    accessModes:
+    - ReadWriteOnce
+    resources:
+      requests:
+        storage: 100Mi
+  status: {}
+- apiVersion: extensions/v1beta1
+  kind: NetworkPolicy
+  metadata:
+    creationTimestamp: null
+    name: myquipnet
+  spec:
+    ingress:
+    - from:
+      - podSelector:
+          matchLabels:
+            io.kompose.network/myquipnet: "true"
+    podSelector:
+      matchLabels:
+        io.kompose.network/myquipnet: "true"
+- apiVersion: apps/v1
+  kind: Deployment
+  metadata:
+    annotations:
+      kompose.cmd: kompose convert -f quip-pathdb.yml.PRISM -o openshift.yaml
+      kompose.version: 1.21.0 (992df58d8)
+    creationTimestamp: null
+    labels:
+      io.kompose.service: iip
+    name: iip
+  spec:
+    replicas: 1
+    selector:
+      matchLabels:
+        io.kompose.service: iip
+    strategy:
+      type: Recreate
+    template:
+      metadata:
+        annotations:
+          kompose.cmd: kompose convert -f quip-pathdb.yml.PRISM -o openshift.yaml
+          kompose.version: 1.21.0 (992df58d8)
+        creationTimestamp: null
+        labels:
+          io.kompose.network/myquipnet: "true"
+          io.kompose.service: iip
+      spec:
+        containers:
+        - image: iip
+          imagePullPolicy: ""
+          name: ca-iip
+          resources: {}
+          volumeMounts:
+          - mountPath: /data/images/
+            name: images
+        restartPolicy: Always
+        serviceAccountName: ""
+        volumes:
+        - name: images
+          persistentVolumeClaim:
+            claimName: images
+  status: {}
+- apiVersion: v1
+  kind: PersistentVolumeClaim
+  metadata:
+    creationTimestamp: null
+    labels:
+      io.kompose.service: images
+    name: images
+  spec:
+    accessModes:
+    - ReadWriteOnce
+    resources:
+      requests:
+        storage: 100Mi
+  status: {}
+- apiVersion: extensions/v1beta1
+  kind: NetworkPolicy
+  metadata:
+    creationTimestamp: null
+    name: myquipnet
+  spec:
+    ingress:
+    - from:
+      - podSelector:
+          matchLabels:
+            io.kompose.network/myquipnet: "true"
+    podSelector:
+      matchLabels:
+        io.kompose.network/myquipnet: "true"
+- apiVersion: apps/v1
+  kind: Deployment
+  metadata:
+    annotations:
+      kompose.cmd: kompose convert -f quip-pathdb.yml.PRISM -o openshift.yaml
+      kompose.version: 1.21.0 (992df58d8)
+    creationTimestamp: null
+    labels:
+      io.kompose.service: imageloader
+    name: imageloader
+  spec:
+    replicas: 1
+    selector:
+      matchLabels:
+        io.kompose.service: imageloader
+    strategy:
+      type: Recreate
+    template:
+      metadata:
+        annotations:
+          kompose.cmd: kompose convert -f quip-pathdb.yml.PRISM -o openshift.yaml
+          kompose.version: 1.21.0 (992df58d8)
+        creationTimestamp: null
+        labels:
+          io.kompose.network/myquipnet: "true"
+          io.kompose.service: imageloader
+      spec:
+        containers:
+        - image: imageloader
+          imagePullPolicy: ""
+          name: quip-imageloader
+          resources: {}
+          volumeMounts:
+          - mountPath: /data/
+            name: data
+          - mountPath: /data/images
+            name: images
+        restartPolicy: Always
+        serviceAccountName: ""
+        volumes:
+        - name: data
+          persistentVolumeClaim:
+            claimName: data
+        - name: images
+          persistentVolumeClaim:
+            claimName: images
+  status: {}
+- apiVersion: v1
+  kind: PersistentVolumeClaim
+  metadata:
+    creationTimestamp: null
+    labels:
+      io.kompose.service: data
+    name: data
+  spec:
+    accessModes:
+    - ReadWriteOnce
+    resources:
+      requests:
+        storage: 100Mi
+  status: {}
+- apiVersion: v1
+  kind: PersistentVolumeClaim
+  metadata:
+    creationTimestamp: null
+    labels:
+      io.kompose.service: images
+    name: images
+  spec:
+    accessModes:
+    - ReadWriteOnce
+    resources:
+      requests:
+        storage: 100Mi
+  status: {}
+- apiVersion: extensions/v1beta1
+  kind: NetworkPolicy
+  metadata:
+    creationTimestamp: null
+    name: myquipnet
+  spec:
+    ingress:
+    - from:
+      - podSelector:
+          matchLabels:
+            io.kompose.network/myquipnet: "true"
+    podSelector:
+      matchLabels:
+        io.kompose.network/myquipnet: "true"
+- apiVersion: apps/v1
+  kind: Deployment
+  metadata:
+    annotations:
+      kompose.cmd: kompose convert -f quip-pathdb.yml.PRISM -o openshift.yaml
+      kompose.version: 1.21.0 (992df58d8)
+    creationTimestamp: null
+    labels:
+      io.kompose.service: mongo
+    name: mongo
+  spec:
+    replicas: 1
+    selector:
+      matchLabels:
+        io.kompose.service: mongo
+    strategy:
+      type: Recreate
+    template:
+      metadata:
+        annotations:
+          kompose.cmd: kompose convert -f quip-pathdb.yml.PRISM -o openshift.yaml
+          kompose.version: 1.21.0 (992df58d8)
+        creationTimestamp: null
+        labels:
+          io.kompose.network/myquipnet: "true"
+          io.kompose.service: mongo
+      spec:
+        containers:
+        - image: mongo
+          imagePullPolicy: ""
+          name: ca-mongo
+          resources: {}
+          volumeMounts:
+          - mountPath: /mongodb/db
+            name: db
+        restartPolicy: Always
+        serviceAccountName: ""
+        volumes:
+        - name: db
+          persistentVolumeClaim:
+            claimName: db
+  status: {}
+- apiVersion: v1
+  kind: PersistentVolumeClaim
+  metadata:
+    creationTimestamp: null
+    labels:
+      io.kompose.service: db
+    name: db
+  spec:
+    accessModes:
+    - ReadWriteOnce
+    resources:
+      requests:
+        storage: 100Mi
+  status: {}
+- apiVersion: extensions/v1beta1
+  kind: NetworkPolicy
+  metadata:
+    creationTimestamp: null
+    name: myquipnet
+  spec:
+    ingress:
+    - from:
+      - podSelector:
+          matchLabels:
+            io.kompose.network/myquipnet: "true"
+    podSelector:
+      matchLabels:
+        io.kompose.network/myquipnet: "true"
+- apiVersion: apps/v1
+  kind: Deployment
+  metadata:
+    annotations:
+      kompose.cmd: kompose convert -f quip-pathdb.yml.PRISM -o openshift.yaml
+      kompose.version: 1.21.0 (992df58d8)
+    creationTimestamp: null
+    labels:
+      io.kompose.service: pathdb
+    name: pathdb
+  spec:
+    replicas: 1
+    selector:
+      matchLabels:
+        io.kompose.service: pathdb
+    strategy:
+      type: Recreate
+    template:
+      metadata:
+        annotations:
+          kompose.cmd: kompose convert -f quip-pathdb.yml.PRISM -o openshift.yaml
+          kompose.version: 1.21.0 (992df58d8)
+        creationTimestamp: null
+        labels:
+          io.kompose.network/myquipnet: "true"
+          io.kompose.service: pathdb
+      spec:
+        containers:
+        - args:
+          - /config/pathdb_pre.sh
+          image: pathdb
+          imagePullPolicy: ""
+          name: quip-pathdb
+          ports:
+          - containerPort: 8443
+          - containerPort: 8080
+          resources: {}
+          volumeMounts:
+          - mountPath: /data/
+            name: data
+          - mountPath: /data/pathdb/files/wsi
+            name: images
+        restartPolicy: Always
+        serviceAccountName: ""
+        volumes:
+        - name: data
+          persistentVolumeClaim:
+            claimName: data
+        - name: images
+          persistentVolumeClaim:
+            claimName: images
+  status: {}
+- apiVersion: v1
+  kind: PersistentVolumeClaim
+  metadata:
+    creationTimestamp: null
+    labels:
+      io.kompose.service: data
+    name: data
+  spec:
+    accessModes:
+    - ReadWriteOnce
+    resources:
+      requests:
+        storage: 100Mi
+  status: {}
+- apiVersion: v1
+  kind: PersistentVolumeClaim
+  metadata:
+    creationTimestamp: null
+    labels:
+      io.kompose.service: images
+    name: images
+  spec:
+    accessModes:
+    - ReadWriteOnce
+    resources:
+      requests:
+        storage: 100Mi
+  status: {}
+- apiVersion: extensions/v1beta1
+  kind: NetworkPolicy
+  metadata:
+    creationTimestamp: null
+    name: myquipnet
+  spec:
+    ingress:
+    - from:
+      - podSelector:
+          matchLabels:
+            io.kompose.network/myquipnet: "true"
+    podSelector:
+      matchLabels:
+        io.kompose.network/myquipnet: "true"
+- apiVersion: apps/v1
+  kind: Deployment
+  metadata:
+    annotations:
+      kompose.cmd: kompose convert -f quip-pathdb.yml.PRISM -o openshift.yaml
+      kompose.version: 1.21.0 (992df58d8)
+    creationTimestamp: null
+    labels:
+      io.kompose.service: segloader
+    name: segloader
+  spec:
+    replicas: 1
+    selector:
+      matchLabels:
+        io.kompose.service: segloader
+    strategy:
+      type: Recreate
+    template:
+      metadata:
+        annotations:
+          kompose.cmd: kompose convert -f quip-pathdb.yml.PRISM -o openshift.yaml
+          kompose.version: 1.21.0 (992df58d8)
+        creationTimestamp: null
+        labels:
+          io.kompose.network/myquipnet: "true"
+          io.kompose.service: segloader
+      spec:
+        containers:
+        - image: segloader
+          imagePullPolicy: ""
+          name: quip-segloader
+          resources: {}
+          volumeMounts:
+          - mountPath: /data
+            name: data
+        restartPolicy: Always
+        serviceAccountName: ""
+        volumes:
+        - name: data
+          persistentVolumeClaim:
+            claimName: data
+  status: {}
+- apiVersion: v1
+  kind: PersistentVolumeClaim
+  metadata:
+    creationTimestamp: null
+    labels:
+      io.kompose.service: data
+    name: data
+  spec:
+    accessModes:
+    - ReadWriteOnce
+    resources:
+      requests:
+        storage: 100Mi
+  status: {}
+- apiVersion: extensions/v1beta1
+  kind: NetworkPolicy
+  metadata:
+    creationTimestamp: null
+    name: myquipnet
+  spec:
+    ingress:
+    - from:
+      - podSelector:
+          matchLabels:
+            io.kompose.network/myquipnet: "true"
+    podSelector:
+      matchLabels:
+        io.kompose.network/myquipnet: "true"
+kind: List
+metadata: {}
+

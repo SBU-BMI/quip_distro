@@ -1,0 +1,38 @@
+apiVersion: v1
+items:
+- apiVersion: image.openshift.io/v1
+  kind: ImageStream
+  metadata:
+    annotations:
+      openshift.io/generated-by: OpenShiftNewBuild
+    labels:
+      build: quip-pathdb-img
+    name: pathdb
+  spec:
+    lookupPolicy:
+      local: false
+- apiVersion: build.openshift.io/v1
+  kind: BuildConfig
+  metadata:
+    annotations:
+      openshift.io/generated-by: OpenShiftNewBuild
+    labels:
+      build: quip-pathdb-img
+    name: pathdb
+  spec:
+    output:
+      to:
+        kind: ImageStreamTag
+        name: pathdb:latest
+    postCommit: {}
+    resources: {}
+    source:
+      git:
+        ref: prism
+        uri: https://github.com/SBU-BMI/PathDB.git
+      type: Git
+    strategy:
+      dockerStrategy:
+      type: Docker
+kind: List
+metadata: {}

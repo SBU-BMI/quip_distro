@@ -45,6 +45,7 @@
 ],
 "frameSrc": [
  "'self'",
- "accounts.google.com"
+ "accounts.google.com",
+ "www.youtube-nocookie.com"
 ]
 }

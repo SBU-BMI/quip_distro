@@ -1,0 +1,71 @@
+version: '3'
+
+services:
+  mongo:
+    image: mongo:3.6.18-xenial
+    container_name: ca-mongo
+    restart: unless-stopped
+    volumes:
+      - db:/data/db
+    user: "1001"
+    logging:
+      driver: none
+  idxMongo:
+    image: mongo:3.6.18-xenial
+    container_name: ca-idx
+    links:
+      - mongo
+    volumes:
+      - ./config:/config
+    user: "1001"
+    command:
+      - /config/run_idx.sh
+    depends_on:
+      - mongo
+  iip:
+    build: "https://github.com/SBU-BMI/iipImage.git#prism"
+    container_name: ca-iip
+    restart: unless-stopped
+    volumes:
+      - images:/data/images/
+    user: "1001"
+  back:
+    build:
+      context: "https://github.com/SBU-BMI/caracal.git#prism"
+      args:
+        viewer: "v3.7.7"
+    depends_on:
+      - "mongo"
+    ports:
+      - "4010:4010"
+    container_name: ca-security
+    volumes:
+      - ./keys/:/root/src/keys/
+    user: "1001"
+    environment:
+      JWK_URL: "https://www.googleapis.com/oauth2/v3/certs"
+      IIP_PATH: "http://ca-iip/fcgi-bin/iipsrv.fcgi"
+      MONGO_URI: "mongodb://ca-mongo"
+      DEFAULT_USER_TYPE: "Editor"
+      DISABLE_SEC: "true"
+  pathdb:
+    build:
+      context: "https://github.com/SBU-BMI/PathDB.git#prism"
+      args:
+        viewer: "v3.7.7"
+    container_name: quip-pathdb
+    restart: unless-stopped
+    ports: ["443:8443","80:8080"]
+    volumes:
+      - data:/data/
+      - images:/data/pathdb/files/wsi
+    user: "1001"
+    command:
+      - /config/pathdb_pre.sh
+volumes:
+    db:
+      external: true
+    images:
+      external: true
+    data:
+      external: true
