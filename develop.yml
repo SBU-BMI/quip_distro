@@ -2,12 +2,12 @@ version: '2'
 
 services:
   mongo:
-    image: mongo:4.0-xenial
+    image: mongo:4.2-bionic
     container_name: ca-mongo
     volumes:
       - ./db:/data/db
   idxMongo:
-    image: mongo:4.0-xenial
+    image: mongo:4.2-bionic
     container_name: ca-idx
     links:
       - mongo

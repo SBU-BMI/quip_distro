@@ -2,7 +2,7 @@ version: '3'
 
 services:
   mongo:
-    image: mongo:4.0-xenial
+    image: mongo:4.2-bionic
     container_name: ca-mongo
     restart: always
     logging:
@@ -12,7 +12,7 @@ services:
     volumes:
       - ./db:/data/db
   idxMongo:
-    image: mongo:4.0-xenial
+    image: mongo:4.2-bionic
     container_name: ca-idx
     links:
       - mongo
@@ -29,7 +29,7 @@ services:
     build:
       context: "https://github.com/camicroscope/caracal.git#v3.9.8"
       args:
-        viewer: "v3.9.8"
+        viewer: "v3.9.9"
     depends_on:
       - "mongo"
     ports:

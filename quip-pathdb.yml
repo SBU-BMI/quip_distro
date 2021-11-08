@@ -2,13 +2,13 @@ version: '3'
 
 services:
   mongo:
-    image: mongo:4.0-xenial
+    image: mongo:4.2-bionic
     container_name: ca-mongo
     restart: unless-stopped
     volumes:
       - ./db:/data/db
   idxMongo:
-    image: mongo:4.0-xenial
+    image: mongo:4.2-bionic
     container_name: ca-idx
     links:
       - mongo
@@ -28,7 +28,7 @@ services:
     build:
       context: "https://github.com/camicroscope/caracal.git#v3.9.8"
       args:
-        viewer: "v3.9.8"
+        viewer: "v3.9.9"
     depends_on:
       - "mongo"
     ports:
@@ -48,7 +48,7 @@ services:
     build:
       context: "https://github.com/SBU-BMI/PathDB.git#1.7.1"
       args:
-        viewer: "v3.9.8"
+        viewer: "v3.9.9"
     container_name: quip-pathdb
     restart: unless-stopped
     ports: ["443:443","80:80"]
