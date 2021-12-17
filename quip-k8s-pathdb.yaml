@@ -1,0 +1,112 @@
+apiVersion: v1
+items:
+  - apiVersion: v1
+    kind: Service
+    metadata:
+      annotations:
+        kompose.cmd: kompose convert -f quip-pathdb-prism.yaml -o quip-k8s-pathdb.yaml
+        kompose.version: 1.26.0 (HEAD)
+      creationTimestamp: null
+      labels:
+        io.kompose.service: pathdb
+      name: pathdb
+    spec:
+      ports:
+        - name: "443"
+          port: 443
+          targetPort: 8443
+        - name: "80"
+          port: 80
+          targetPort: 8080
+      selector:
+        io.kompose.service: pathdb
+    status:
+      loadBalancer: {}
+  - apiVersion: v1
+    kind: PersistentVolumeClaim
+    metadata:
+      creationTimestamp: null
+      labels:
+        io.kompose.service: keys
+      name: keys
+    spec:
+      accessModes:
+        - ReadWriteOnce
+      resources:
+        requests:
+          storage: 100Mi
+    status: {}
+  - apiVersion: v1
+    kind: PersistentVolumeClaim
+    metadata:
+      creationTimestamp: null
+      labels:
+        io.kompose.service: data
+      name: data
+    spec:
+      accessModes:
+        - ReadWriteOnce
+      resources:
+        requests:
+          storage: 100Mi
+    status: {}
+  - apiVersion: v1
+    kind: PersistentVolumeClaim
+    metadata:
+      creationTimestamp: null
+      labels:
+        io.kompose.service: db
+      name: db
+    spec:
+      accessModes:
+        - ReadWriteOnce
+      resources:
+        requests:
+          storage: 100Mi
+    status: {}
+  - apiVersion: apps/v1
+    kind: Deployment
+    metadata:
+      annotations:
+        kompose.cmd: kompose convert -f quip-pathdb-prism.yaml -o quip-k8s-pathdb.yaml
+        kompose.version: 1.26.0 (HEAD)
+      creationTimestamp: null
+      labels:
+        io.kompose.service: pathdb
+      name: pathdb
+    spec:
+      replicas: 1
+      selector:
+        matchLabels:
+          io.kompose.service: pathdb
+      strategy:
+        type: Recreate
+      template:
+        metadata:
+          annotations:
+            kompose.cmd: kompose convert -f quip-pathdb-prism.yaml -o quip-k8s-pathdb.yaml
+            kompose.version: 1.26.0 (HEAD)
+          creationTimestamp: null
+          labels:
+            io.kompose.service: pathdb
+        spec:
+          containers:
+            - args:
+                - /config/pathdb_pre.sh
+              image: pathdb
+              name: quip-pathdb
+              ports:
+                - containerPort: 8443
+                - containerPort: 8080
+              resources: {}
+              volumeMounts:
+                - mountPath: /data/
+                  name: data
+          restartPolicy: Always
+          volumes:
+            - name: data
+              persistentVolumeClaim:
+                claimName: data
+    status: {}
+kind: List
+metadata: {}
