@@ -11,13 +11,16 @@ items:
         io.kompose.service: pathdb
       name: pathdb
     spec:
+      type: NodePort
       ports:
         - name: "443"
           port: 443
           targetPort: 8443
+          nodePort: 30443
         - name: "80"
           port: 80
           targetPort: 8080
+          nodePort: 30180
       selector:
         io.kompose.service: pathdb
     status:
@@ -93,7 +96,7 @@ items:
           containers:
             - args:
                 - /config/pathdb_pre.sh
-              image: pathdb
+              image: jbalsamo/pathdb
               name: quip-pathdb
               ports:
                 - containerPort: 8443
