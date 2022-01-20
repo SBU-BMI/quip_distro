@@ -6,16 +6,6 @@ services:
     container_name: ca-mongo
     volumes:
       - ./db:/data/db
-  idxMongo:
-    image: mongo:4.2-bionic
-    container_name: ca-idx
-    links:
-      - mongo
-    volumes:
-      - ./config:/config
-    command: bash /config/run_idx.sh
-    depends_on:
-      - mongo
   back:
     build:
       context: "https://github.com/camicroscope/caracal.git#develop"

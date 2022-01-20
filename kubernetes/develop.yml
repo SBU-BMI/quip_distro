@@ -1,0 +1,94 @@
+apiVersion: v1
+kind: List
+items:
+ - apiVersion: apps/v1
+   kind: Deployment
+   metadata:
+     name: back
+     labels:
+       service: back
+   spec:
+     selector:
+       matchLabels:
+         service: back
+     template:
+       metadata:
+         labels:
+           service: back
+       spec:
+         hostAliases:
+         - ip: "127.0.0.1"
+           hostnames:
+           - "ca-load"
+           - "ca-iip"
+           - "ca-mongo"
+           - "ca-back"
+         volumes:
+           - name: images
+             emptyDir: {}
+         containers:
+           - name: mongo
+             image: mongo:4.2-bionic
+             ports:
+               - containerPort: 27017
+           - name: back
+             image: ghcr.io/camicroscope/caracal:develop
+             ports:
+               - containerPort: 4010
+             env:
+               - name: PORT
+                 value: "4010"
+               - name: JWK_URL
+                 value: "https://www.googleapis.com/oauth2/v3/certs"
+               - name: IIP_PATH
+                 value: "http://localhost:8080/fcgi-bin/iipsrv.fcgi"
+               - name: MONGO_URI
+                 value: "mongodb://localhost"
+               - name: DISABLE_SEC
+                 value: "true"
+               - name: ALLOW_PUBLIC
+                 value: "true"
+               - name: DISABLE_CSP
+                 value: "true"
+           - name: iip
+             image: camicroscope/iipimage:latest
+             ports:
+               - containerPort: 8080
+             volumeMounts:
+             - name: images
+               mountPath: /images/
+           - name: loader
+             image: ghcr.io/camicroscope/slideloader:auto-build
+             ports:
+               - containerPort: 4000
+             volumeMounts:
+             - name: images
+               mountPath: /images/
+ - apiVersion: v1
+   kind: Service
+   metadata:
+     name: back
+     labels:
+       service: back
+   spec:
+     type: NodePort
+     selector:
+       service: back
+     ports:
+       - name: "4010"
+         port: 4010
+         targetPort: 4010
+         nodePort: 30401
+     type: LoadBalancer
+ - apiVersion: v1
+   kind: Service
+   metadata:
+     labels:
+       name: ca-load
+     name: ca-load
+   spec:
+     ports:
+       - port: 4000
+         targetPort: 4000
+     selector:
+       name: loader

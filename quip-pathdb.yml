@@ -7,17 +7,6 @@ services:
     restart: unless-stopped
     volumes:
       - ./db:/data/db
-  idxMongo:
-    image: mongo:4.2-bionic
-    container_name: ca-idx
-    links:
-      - mongo
-    volumes:
-      - ./config:/config
-    command:
-      - /config/run_idx.sh
-    depends_on:
-      - mongo
   iip:
     image: camicroscope/iipimage:version-3.8.4
     container_name: ca-iip
@@ -26,9 +15,9 @@ services:
       - ./images/:/data/images/
   back:
     build:
-      context: "https://github.com/camicroscope/caracal.git#v3.9.8"
+      context: "https://github.com/camicroscope/caracal.git#v3.9.10"
       args:
-        viewer: "v3.9.9"
+        viewer: "v3.9.10"
     depends_on:
       - "mongo"
     ports:
@@ -48,7 +37,7 @@ services:
     build:
       context: "https://github.com/SBU-BMI/PathDB.git#1.7.1"
       args:
-        viewer: "v3.9.9"
+        viewer: "v3.9.10"
     container_name: quip-pathdb
     restart: unless-stopped
     ports: ["443:443","80:80"]

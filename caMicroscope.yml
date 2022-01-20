@@ -11,13 +11,6 @@ services:
           max-size: "10m"
     volumes:
       - ./db:/data/db
-  idxMongo:
-    image: mongo:4.2-bionic
-    container_name: ca-idx
-    links:
-      - mongo
-    volumes:
-      - ./config:/config
     command: bash /config/run_idx.sh
     logging:
       options:
@@ -27,9 +20,9 @@ services:
       - mongo
   back:
     build:
-      context: "https://github.com/camicroscope/caracal.git#v3.9.8"
+      context: "https://github.com/camicroscope/caracal.git#v3.9.10"
       args:
-        viewer: "v3.9.9"
+        viewer: "v3.9.10"
     depends_on:
       - "mongo"
     ports:
@@ -50,6 +43,7 @@ services:
       JWK_URL: "https://www.googleapis.com/oauth2/v3/certs"
       IIP_PATH: "http://ca-iip:8080/fcgi-bin/iipsrv.fcgi"
       MONGO_URI: "mongodb://ca-mongo"
+      GENERATE_KEY_IF_MISSING: "true"
   iip:
     image: camicroscope/iipimage:version-3.8.4
     container_name: ca-iip
@@ -61,7 +55,7 @@ services:
     volumes:
       - ./images/:/images/
   loader:
-    build: "https://github.com/camicroscope/SlideLoader.git#v3.9.8"
+    build: "https://github.com/camicroscope/SlideLoader.git#v3.9.10"
     container_name: ca-load
     restart: always
     logging:
