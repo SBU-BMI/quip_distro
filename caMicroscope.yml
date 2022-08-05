@@ -11,18 +11,11 @@ services:
           max-size: "10m"
     volumes:
       - ./db:/data/db
-    command: bash /config/run_idx.sh
-    logging:
-      options:
-          max-file: "5"
-          max-size: "10m"
-    depends_on:
-      - mongo
   back:
     build:
-      context: "https://github.com/camicroscope/caracal.git#v3.9.10"
+      context: "https://github.com/camicroscope/caracal.git#v3.9.11"
       args:
-        viewer: "v3.9.10"
+        viewer: "v3.9.11"
     depends_on:
       - "mongo"
     ports:
@@ -55,7 +48,7 @@ services:
     volumes:
       - ./images/:/images/
   loader:
-    build: "https://github.com/camicroscope/SlideLoader.git#v3.9.10"
+    build: "https://github.com/camicroscope/SlideLoader.git#v3.9.11"
     container_name: ca-load
     restart: always
     logging:

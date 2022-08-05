@@ -373,7 +373,7 @@
       {"function":"mongoUpdate", "args": ["camic", "freeform"]}
     ]
   },
-  
+
   {
     "route":"/data/Configuration/find",
     "method":"get",

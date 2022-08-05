@@ -1,0 +1,190 @@
+apiVersion: v1
+kind: List
+items:
+ - apiVersion: v1
+   kind: PersistentVolume
+   metadata:
+     name: pv-images
+     labels:
+       type: local
+   spec:
+     storageClassName: manual
+     capacity:
+       storage: 10Gi
+     accessModes:
+       - ReadWriteOnce
+     hostPath:
+       path: /data/images
+ - apiVersion: v1
+   kind: PersistentVolume
+   metadata:
+     name: pv-data
+     labels:
+       type: local
+   spec:
+     storageClassName: manual
+     capacity:
+       storage: 10Gi
+     accessModes:
+       - ReadWriteOnce
+     hostPath:
+       path: /data
+ - apiVersion: v1
+   kind: PersistentVolumeClaim
+   metadata:
+     name: pv-data-claim
+   spec:
+     storageClassName: manual
+     volumeName: pv-data
+     accessModes:
+       - ReadWriteOnce
+     resources:
+       requests:
+         storage: 10Gi
+ - apiVersion: v1
+   kind: PersistentVolumeClaim
+   metadata:
+     name: pv-images-claim
+   spec:
+     storageClassName: manual
+     volumeName: pv-images
+     accessModes:
+       - ReadWriteOnce
+     resources:
+       requests:
+         storage: 10Gi
+ - apiVersion: apps/v1
+   kind: Deployment
+   metadata:
+     name: pathdb
+     labels:
+       service: pathdb
+   spec:
+     selector:
+       matchLabels:
+         service: pathdb
+     template:
+       metadata:
+         labels:
+           service: pathdb
+       spec:
+         hostAliases:
+         - ip: "127.0.0.1"
+           hostnames:
+           - "quip-pathdb"
+           - "quip-imageloader"
+           - "quip-segloader"
+           - "quip-hmloader"
+           - "ca-iip"
+           - "ca-mongo"
+           - "ca-back"
+           - "ca-security"
+         volumes:
+           - name: images
+             persistentVolumeClaim:
+               claimName: pv-images-claim
+           - name: data
+             persistentVolumeClaim:
+               claimName: pv-data-claim
+           - name: pathdb-files
+             emptyDir: {}
+           - name: jwtkeys
+             secret:
+               secretName: camic-jwt-keys
+           - name: pathdb-sites
+             configMap:
+               name: pathdb-sites
+           - name: pathdb-config
+             configMap:
+               name: pathdb-config
+         containers:
+           - name: mongo
+             image: mongo:4.2-bionic
+             ports:
+               - containerPort: 27017
+           - name: back
+             image: ghcr.io/camicroscope/caracal:master
+             ports:
+               - containerPort: 4010
+             volumeMounts:
+             - name: jwtkeys
+               mountPath: /src/keys/
+             env:
+               - name: PORT
+                 value: "4010"
+               - name: JWK_URL
+                 value: "https://www.googleapis.com/oauth2/v3/certs"
+               - name: IIP_PATH
+                 value: "http://localhost:8080/fcgi-bin/iipsrv.fcgi"
+               - name: MONGO_URI
+                 value: "mongodb://localhost"
+               - name: GENERATE_KEY_IF_MISSING
+                 value: "true"
+               - name: "DEFAULT_USER_TYPE"
+                 value: "Editor"
+               - name: "DISABLE_SEC"
+                 value: "true"
+               - name: "DISABLE_CSP"
+                 value: "true"
+           - name: iip
+             image: camicroscope/iipimage:latest
+             ports:
+               - containerPort: 8080
+             volumeMounts:
+             - name: images
+               mountPath: /data/images/
+           - name: imageloader
+             image: camicroscope/pathdb-imageloader:latest
+             volumeMounts:
+             - name: data
+               mountPath: /data/
+             - name: images
+               mountPath: /data/images/
+           - name: heatmaploader
+             image: camicroscope/pathdb-heatmaploader:latest
+             volumeMounts:
+             - name: data
+               mountPath: /mnt/data/
+             env:
+               - name: "TZ"
+                 value: "America/New_York"
+               - name: "DEBIAN_FRONTEND"
+                 value: "noninteractive"
+           - name: pathdb
+             image: camicroscope/pathdb:latest
+             ports:
+               - containerPort: 443
+               - containerPort: 80
+             volumeMounts:
+             - name: data
+               mountPath: /data/
+             - name: images
+               mountPath: /data/pathdb/files/wsi
+             - name: pathdb-sites
+               mountPath: /quip/web/sites/default/
+             - name: pathdb-files
+               mountPath: /quip/web/sites/default/files/
+             - name: pathdb-config
+               mountPath: /config/
+             - name: jwtkeys
+               mountPath: /keys/
+ - apiVersion: v1
+   kind: Service
+   metadata:
+     name: pathdb
+     labels:
+       service: pathdb
+   spec:
+     type: NodePort
+     selector:
+       service: pathdb
+     ports:
+       - name: "443"
+         port: 443
+         targetPort: 443
+         nodePort: 30443
+       - name: "80"
+         port: 80
+         targetPort: 80
+         nodePort: 30180
+     type: LoadBalancer

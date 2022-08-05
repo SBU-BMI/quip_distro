@@ -15,9 +15,9 @@ services:
       - ./images/:/data/images/
   back:
     build:
-      context: "https://github.com/camicroscope/caracal.git#v3.9.10"
+      context: "https://github.com/camicroscope/caracal.git#v3.9.11"
       args:
-        viewer: "v3.9.10"
+        viewer: "v3.9.11"
     depends_on:
       - "mongo"
     ports:

@@ -83,7 +83,7 @@
               if (x.hasOwnProperty("token")) {
                 document.cookie = cookie_name + "=" + x.token;
                 let token_data = parseJwt(x.token);
-                window.location = "./apps/landing/landing.html";
+                window.location = "./apps/table.html";
               } else {
                 window.alert("User not added");
                 window.location = "./apps/signup/signup.html";
