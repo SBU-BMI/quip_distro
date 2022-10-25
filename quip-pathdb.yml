@@ -15,9 +15,9 @@ services:
       - ./images/:/data/images/
   back:
     build:
-      context: "https://github.com/camicroscope/caracal.git#v3.9.11"
+      context: "https://github.com/camicroscope/caracal.git#v3.10.0"
       args:
-        viewer: "v3.9.11"
+        viewer: "v3.10.0"
     depends_on:
       - "mongo"
     ports:
@@ -25,7 +25,7 @@ services:
     container_name: ca-security
     volumes:
       - ./keys/:/src/keys/
-      - ./config/routes.json:/src/routes.json
+      - ./config/routes_pathdb.json:/src/routes.json
     environment:
       JWK_URL: "https://www.googleapis.com/oauth2/v3/certs"
       IIP_PATH: "http://ca-iip:8080/fcgi-bin/iipsrv.fcgi"
@@ -35,9 +35,9 @@ services:
       DISABLE_CSP: "true"
   pathdb:
     build:
-      context: "https://github.com/SBU-BMI/PathDB.git#1.7.1"
+      context: "https://github.com/SBU-BMI/PathDB.git#2.0.0"
       args:
-        viewer: "v3.9.10"
+        viewer: "v3.10.0"
     container_name: quip-pathdb
     restart: unless-stopped
     ports: ["443:443","80:80"]
@@ -50,7 +50,7 @@ services:
     command:
       - /config/pathdb_pre.sh
   imageloader:
-    build: "https://github.com/SBU-BMI/ImageLoader.git#2.1.1"
+    build: "https://github.com/SBU-BMI/ImageLoader.git#3.0.0"
     container_name: quip-imageloader
     volumes:
       - ./data:/data/
