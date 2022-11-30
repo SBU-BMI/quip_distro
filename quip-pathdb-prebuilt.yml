@@ -1,0 +1,64 @@
+version: '3'
+
+services:
+  mongo:
+    image: mongo:4.2-bionic
+    container_name: ca-mongo
+    restart: unless-stopped
+    volumes:
+      - ./db:/data/db
+  iip:
+    image: camicroscope/iipimage:version-3.8.4
+    container_name: ca-iip
+    restart: unless-stopped
+    volumes:
+      - ./images/:/data/images/
+  back:
+    image: sbubmi/quip_distro_back:11302022   
+    depends_on:
+      - "mongo"
+    ports:
+      - "4010:4010"
+    container_name: ca-security
+    volumes:
+      - ./keys/:/src/keys/
+      - ./config/routes_pathdb.json:/src/routes.json
+    environment:
+      JWK_URL: "https://www.googleapis.com/oauth2/v3/certs"
+      IIP_PATH: "http://ca-iip:8080/fcgi-bin/iipsrv.fcgi"
+      MONGO_URI: "mongodb://ca-mongo"
+      DEFAULT_USER_TYPE: "Editor"
+      DISABLE_SEC: "true"
+      DISABLE_CSP: "true"
+  pathdb:
+    image: sbubmi/quip_distro_pathdb:11302022
+    container_name: quip-pathdb
+    restart: unless-stopped
+    ports: ["443:443","80:80"]
+    volumes:
+      - ./data:/data/
+      - ./images/:/data/pathdb/files/wsi
+      - ./config/pathdb:/quip/web/sites/default
+      - ./jwt_keys/:/keys/
+      - ./config:/config
+    command:
+      - /config/pathdb_pre.sh
+  imageloader:
+    image: sbubmi/quip_distro_imageloader:11302022
+    container_name: quip-imageloader
+    volumes:
+      - ./data:/data/
+      - ./images:/data/images
+  segloader:
+    image: sbubmi/quip_distro_segloader:11302022
+    container_name: quip-segloader
+    volumes:
+      - ./data:/data
+  heatmaploader:
+    image: sbubmi/quip_distro_heatmaploader:11302022
+    container_name: quip-hmloader
+    volumes:
+      - ./data:/mnt/data/
+    environment:
+      - TZ=America/New_York
+      - DEBIAN_FRONTEND=noninteractive
