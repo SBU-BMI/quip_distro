@@ -2,7 +2,7 @@ name: Docker Compose Test
 on: push
 jobs:
   test:
-    runs-on: ubuntu-18.04
+    runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
       - name: Build the develop stack
