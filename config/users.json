@@ -1,0 +1,8 @@
+// For documentation purposes only
+// Run a variation of this in ca-mongo against the camic collection.
+
+let admin = {'email':'viewer@camicroscope.org', 'userFilter':["**"], 'userType':'Admin'}
+let user = {'email':'user@camicroscope.org', 'userFilter':["**"], 'userType':'Editor'}
+users = [admin, user]
+
+db.user.insertMany(users)

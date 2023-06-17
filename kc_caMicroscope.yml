@@ -1,0 +1,97 @@
+version: '3'
+
+volumes:
+  postgres_data:
+    name: postgres_data
+
+services:
+  postgres:
+    image: postgres:15
+    container_name: ca-key-db
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+    environment:
+      POSTGRES_DB: keycloak
+      POSTGRES_USER: keycloak
+      POSTGRES_PASSWORD: password
+    restart: always
+    logging:
+      options:
+          max-file: "5"
+          max-size: "10m"
+  keycloak:
+      container_name: ca-key
+      image: quay.io/keycloak/keycloak:latest
+      command: start-dev
+      environment:
+        KC_DB: postgres
+        KC_DB_URL: jdbc:postgresql://ca-key-db:5432/keycloak
+        KC_DB_USERNAME: keycloak
+        KC_DB_PASSWORD: password
+        KEYCLOAK_ADMIN: admin
+        KEYCLOAK_ADMIN_PASSWORD: password
+      ports:
+        - 8080:8080
+      restart: always
+      logging:
+        options:
+            max-file: "5"
+            max-size: "10m"
+      depends_on:
+        - postgres
+  mongo:
+    image: mongo:4.2-bionic
+    container_name: ca-mongo
+    restart: always
+    logging:
+      options:
+          max-file: "5"
+          max-size: "10m"
+    volumes:
+      - ./db:/data/db
+  back:
+    build:
+      context: "https://github.com/camicroscope/caracal.git#v3.10.0"
+      args:
+        viewer: "v3.10.1"
+    depends_on:
+      - "mongo"
+    ports:
+      - "4010:4010"
+    container_name: ca-back
+    restart: always
+    logging:
+      options:
+          max-file: "5"
+          max-size: "10m"
+    volumes:
+      - ./images/:/images/
+      - ./config/keycloak_login.html:/src/static/login.html
+      - ./jwt_keys/:/src/keys/
+      - ./config/routes.json:/src/routes.json
+      - ./config/contentSecurityPolicy.json:/src/contentSecurityPolicy.json
+    environment:
+      JWK_URL: "http://ca-back:4010/keycloak/realms/camic/protocol/openid-connect/certs"
+      IIP_PATH: "http://ca-iip:8080/fcgi-bin/iipsrv.fcgi"
+      MONGO_URI: "mongodb://ca-mongo"
+      GENERATE_KEY_IF_MISSING: "true"
+  iip:
+    image: camicroscope/iipimage:version-3.10.2
+    container_name: ca-iip
+    logging:
+      options:
+          max-file: "5"
+          max-size: "10m"
+    restart: always
+    volumes:
+      - ./images/:/images/
+  loader:
+    build: "https://github.com/camicroscope/SlideLoader.git#v3.10.0"
+    container_name: ca-load
+    restart: always
+    logging:
+      options:
+          max-file: "5"
+          max-size: "10m"
+    volumes:
+      - ./images/:/images/

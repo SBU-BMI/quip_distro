@@ -28,9 +28,9 @@
     ]
   },{
     "method":"use",
-    "route": "/googleAuth/",
+    "route": "/keycloak/",
     "handlers":[
-      {"function":"proxyHandler", "args": ["http://ca-load:4001/"]}
+      {"function":"proxyHandler", "args": ["http://ca-key:8080/"]}
     ]
   },
 
@@ -172,6 +172,13 @@
       {"function":"updateMarksLabel", "args": []}
     ]
   },{
+    "route":"/data/Mark/segmentationCount",
+    "method":"get",
+    "handlers":[
+      {"function":"markSegmentationCount", "args": []}
+    ]
+  },
+  {
     "route":"/data/Presetlabels/add",
     "method":"post",
     "handlers":[
