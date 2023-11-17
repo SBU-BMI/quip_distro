@@ -29,7 +29,7 @@ services:
       DISABLE_SEC: "true"
       ALLOW_PUBLIC: "true"
   iip:
-    build: "https://github.com/camicroscope/iipimage.git#develop"
+    build: "https://github.com/camicroscope/iipImage.git#develop"
     container_name: ca-iip
     restart: unless-stopped
     volumes:
@@ -40,3 +40,23 @@ services:
     volumes:
       - ./images/:/images/
       - ./cloud-upload-apis/:/cloud-upload-apis/
+    environment:
+      DICOM_PORT: "11112"
+      DICOM_UI_PORT: "8042"
+  dicomsrv:
+    build: "https://github.com/camicroscope/dicomsrv.git"
+    container_name: ca-dicomsrv
+    restart: unless-stopped
+    stdin_open: true
+    tty: true
+    ports:
+      - "8042:8042"
+      - "11112:11112"
+    volumes:
+      - ./jwt_keys/:/root/keys/
+      - ./images/:/images/
+      - ./config/OrthancConfiguration.json:/root/src/Configuration.json
+    environment:
+      DICOM_PORT: "11112"
+      DICOM_UI_PORT: "8042"
+      CARACAL_BACK_HOST_PORT: "ca-back:4010"

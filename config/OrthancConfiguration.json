@@ -1,0 +1,64 @@
+{
+  // https://hg.orthanc-server.com/orthanc/file/Orthanc-1.12.1/OrthancServer/Resources/Configuration.json
+  // Configuration.json supports importing ENV vars with ${YourEnvVarName}
+  // NOTE about file paths: /images/ and all paths in this file starting with /root
+  // are set correctly to match what caMicroscope Dockerfiles set up.
+  // Changing these might cause issues. Besides, Dockerfiles will copy
+  // OrthancConfiguration.json from caMicroscope/Distro as well so please don't rename this file.
+  "Plugins" : [
+    "/root/src/libOrthancIndexer.so"
+  ],
+  "Indexer" : {
+    "Enable" : true,
+    "Folders" : ["/images/"],
+    "Interval" : 10 // Delay between two synchronizations (seconds)
+  },
+  "StorageCompression" : false, // "true" is incompatible with caMicroscope
+  "Name" : "camic-orthanc",
+  "DicomAet" : "CAMIC-ORTHANC",
+  "StorageDirectory" : "/images/",
+  "IndexDirectory" : "/root/orthanc-index",
+  "HttpServerEnabled" : true, // Rest API and GUI
+  "OrthancExplorerEnabled" : true, // GUI
+  "HttpPort" : ${DICOM_UI_PORT}, // Rest API and GUI
+  "RestApiWriteToFileSystemEnabled" : true, // Rest API and GUI
+  "RemoteAccessAllowed" : true,
+  "AuthenticationEnabled" : false, // Basic HTTP auth for GUI as in http://httpbin.org/basic-auth/foo/bar
+  //"RegisteredUsers" : {
+    // "alice" : "alicePassword"
+  //},
+  "SslEnabled" : false, // HTTP server
+  "SslCertificate" : "/root/keys/keyandpub.pem", // both cert and private key
+  "HttpsVerifyPeers" : true, // Verify SSL of other orthanc servers
+
+  "MallocArenaMax" : 5, // Suggested by docs to regulate memory use
+  "DicomThreadsCount" : 3,
+
+  "DicomPort" : ${DICOM_PORT},
+
+  // NOTE: Due to a bug in Orthanc 1.12.1 and lower, to disable DICOM TLS,
+  // "DicomTlsEnabled" : false is not enough; please also comment out the line with
+  // DicomTlsPrivateKey
+  "DicomTlsEnabled" : false, // DICOM server
+  // For DICOM, unlike HTTP, cert (cer or cert or pub or pem) and pkey need to be provided as separate files.
+  // For example, the latter means that when the file is opened with a text editor,
+  // there's "BEGIN PRIVATE KEY" and "BEGIN CERTIFICATE" in the same file.
+  //"DicomTlsPrivateKey" : "/root/keys/key",
+  "DicomTlsCertificate" : "/root/keys/key.pub",
+  "DicomTlsRemoteCertificateRequired" : true, // Verify certificate of dicom peers
+
+  // AlwaysAllow: If false, only those listed under "DicomModalities" will be capable of these
+  "DicomAlwaysAllowStore" : true,
+  // The following ones allow retrieving data, which you might not want everyone to do
+  "DicomAlwaysAllowFind" : true,
+  "DicomAlwaysAllowFindWorklist" : true,
+  "DicomAlwaysAllowGet" : true,
+  "DicomAlwaysAllowMove" : true,
+
+  //"DicomModalities" : {
+    // AET, IP, port
+    // "sample" : ["MYSRV", "192.168.1.40", 1300]
+    // See the link at the beginning of the file for selectively giving permissions
+  //},
+  "DicomCheckModalityHost" : false // Check the IP as well or only check the modality
+}

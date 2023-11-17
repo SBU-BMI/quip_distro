@@ -69,8 +69,8 @@ Please see README at https://github.com/SBU-BMI/SegmentationLoader for user inst
 results to QuIP.
 
 
-## Support
-Feel free to add any support inquiry as a github issue to this repository. Other feedback can be given via [this form](https://docs.google.com/forms/d/e/1FAIpQLScL91LxrpAZjU88GBZP9gmcdgdf8__uNUwhws2lzU6Lr4qNwA/viewform).
+## Support and Questions
+For questions, comments, or any other discussion, please see the [caMicroscope discussion forum](https://github.com/orgs/camicroscope/discussions).
 
 ## PathDB
 

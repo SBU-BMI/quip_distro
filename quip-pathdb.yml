@@ -8,16 +8,16 @@ services:
     volumes:
       - ./db:/data/db
   iip:
-    image: camicroscope/iipimage:version-3.10.2
+    image: camicroscope/iipimage:version-3.11.0
     container_name: ca-iip
     restart: unless-stopped
     volumes:
       - ./images/:/data/images/
   back:
     build:
-      context: "https://github.com/camicroscope/caracal.git#v3.10.2"
+      context: "https://github.com/camicroscope/caracal.git#v3.11.0"
       args:
-        viewer: "v3.10.1"
+        viewer: "v3.11.0"
     depends_on:
       - "mongo"
     ports:
@@ -37,7 +37,7 @@ services:
     build:
       context: "https://github.com/SBU-BMI/PathDB.git#2.0.0"
       args:
-        viewer: "v3.10.2"
+        viewer: "v3.11.0"
     container_name: quip-pathdb
     restart: unless-stopped
     ports: ["443:443","80:80"]

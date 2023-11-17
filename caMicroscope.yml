@@ -13,9 +13,9 @@ services:
       - ./db:/data/db
   back:
     build:
-      context: "https://github.com/camicroscope/caracal.git#v3.10.2"
+      context: "https://github.com/camicroscope/caracal.git#v3.11.0"
       args:
-        viewer: "v3.10.2"
+        viewer: "v3.11.0"
     depends_on:
       - "mongo"
     ports:
@@ -39,7 +39,7 @@ services:
       DISABLE_SEC: "true"
       GENERATE_KEY_IF_MISSING: "true"
   iip:
-    image: camicroscope/iipimage:version-3.10.2
+    image: camicroscope/iipimage:version-3.11.0
     container_name: ca-iip
     logging:
       options:
@@ -49,7 +49,7 @@ services:
     volumes:
       - ./images/:/images/
   loader:
-    build: "https://github.com/camicroscope/SlideLoader.git#v3.10.2"
+    build: "https://github.com/camicroscope/SlideLoader.git#v3.11.0"
     container_name: ca-load
     restart: always
     logging:
@@ -58,3 +58,23 @@ services:
           max-size: "10m"
     volumes:
       - ./images/:/images/
+    environment:
+      DICOM_PORT: "11112"
+      DICOM_UI_PORT: "8042"
+  dicomsrv:
+    build: "https://github.com/camicroscope/dicomsrv.git#v3.11.0"
+    container_name: ca-dicomsrv
+    restart: unless-stopped
+    stdin_open: true
+    tty: true
+    ports:
+      - "8042:8042"
+      - "11112:11112"
+    volumes:
+      - ./jwt_keys/:/root/keys/
+      - ./images/:/images/
+      - ./config/OrthancConfiguration.json:/root/src/Configuration.json
+    environment:
+      DICOM_PORT: "11112"
+      DICOM_UI_PORT: "8042"
+      CARACAL_BACK_HOST_PORT: "ca-back:4010"
