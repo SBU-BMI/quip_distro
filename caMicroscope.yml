@@ -13,9 +13,9 @@ services:
       - ./db:/data/db
   back:
     build:
-      context: "https://github.com/camicroscope/caracal.git#v3.11.0"
+      context: "https://github.com/camicroscope/caracal.git#v3.12.0"
       args:
-        viewer: "v3.11.0"
+        viewer: "v3.12.0"
     depends_on:
       - "mongo"
     ports:
@@ -49,7 +49,7 @@ services:
     volumes:
       - ./images/:/images/
   loader:
-    build: "https://github.com/camicroscope/SlideLoader.git#v3.11.0"
+    build: "https://github.com/camicroscope/SlideLoader.git#v3.12.0"
     container_name: ca-load
     restart: always
     logging:
@@ -62,7 +62,10 @@ services:
       DICOM_PORT: "11112"
       DICOM_UI_PORT: "8042"
   dicomsrv:
-    build: "https://github.com/camicroscope/dicomsrv.git#v3.11.0"
+    build:
+      context: "https://github.com/camicroscope/dicomsrv.git#v3.11.1"
+      args: 
+        indexer: "v3.12.0"
     container_name: ca-dicomsrv
     restart: unless-stopped
     stdin_open: true

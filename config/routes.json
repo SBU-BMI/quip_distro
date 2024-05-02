@@ -114,7 +114,13 @@
     "route":"/data/Mark/find",
     "method":"get",
     "handlers":[
-      {"function":"mongoFind", "args": ["camic", "mark"]}
+      {"function":"mongoPaginatedFind", "args": ["camic", "mark"]}
+    ]
+  },{
+    "route":"/data/Mark/count",
+    "method":"get",
+    "handlers":[
+      {"function":"mongoCount", "args": ["camic", "mark"]}
     ]
   },{
     "route":"/data/Mark/post",
@@ -146,6 +152,12 @@
     "method":"get",
     "handlers":[
       {"function":"mongoDistinct", "args": ["camic", "mark", "provenance.analysis"]}
+    ]
+  },{
+    "route":"/data/Mark/provenances",
+    "method":"get",
+    "handlers":[
+      {"function":"mongoDistinct", "args": ["camic", "mark", "provenance"]}
     ]
   },{
     "route":"/data/Mark/multi",

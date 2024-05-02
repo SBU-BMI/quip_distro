@@ -17,6 +17,10 @@
   "cdn.datatables.net",
   "maxcdn.bootstrapcdn.com"
 ],
+"connectSrc": [
+  "'self'",
+  "*"
+],
 "styleSrc": [
   "'self'",
   "'unsafe-inline'",

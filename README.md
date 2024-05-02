@@ -104,3 +104,4 @@ Alternatively, you can use kc_caMicroscope.yml for a keycloak configuration.
     * Users -> add user
     * Make sure to add an email to match user documents in mongo.
     * Set a password under credentials -> add password
+

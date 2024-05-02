@@ -16,7 +16,9 @@ services:
       - "mongo"
     ports:
       - "4010:4010"
+      - "9229:9229"
     container_name: ca-back
+    command: node --inspect=0.0.0.0:9229 --prof caracal.js
     volumes:
       - ./config/login.html:/src/static/login.html
       - ./jwt_keys/:/src/keys/
@@ -28,6 +30,7 @@ services:
       MONGO_URI: "mongodb://ca-mongo"
       DISABLE_SEC: "true"
       ALLOW_PUBLIC: "true"
+      NUM_THREADS: 1
   iip:
     build: "https://github.com/camicroscope/iipImage.git#develop"
     container_name: ca-iip
